@@ -129,51 +129,6 @@ function TranslatorCommissionForm({
   );
 }
 
-export function AdminPanel({
-  pendingUsers,
-  referrals,
-  nutritionists,
-  translators,
-  loginLinks,
-}: AdminPanelProps) {
-function CopyLinkField({
-  label,
-  link,
-}: {
-  label: string;
-  link: string;
-}) {
-  const [copied, setCopied] = useState(false);
-
-  async function copyText() {
-    try {
-      await navigator.clipboard.writeText(link);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
-
-  return (
-    <div className="rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm font-medium text-stone-700">{label}</p>
-          <p className="mt-1 text-sm text-emerald-700 break-all">{link}</p>
-        </div>
-        <button
-          type="button"
-          onClick={copyText}
-          className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700"
-        >
-          {copied ? "Copiado" : "Copiar link"}
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function CopyLinkField({
   label,
   link,

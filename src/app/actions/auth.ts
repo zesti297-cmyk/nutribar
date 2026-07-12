@@ -2,15 +2,14 @@
 
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import bcrypt from "bcryptjs";
 import { generateReferralCode } from "@/lib/referral";
 import { getDashboardPath, isValidRole } from "@/lib/auth";
 import { createSession, deleteSession } from "@/lib/session";
+import { createSupabaseAdminClient, createSupabaseClient } from "@/lib/supabase";
 import {
   createUser,
   findReferrerIdByCode,
   findUserByEmail,
-  getPasswordHashByEmail,
 } from "@/lib/users";
 import type { UserRole } from "@/lib/types";
 
@@ -36,6 +35,20 @@ export async function signUp(
     return { error: "Este email já está cadastrado." };
   }
 
+  const adminSupabase = createSupabaseAdminClient();
+  const { data: signUpData, error: signUpError } =
+    await adminSupabase.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true,
+    });
+
+  if (signUpError || !signUpData?.user) {
+    return { error: signUpError?.message ?? "Não foi possível criar o usuário." };
+  }
+
+  const authUid = signUpData.user.id;
+
   const cookieStore = await cookies();
   const storedRef = cookieStore.get("referral_code")?.value ?? null;
   const effectiveRef = referralCode ?? storedRef;
@@ -55,11 +68,10 @@ export async function signUp(
   const referralCodeValue =
     finalRole === "translator" ? generateReferralCode() : null;
 
-  const passwordHash = await bcrypt.hash(password, 12);
-
   const profile = await createUser({
     email,
-    passwordHash,
+    passwordHash: null,
+    authUid,
     role: finalRole,
     status,
     referralCode: referralCodeValue,
@@ -72,14 +84,19 @@ export async function signUp(
 }
 
 export async function signIn(email: string, password: string) {
-  const user = await getPasswordHashByEmail(email);
-  if (!user) {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error || !data.session?.user) {
     return { error: "Email ou senha incorretos." };
   }
 
-  const valid = await bcrypt.compare(password, user.password_hash);
-  if (!valid) {
-    return { error: "Email ou senha incorretos." };
+  const user = await findUserByEmail(email);
+  if (!user) {
+    return { error: "Usuário não encontrado." };
   }
 
   await createSession(user.id);

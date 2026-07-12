@@ -66,7 +66,7 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
                   <img src={photo} alt={nutritionist.full_name ?? "Nutricionista"} className="h-28 w-28 rounded-lg object-cover" />
                 </div>
                 <div className="md:col-span-2">
-                  <h3 className="text-2xl font-semibold text-[#0c2340]">{nutritionist.full_name ?? nutritionist.email}</h3>
+                  <h3 className="text-2xl font-semibold text-[#0c2340]">{nutritionist.full_name}</h3>
                   {nutritionist.location && <p className="mt-1 text-sm text-slate-500">{nutritionist.location}</p>}
                   <p className="mt-3 text-sm text-slate-600">{nutritionist.bio || "Nutricionista especializada em acompanhamento pós-bariátrica."}</p>
 

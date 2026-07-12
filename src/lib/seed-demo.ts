@@ -1,5 +1,7 @@
 import bcrypt from "bcryptjs";
-import { query, queryOne } from "@/lib/db";
+import { createSupabaseAdminClient } from "@/lib/supabase";
+
+const supabaseAdmin = createSupabaseAdminClient();
 
 const DEMO_NUTRITIONISTS = [
   {
@@ -53,40 +55,47 @@ export async function seedDemoNutritionists() {
   const passwordHash = await bcrypt.hash("demo123", 12);
 
   for (const demo of DEMO_NUTRITIONISTS) {
-    const exists = await queryOne<{ id: string }>(
-      "SELECT id FROM users WHERE email = $1",
-      [demo.email],
-    );
-    if (exists) {
-      await query(
-        `UPDATE users SET photo_url = $1, full_name = $2, languages = $3, bio = $4, location = $5
-         WHERE email = $6`,
-        [
-          demo.photo_url,
-          demo.full_name,
-          demo.languages,
-          demo.bio,
-          demo.location,
-          demo.email,
-        ],
-      );
+    const { data: existingUser, error: findError } = await supabaseAdmin
+      .from("users")
+      .select<{ id: string }>("id")
+      .eq("email", demo.email.toLowerCase())
+      .limit(1)
+      .maybeSingle();
+
+    if (findError) throw findError;
+
+    if (existingUser) {
+      const { error } = await supabaseAdmin
+        .from("users")
+        .update({
+          photo_url: demo.photo_url,
+          full_name: demo.full_name,
+          languages: demo.languages,
+          bio: demo.bio,
+          location: demo.location,
+        })
+        .eq("email", demo.email.toLowerCase());
+
+      if (error) throw error;
       continue;
     }
 
-    const id = crypto.randomUUID();
-    await query(
-      `INSERT INTO users (id, email, password_hash, role, status, full_name, languages, bio, photo_url, location)
-       VALUES ($1, $2, $3, 'nutritionist', 'approved', $4, $5, $6, $7, $8)`,
-      [
-        id,
-        demo.email,
-        passwordHash,
-        demo.full_name,
-        demo.languages,
-        demo.bio,
-        demo.photo_url,
-        demo.location,
-      ],
-    );
+    const { error } = await supabaseAdmin
+      .from("users")
+      .insert([
+        {
+          email: demo.email.toLowerCase(),
+          password_hash: passwordHash,
+          role: "nutritionist",
+          status: "approved",
+          full_name: demo.full_name,
+          languages: demo.languages,
+          bio: demo.bio,
+          photo_url: demo.photo_url,
+          location: demo.location,
+        },
+      ]);
+
+    if (error) throw error;
   }
 }

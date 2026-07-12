@@ -1,10 +1,11 @@
-import { query, queryOne } from "@/lib/db";
+import { createSupabaseAdminClient } from "@/lib/supabase";
 import type { Profile, UserRole, UserStatus } from "@/lib/types";
 
 interface UserRow {
   id: string;
   email: string;
-  password_hash: string;
+  password_hash: string | null;
+  auth_uid: string | null;
   role: UserRole;
   status: UserStatus;
   full_name: string | null;
@@ -18,6 +19,8 @@ interface UserRow {
   referred_by: string | null;
   created_at: string;
 }
+
+const supabaseAdmin = createSupabaseAdminClient();
 
 function toProfile(row: UserRow): Profile {
   return {
@@ -39,54 +42,71 @@ function toProfile(row: UserRow): Profile {
 }
 
 export async function findUserByEmail(email: string): Promise<UserRow | null> {
-  return queryOne<UserRow>(
-    "SELECT * FROM users WHERE LOWER(email) = LOWER($1)",
-    [email],
-  );
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("*")
+    .eq("email", email.toLowerCase())
+    .limit(1)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data;
 }
 
 export async function findUserById(id: string): Promise<Profile | null> {
-  const row = await queryOne<UserRow>("SELECT * FROM users WHERE id = $1", [id]);
-  return row ? toProfile(row) : null;
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error && error.code !== "PGRST116") throw error;
+  return data ? toProfile(data) : null;
 }
 
 export async function findReferrerIdByCode(
   code: string,
 ): Promise<string | null> {
-  const row = await queryOne<{ id: string }>(
-    `SELECT id FROM users
-     WHERE referral_code = UPPER($1) AND role = 'translator'`,
-    [code],
-  );
-  return row?.id ?? null;
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id")
+    .eq("referral_code", code.toUpperCase())
+    .eq("role", "translator")
+    .maybeSingle();
+
+  if (error) throw error;
+  return data?.id ?? null;
 }
 
-export async function createUser(data: {
+export async function createUser(newUser: {
   email: string;
-  passwordHash: string;
+  passwordHash: string | null;
+  authUid?: string | null;
   role: UserRole;
   status: UserStatus;
   referralCode?: string | null;
   referredBy?: string | null;
 }): Promise<Profile> {
   const id = crypto.randomUUID();
-  const row = await queryOne<UserRow>(
-    `INSERT INTO users (id, email, password_hash, role, status, referral_code, referred_by)
-     VALUES ($1, $2, $3, $4, $5, $6, $7)
-     RETURNING *`,
-    [
-      id,
-      data.email.toLowerCase(),
-      data.passwordHash,
-      data.role,
-      data.status,
-      data.referralCode ?? null,
-      data.referredBy ?? null,
-    ],
-  );
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .insert([
+      {
+        id,
+        email: newUser.email.toLowerCase(),
+        password_hash: newUser.passwordHash,
+        auth_uid: newUser.authUid ?? null,
+        role: newUser.role,
+        status: newUser.status,
+        referral_code: newUser.referralCode ?? null,
+        referred_by: newUser.referredBy ?? null,
+      },
+    ])
+    .select("*")
+    .single();
 
-  if (!row) throw new Error("Failed to create user");
-  return toProfile(row);
+  if (error || !data) throw error ?? new Error("Failed to create user");
+  return toProfile(data);
 }
 
 export async function updateUserProfile(
@@ -99,127 +119,160 @@ export async function updateUserProfile(
     location: string;
   },
 ) {
-  await query(
-    `UPDATE users SET full_name = $1, languages = $2, bio = $3, photo_url = $4, location = $5 WHERE id = $6`,
-    [data.full_name, data.languages, data.bio, data.photo_url, data.location, userId],
-  );
+  const { error } = await supabaseAdmin
+    .from("users")
+    .update({
+      full_name: data.full_name,
+      languages: data.languages,
+      bio: data.bio,
+      photo_url: data.photo_url,
+      location: data.location,
+    })
+    .eq("id", userId);
+
+  if (error) throw error;
 }
 
 export async function approveUserById(userId: string) {
-  await query(`UPDATE users SET status = 'approved' WHERE id = $1`, [userId]);
+  const { error } = await supabaseAdmin
+    .from("users")
+    .update({ status: "approved" })
+    .eq("id", userId);
+
+  if (error) throw error;
 }
 
 export async function getReferralStats(translatorId: string) {
-  const total = await queryOne<{ count: string }>(
-    `SELECT COUNT(*)::text AS count FROM users
-     WHERE referred_by = $1 AND role = 'translator'`,
-    [translatorId],
-  );
+  const { count: total, error: totalError } = await supabaseAdmin
+    .from("users")
+    .select("id", { count: "exact", head: true })
+    .eq("referred_by", translatorId)
+    .eq("role", "translator");
 
-  const approved = await queryOne<{ count: string }>(
-    `SELECT COUNT(*)::text AS count FROM users
-     WHERE referred_by = $1 AND role = 'translator' AND status = 'approved'`,
-    [translatorId],
-  );
+  if (totalError) throw totalError;
+
+  const { count: approved, error: approvedError } = await supabaseAdmin
+    .from("users")
+    .select("id", { count: "exact", head: true })
+    .eq("referred_by", translatorId)
+    .eq("role", "translator")
+    .eq("status", "approved");
+
+  if (approvedError) throw approvedError;
 
   return {
-    total: Number(total?.count ?? 0),
-    approved: Number(approved?.count ?? 0),
+    total: Number(total ?? 0),
+    approved: Number(approved ?? 0),
   };
 }
 
 export async function getPendingUsers(): Promise<Profile[]> {
-  const rows = await query<UserRow>(
-    `SELECT * FROM users
-     WHERE status = 'pending' AND role IN ('translator', 'nutritionist')
-     ORDER BY created_at DESC`,
-  );
-  return rows.map(toProfile);
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("*")
+    .in("role", ["translator", "nutritionist"])
+    .eq("status", "pending")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map(toProfile);
 }
 
-export async function getReferredTranslators() {
-  return query<UserRow>(
-    `SELECT id, email, status, created_at, referred_by FROM users
-     WHERE role = 'translator' AND referred_by IS NOT NULL
-     ORDER BY created_at DESC`,
-  );
+export async function getReferredTranslators(): Promise<Array<{
+  id: string;
+  email: string;
+  referred_by: string | null;
+  status: UserStatus;
+  created_at: string;
+}>> {
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, email, referred_by, status, created_at")
+    .eq("role", "translator")
+    .not("referred_by", "is", null)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
 }
 
-export async function getUsersByIds(ids: string[]) {
+export async function getUsersByIds(
+  ids: string[],
+): Promise<Array<{ id: string; email: string }>> {
   if (ids.length === 0) return [];
-  const rows = await query<{ id: string; email: string }>(
-    `SELECT id, email FROM users WHERE id = ANY($1::uuid[])`,
-    [ids],
-  );
-  return rows;
+
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, email")
+    .in("id", ids);
+
+  if (error) throw error;
+  return data ?? [];
 }
 
 export async function getApprovedNutritionists() {
-  const rows = await query<{
-    id: string;
-    full_name: string;
-    languages: string | null;
-    bio: string | null;
-    photo_url: string | null;
-    location: string | null;
-  }>(
-    `SELECT id, full_name, languages, bio, photo_url, location
-     FROM users
-     WHERE role = 'nutritionist' AND status = 'approved' AND full_name IS NOT NULL
-     ORDER BY created_at DESC`,
-  );
-  return rows;
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, full_name, languages, bio, photo_url, location")
+    .eq("role", "nutritionist")
+    .eq("status", "approved")
+    .not("full_name", "is", null)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
 }
 
 export async function getAdminNutritionists() {
-  return query<{
-    id: string;
-    email: string;
-    full_name: string | null;
-    nutritionist_plan: string | null;
-    status: UserStatus;
-  }>(
-    `SELECT id, email, full_name, nutritionist_plan, status
-     FROM users
-     WHERE role = 'nutritionist'
-     ORDER BY created_at DESC`,
-  );
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, email, full_name, nutritionist_plan, status")
+    .eq("role", "nutritionist")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
 }
 
 export async function getAdminTranslators() {
-  return query<{
-    id: string;
-    email: string;
-    full_name: string | null;
-    commission_rate: string | null;
-    status: UserStatus;
-  }>(
-    `SELECT id, email, full_name, commission_rate, status
-     FROM users
-     WHERE role = 'translator'
-     ORDER BY created_at DESC`,
-  );
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, email, full_name, commission_rate, status")
+    .eq("role", "translator")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
 }
 
 export async function updateNutritionistPlan(userId: string, plan: string) {
-  await query(
-    `UPDATE users SET nutritionist_plan = $1 WHERE id = $2`,
-    [plan || null, userId],
-  );
+  const { error } = await supabaseAdmin
+    .from("users")
+    .update({ nutritionist_plan: plan || null })
+    .eq("id", userId);
+
+  if (error) throw error;
 }
 
 export async function updateTranslatorCommission(userId: string, commissionRate: number) {
-  await query(
-    `UPDATE users SET commission_rate = $1 WHERE id = $2`,
-    [commissionRate, userId],
-  );
+  const { error } = await supabaseAdmin
+    .from("users")
+    .update({ commission_rate: commissionRate })
+    .eq("id", userId);
+
+  if (error) throw error;
 }
 
 export async function getPasswordHashByEmail(
   email: string,
-): Promise<{ id: string; password_hash: string; role: UserRole } | null> {
-  return queryOne<{ id: string; password_hash: string; role: UserRole }>(
-    `SELECT id, password_hash, role FROM users WHERE LOWER(email) = LOWER($1)`,
-    [email],
-  );
+): Promise<{ id: string; password_hash: string | null; role: UserRole } | null> {
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, password_hash, role")
+    .eq("email", email.toLowerCase())
+    .limit(1)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data;
 }
