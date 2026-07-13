@@ -147,7 +147,7 @@ export function LandingFooter() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <span>
-            {t("footer.copyright").replace("{year}", String(new Date().getFullYear()))}
+            {t("footer.copyright", { year: new Date().getFullYear() })}
           </span>
           <span className="max-w-md">{t("footer.note")}</span>
         </div>

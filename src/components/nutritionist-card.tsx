@@ -46,7 +46,7 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
 
         <div className="mt-6 flex items-center justify-between gap-4 border-t border-slate-100 pt-4">
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center rounded-md bg-emerald-50 px-3 py-1 text-sm font-medium text-[#0c2340]">Especialista</span>
+            <span className="inline-flex items-center rounded-md bg-emerald-50 px-3 py-1 text-sm font-medium text-[#0c2340]">{t("nutritionistCard.specialist")}</span>
             <p className="text-sm text-slate-500">{nutritionist.location ?? ""}</p>
           </div>
           <button
@@ -54,7 +54,7 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
             onClick={() => setOpen(true)}
             className="inline-flex items-center gap-2 rounded-md border border-[#0c2340] px-2 py-1 text-xs font-medium text-[#0c2340] whitespace-nowrap transition-colors hover:bg-[#0c2340] hover:text-white"
           >
-            Ver perfil
+            {t("nutritionistCard.viewProfile")}
           </button>
         </div>
       </div>
@@ -70,7 +70,7 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
                 <div className="md:col-span-2">
                   <h3 className="text-2xl font-semibold text-[#0c2340]">{nutritionist.full_name}</h3>
                   {nutritionist.location && <p className="mt-1 text-sm text-slate-500">{nutritionist.location}</p>}
-                  <p className="mt-3 text-sm text-slate-600">{nutritionist.bio || "Nutricionista especializada em acompanhamento pós-bariátrica."}</p>
+                  <p className="mt-3 text-sm text-slate-600">{nutritionist.bio || t("nutritionistCard.placeholderBio")}</p>
 
                   <div className="mt-6">
                     <h4 className="text-lg font-semibold text-[#0c2340]">{t("nutritionistCard.packsTitle")}</h4>
@@ -78,17 +78,17 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
                       <div className="rounded-lg border p-4 bg-slate-50">
                         <p className="font-medium">{t("nutritionistCard.monthly")}</p>
                         <p className="mt-2 text-sm text-slate-600">{t("nutritionistCard.packMonthlyDescription")}</p>
-                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from").replace("{price}", "€40")}</p>
+                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from", { price: "€40" })}</p>
                       </div>
                       <div className="rounded-lg border p-4 bg-slate-50">
                         <p className="font-medium">{t("nutritionistCard.quarterly")}</p>
                         <p className="mt-2 text-sm text-slate-600">{t("nutritionistCard.packQuarterlyDescription")}</p>
-                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from").replace("{price}", "€110")}</p>
+                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from", { price: "€110" })}</p>
                       </div>
                       <div className="rounded-lg border p-4 bg-slate-50">
                         <p className="font-medium">{t("nutritionistCard.annual")}</p>
                         <p className="mt-2 text-sm text-slate-600">{t("nutritionistCard.packAnnualDescription")}</p>
-                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from").replace("{price}", "€380")}</p>
+                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from", { price: "€380" })}</p>
                       </div>
                     </div>
                   </div>

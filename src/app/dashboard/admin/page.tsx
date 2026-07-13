@@ -1,3 +1,4 @@
+import { AdminDashboardTitle } from "@/components/admin-dashboard-title";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { AdminPanel } from "@/components/admin-panel";
 import { requireProfile } from "@/lib/profile";
@@ -46,7 +47,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <DashboardShell role="admin" email={profile.email}>
-      <h1 className="mb-6 text-2xl font-bold text-stone-900">Painel Admin</h1>
+      <AdminDashboardTitle />
       <AdminPanel
         pendingUsers={pendingUsers as Profile[]}
         referrals={referrals}

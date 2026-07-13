@@ -5,6 +5,13 @@ import { approveUser, updateNutritionistPlan, updateTranslatorCommission } from 
 import type { Profile } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
 
+const LOCALE_TO_DATE: Record<string, string> = {
+  pt: "pt-BR",
+  en: "en-US",
+  es: "es",
+  fr: "fr-FR",
+};
+
 interface AdminPanelProps {
   pendingUsers: Profile[];
   referrals: Array<{
@@ -181,7 +188,9 @@ export function AdminPanel({
   translators,
   loginLinks,
 }: AdminPanelProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const dateLocale = LOCALE_TO_DATE[locale] ?? locale;
+
   return (
     <div className="space-y-8">
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
@@ -194,7 +203,7 @@ export function AdminPanel({
               <li key={user.id} className="flex items-center justify-between py-4">
                 <div>
                   <p className="font-medium text-stone-900">{user.email}</p>
-                  <p className="text-sm text-stone-500 capitalize">{user.role}</p>
+                  <p className="text-sm text-stone-500">{t(`role.${user.role}`)}</p>
                 </div>
                 <ApproveButton userId={user.id} />
               </li>
@@ -206,8 +215,8 @@ export function AdminPanel({
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
         <h2 className="text-xl font-bold text-stone-900">{t("admin.loginLinks")}</h2>
         <div className="mt-4 space-y-3 rounded-2xl border border-stone-100 bg-slate-50 p-4">
-          <CopyLinkField label={t("admin.table.translator")} link={loginLinks.nutritionist} />
-          <CopyLinkField label={t("admin.referrer")} link={loginLinks.translator} />
+          <CopyLinkField label={t("admin.loginLinkNutritionist")} link={loginLinks.nutritionist} />
+          <CopyLinkField label={t("admin.loginLinkTranslator")} link={loginLinks.translator} />
         </div>
       </section>
 
@@ -225,7 +234,7 @@ export function AdminPanel({
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <p className="font-medium text-stone-900">{nutri.full_name ?? nutri.email}</p>
-                    <p className="text-sm text-stone-500">{t("admin.table.status")}: {nutri.status}</p>
+                    <p className="text-sm text-stone-500">{t("admin.table.status")}: {t(`status.${nutri.status}`)}</p>
                   </div>
                 </div>
                 <NutritionistPlanForm userId={nutri.id} defaultPlan={nutri.nutritionist_plan} />
@@ -249,7 +258,7 @@ export function AdminPanel({
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <p className="font-medium text-stone-900">{translator.full_name ?? translator.email}</p>
-                    <p className="text-sm text-stone-500">{t("admin.table.status")}: {translator.status}</p>
+                    <p className="text-sm text-stone-500">{t("admin.table.status")}: {t(`status.${translator.status}`)}</p>
                   </div>
                 </div>
                 <TranslatorCommissionForm
@@ -282,9 +291,9 @@ export function AdminPanel({
                   <tr key={ref.id} className="border-b border-stone-100">
                     <td className="py-3 pr-4">{ref.email}</td>
                     <td className="py-3 pr-4">{ref.referrer_email}</td>
-                    <td className="py-3 pr-4 capitalize">{ref.status}</td>
+                    <td className="py-3 pr-4">{t(`status.${ref.status}`)}</td>
                     <td className="py-3">
-                      {new Date(ref.created_at).toLocaleDateString("pt-BR")}
+                      {new Date(ref.created_at).toLocaleDateString(dateLocale)}
                     </td>
                   </tr>
                 ))}

@@ -37,7 +37,7 @@ export function AuthForm({ role, referralCode }: AuthFormProps) {
 
       {referralCode && mode === "signup" && (
         <p className="mt-3 rounded-lg bg-sky-50 px-3 py-2 text-sm text-sky-800">
-          {t("auth.referral").replace("{code}", String(referralCode))}
+          {t("auth.referral", { code: String(referralCode) })}
         </p>
       )}
 

@@ -49,10 +49,11 @@ export default function OnboardingPage() {
     <div className="mx-auto max-w-2xl p-6">
       <h1 className="mb-4 text-2xl font-semibold text-[#0c2340]">{t("onboarding.title")}</h1>
       <div className="mb-4 text-sm text-slate-600">
-        {t("onboarding.stepLabel")
-          .replace("{current}", String(step + 1))
-          .replace("{total}", String(steps.length))
-          .replace("{label}", steps[step])}
+        {t("onboarding.stepLabel", {
+          current: step + 1,
+          total: steps.length,
+          label: steps[step],
+        })}
       </div>
 
       {step === 0 && (

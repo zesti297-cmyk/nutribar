@@ -8,7 +8,7 @@ import fr from "../locales/fr.json";
 
 type Locale = "pt" | "en" | "es" | "fr";
 
-const translations: Record<Locale, Record<string, any>> = {
+const translations: Record<Locale, Record<string, unknown>> = {
   pt,
   en,
   es,
@@ -18,12 +18,25 @@ const translations: Record<Locale, Record<string, any>> = {
 type I18nContext = {
   locale: Locale;
   setLocale: (l: Locale) => void;
-  t: (key: string) => string;
+  t: (key: string, params?: Record<string, string | number>) => string;
 };
 
 const defaultLocale: Locale = "pt";
 
 const I18nContext = createContext<I18nContext | undefined>(undefined);
+
+function resolveTranslation(locale: Locale, key: string): unknown {
+  const parts = key.split(".");
+  let cur: unknown = translations[locale] || {};
+  for (const p of parts) {
+    if (cur && typeof cur === "object" && p in (cur as object)) {
+      cur = (cur as Record<string, unknown>)[p];
+    } else {
+      return undefined;
+    }
+  }
+  return cur;
+}
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
@@ -36,10 +49,10 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
         return;
       }
       const nav = (navigator.languages?.[0] || navigator.language || "").slice(0, 2);
-      if (nav && (nav === "pt" || nav === "en" || nav === "es" || nav === "fr")) {
-        setLocaleState(nav as Locale);
+      if (nav === "pt" || nav === "en" || nav === "es" || nav === "fr") {
+        setLocaleState(nav);
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
   }, []);
@@ -48,23 +61,27 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     setLocaleState(l);
     try {
       localStorage.setItem("locale", l);
-    } catch (e) {
+    } catch {
       // ignore
     }
   };
 
   const t = useMemo(
     () =>
-      (key: string) => {
-        const parts = key.split(".");
-        let cur: any = translations[locale] || {};
-        for (const p of parts) {
-          cur = cur?.[p];
-          if (cur === undefined) return key;
+      (key: string, params?: Record<string, string | number>) => {
+        let value = resolveTranslation(locale, key);
+        if (value === undefined && locale !== defaultLocale) {
+          value = resolveTranslation(defaultLocale, key);
         }
-        return typeof cur === "string" ? cur : JSON.stringify(cur);
+        if (typeof value !== "string") return key;
+        if (!params) return value;
+        return Object.entries(params).reduce(
+          (text, [param, replacement]) =>
+            text.replaceAll(`{${param}}`, String(replacement)),
+          value,
+        );
       },
-    [locale]
+    [locale],
   );
 
   return <I18nContext.Provider value={{ locale, setLocale, t }}>{children}</I18nContext.Provider>;
