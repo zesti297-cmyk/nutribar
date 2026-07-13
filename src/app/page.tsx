@@ -3,24 +3,16 @@ import { LandingHero } from "@/components/landing-hero";
 import { LandingHowItWorks } from "@/components/landing-how-it-works";
 import { LandingNutritionists } from "@/components/landing-nutritionists";
 import { LandingFooter } from "@/components/landing-footer";
-import { getApprovedNutritionists } from "@/lib/users";
+import { DEMO_NUTRITIONISTS } from "@/lib/demo-nutritionists";
 
-export default async function Home() {
-  let nutritionists: Awaited<ReturnType<typeof getApprovedNutritionists>> = [];
-
-  try {
-    nutritionists = await getApprovedNutritionists();
-  } catch {
-    // DB not configured yet — show empty state.
-  }
-
+export default function Home() {
   return (
     <div className="min-h-full bg-white">
       <LandingHeader />
       <main>
         <LandingHero />
         <LandingHowItWorks />
-        <LandingNutritionists nutritionists={nutritionists} />
+        <LandingNutritionists nutritionists={DEMO_NUTRITIONISTS} />
       </main>
       <LandingFooter />
     </div>

@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
 import { useI18n } from "../lib/i18n";
-import { LanguageModal } from "./language-modal";
+import { LanguageSelector } from "./language-modal";
 
 export function LandingHeader() {
   const { t } = useI18n();
-  const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
@@ -26,12 +24,7 @@ export function LandingHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setOpen(true)}
-            className="mr-2 rounded px-3 py-2 text-sm text-slate-600 hover:bg-slate-100"
-          >
-            {t("language")}
-          </button>
+          <LanguageSelector />
 
           <Link
             href="/login/patient"
@@ -47,7 +40,6 @@ export function LandingHeader() {
           </Link>
         </div>
       </div>
-      <LanguageModal open={open} onClose={() => setOpen(false)} />
     </header>
   );
 }
