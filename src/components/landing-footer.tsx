@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useI18n } from "../lib/i18n";
 
 const socialLinks = [
   {
@@ -40,6 +43,8 @@ const socialLinks = [
 ];
 
 export function LandingFooter() {
+  const { t } = useI18n();
+
   return (
     <footer className="bg-[#0c2340] text-slate-300">
       <div className="mx-auto max-w-6xl px-6 py-16">
@@ -47,11 +52,10 @@ export function LandingFooter() {
           {/* Brand + social */}
           <div>
             <Link href="/" className="text-xl font-bold text-white">
-              Nutribar
+              {t("footer.brand")}
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
-              Acompanhamento nutricional pós-bariátrica para pacientes internacionais.
-              Conectamos você à continuidade de cuidado quando volta para casa.
+              {t("footer.description")}
             </p>
             <div className="mt-5 flex gap-3">
               {socialLinks.map((social) => (
@@ -72,22 +76,22 @@ export function LandingFooter() {
           {/* Empresa */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Empresa
+              {t("footer.company")}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#como-funciona" className="transition-colors hover:text-white">
-                  Como funciona
+                  {t("footer.howItWorks")}
                 </a>
               </li>
               <li>
                 <a href="#nutricionistas" className="transition-colors hover:text-white">
-                  Nutricionistas
+                  {t("footer.nutritionists")}
                 </a>
               </li>
               <li>
                 <Link href="/login/translator" className="transition-colors hover:text-white">
-                  Para tradutores
+                  {t("footer.forTranslators")}
                 </Link>
               </li>
             </ul>
@@ -96,12 +100,12 @@ export function LandingFooter() {
           {/* Recursos */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Recursos
+              {t("footer.resources")}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/login/patient" className="transition-colors hover:text-white">
-                  Sou paciente
+                  {t("footer.imPatient")}
                 </Link>
               </li>
               <li>
@@ -109,7 +113,7 @@ export function LandingFooter() {
                   href="mailto:contato@nutribar.com"
                   className="transition-colors hover:text-white"
                 >
-                  Contato
+                  {t("footer.contact")}
                 </a>
               </li>
             </ul>
@@ -118,22 +122,22 @@ export function LandingFooter() {
           {/* Legal */}
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-              Legal
+              {t("footer.legal")}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#" className="transition-colors hover:text-white">
-                  Política de privacidade
+                  {t("footer.privacy")}
                 </a>
               </li>
               <li>
                 <a href="#" className="transition-colors hover:text-white">
-                  Termos de uso
+                  {t("footer.terms")}
                 </a>
               </li>
               <li>
                 <a href="#" className="transition-colors hover:text-white">
-                  Aviso legal
+                  {t("footer.disclaimer")}
                 </a>
               </li>
             </ul>
@@ -143,12 +147,9 @@ export function LandingFooter() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <span>
-            © {new Date().getFullYear()} Nutribar. Todos os direitos reservados.
+            {t("footer.copyright").replace("{year}", String(new Date().getFullYear()))}
           </span>
-          <span className="max-w-md">
-            Nutribar é uma plataforma de acompanhamento nutricional e não substitui
-            orientação médica presencial.
-          </span>
+          <span className="max-w-md">{t("footer.note")}</span>
         </div>
       </div>
     </footer>

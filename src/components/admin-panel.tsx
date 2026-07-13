@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import { approveUser, updateNutritionistPlan, updateTranslatorCommission } from "@/app/actions/admin";
 import type { Profile } from "@/lib/types";
+import { useI18n } from "../lib/i18n";
 
 interface AdminPanelProps {
   pendingUsers: Profile[];
@@ -34,6 +35,7 @@ interface AdminPanelProps {
 }
 
 function ApproveButton({ userId }: { userId: string }) {
+  const { t } = useI18n();
   const [state, action, pending] = useActionState(
     async (_prev: { error?: string } | null) => approveUser(userId),
     null,
@@ -47,7 +49,7 @@ function ApproveButton({ userId }: { userId: string }) {
           disabled={pending}
           className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
         >
-          {pending ? "..." : "Aprovar"}
+          {pending ? "..." : t("admin.approve")}
         </button>
       </form>
       {state?.error && <p className="mt-1 text-xs text-red-600">{state.error}</p>}
@@ -70,9 +72,11 @@ function NutritionistPlanForm({
     null,
   );
 
+  const { t } = useI18n();
+
   return (
     <form action={action} className="space-y-2 rounded-xl border border-stone-200 bg-slate-50 p-4">
-      <label className="block text-sm font-medium text-stone-700">Plano do nutricionista</label>
+      <label className="block text-sm font-medium text-stone-700">{t("admin.savePlan")}</label>
       <textarea
         name="nutritionist_plan"
         defaultValue={defaultPlan ?? ""}
@@ -84,7 +88,7 @@ function NutritionistPlanForm({
         disabled={pending}
         className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
       >
-        {pending ? "Salvando..." : "Salvar plano"}
+        {pending ? t("admin.savePlan") : t("admin.savePlan")}
       </button>
       {state?.error && <p className="text-xs text-red-600">{state.error}</p>}
     </form>
@@ -106,9 +110,11 @@ function TranslatorCommissionForm({
     null,
   );
 
+  const { t } = useI18n();
+
   return (
     <form action={action} className="space-y-2 rounded-xl border border-stone-200 bg-slate-50 p-4">
-      <label className="block text-sm font-medium text-stone-700">Comissão do tradutor (%)</label>
+      <label className="block text-sm font-medium text-stone-700">{t("admin.saveCommission")}</label>
       <input
         type="number"
         name="commission_rate"
@@ -122,7 +128,7 @@ function TranslatorCommissionForm({
         disabled={pending}
         className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
       >
-        {pending ? "Salvando..." : "Salvar comissão"}
+        {pending ? t("admin.saveCommission") : t("admin.saveCommission")}
       </button>
       {state?.error && <p className="text-xs text-red-600">{state.error}</p>}
     </form>
@@ -137,6 +143,7 @@ function CopyLinkField({
   link: string;
 }) {
   const [copied, setCopied] = useState(false);
+  const { t } = useI18n();
 
   async function copyText() {
     try {
@@ -160,7 +167,7 @@ function CopyLinkField({
           onClick={copyText}
           className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700"
         >
-          {copied ? "Copiado" : "Copiar link"}
+          {copied ? t("admin.copied") : t("admin.copyLink")}
         </button>
       </div>
     </div>
@@ -174,12 +181,13 @@ export function AdminPanel({
   translators,
   loginLinks,
 }: AdminPanelProps) {
+  const { t } = useI18n();
   return (
     <div className="space-y-8">
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
-        <h2 className="text-xl font-bold text-stone-900">Aprovações pendentes</h2>
+        <h2 className="text-xl font-bold text-stone-900">{t("admin.pendingApprovals")}</h2>
         {pendingUsers.length === 0 ? (
-          <p className="mt-4 text-stone-500">Nenhuma aprovação pendente.</p>
+          <p className="mt-4 text-stone-500">{t("admin.noPending")}</p>
         ) : (
           <ul className="mt-4 divide-y divide-stone-100">
             {pendingUsers.map((user) => (
@@ -196,17 +204,17 @@ export function AdminPanel({
       </section>
 
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
-        <h2 className="text-xl font-bold text-stone-900">Links de login para nutricionistas e tradutores</h2>
+        <h2 className="text-xl font-bold text-stone-900">{t("admin.loginLinks")}</h2>
         <div className="mt-4 space-y-3 rounded-2xl border border-stone-100 bg-slate-50 p-4">
-          <CopyLinkField label="Nutricionista" link={loginLinks.nutritionist} />
-          <CopyLinkField label="Tradutor" link={loginLinks.translator} />
+          <CopyLinkField label={t("admin.table.translator")} link={loginLinks.nutritionist} />
+          <CopyLinkField label={t("admin.referrer")} link={loginLinks.translator} />
         </div>
       </section>
 
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
-        <h2 className="text-xl font-bold text-stone-900">Nutricionistas</h2>
+        <h2 className="text-xl font-bold text-stone-900">{t("admin.nutritionists")}</h2>
         {nutritionists.length === 0 ? (
-          <p className="mt-4 text-stone-500">Nenhuma nutricionista encontrada.</p>
+          <p className="mt-4 text-stone-500">{t("admin.noNutritionists")}</p>
         ) : (
           <div className="mt-4 space-y-4">
             {nutritionists.map((nutri) => (
@@ -217,7 +225,7 @@ export function AdminPanel({
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <p className="font-medium text-stone-900">{nutri.full_name ?? nutri.email}</p>
-                    <p className="text-sm text-stone-500">Status: {nutri.status}</p>
+                    <p className="text-sm text-stone-500">{t("admin.table.status")}: {nutri.status}</p>
                   </div>
                 </div>
                 <NutritionistPlanForm userId={nutri.id} defaultPlan={nutri.nutritionist_plan} />
@@ -228,9 +236,9 @@ export function AdminPanel({
       </section>
 
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
-        <h2 className="text-xl font-bold text-stone-900">Tradutores</h2>
+        <h2 className="text-xl font-bold text-stone-900">{t("admin.translators")}</h2>
         {translators.length === 0 ? (
-          <p className="mt-4 text-stone-500">Nenhum tradutor encontrado.</p>
+          <p className="mt-4 text-stone-500">{t("admin.noTranslators")}</p>
         ) : (
           <div className="mt-4 space-y-4">
             {translators.map((translator) => (
@@ -241,7 +249,7 @@ export function AdminPanel({
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <p className="font-medium text-stone-900">{translator.full_name ?? translator.email}</p>
-                    <p className="text-sm text-stone-500">Status: {translator.status}</p>
+                    <p className="text-sm text-stone-500">{t("admin.table.status")}: {translator.status}</p>
                   </div>
                 </div>
                 <TranslatorCommissionForm
@@ -255,18 +263,18 @@ export function AdminPanel({
       </section>
 
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
-        <h2 className="text-xl font-bold text-stone-900">Indicações entre tradutores</h2>
+        <h2 className="text-xl font-bold text-stone-900">{t("admin.referrals")}</h2>
         {referrals.length === 0 ? (
-          <p className="mt-4 text-stone-500">Nenhuma indicação registrada.</p>
+          <p className="mt-4 text-stone-500">{t("admin.noReferrals")}</p>
         ) : (
           <div className="mt-4 overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-stone-200 text-stone-500">
-                  <th className="pb-3 pr-4 font-medium">Tradutor indicado</th>
-                  <th className="pb-3 pr-4 font-medium">Indicado por</th>
-                  <th className="pb-3 pr-4 font-medium">Status</th>
-                  <th className="pb-3 font-medium">Data</th>
+                  <th className="pb-3 pr-4 font-medium">{t("admin.table.translator")}</th>
+                  <th className="pb-3 pr-4 font-medium">{t("admin.table.referrer")}</th>
+                  <th className="pb-3 pr-4 font-medium">{t("admin.table.status")}</th>
+                  <th className="pb-3 font-medium">{t("admin.table.date")}</th>
                 </tr>
               </thead>
               <tbody>

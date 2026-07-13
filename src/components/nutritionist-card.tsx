@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { PublicNutritionist } from "@/lib/types";
+import { useI18n } from "../lib/i18n";
 
 const PLACEHOLDER_PHOTO =
   "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&h=750&crop=faces&q=80";
@@ -12,7 +13,8 @@ interface NutritionistCardProps {
 }
 
 export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
-  const primaryLanguage = nutritionist.languages?.split(",")[0]?.trim() ?? "Multilíngue";
+  const { t } = useI18n();
+  const primaryLanguage = nutritionist.languages?.split(",")[0]?.trim() ?? t("nutritionistCard.multilingual");
   const photo = nutritionist.photo_url || PLACEHOLDER_PHOTO;
   const [open, setOpen] = useState(false);
 
@@ -40,7 +42,7 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
 
         <h3 className="mt-4 text-xl font-semibold text-[#0c2340]">{nutritionist.full_name}</h3>
 
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{nutritionist.bio || "Nutricionista especializada em acompanhamento pós-bariátrica."}</p>
+        <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{nutritionist.bio || t("nutritionistCard.placeholderBio")}</p>
 
         <div className="mt-6 flex items-center justify-between gap-4 border-t border-slate-100 pt-4">
           <div className="flex items-center gap-3">
@@ -71,29 +73,29 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
                   <p className="mt-3 text-sm text-slate-600">{nutritionist.bio || "Nutricionista especializada em acompanhamento pós-bariátrica."}</p>
 
                   <div className="mt-6">
-                    <h4 className="text-lg font-semibold text-[#0c2340]">Packs disponíveis</h4>
+                    <h4 className="text-lg font-semibold text-[#0c2340]">{t("nutritionistCard.packsTitle")}</h4>
                     <div className="mt-4 grid gap-4 sm:grid-cols-3">
                       <div className="rounded-lg border p-4 bg-slate-50">
-                        <p className="font-medium">Mensal</p>
-                        <p className="mt-2 text-sm text-slate-600">1 consulta inicial + 1 acompanhamento por mês, ajustes e suporte por mensagem.</p>
-                        <p className="mt-3 font-bold text-[#0c2340]">A partir de €40</p>
+                        <p className="font-medium">{t("nutritionistCard.monthly")}</p>
+                        <p className="mt-2 text-sm text-slate-600">{t("nutritionistCard.packMonthlyDescription")}</p>
+                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from").replace("{price}", "€40")}</p>
                       </div>
                       <div className="rounded-lg border p-4 bg-slate-50">
-                        <p className="font-medium">Trimestral</p>
-                        <p className="mt-2 text-sm text-slate-600">Consulta inicial, 3 revisões, recomendações detalhadas e suporte contínuo.</p>
-                        <p className="mt-3 font-bold text-[#0c2340]">A partir de €110</p>
+                        <p className="font-medium">{t("nutritionistCard.quarterly")}</p>
+                        <p className="mt-2 text-sm text-slate-600">{t("nutritionistCard.packQuarterlyDescription")}</p>
+                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from").replace("{price}", "€110")}</p>
                       </div>
                       <div className="rounded-lg border p-4 bg-slate-50">
-                        <p className="font-medium">Anual</p>
-                        <p className="mt-2 text-sm text-slate-600">Programa completo com avaliações regulares, ajustes e prioridade no atendimento.</p>
-                        <p className="mt-3 font-bold text-[#0c2340]">A partir de €380</p>
+                        <p className="font-medium">{t("nutritionistCard.annual")}</p>
+                        <p className="mt-2 text-sm text-slate-600">{t("nutritionistCard.packAnnualDescription")}</p>
+                        <p className="mt-3 font-bold text-[#0c2340]">{t("nutritionistCard.from").replace("{price}", "€380")}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-6 flex justify-end gap-3">
-                    <Link href="/login/patient" className="rounded-md bg-[#0c2340] px-5 py-2 text-sm font-semibold text-white">Iniciar contato</Link>
-                  <button onClick={() => setOpen(false)} className="rounded-md border px-5 py-2 text-sm">Fechar</button>
+                            <Link href="/login/patient" className="rounded-md bg-[#0c2340] px-5 py-2 text-sm font-semibold text-white">{t("nutritionistCard.contact")}</Link>
+                          <button onClick={() => setOpen(false)} className="rounded-md border px-5 py-2 text-sm">{t("nutritionistCard.close")}</button>
                   </div>
                 </div>
               </div>

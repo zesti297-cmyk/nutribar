@@ -1,0 +1,220 @@
+{
+  "siteName": "Nutribar",
+  "nutritionists": "Nutricionistas",
+  "howItWorks": "Cómo funciona",
+  "hero": {
+    "preTitle": "Seguimiento posbariátrico",
+    "title": "Soporte nutricional para resultados duraderos",
+    "description": "Cuida tu recuperación con un seguimiento nutricional personalizado, evaluaciones prácticas, recomendaciones claras e intervenciones que acompañan tu evolución con seguridad.",
+    "cta": "Comenzar ahora",
+    "stats": {
+      "continuous": { "value": "Continuo", "label": "seguimiento personalizado" },
+      "online": { "value": "100%", "label": "en línea" },
+      "support": { "value": "24/7", "label": "soporte" }
+    },
+    "patientsLabel": "Pacientes atendidas",
+    "patientsCount": "+500"
+  },
+  "how": {
+    "title": "Cómo funciona",
+    "subtitle": "Tres pasos simples para continuar tu cuidado postoperatorio",
+    "steps": {
+      "1": { "title": "Regístrate rápido", "description": "Crea tu cuenta y obtén acceso inmediato al soporte nutricional especializado." },
+      "2": { "title": "Elige la nutri adecuada", "description": "Ve profesionales aprobadas para posbariátrica y selecciona quien se ajuste a tu caso." },
+      "3": { "title": "Recibe soporte continuo", "description": "Sigue tu evolución con ajustes personalizados y orientaciones prácticas mes a mes." },
+      "4": { "title": "Accede a resultados", "description": "Controla tu plan alimentario, metas y feedback en una sola plataforma." }
+    }
+  },
+  "login": "Iniciar sesión",
+  "start": "Comenzar",
+  "nutritionistsSection": {
+    "title": "Nutricionistas aprovadas",
+    "description": "Elige entre profesionales con experiencia y actualiza tu plan postoperatorio con atención personalizada y apoyo continuo.",
+    "emptyTitle": "Más nutricionistas pronto",
+    "emptyDesc": "Estamos aprobando nuevas profesionales para ampliar la atención y ofrecer más soporte para tu postoperatorio."
+  },
+  "footer": {
+    "brand": "Nutribar",
+    "description": "Seguimiento nutricional posbariátrico para pacientes internacionales. Te conectamos con la continuidad de cuidado cuando regreses a casa.",
+    "company": "Empresa",
+    "resources": "Recursos",
+    "legal": "Legal",
+    "howItWorks": "Cómo funciona",
+    "nutritionists": "Nutricionistas",
+    "forTranslators": "Para traductores",
+    "imPatient": "Soy paciente",
+    "contact": "Contacto",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de uso",
+    "disclaimer": "Aviso legal",
+    "copyright": "© {year} Nutribar. Todos los derechos reservados.",
+    "note": "Nutribar es una plataforma de seguimiento nutricional y no reemplaza la orientación médica presencial."
+  },
+  "nutritionistCard": {
+    "placeholderBio": "Nutricionista especializada en seguimiento posbariátrico.",
+    "specialist": "Especialista",
+    "viewProfile": "Ver perfil",
+    "packsTitle": "Packs disponibles",
+    "monthly": "Mensual",
+    "quarterly": "Trimestral",
+    "annual": "Anual",
+    "from": "A partir de {price}",
+    "contact": "Iniciar contacto",
+    "close": "Cerrar"
+  },
+  "nutritionistForm": {
+    "pending": "Tu perfil está a la espera de aprobación del admin. Una vez aprobado aparecerá en la landing.",
+    "fullName": "Nombre completo",
+    "photoUrl": "URL de la foto",
+    "photoHelp": "Esta foto aparece en la tarjeta de la landing.",
+    "location": "Ubicación",
+    "languages": "Idiomas",
+    "bio": "Descripción / experiencia",
+    "placeholderBio": "Describe tu experiencia con pacientes bariátricos. Este texto aparece en la tarjeta de la landing.",
+    "saving": "Guardando...",
+    "saved": "Perfil guardado con éxito!",
+    "save": "Guardar perfil"
+  },
+  "auth": {
+    "back": "← Volver",
+    "enterAccount": "Inicia sesión en tu cuenta",
+    "createAccount": "Crea tu cuenta",
+    "referral": "Referido por traductor: {code}",
+    "email": "Email",
+    "password": "Contraseña",
+    "wait": "Espere...",
+    "login": "Iniciar sesión",
+    "signup": "Crear cuenta",
+    "noAccount": "¿No tienes cuenta? Regístrate",
+    "haveAccount": "¿Ya tienes cuenta? Inicia sesión"
+  },
+  "admin": {
+    "pendingApprovals": "Aprobaciones pendientes",
+    "noPending": "No hay aprobaciones pendientes.",
+    "loginLinks": "Enlaces de inicio de sesión para nutricionistas y traductores",
+    "nutritionists": "Nutricionistas",
+    "noNutritionists": "No se encontraron nutricionistas.",
+    "translators": "Traductores",
+    "noTranslators": "No se encontraron traductores.",
+    "referrals": "Referencias entre traductores",
+    "noReferrals": "No hay referencias registradas.",
+    "approve": "Aprobar",
+    "savePlan": "Guardar plan",
+    "saveCommission": "Guardar comisión",
+    "copyLink": "Copiar enlace",
+    "copied": "Copiado",
+    "table": {
+      "translator": "Traductor referido",
+      "referrer": "Referido por",
+      "status": "Estado",
+      "date": "Fecha"
+    }
+  },
+  "copyReferral": {
+    "copy": "Copiar",
+    "copied": "¡Copiado!"
+  },
+  "role": {
+    "patient": "Paciente",
+    "translator": "Traductor",
+    "nutritionist": "Nutricionista",
+    "admin": "Admin"
+  },
+  "dashboard": {
+    "signOut": "Cerrar sesión",
+    "patient": {
+      "welcome": "Bienvenida{suffix}!",
+      "description": "Tu seguimiento nutricional de 1 año se activará pronto.",
+      "banner": "Pronto tendrás acceso a tu nutricionista y a tu plan de alimentación personalizado después de la cirugía."
+    },
+    "translator": {
+      "title": "Tu enlace de afiliado",
+      "description": "Comparte este enlace para reclutar otros traductores.",
+      "bonus": "Ganas $20 por cada traductor aprobado.",
+      "pending": "Tu cuenta está esperando aprobación del admin.",
+      "referred": "Traductores indicados",
+      "approvedCommission": "Aprobados (comisión)"
+    },
+    "nutritionist": {
+      "title": "Tu perfil",
+      "description": "Completa tu información para que los pacientes puedan encontrarte."
+    }
+  },
+  "onboarding": {
+    "title": "Registro y onboarding",
+    "stepLabel": "Paso {current} de {total}: {label}",
+    "steps": {
+      "account": "Cuenta",
+      "surgeryType": "Tipo de cirugía",
+      "language": "Idioma",
+      "country": "País",
+      "surgeryCity": "Ciudad de cirugía",
+      "hospital": "Hospital",
+      "review": "Revisión"
+    },
+    "selectOption": "Seleccionar",
+    "surgeryTypes": {
+      "bariatric": "Bariátrica",
+      "endocrine": "Endocrina",
+      "other": "Otro"
+    },
+    "fields": {
+      "fullName": "Nombre completo",
+      "email": "Email",
+      "password": "Contraseña",
+      "surgeryType": "Tipo de cirugía",
+      "language": "Idioma",
+      "country": "País",
+      "surgeryCity": "Ciudad de cirugía",
+      "hospital": "Hospital"
+    },
+    "placeholders": {
+      "fullName": "Nombre completo",
+      "email": "Email",
+      "password": "Contraseña",
+      "country": "País",
+      "surgeryCity": "Ciudad de cirugía",
+      "hospital": "Hospital"
+    },
+    "buttons": {
+      "prev": "Volver",
+      "next": "Siguiente",
+      "submit": "Enviar"
+    },
+    "reviewTitle": "Revisa tu información",
+    "submitError": "Error al enviar. Intenta de nuevo.",
+    "submitSuccess": "¡Enviado con éxito!"
+  },
+  "nutritionistCard": {
+    "placeholderBio": "Nutricionista especializada en seguimiento posbariátrico.",
+    "specialist": "Especialista",
+    "multilingual": "Multilingüe",
+    "viewProfile": "Ver perfil",
+    "packsTitle": "Packs disponibles",
+    "monthly": "Mensual",
+    "quarterly": "Trimestral",
+    "annual": "Anual",
+    "packMonthlyDescription": "1 consulta inicial + 1 seguimiento por mes, ajustes y soporte por mensaje.",
+    "packQuarterlyDescription": "Consulta inicial, 3 revisiones, recomendaciones detalladas y soporte continuo.",
+    "packAnnualDescription": "Programa completo con evaluaciones regulares, ajustes y prioridad de atención.",
+    "from": "A partir de {price}",
+    "contact": "Iniciar contacto",
+    "close": "Cerrar"
+  },
+  "nutritionistsSection": {
+    "placeholderBio1": "Profesional especializada en dietas posquirúrgicas, reeducación alimentaria y soporte continuo.",
+    "placeholderBio2": "Seguimiento para pacientes que viajan al extranjero y necesitan soporte multilingüe.",
+    "placeholderBio3": "Plataforma con profesionales listas para orientar cada etapa de tu recuperación."
+  },
+  "language": "Idioma",
+  "selectLanguage": "Seleccionar idioma",
+  "languageModal": {
+    "cancel": "Cancelar"
+  },
+  "languages": {
+    "pt": "Português",
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés"
+  }
+}

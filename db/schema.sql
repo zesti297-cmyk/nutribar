@@ -4,7 +4,8 @@ CREATE TYPE user_status AS ENUM ('pending', 'approved');
 CREATE TABLE users (
   id UUID PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
-  password_hash TEXT NOT NULL,
+  password_hash TEXT,
+  auth_uid UUID UNIQUE,
   role user_role NOT NULL,
   status user_status NOT NULL DEFAULT 'pending',
   full_name TEXT,

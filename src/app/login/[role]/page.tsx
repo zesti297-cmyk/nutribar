@@ -17,7 +17,7 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
   }
 
   return (
-    <div className="flex min-h-full items-center justify-center bg-stone-50 px-6 py-16">
+    <div className="flex min-h-full items-center justify-center bg-gradient-to-b from-slate-50 to-white px-6 py-16">
       <AuthForm role={role as UserRole} referralCode={ref} />
     </div>
   );

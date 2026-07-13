@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "../lib/i18n";
 
 interface CopyReferralLinkProps {
   url: string;
@@ -8,6 +9,7 @@ interface CopyReferralLinkProps {
 
 export function CopyReferralLink({ url }: CopyReferralLinkProps) {
   const [copied, setCopied] = useState(false);
+  const { t } = useI18n();
 
   async function handleCopy() {
     await navigator.clipboard.writeText(url);
@@ -27,7 +29,7 @@ export function CopyReferralLink({ url }: CopyReferralLinkProps) {
         onClick={handleCopy}
         className="rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium text-white hover:bg-sky-700"
       >
-        {copied ? "Copiado!" : "Copiar"}
+        {copied ? t("copyReferral.copied") : t("copyReferral.copy")}
       </button>
     </div>
   );

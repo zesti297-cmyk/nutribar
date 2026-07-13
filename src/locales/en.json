@@ -1,0 +1,220 @@
+{
+  "siteName": "Nutribar",
+  "nutritionists": "Nutritionists",
+  "howItWorks": "How it works",
+  "hero": {
+    "preTitle": "Post-bariatric follow-up",
+    "title": "Nutritional support for lasting results",
+    "description": "Take care of your recovery with personalized nutritional follow-up, practical assessments, clear recommendations and interventions that track your progress safely.",
+    "cta": "Get started now",
+    "stats": {
+      "continuous": { "value": "Continuous", "label": "personalized follow-up" },
+      "online": { "value": "100%", "label": "online" },
+      "support": { "value": "24/7", "label": "support" }
+    },
+    "patientsLabel": "Patients seen",
+    "patientsCount": "+500"
+  },
+  "how": {
+    "title": "How it works",
+    "subtitle": "Three simple steps to continue your post-surgery care",
+    "steps": {
+      "1": { "title": "Sign up quickly", "description": "Create your account and get immediate access to specialized nutritional support." },
+      "2": { "title": "Choose the right nutritionist", "description": "See professionals approved for post-bariatric care and select who matches your case." },
+      "3": { "title": "Receive continuous support", "description": "Track your progress with personalized adjustments and practical monthly guidance." },
+      "4": { "title": "Access results", "description": "Control your meal plan, goals and feedback in a single platform." }
+    }
+  },
+  "login": "Log in",
+  "start": "Get started",
+  "nutritionistsSection": {
+    "title": "Approved nutritionists",
+    "description": "Choose from experienced professionals and update your post-op plan with personalized care and continuous support.",
+    "emptyTitle": "More nutritionists coming soon",
+    "emptyDesc": "We are approving new professionals to expand care and offer more support for your post-op." 
+  },
+  "footer": {
+    "brand": "Nutribar",
+    "description": "Post-bariatric nutritional follow-up for international patients. We connect you to continuity of care when you return home.",
+    "company": "Company",
+    "resources": "Resources",
+    "legal": "Legal",
+    "howItWorks": "How it works",
+    "nutritionists": "Nutritionists",
+    "forTranslators": "For translators",
+    "imPatient": "I'm a patient",
+    "contact": "Contact",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "disclaimer": "Disclaimer",
+    "copyright": "© {year} Nutribar. All rights reserved.",
+    "note": "Nutribar is a nutritional follow-up platform and does not replace in-person medical guidance."
+  },
+  "nutritionistCard": {
+    "placeholderBio": "Nutritionist specialized in post-bariatric follow-up.",
+    "specialist": "Specialist",
+    "viewProfile": "View profile",
+    "packsTitle": "Available packs",
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "annual": "Annual",
+    "from": "From {price}",
+    "contact": "Start contact",
+    "close": "Close"
+  },
+  "nutritionistForm": {
+    "pending": "Your profile is awaiting admin approval. Once approved it will appear on the landing page.",
+    "fullName": "Full name",
+    "photoUrl": "Photo URL",
+    "photoHelp": "This photo appears on the landing page card.",
+    "location": "Location",
+    "languages": "Languages",
+    "bio": "Description / experience",
+    "placeholderBio": "Describe your experience with bariatric patients. This text appears on the landing page card.",
+    "saving": "Saving...",
+    "saved": "Profile saved successfully!",
+    "save": "Save profile"
+  },
+  "auth": {
+    "back": "← Back",
+    "enterAccount": "Sign in to your account",
+    "createAccount": "Create your account",
+    "referral": "Referred by translator: {code}",
+    "email": "Email",
+    "password": "Password",
+    "wait": "Please wait...",
+    "login": "Log in",
+    "signup": "Create account",
+    "noAccount": "Don't have an account? Sign up",
+    "haveAccount": "Already have an account? Log in"
+  },
+  "admin": {
+    "pendingApprovals": "Pending approvals",
+    "noPending": "No pending approvals.",
+    "loginLinks": "Login links for nutritionists and translators",
+    "nutritionists": "Nutritionists",
+    "noNutritionists": "No nutritionists found.",
+    "translators": "Translators",
+    "noTranslators": "No translators found.",
+    "referrals": "Referrals between translators",
+    "noReferrals": "No referrals recorded.",
+    "approve": "Approve",
+    "savePlan": "Save plan",
+    "saveCommission": "Save commission",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "table": {
+      "translator": "Referred translator",
+      "referrer": "Referred by",
+      "status": "Status",
+      "date": "Date"
+    }
+  },
+  "copyReferral": {
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "role": {
+    "patient": "Patient",
+    "translator": "Translator",
+    "nutritionist": "Nutritionist",
+    "admin": "Admin"
+  },
+  "dashboard": {
+    "signOut": "Sign out",
+    "patient": {
+      "welcome": "Welcome{suffix}!",
+      "description": "Your 1-year nutritional follow-up will be activated soon.",
+      "banner": "Soon you will have access to your nutritionist and your personalized post-surgery meal plan."
+    },
+    "translator": {
+      "title": "Your affiliate link",
+      "description": "Share this link to recruit other translators.",
+      "bonus": "You earn $20 for each approved translator.",
+      "pending": "Your account is awaiting admin approval.",
+      "referred": "Referred translators",
+      "approvedCommission": "Approved (commission)"
+    },
+    "nutritionist": {
+      "title": "Your profile",
+      "description": "Fill in your information so patients can find you."
+    }
+  },
+  "onboarding": {
+    "title": "Signup and onboarding",
+    "stepLabel": "Step {current} of {total}: {label}",
+    "steps": {
+      "account": "Account",
+      "surgeryType": "Surgery type",
+      "language": "Language",
+      "country": "Country",
+      "surgeryCity": "Surgery city",
+      "hospital": "Hospital",
+      "review": "Review"
+    },
+    "selectOption": "Select",
+    "surgeryTypes": {
+      "bariatric": "Bariatric",
+      "endocrine": "Endocrine",
+      "other": "Other"
+    },
+    "fields": {
+      "fullName": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "surgeryType": "Surgery type",
+      "language": "Language",
+      "country": "Country",
+      "surgeryCity": "Surgery city",
+      "hospital": "Hospital"
+    },
+    "placeholders": {
+      "fullName": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "country": "Country",
+      "surgeryCity": "Surgery city",
+      "hospital": "Hospital"
+    },
+    "buttons": {
+      "prev": "Back",
+      "next": "Next",
+      "submit": "Submit"
+    },
+    "reviewTitle": "Review your information",
+    "submitError": "Error submitting. Please try again.",
+    "submitSuccess": "Submitted successfully!"
+  },
+  "nutritionistCard": {
+    "placeholderBio": "Nutritionist specialized in post-bariatric follow-up.",
+    "specialist": "Specialist",
+    "multilingual": "Multilingual",
+    "viewProfile": "View profile",
+    "packsTitle": "Available packs",
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "annual": "Annual",
+    "packMonthlyDescription": "1 initial consult + 1 follow-up per month, adjustments and message support.",
+    "packQuarterlyDescription": "Initial consult, 3 reviews, detailed recommendations and continuous support.",
+    "packAnnualDescription": "Complete program with regular evaluations, adjustments and priority care.",
+    "from": "From {price}",
+    "contact": "Start contact",
+    "close": "Close"
+  },
+  "nutritionistsSection": {
+    "placeholderBio1": "Professional specialized in post-surgical diets, food retraining and continuous support.",
+    "placeholderBio2": "Support for patients traveling abroad who need multilingual care.",
+    "placeholderBio3": "Platform with professionals ready to guide every stage of your recovery."
+  },
+  "language": "Language",
+  "selectLanguage": "Select language",
+  "languageModal": {
+    "cancel": "Cancel"
+  },
+  "languages": {
+    "pt": "Português",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français"
+  }
+}
