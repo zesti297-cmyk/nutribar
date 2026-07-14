@@ -7,46 +7,86 @@
   "language": "Language",
   "selectLanguage": "Select language",
   "hero": {
-    "preTitle": "Post-bariatric follow-up",
-    "title": "Nutritional support for lasting results",
-    "description": "Take care of your recovery with personalized nutritional follow-up, practical assessments, clear recommendations, and interventions that track your progress safely.",
-    "cta": "Get started now",
+    "preTitle": "Post-surgery nutritional care",
+    "title": "The surgery was the beginning. The follow-up defines the result.",
+    "description": "Long-term success depends on what happens after surgery. Nutribar connects you with nutritionists specialized in continuous clinical follow-up, with protocols tailored to each recovery phase, adjustments based on your progress, and support from someone you trust.",
+    "cta": "Start my follow-up",
     "stats": {
-      "continuous": { "value": "Ongoing", "label": "personalized follow-up" },
-      "online": { "value": "100%", "label": "online" },
-      "support": { "value": "24/7", "label": "support" }
+      "continuous": { "value": "Ongoing", "label": "personalized clinical follow-up" },
+      "online": { "value": "100%", "label": "online care, wherever you are" },
+      "support": { "value": "Multilingual", "label": "professionals in your language" }
     },
-    "patientsLabel": "Patients served",
-    "patientsCount": "+500"
+    "patientsLabel": "Patients supported after surgery",
+    "patientsCount": "Hundreds"
   },
   "how": {
     "title": "How it works",
-    "subtitle": "Four simple steps to continue your post-surgery care",
+    "subtitle": "From discharge to a lasting result, in four steps",
     "steps": {
-      "1": { "title": "Sign up quickly", "description": "Create your account and get immediate access to specialized nutritional support." },
-      "2": { "title": "Choose the right nutritionist", "description": "Browse approved post-bariatric professionals and pick who fits your case." },
-      "3": { "title": "Receive ongoing support", "description": "Track your progress with personalized adjustments and practical guidance month by month." },
-      "4": { "title": "Access your results", "description": "Manage your meal plan, goals, and feedback in one platform." }
+      "1": { "title": "Create your account", "description": "Sign up in minutes and share your surgical history. The whole process is online, secure, and in your language." },
+      "2": { "title": "Choose your nutritionist", "description": "Select from verified professionals specialized in post-surgery follow-up, with experience in exactly your type of procedure." },
+      "3": { "title": "Follow your protocol", "description": "Receive a structured meal plan for your recovery phase, with clinical adjustments at each assessment and guidance to prevent deficiencies." },
+      "4": { "title": "Maintain your results", "description": "Track goals, progress, and recommendations in one place, with continuous support to consolidate your result over the long term." }
     }
   },
   "nutritionistsSection": {
-    "title": "Approved nutritionists",
-    "description": "Choose from experienced professionals and update your post-operative plan with personalized care and ongoing support.",
-    "emptyTitle": "More nutritionists coming soon",
-    "emptyDesc": "We are approving new professionals to expand care and offer even more support for your post-operative journey.",
-    "placeholderName1": "Post-bariatric nutritionist",
+    "title": "Nutritionists specialized in post-surgery follow-up",
+    "description": "Every Nutribar professional is verified and has clinical experience in post-operative care. Choose by specialty, language, and location, and resume your care with someone who understands your case.",
+    "emptyTitle": "New nutritionists joining soon",
+    "emptyDesc": "We are verifying new professionals to expand our care and ensure specialized follow-up for every phase of your recovery.",
+    "placeholderName1": "Post-surgery follow-up specialist",
     "placeholderName2": "International nutritionist",
-    "placeholderName3": "Continuous support nutritionist",
-    "placeholderBio1": "Professional specialized in post-surgical diets, food re-education, and ongoing support.",
-    "placeholderBio2": "Follow-up for patients who travel abroad and need support in multiple languages.",
-    "placeholderBio3": "Platform with professionals ready to guide every phase of your recovery.",
+    "placeholderName3": "Post-operative follow-up",
+    "placeholderBio1": "Specialized in post-surgery nutritional protocols, dietary re-education, and deficiency prevention.",
+    "placeholderBio2": "Clinical follow-up for patients who had surgery abroad and need support in their own language.",
+    "placeholderBio3": "Structured guidance for every recovery phase, from the immediate post-op to maintaining results.",
     "placeholderLocation1": "São Paulo, Brazil",
     "placeholderLocation2": "Lisbon, Portugal",
     "placeholderLocation3": "Recife, Brazil"
   },
+  "why": {
+    "title": "Why post-operative follow-up is decisive",
+    "subtitle": "The first phases after surgery shape your health for years to come. Specialized nutritional follow-up protects your result.",
+    "points": {
+      "1": { "title": "Preventing nutritional deficiencies", "description": "After surgery, nutrient absorption changes. A well-managed protocol prevents deficiencies of iron, vitamin B12, protein, and other essential nutrients." },
+      "2": { "title": "Structured dietary re-education", "description": "Rebuilding your relationship with food is a process. Your nutritionist guides each phase, from liquids to solids, safely and at your own pace." },
+      "3": { "title": "Maintaining results long term", "description": "Continuous follow-up is what prevents weight regain and consolidates the habits that sustain your surgical result." },
+      "4": { "title": "Support in your language", "description": "Had surgery abroad? Resume your care with a professional who speaks your language and understands your procedure's protocol." }
+    }
+  },
+  "testimonials": {
+    "title": "Patients who resumed their care with Nutribar",
+    "subtitle": "Stories from those who found continuity and safety after surgery.",
+    "items": {
+      "1": { "quote": "I had surgery in Turkey and came back not knowing how to eat. I found a nutritionist who speaks my language and understands exactly my type of surgery. It made all the difference.", "author": "Camila R.", "role": "8 months of follow-up" },
+      "2": { "quote": "The phased plan gave me confidence. Each assessment was adjusted to my progress, and I never felt alone in the process.", "author": "Beatriz M.", "role": "Annual program" },
+      "3": { "quote": "I had already regained some weight before starting. With continuous follow-up, I managed to regain control and keep my result.", "author": "Fernanda L.", "role": "Quarterly follow-up" }
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Everything you need to know before you start.",
+    "items": {
+      "1": { "question": "Is the care fully online?", "answer": "Yes. All follow-up happens online and securely, wherever you are, with consultations, protocol adjustments, and support between assessments." },
+      "2": { "question": "How soon do I start the follow-up?", "answer": "As soon as you create your account and choose your nutritionist, the process begins. Signing up takes just a few minutes." },
+      "3": { "question": "How do I choose the right nutritionist for me?", "answer": "You can filter by specialty, language, and location. Each profile shows the professional's clinical experience so you can choose who best understands your case." },
+      "4": { "question": "Are the nutritionists verified?", "answer": "Yes. All professionals go through a verification process before appearing on the platform. Only those approved by our team see patients on Nutribar." },
+      "5": { "question": "I had surgery abroad. Can I get follow-up in my language?", "answer": "Yes. This is at the heart of Nutribar. You'll find nutritionists who speak your language and know the protocol of the country where you had surgery, so you can resume care without barriers." },
+      "6": { "question": "How do the follow-up plans work?", "answer": "Each nutritionist offers monthly, quarterly, or annual plans, with different consultation frequencies, reviews, and support. You choose what makes the most sense for your recovery phase." },
+      "7": { "question": "Will I get a personalized meal plan?", "answer": "Yes. Your nutritionist builds a nutritional protocol based on your procedure, your recovery phase, and your progress, adjusting it at each assessment." },
+      "8": { "question": "Is my health data secure?", "answer": "Yes. Your information is treated confidentially and used only for your nutritional follow-up within the platform." },
+      "9": { "question": "Can I switch nutritionists later?", "answer": "Yes. If you feel another professional fits your case better, you can choose a new nutritionist within the platform." }
+    }
+  },
+  "finalCta": {
+    "title": "Your result deserves continuity",
+    "description": "Don't leave your recovery to chance. Start your follow-up today with a nutritionist specialized in your procedure.",
+    "primary": "Start my follow-up",
+    "secondary": "See nutritionists"
+  },
   "footer": {
     "brand": "Nutribar",
-    "description": "Post-bariatric nutritional follow-up for international patients. We connect you to continuity of care when you return home.",
+    "description": "Post-surgery nutritional follow-up for international patients. We ensure the continuity of your clinical care when you return home.",
     "company": "Company",
     "resources": "Resources",
     "legal": "Legal",
@@ -60,55 +100,55 @@
     "terms": "Terms of use",
     "disclaimer": "Legal notice",
     "copyright": "© {year} Nutribar. All rights reserved.",
-    "note": "Nutribar is a nutritional follow-up platform and does not replace in-person medical advice."
+    "note": "Nutribar is a nutritional follow-up platform and does not replace the guidance of your doctor or surgical team."
   },
   "nutritionistCard": {
-    "placeholderBio": "Nutritionist specialized in post-bariatric follow-up.",
-    "specialist": "Specialist",
-    "multilingual": "Multilingual",
+    "placeholderBio": "Nutritionist specialized in post-surgery clinical follow-up.",
+    "specialist": "Post-op specialist",
+    "multilingual": "Speaks several languages",
     "viewProfile": "View profile",
-    "packsTitle": "Available packs",
+    "packsTitle": "Follow-up plans",
     "monthly": "Monthly",
     "quarterly": "Quarterly",
     "annual": "Annual",
-    "packMonthlyDescription": "1 initial consultation + 1 follow-up per month, adjustments and message support.",
-    "packQuarterlyDescription": "Initial consultation, 3 reviews, detailed recommendations, and ongoing support.",
-    "packAnnualDescription": "Full program with regular assessments, adjustments, and priority care.",
+    "packMonthlyDescription": "Initial consultation + 1 assessment per month, with protocol adjustments and message support between consultations.",
+    "packQuarterlyDescription": "Initial consultation, 3 clinical reviews, detailed recommendations, and continuous follow-up of your progress.",
+    "packAnnualDescription": "Complete 1-year program: regular assessments, protocol adjustments, deficiency prevention, and priority care.",
     "from": "From {price}",
-    "contact": "Start contact",
+    "contact": "Contact the nutritionist",
     "close": "Close"
   },
   "nutritionistForm": {
-    "pending": "Your profile is awaiting admin approval. Once approved, it will appear on the landing page.",
+    "pending": "Your profile is under review by our team. Once approved, it will appear on the platform for patients.",
     "fullName": "Full name",
     "photoUrl": "Photo URL",
     "photoPlaceholder": "https://example.com/your-photo.jpg",
-    "photoHelp": "This photo appears on the landing page card.",
+    "photoHelp": "This photo appears on your card for patients. Use a professional image.",
     "location": "Location",
-    "locationPlaceholder": "E.g. São Paulo, Brazil",
-    "languages": "Languages",
-    "languagesPlaceholder": "E.g. Portuguese, English, Spanish",
-    "bio": "Description / experience",
-    "bioPlaceholder": "Describe your experience with bariatric patients. This text appears on the landing page card.",
+    "locationPlaceholder": "e.g. São Paulo, Brazil",
+    "languages": "Languages you work in",
+    "languagesPlaceholder": "e.g. Portuguese, English, Spanish",
+    "bio": "Your clinical experience",
+    "bioPlaceholder": "Describe your specialization and experience with post-operative patients. This text helps patients choose you, so be specific about procedures and results.",
     "saving": "Saving...",
     "saved": "Profile saved successfully!",
     "save": "Save profile"
   },
   "auth": {
     "back": "← Back",
-    "enterAccount": "Log in to your account",
-    "createAccount": "Create your account",
+    "enterAccount": "Access your account",
+    "createAccount": "Create your account and start today",
     "referral": "Referred by translator: {code}",
     "email": "Email",
     "password": "Password",
     "wait": "Please wait...",
     "login": "Log in",
-    "signup": "Sign up",
+    "signup": "Create account",
     "noAccount": "Don't have an account? Sign up",
     "haveAccount": "Already have an account? Log in"
   },
   "admin": {
-    "title": "Admin panel",
+    "title": "Admin Panel",
     "pendingApprovals": "Pending approvals",
     "noPending": "No pending approvals.",
     "loginLinks": "Login links for nutritionists and translators",
@@ -118,7 +158,7 @@
     "noNutritionists": "No nutritionists found.",
     "translators": "Translators",
     "noTranslators": "No translators found.",
-    "referrals": "Translator referrals",
+    "referrals": "Referrals between translators",
     "noReferrals": "No referrals recorded.",
     "approve": "Approve",
     "savePlan": "Save plan",
@@ -146,27 +186,27 @@
     "signOut": "Sign out",
     "patient": {
       "welcome": "Welcome{suffix}!",
-      "description": "Your 1-year nutritional follow-up will be activated soon.",
-      "banner": "Soon you will have access to your nutritionist and your personalized post-surgery meal plan."
+      "description": "Your post-surgery nutritional follow-up is being prepared.",
+      "banner": "Soon you'll have access to your nutritionist and a personalized meal protocol for your recovery phase."
     },
     "translator": {
-      "title": "Your affiliate link",
-      "description": "Share this link to recruit other translators.",
+      "title": "Your referral link",
+      "description": "Share this link to refer other translators and earn a commission for each approved referral.",
       "bonus": "You earn $20 per approved translator.",
-      "pending": "Your account is awaiting admin approval.",
+      "pending": "Your account is under review. You'll be notified as soon as it's approved.",
       "referred": "Referred translators",
-      "approvedCommission": "Approved (commission)"
+      "approvedCommission": "Approved (with commission)"
     },
     "nutritionist": {
-      "title": "Your profile",
-      "description": "Fill in your information so patients can find you."
+      "title": "Your professional profile",
+      "description": "Complete your information so patients can find you and choose your follow-up."
     }
   },
   "onboarding": {
-    "title": "Registration and onboarding",
+    "title": "Let's prepare your follow-up",
     "stepLabel": "Step {current} of {total}: {label}",
     "steps": {
-      "account": "Account",
+      "account": "Your account",
       "surgeryType": "Surgery type",
       "language": "Language",
       "country": "Country",
@@ -193,19 +233,19 @@
     "placeholders": {
       "fullName": "Full name",
       "email": "Email",
-      "password": "Password",
-      "country": "Country",
+      "password": "Create a password (min. 6 characters)",
+      "country": "Your country",
       "surgeryCity": "City where you had surgery",
-      "hospital": "Hospital"
+      "hospital": "Hospital where you had surgery"
     },
     "buttons": {
       "prev": "Back",
-      "next": "Next",
-      "submit": "Submit"
+      "next": "Continue",
+      "submit": "Complete registration"
     },
     "reviewTitle": "Review your information",
-    "submitError": "Error submitting. Please try again.",
-    "submitSuccess": "Submitted successfully!"
+    "submitError": "We couldn't complete it. Check your details and try again.",
+    "submitSuccess": "Registration completed successfully!"
   },
   "languageModal": {
     "cancel": "Cancel"

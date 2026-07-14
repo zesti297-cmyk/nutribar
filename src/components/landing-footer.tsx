@@ -51,8 +51,12 @@ export function LandingFooter() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand + social */}
           <div>
-            <Link href="/" className="text-xl font-bold text-white">
-              {t("footer.brand")}
+            <Link href="/" aria-label={t("footer.brand")}>
+              <img
+                src="/nutribar-logo.svg"
+                alt={t("footer.brand")}
+                className="h-8 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
               {t("footer.description")}

@@ -3,50 +3,90 @@
   "nutritionists": "Nutricionistas",
   "howItWorks": "Como funciona",
   "login": "Entrar",
-  "start": "Começar",
+  "start": "Começar agora",
   "language": "Idioma",
   "selectLanguage": "Selecionar idioma",
   "hero": {
-    "preTitle": "Acompanhamento pós-bariátrica",
-    "title": "Suporte nutricional para resultados duradouros",
-    "description": "Cuide da sua recuperação com acompanhamento nutricional personalizado, avaliações práticas, recomendações claras e intervenções que acompanham sua evolução com segurança.",
-    "cta": "Começar agora",
+    "preTitle": "Acompanhamento nutricional pós-cirúrgico",
+    "title": "A cirurgia foi o começo. O acompanhamento define o resultado.",
+    "description": "O sucesso a longo prazo depende do que acontece depois da cirurgia. A Nutribar conecta você a nutricionistas especializadas em um acompanhamento clínico contínuo, com protocolos personalizados para cada fase da recuperação, ajustes baseados na sua evolução e suporte em quem você confia.",
+    "cta": "Começar meu acompanhamento",
     "stats": {
-      "continuous": { "value": "Contínuo", "label": "acompanhamento personalizado" },
-      "online": { "value": "100%", "label": "online" },
-      "support": { "value": "24/7", "label": "suporte" }
+      "continuous": { "value": "Contínuo", "label": "acompanhamento clínico personalizado" },
+      "online": { "value": "100%", "label": "atendimento online, onde você estiver" },
+      "support": { "value": "Multilíngue", "label": "profissionais no seu idioma" }
     },
-    "patientsLabel": "Pacientes atendidas",
-    "patientsCount": "+500"
+    "patientsLabel": "Pacientes acompanhadas no pós-operatório",
+    "patientsCount": "Centenas"
   },
   "how": {
     "title": "Como funciona",
-    "subtitle": "Quatro passos simples para continuar seu cuidado pós-cirurgia",
+    "subtitle": "Da alta ao resultado duradouro, em quatro passos",
     "steps": {
-      "1": { "title": "Cadastre-se rápido", "description": "Crie sua conta e tenha acesso imediato ao suporte nutricional especializado." },
-      "2": { "title": "Escolha a nutri certa", "description": "Veja profissionais aprovadas para pós-bariátrica e selecione quem combina com seu caso." },
-      "3": { "title": "Receba suporte contínuo", "description": "Acompanhe sua evolução com ajustes personalizados e orientações práticas mês a mês." },
-      "4": { "title": "Acesse resultados", "description": "Tenha controle sobre seu plano alimentar, metas e feedback em uma única plataforma." }
+      "1": { "title": "Crie sua conta", "description": "Cadastre-se em minutos e conte seu histórico cirúrgico. Todo o processo é online, seguro e no seu idioma." },
+      "2": { "title": "Escolha sua nutricionista", "description": "Selecione entre profissionais verificadas e especializadas em acompanhamento pós-cirúrgico, com experiência exatamente no seu tipo de procedimento." },
+      "3": { "title": "Siga seu protocolo", "description": "Receba um plano alimentar estruturado para a sua fase de recuperação, com ajustes clínicos a cada avaliação e orientação para prevenir carências." },
+      "4": { "title": "Mantenha seus resultados", "description": "Acompanhe metas, evolução e recomendações em um só lugar, com suporte contínuo para consolidar o resultado a longo prazo." }
     }
   },
   "nutritionistsSection": {
-    "title": "Nutricionistas aprovadas",
-    "description": "Escolha entre profissionais experientes e atualize seu plano pós-operatório com atendimento personalizado e apoio contínuo.",
-    "emptyTitle": "Mais nutricionistas chegando em breve",
-    "emptyDesc": "Estamos aprovando novas profissionais para ampliar o atendimento e oferecer ainda mais suporte para seu pós-operatório.",
-    "placeholderName1": "Nutricionista pós-bariátrica",
+    "title": "Nutricionistas especializadas em acompanhamento pós-cirúrgico",
+    "description": "Cada profissional da Nutribar é verificada e tem experiência clínica no acompanhamento pós-operatório. Escolha por especialidade, idioma e localização, e retome seu cuidado com quem entende do seu caso.",
+    "emptyTitle": "Novas nutricionistas entrando em breve",
+    "emptyDesc": "Estamos verificando novas profissionais para ampliar o atendimento e garantir acompanhamento especializado para cada fase do seu pós-operatório.",
+    "placeholderName1": "Especialista em acompanhamento pós-cirúrgico",
     "placeholderName2": "Nutricionista internacional",
-    "placeholderName3": "Nutricionista de suporte contínuo",
-    "placeholderBio1": "Profissional especializada em dietas pós-cirúrgicas, reeducação alimentar e suporte contínuo.",
-    "placeholderBio2": "Acompanhamento para pacientes que viajam ao exterior e precisam de suporte em múltiplos idiomas.",
-    "placeholderBio3": "Plataforma com profissionais prontas para orientar cada fase da sua recuperação.",
+    "placeholderName3": "Acompanhamento pós-operatório",
+    "placeholderBio1": "Especializada em protocolos nutricionais pós-cirúrgicos, reeducação alimentar e prevenção de carências.",
+    "placeholderBio2": "Acompanhamento clínico para pacientes que operaram no exterior e precisam de suporte no idioma delas.",
+    "placeholderBio3": "Orientação estruturada para cada fase da recuperação, do pós-imediato à manutenção de resultados.",
     "placeholderLocation1": "São Paulo, Brasil",
     "placeholderLocation2": "Lisboa, Portugal",
     "placeholderLocation3": "Recife, Brasil"
   },
+  "why": {
+    "title": "Por que o acompanhamento pós-operatório é decisivo",
+    "subtitle": "As primeiras fases após a cirurgia definem a sua saúde pelos próximos anos. Um acompanhamento nutricional especializado protege o seu resultado.",
+    "points": {
+      "1": { "title": "Prevenção de carências nutricionais", "description": "Após a cirurgia, a absorção de nutrientes muda. Um protocolo bem conduzido previne deficiências de ferro, vitamina B12, proteína e outros nutrientes essenciais." },
+      "2": { "title": "Reeducação alimentar estruturada", "description": "Reconstruir a relação com a comida é um processo. Sua nutricionista guia cada fase, do líquido ao sólido, com segurança e no seu ritmo." },
+      "3": { "title": "Manutenção do resultado a longo prazo", "description": "O acompanhamento contínuo é o que impede o reganho de peso e consolida os hábitos que sustentam o resultado da cirurgia." },
+      "4": { "title": "Suporte no seu idioma", "description": "Operou no exterior? Retome o cuidado com uma profissional que fala a sua língua e entende o protocolo do seu procedimento." }
+    }
+  },
+  "testimonials": {
+    "title": "Pacientes que retomaram o cuidado com a Nutribar",
+    "subtitle": "Histórias de quem encontrou continuidade e segurança no pós-operatório.",
+    "items": {
+      "1": { "quote": "Operei na Turquia e voltei sem saber como me alimentar. Encontrei uma nutricionista que fala português e entende exatamente o meu tipo de cirurgia. Fez toda a diferença.", "author": "Camila R.", "role": "Acompanhamento há 8 meses" },
+      "2": { "quote": "O plano por fases me deu confiança. Cada avaliação era ajustada à minha evolução, e nunca me senti sozinha no processo.", "author": "Beatriz M.", "role": "Programa anual" },
+      "3": { "quote": "Já tinha recuperado alguns quilos antes de começar. Com o acompanhamento contínuo, consegui retomar o controle e manter o resultado.", "author": "Fernanda L.", "role": "Acompanhamento trimestral" }
+    }
+  },
+  "faq": {
+    "title": "Perguntas frequentes",
+    "subtitle": "Tudo o que você precisa saber antes de começar.",
+    "items": {
+      "1": { "question": "O atendimento é totalmente online?", "answer": "Sim. Todo o acompanhamento acontece de forma online e segura, de onde você estiver, com consultas, ajustes de protocolo e suporte entre as avaliações." },
+      "2": { "question": "Em quanto tempo começo o acompanhamento?", "answer": "Assim que você cria a conta e escolhe a sua nutricionista, o processo começa. O cadastro leva poucos minutos." },
+      "3": { "question": "Como escolho a nutricionista certa para mim?", "answer": "Você pode filtrar por especialidade, idioma e localização. Cada perfil mostra a experiência clínica da profissional para que você escolha quem melhor entende o seu caso." },
+      "4": { "question": "As nutricionistas são verificadas?", "answer": "Sim. Todas as profissionais passam por um processo de verificação antes de aparecer na plataforma. Só quem é aprovado pela nossa equipe atende pacientes na Nutribar." },
+      "5": { "question": "Operei no exterior. Consigo acompanhamento no meu idioma?", "answer": "Sim. Este é o coração da Nutribar. Você encontra nutricionistas que falam o seu idioma e conhecem o protocolo do país onde você operou, para retomar o cuidado sem barreiras." },
+      "6": { "question": "Como funcionam os planos de acompanhamento?", "answer": "Cada nutricionista oferece planos mensal, trimestral ou anual, com diferentes frequências de consulta, revisões e suporte. Você escolhe o que faz mais sentido para a sua fase de recuperação." },
+      "7": { "question": "Vou receber um plano alimentar personalizado?", "answer": "Sim. Sua nutricionista monta um protocolo alimentar de acordo com o seu procedimento, a sua fase de recuperação e a sua evolução, ajustando a cada avaliação." },
+      "8": { "question": "Meus dados de saúde ficam seguros?", "answer": "Sim. As suas informações são tratadas com confidencialidade e usadas apenas para o seu acompanhamento nutricional dentro da plataforma." },
+      "9": { "question": "Posso trocar de nutricionista depois?", "answer": "Pode. Se sentir que outra profissional se encaixa melhor no seu caso, é possível escolher uma nova nutricionista dentro da plataforma." }
+    }
+  },
+  "finalCta": {
+    "title": "Seu resultado merece continuidade",
+    "description": "Não deixe o pós-operatório ao acaso. Comece hoje seu acompanhamento com uma nutricionista especializada no seu procedimento.",
+    "primary": "Começar meu acompanhamento",
+    "secondary": "Ver nutricionistas"
+  },
   "footer": {
     "brand": "Nutribar",
-    "description": "Acompanhamento nutricional pós-bariátrica para pacientes internacionais. Conectamos você à continuidade de cuidado quando volta para casa.",
+    "description": "Acompanhamento nutricional pós-cirúrgico para pacientes internacionais. Garantimos a continuidade do seu cuidado clínico quando você volta para casa.",
     "company": "Empresa",
     "resources": "Recursos",
     "legal": "Legal",
@@ -60,51 +100,51 @@
     "terms": "Termos de uso",
     "disclaimer": "Aviso legal",
     "copyright": "© {year} Nutribar. Todos os direitos reservados.",
-    "note": "Nutribar é uma plataforma de acompanhamento nutricional e não substitui orientação médica presencial."
+    "note": "A Nutribar é uma plataforma de acompanhamento nutricional e não substitui a orientação do seu médico ou equipe cirúrgica."
   },
   "nutritionistCard": {
-    "placeholderBio": "Nutricionista especializada em acompanhamento pós-bariátrica.",
-    "specialist": "Especialista",
-    "multilingual": "Multilíngue",
+    "placeholderBio": "Nutricionista especializada em acompanhamento clínico pós-cirúrgico.",
+    "specialist": "Especialista em pós-operatório",
+    "multilingual": "Atende em vários idiomas",
     "viewProfile": "Ver perfil",
-    "packsTitle": "Packs disponíveis",
+    "packsTitle": "Planos de acompanhamento",
     "monthly": "Mensal",
     "quarterly": "Trimestral",
     "annual": "Anual",
-    "packMonthlyDescription": "1 consulta inicial + 1 acompanhamento por mês, ajustes e suporte por mensagem.",
-    "packQuarterlyDescription": "Consulta inicial, 3 revisões, recomendações detalhadas e suporte contínuo.",
-    "packAnnualDescription": "Programa completo com avaliações regulares, ajustes e prioridade no atendimento.",
+    "packMonthlyDescription": "Consulta inicial + 1 avaliação por mês, com ajustes de protocolo e suporte por mensagem entre as consultas.",
+    "packQuarterlyDescription": "Consulta inicial, 3 revisões clínicas, recomendações detalhadas e acompanhamento contínuo da sua evolução.",
+    "packAnnualDescription": "Programa completo de 1 ano: avaliações regulares, ajustes de protocolo, prevenção de carências e prioridade no atendimento.",
     "from": "A partir de {price}",
-    "contact": "Iniciar contato",
+    "contact": "Falar com a nutricionista",
     "close": "Fechar"
   },
   "nutritionistForm": {
-    "pending": "Seu perfil está aguardando aprovação do admin. Após aprovado, ele aparecerá na landing page.",
+    "pending": "Seu perfil está em análise pela nossa equipe. Assim que for aprovado, ele passa a aparecer na plataforma para as pacientes.",
     "fullName": "Nome completo",
     "photoUrl": "URL da foto",
     "photoPlaceholder": "https://exemplo.com/sua-foto.jpg",
-    "photoHelp": "Esta foto aparece no card da landing page.",
+    "photoHelp": "Esta foto aparece no seu card para as pacientes. Use uma imagem profissional.",
     "location": "Localização",
     "locationPlaceholder": "Ex: São Paulo, Brasil",
-    "languages": "Idiomas",
+    "languages": "Idiomas de atendimento",
     "languagesPlaceholder": "Ex: Português, Inglês, Espanhol",
-    "bio": "Descrição / experiência",
-    "bioPlaceholder": "Descreva sua experiência com pacientes bariátricas. Este texto aparece no card da landing page.",
+    "bio": "Sua experiência clínica",
+    "bioPlaceholder": "Descreva sua especialização e experiência com pacientes no pós-operatório. Este texto ajuda a paciente a escolher você, então seja específica sobre procedimentos e resultados.",
     "saving": "Salvando...",
     "saved": "Perfil salvo com sucesso!",
     "save": "Salvar perfil"
   },
   "auth": {
     "back": "← Voltar",
-    "enterAccount": "Entre na sua conta",
-    "createAccount": "Crie sua conta",
+    "enterAccount": "Acesse sua conta",
+    "createAccount": "Crie sua conta e comece hoje",
     "referral": "Indicado por tradutor: {code}",
     "email": "Email",
     "password": "Senha",
     "wait": "Aguarde...",
     "login": "Entrar",
     "signup": "Criar conta",
-    "noAccount": "Não tem conta? Cadastre-se",
+    "noAccount": "Ainda não tem conta? Cadastre-se",
     "haveAccount": "Já tem conta? Entre"
   },
   "admin": {
@@ -146,31 +186,31 @@
     "signOut": "Sair",
     "patient": {
       "welcome": "Bem-vinda{suffix}!",
-      "description": "Seu acompanhamento nutricional de 1 ano será ativado em breve.",
-      "banner": "Em breve você terá acesso à sua nutricionista e ao plano alimentar personalizado pós-cirurgia."
+      "description": "Seu acompanhamento nutricional pós-cirúrgico está sendo preparado.",
+      "banner": "Em breve você terá acesso à sua nutricionista e ao protocolo alimentar personalizado para a sua fase de recuperação."
     },
     "translator": {
-      "title": "Seu link de afiliado",
-      "description": "Compartilhe este link para recrutar outros tradutores.",
+      "title": "Seu link de indicação",
+      "description": "Compartilhe este link para indicar outros tradutores e ganhar comissão por cada indicação aprovada.",
       "bonus": "Você ganha $20 por tradutor aprovado.",
-      "pending": "Sua conta está aguardando aprovação do admin.",
+      "pending": "Sua conta está em análise. Você será avisado assim que for aprovada.",
       "referred": "Tradutores indicados",
-      "approvedCommission": "Aprovados (comissão)"
+      "approvedCommission": "Aprovados (com comissão)"
     },
     "nutritionist": {
-      "title": "Seu perfil",
-      "description": "Preencha suas informações para que pacientes possam encontrá-la."
+      "title": "Seu perfil profissional",
+      "description": "Complete suas informações para que as pacientes possam encontrar você e escolher o seu acompanhamento."
     }
   },
   "onboarding": {
-    "title": "Cadastro e onboarding",
+    "title": "Vamos preparar seu acompanhamento",
     "stepLabel": "Passo {current} de {total}: {label}",
     "steps": {
-      "account": "Conta",
+      "account": "Sua conta",
       "surgeryType": "Tipo de cirurgia",
       "language": "Idioma",
       "country": "País",
-      "surgeryCity": "Onde fez a cirurgia",
+      "surgeryCity": "Onde operou",
       "hospital": "Hospital",
       "review": "Revisão"
     },
@@ -187,25 +227,25 @@
       "surgeryType": "Tipo de cirurgia",
       "language": "Idioma",
       "country": "País",
-      "surgeryCity": "Cidade onde fez a cirurgia",
+      "surgeryCity": "Cidade onde operou",
       "hospital": "Hospital"
     },
     "placeholders": {
       "fullName": "Nome completo",
       "email": "Email",
-      "password": "Senha",
-      "country": "País",
-      "surgeryCity": "Cidade onde fez a cirurgia",
-      "hospital": "Hospital"
+      "password": "Crie uma senha (mín. 6 caracteres)",
+      "country": "Seu país",
+      "surgeryCity": "Cidade onde operou",
+      "hospital": "Hospital onde operou"
     },
     "buttons": {
       "prev": "Voltar",
-      "next": "Próximo",
-      "submit": "Enviar"
+      "next": "Continuar",
+      "submit": "Concluir cadastro"
     },
     "reviewTitle": "Revise suas informações",
-    "submitError": "Erro ao enviar. Tente novamente.",
-    "submitSuccess": "Envio realizado com sucesso!"
+    "submitError": "Não foi possível concluir. Verifique os dados e tente novamente.",
+    "submitSuccess": "Cadastro concluído com sucesso!"
   },
   "languageModal": {
     "cancel": "Cancelar"

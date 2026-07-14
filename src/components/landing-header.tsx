@@ -10,8 +10,8 @@ export function LandingHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-xl font-bold tracking-tight text-[#0c2340]">
-          {t("siteName")}
+        <Link href="/" aria-label={t("siteName")}>
+          <img src="/nutribar-logo.svg" alt={t("siteName")} className="h-11 w-auto sm:h-12" />
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
@@ -23,15 +23,9 @@ export function LandingHeader() {
           </a>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <LanguageSelector />
 
-          <Link
-            href="/login/patient"
-            className="hidden rounded-lg border border-[#0c2340] px-4 py-2 text-sm font-medium text-[#0c2340] transition-colors hover:bg-[#0c2340] hover:text-white sm:inline-block"
-          >
-            {t("login")}
-          </Link>
           <Link
             href="/login/patient"
             className="rounded-lg bg-[#0c2340] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#16325f]"

@@ -19,8 +19,8 @@ export function DashboardShell({ role, email, children }: DashboardShellProps) {
       <header className="border-b border-stone-200 bg-white">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
           <div>
-            <Link href="/" className="text-lg font-bold text-emerald-700">
-              {t("siteName")}
+            <Link href="/" aria-label={t("siteName")}>
+              <img src="/nutribar-logo.svg" alt={t("siteName")} className="h-7 w-auto" />
             </Link>
             <p className="text-sm text-stone-500">
               {t(`role.${role}`)} · {email}

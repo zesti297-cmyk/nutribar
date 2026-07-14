@@ -10,9 +10,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Nutribar — Acompanhamento pós-bariátrica",
+  title: "Nutribar: Acompanhamento nutricional pós-cirúrgico",
   description:
-    "Acompanhamento nutricional por 1 ano após cirurgia bariátrica internacional.",
+    "Acompanhamento nutricional por 1 ano após cirurgia internacional.",
 };
 
 export default function RootLayout({

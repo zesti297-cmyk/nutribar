@@ -1,0 +1,156 @@
+-- ============================================================================
+-- Nutribar — Schema completo do Supabase
+-- Execute este arquivo inteiro no SQL Editor do Supabase.
+-- É idempotente: pode ser rodado mais de uma vez com segurança.
+--
+-- Este schema é a ÚNICA fonte de verdade e está alinhado ao código em src/lib.
+--   - languages / nutritionist_plan são TEXT (o código os trata como string)
+--   - commission_rate é NUMERIC
+--   - status do usuário: 'pending' | 'approved'
+-- ============================================================================
+
+-- Extensão para gerar UUIDs
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- ----------------------------------------------------------------------------
+-- Tipos enumerados (criados apenas se ainda não existirem)
+-- ----------------------------------------------------------------------------
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'user_role') THEN
+    CREATE TYPE user_role AS ENUM ('patient', 'translator', 'nutritionist', 'admin');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'user_status') THEN
+    CREATE TYPE user_status AS ENUM ('pending', 'approved');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'lead_status') THEN
+    CREATE TYPE lead_status AS ENUM ('new', 'contacted', 'in_progress', 'converted', 'lost');
+  END IF;
+END$$;
+
+-- ----------------------------------------------------------------------------
+-- Tabela: users
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS users (
+  id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email             TEXT UNIQUE NOT NULL,
+  password_hash     TEXT,
+  auth_uid          UUID UNIQUE REFERENCES auth.users(id) ON DELETE SET NULL,
+  role              user_role   NOT NULL DEFAULT 'patient',
+  status            user_status NOT NULL DEFAULT 'pending',
+  full_name         TEXT,
+  languages         TEXT,
+  bio               TEXT,
+  photo_url         TEXT,
+  location          TEXT,
+  nutritionist_plan TEXT,
+  commission_rate   NUMERIC DEFAULT 0,
+  referral_code     TEXT UNIQUE,
+  referred_by       UUID REFERENCES users(id) ON DELETE SET NULL,
+  created_at        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at        TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS users_role_idx          ON users(role);
+CREATE INDEX IF NOT EXISTS users_status_idx        ON users(status);
+CREATE INDEX IF NOT EXISTS users_referred_by_idx   ON users(referred_by);
+CREATE INDEX IF NOT EXISTS users_referral_code_idx ON users(referral_code);
+CREATE INDEX IF NOT EXISTS users_email_lower_idx   ON users(LOWER(email));
+
+-- ----------------------------------------------------------------------------
+-- Tabela: leads (onboarding / contato do paciente com a nutricionista)
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS leads (
+  id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  nutritionist_id    UUID REFERENCES users(id) ON DELETE SET NULL,
+  patient_user_id    UUID REFERENCES users(id) ON DELETE SET NULL,
+  full_name          TEXT,
+  email              TEXT,
+  phone              TEXT,
+  message            TEXT,
+  onboarding_answers JSONB,
+  status             lead_status NOT NULL DEFAULT 'new',
+  created_at         TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at         TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS leads_nutritionist_idx ON leads(nutritionist_id);
+CREATE INDEX IF NOT EXISTS leads_patient_idx      ON leads(patient_user_id);
+CREATE INDEX IF NOT EXISTS leads_email_lower_idx  ON leads(LOWER(email));
+CREATE INDEX IF NOT EXISTS leads_status_idx       ON leads(status);
+
+-- ----------------------------------------------------------------------------
+-- updated_at automático
+-- ----------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION set_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS users_set_updated_at ON users;
+CREATE TRIGGER users_set_updated_at
+  BEFORE UPDATE ON users
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at_column();
+
+DROP TRIGGER IF EXISTS leads_set_updated_at ON leads;
+CREATE TRIGGER leads_set_updated_at
+  BEFORE UPDATE ON leads
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at_column();
+
+-- ============================================================================
+-- Row Level Security
+--
+-- IMPORTANTE: a aplicação acessa o banco com a SERVICE ROLE KEY, que ignora
+-- RLS por design. Toda a autorização das rotas hoje é feita no servidor
+-- (server actions / requireProfile). As policies abaixo são uma camada de
+-- defesa em profundidade para o caso de alguém usar a ANON KEY ou o PostgREST
+-- diretamente — NUNCA são a única linha de defesa.
+-- ============================================================================
+
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
+
+-- Um usuário pode ler o próprio registro; admins leem todos.
+DROP POLICY IF EXISTS "users_select_self_or_admin" ON users;
+CREATE POLICY "users_select_self_or_admin" ON users
+  FOR SELECT
+  USING (
+    auth.uid() = auth_uid
+    OR EXISTS (
+      SELECT 1 FROM users a
+      WHERE a.auth_uid = auth.uid() AND a.role = 'admin'
+    )
+  );
+
+-- Um usuário pode atualizar apenas o próprio registro.
+DROP POLICY IF EXISTS "users_update_self" ON users;
+CREATE POLICY "users_update_self" ON users
+  FOR UPDATE
+  USING (auth.uid() = auth_uid)
+  WITH CHECK (auth.uid() = auth_uid);
+
+-- Qualquer usuário autenticado pode criar um lead (onboarding).
+DROP POLICY IF EXISTS "leads_insert_authenticated" ON leads;
+CREATE POLICY "leads_insert_authenticated" ON leads
+  FOR INSERT
+  WITH CHECK (auth.role() = 'authenticated');
+
+-- A nutricionista dona, o paciente dono ou um admin podem ler o lead.
+DROP POLICY IF EXISTS "leads_select_owner_or_admin" ON leads;
+CREATE POLICY "leads_select_owner_or_admin" ON leads
+  FOR SELECT
+  USING (
+    nutritionist_id IN (SELECT id FROM users WHERE auth_uid = auth.uid())
+    OR patient_user_id IN (SELECT id FROM users WHERE auth_uid = auth.uid())
+    OR EXISTS (
+      SELECT 1 FROM users a
+      WHERE a.auth_uid = auth.uid() AND a.role = 'admin'
+    )
+  );
+
+-- ============================================================================
+-- Fim do schema
+-- ============================================================================

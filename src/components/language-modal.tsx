@@ -10,11 +10,18 @@ export function LanguageSelector() {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const options: { key: Locale; label: string }[] = [
-    { key: "pt", label: t("languages.pt") },
-    { key: "en", label: t("languages.en") },
-    { key: "es", label: t("languages.es") },
-    { key: "fr", label: t("languages.fr") },
+  const FLAGS: Record<Locale, string> = {
+    pt: "🇧🇷",
+    en: "🇬🇧",
+    es: "🇪🇸",
+    fr: "🇫🇷",
+  };
+
+  const options: { key: Locale; label: string; flag: string }[] = [
+    { key: "pt", label: t("languages.pt"), flag: FLAGS.pt },
+    { key: "en", label: t("languages.en"), flag: FLAGS.en },
+    { key: "es", label: t("languages.es"), flag: FLAGS.es },
+    { key: "fr", label: t("languages.fr"), flag: FLAGS.fr },
   ];
 
   useEffect(() => {
@@ -44,9 +51,10 @@ export function LanguageSelector() {
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-haspopup="listbox"
-        className="inline-flex items-center gap-1 rounded px-2.5 py-1.5 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-[#0c2340]"
+        aria-label={t("selectLanguage")}
+        className="inline-flex items-center gap-1 rounded px-2 py-1.5 text-slate-600 transition-colors hover:bg-slate-100 hover:text-[#0c2340]"
       >
-        {t("language")}
+        <span className="text-lg leading-none" aria-hidden>{FLAGS[locale as Locale]}</span>
         <svg
           className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
@@ -75,12 +83,13 @@ export function LanguageSelector() {
                   setLocale(option.key);
                   setOpen(false);
                 }}
-                className={`w-full px-3 py-1.5 text-left text-sm transition-colors hover:bg-slate-50 ${
+                className={`flex w-full items-center gap-2.5 px-3 py-2 text-left text-sm transition-colors hover:bg-slate-50 ${
                   locale === option.key
                     ? "bg-slate-50 font-medium text-[#0c2340]"
                     : "text-slate-600"
                 }`}
               >
+                <span className="text-base leading-none" aria-hidden>{option.flag}</span>
                 {option.label}
               </button>
             </li>

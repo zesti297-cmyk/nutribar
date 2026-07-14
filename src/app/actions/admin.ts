@@ -49,7 +49,7 @@ export async function updateTranslatorCommission(
     return { error: "Sem permissão." };
   }
 
-  await updateTranslatorCommission(userId, commissionRate);
+  await dbUpdateTranslatorCommission(userId, commissionRate);
   revalidatePath("/dashboard/admin");
   return { success: true };
 }

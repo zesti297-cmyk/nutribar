@@ -19,7 +19,7 @@ export function LandingHero() {
           <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#0c2340]">
             {t("hero.preTitle")}
           </p>
-          <h1 className="text-5xl font-extrabold leading-tight text-[#0c2340] sm:text-6xl">
+          <h1 className="text-3xl font-extrabold leading-tight text-[#0c2340] sm:text-5xl lg:text-6xl">
             {t("hero.title")}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
@@ -50,10 +50,10 @@ export function LandingHero() {
             <img
               src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80"
               alt={t("hero.preTitle")}
-              className="h-[420px] w-full object-cover"
+              className="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
             />
           </div>
-          <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-4 shadow-lg">
+          <div className="absolute -bottom-4 left-4 rounded-xl bg-white p-4 shadow-lg sm:-bottom-6 sm:-left-6 sm:left-auto">
             <p className="text-sm font-medium text-slate-500">{t("hero.patientsLabel")}</p>
             <p className="text-2xl font-bold text-[#0c2340]">{t("hero.patientsCount")}</p>
           </div>

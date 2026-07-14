@@ -99,6 +99,13 @@ export async function signIn(email: string, password: string) {
     return { error: "Usuário não encontrado." };
   }
 
+  if (user.status === "pending") {
+    return {
+      error:
+        "Sua conta ainda está aguardando aprovação. Você será avisado quando for liberada.",
+    };
+  }
+
   await createSession(user.id);
   redirect(getDashboardPath(user.role));
 }

@@ -51,7 +51,7 @@ export function LandingNutritionists({ nutritionists }: LandingNutritionistsProp
       : [...nutritionists, ...placeholderNutritionists].slice(0, 3);
 
   return (
-    <section id="nutricionistas" className="bg-slate-50 py-24">
+    <section id="nutricionistas" className="bg-slate-50 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-[#0c2340]">{t("nutritionistsSection.title")}</h2>
