@@ -471,6 +471,7 @@
     "title": "Inscription terminée !",
     "description": "Nous avons bien reçu vos informations. La nutritionniste choisie vous contactera bientôt pour organiser votre suivi.",
     "goToDashboard": "Aller à mon espace",
-    "backHome": "Retour à laccueil"
+    "backHome": "Retour à laccueil",
+    "signIn": "Me connecter à mon compte"
   }
 }

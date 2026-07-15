@@ -37,7 +37,12 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
       body: JSON.stringify(form),
     });
     if (res.ok) {
-      router.push("/thank-you");
+      // Quem acabou de criar conta já sai logado do /api/onboarding; quem só
+      // deixou o lead (conta existente, ou sem senha) continua deslogado e a
+      // /thank-you oferece o login em vez da área dela.
+      const { signedIn } = await res.json().catch(() => ({ signedIn: false }));
+      router.push(signedIn ? "/thank-you?signed_in=1" : "/thank-you");
+      router.refresh();
     } else {
       alert(t("onboarding.submitError"));
     }

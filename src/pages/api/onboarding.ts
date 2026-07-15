@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { serializeSessionCookie, signSessionToken } from "@/lib/session-token";
 import { createSupabaseAdminClient } from "@/lib/supabase";
 
 const supabaseAdmin = createSupabaseAdminClient();
@@ -39,6 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     let patientUserId: string | null = null;
+    let isNewUser = false;
 
     if (email) {
       const { data: existingUser, error: findError } = await supabaseAdmin
@@ -83,6 +85,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         if (insertError) throw insertError;
         patientUserId = insertedUser?.id ?? null;
+        isNewUser = Boolean(patientUserId);
       }
     }
 
@@ -103,7 +106,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (leadError) throw leadError;
 
-    res.status(200).json({ ok: true, leadId: insertedLead?.id });
+    // Loga a paciente que acabou de criar conta, para ela cair na própria área
+    // em vez de ser mandada de volta para a home. Quem já tinha conta não é
+    // logado aqui: sem a senha, isso daria acesso a partir só do email.
+    if (patientUserId && isNewUser) {
+      const token = await signSessionToken(patientUserId);
+      res.setHeader(
+        "Set-Cookie",
+        serializeSessionCookie(token, process.env.NODE_ENV === "production"),
+      );
+    }
+
+    res.status(200).json({ ok: true, leadId: insertedLead?.id, signedIn: isNewUser });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "server error" });

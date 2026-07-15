@@ -471,6 +471,7 @@
     "title": "¡Registro completado!",
     "description": "Recibimos tu información. La nutricionista elegida se pondrá en contacto pronto para organizar tu seguimiento.",
     "goToDashboard": "Ir a mi área",
-    "backHome": "Volver al inicio"
+    "backHome": "Volver al inicio",
+    "signIn": "Entrar en mi cuenta"
   }
 }

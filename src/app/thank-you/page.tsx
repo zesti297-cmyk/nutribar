@@ -1,10 +1,15 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
 
-export default function ThankYouPage() {
+function ThankYou() {
   const { t } = useI18n();
+  // O /api/onboarding só cria sessão para quem acabou de abrir conta. Sem ela,
+  // mandar a paciente para /dashboard/patient só a devolveria para a home.
+  const signedIn = useSearchParams()?.get("signed_in") === "1";
 
   return (
     <div className="flex min-h-full items-center justify-center bg-gradient-to-b from-slate-50 to-white px-6 py-16">
@@ -29,10 +34,10 @@ export default function ThankYouPage() {
 
         <div className="mt-7 flex flex-col gap-3">
           <Link
-            href="/dashboard/patient"
+            href={signedIn ? "/dashboard/patient" : "/login/patient"}
             className="rounded-3xl bg-[#0c2340] py-3 font-semibold text-white shadow-lg shadow-slate-900/10 transition-colors hover:bg-[#1a3054]"
           >
-            {t("thankYou.goToDashboard")}
+            {signedIn ? t("thankYou.goToDashboard") : t("thankYou.signIn")}
           </Link>
           <Link
             href="/"
@@ -43,5 +48,13 @@ export default function ThankYouPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense>
+      <ThankYou />
+    </Suspense>
   );
 }

@@ -471,6 +471,7 @@
     "title": "You are all set!",
     "description": "We have received your information. Your nutritionist will get in touch shortly to arrange your follow-up.",
     "goToDashboard": "Go to my dashboard",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "signIn": "Sign in to my account"
   }
 }

@@ -471,6 +471,7 @@
     "title": "Cadastro concluído!",
     "description": "Recebemos suas informações. A nutricionista escolhida vai entrar em contato em breve para combinar o seu acompanhamento.",
     "goToDashboard": "Ir para minha área",
-    "backHome": "Voltar ao início"
+    "backHome": "Voltar ao início",
+    "signIn": "Entrar na minha conta"
   }
 }

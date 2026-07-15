@@ -18,6 +18,20 @@ export async function signSessionToken(userId: string) {
     .sign(getSecret());
 }
 
+// Para as API routes do Pages Router, que não têm acesso ao cookies() do App
+// Router e precisam montar o header na mão. Mantém os mesmos atributos de
+// createSession() — divergir aqui criaria uma sessão com outra proteção.
+export function serializeSessionCookie(token: string, secure: boolean): string {
+  return [
+    `${SESSION_COOKIE}=${token}`,
+    "HttpOnly",
+    "Path=/",
+    "SameSite=Lax",
+    `Max-Age=${SESSION_MAX_AGE}`,
+    ...(secure ? ["Secure"] : []),
+  ].join("; ");
+}
+
 export async function verifySessionToken(
   token: string,
 ): Promise<{ userId: string } | null> {
