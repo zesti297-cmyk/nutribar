@@ -41,6 +41,19 @@ export interface Lead {
   created_at: string;
 }
 
+export interface NutritionistPlan {
+  id: string;
+  nutritionist_id: string;
+  name: string;
+  description: string | null;
+  price_cents: number;
+  currency: string;
+  duration: string | null;
+  is_active: boolean;
+  sort_order: number;
+  created_at: string;
+}
+
 export interface AdminStats {
   nutritionists: { total: number; approved: number; pending: number };
   translators: { total: number; approved: number; pending: number };

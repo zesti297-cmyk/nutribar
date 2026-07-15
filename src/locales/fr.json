@@ -12,9 +12,18 @@
     "description": "Vous avez déjà franchi le pas le plus important. Il est maintenant temps de prendre soin de ce qui suit, avec quelqu'un qui comprend chaque étape de votre transformation. Nutribar vous met en relation avec des nutritionnistes spécialisées, avec des protocoles adaptés à votre moment, des ajustements selon votre évolution et le soutien d'une personne de confiance.",
     "cta": "Commencer ma nouvelle étape",
     "stats": {
-      "continuous": { "value": "Continu", "label": "suivi clinique personnalisé" },
-      "online": { "value": "100%", "label": "soins en ligne, où que vous soyez" },
-      "support": { "value": "Multilingue", "label": "des professionnelles dans votre langue" }
+      "continuous": {
+        "value": "Continu",
+        "label": "suivi clinique personnalisé"
+      },
+      "online": {
+        "value": "100%",
+        "label": "soins en ligne, où que vous soyez"
+      },
+      "support": {
+        "value": "Multilingue",
+        "label": "des professionnelles dans votre langue"
+      }
     },
     "patientsLabel": "Patientes accompagnées après la chirurgie",
     "patientsCount": "Des centaines"
@@ -23,12 +32,26 @@
     "title": "Comment ça marche",
     "subtitle": "De la sortie au résultat durable, en quatre étapes",
     "stepLabel": "Étape {number}",
-    "mockup": { "book": "Prendre rendez-vous" },
+    "mockup": {
+      "book": "Prendre rendez-vous"
+    },
     "steps": {
-      "1": { "title": "Créez votre compte", "description": "Inscrivez-vous en quelques minutes et racontez vos antécédents chirurgicaux. Tout le processus est en ligne, sécurisé et dans votre langue." },
-      "2": { "title": "Choisissez votre nutritionniste", "description": "Sélectionnez parmi des professionnelles vérifiées et spécialisées dans le suivi post-opératoire, avec une expérience exactement dans votre type d'intervention." },
-      "3": { "title": "Suivez votre protocole", "description": "Recevez un plan alimentaire structuré pour votre phase de récupération, avec des ajustements cliniques à chaque évaluation et des conseils pour prévenir les carences." },
-      "4": { "title": "Maintenez vos résultats", "description": "Suivez vos objectifs, votre évolution et vos recommandations au même endroit, avec un soutien continu pour consolider le résultat à long terme." }
+      "1": {
+        "title": "Créez votre compte",
+        "description": "Inscrivez-vous en quelques minutes et racontez vos antécédents chirurgicaux. Tout le processus est en ligne, sécurisé et dans votre langue."
+      },
+      "2": {
+        "title": "Choisissez votre nutritionniste",
+        "description": "Sélectionnez parmi des professionnelles vérifiées et spécialisées dans le suivi post-opératoire, avec une expérience exactement dans votre type d'intervention."
+      },
+      "3": {
+        "title": "Suivez votre protocole",
+        "description": "Recevez un plan alimentaire structuré pour votre phase de récupération, avec des ajustements cliniques à chaque évaluation et des conseils pour prévenir les carences."
+      },
+      "4": {
+        "title": "Maintenez vos résultats",
+        "description": "Suivez vos objectifs, votre évolution et vos recommandations au même endroit, avec un soutien continu pour consolider le résultat à long terme."
+      }
     }
   },
   "nutritionistsSection": {
@@ -50,10 +73,22 @@
     "title": "Pourquoi le suivi post-opératoire est décisif",
     "subtitle": "Les premières phases après la chirurgie déterminent votre santé pour les années à venir. Un suivi nutritionnel spécialisé protège votre résultat.",
     "points": {
-      "1": { "title": "Prévention des carences nutritionnelles", "description": "Après la chirurgie, l'absorption des nutriments change. Un protocole bien mené prévient les carences en fer, vitamine B12, protéines et autres nutriments essentiels." },
-      "2": { "title": "Rééducation alimentaire structurée", "description": "Reconstruire sa relation avec la nourriture est un processus. Votre nutritionniste guide chaque phase, du liquide au solide, en toute sécurité et à votre rythme." },
-      "3": { "title": "Maintien du résultat à long terme", "description": "Le suivi continu est ce qui empêche la reprise de poids et consolide les habitudes qui soutiennent le résultat de la chirurgie." },
-      "4": { "title": "Un soutien dans votre langue", "description": "Opérée à l'étranger ? Reprenez vos soins avec une professionnelle qui parle votre langue et comprend le protocole de votre intervention." }
+      "1": {
+        "title": "Prévention des carences nutritionnelles",
+        "description": "Après la chirurgie, l'absorption des nutriments change. Un protocole bien mené prévient les carences en fer, vitamine B12, protéines et autres nutriments essentiels."
+      },
+      "2": {
+        "title": "Rééducation alimentaire structurée",
+        "description": "Reconstruire sa relation avec la nourriture est un processus. Votre nutritionniste guide chaque phase, du liquide au solide, en toute sécurité et à votre rythme."
+      },
+      "3": {
+        "title": "Maintien du résultat à long terme",
+        "description": "Le suivi continu est ce qui empêche la reprise de poids et consolide les habitudes qui soutiennent le résultat de la chirurgie."
+      },
+      "4": {
+        "title": "Un soutien dans votre langue",
+        "description": "Opérée à l'étranger ? Reprenez vos soins avec une professionnelle qui parle votre langue et comprend le protocole de votre intervention."
+      }
     }
   },
   "testimonials": {
@@ -87,15 +122,42 @@
     "title": "Questions fréquentes",
     "subtitle": "Tout ce que vous devez savoir avant de commencer.",
     "items": {
-      "1": { "question": "Le suivi est-il entièrement en ligne ?", "answer": "Oui. Tout le suivi se fait en ligne et en toute sécurité, où que vous soyez, avec des consultations, des ajustements de protocole et un soutien entre les évaluations." },
-      "2": { "question": "Dans combien de temps commence le suivi ?", "answer": "Dès que vous créez votre compte et choisissez votre nutritionniste, le processus commence. L'inscription ne prend que quelques minutes." },
-      "3": { "question": "Comment choisir la bonne nutritionniste pour moi ?", "answer": "Vous pouvez filtrer par spécialité, langue et localisation. Chaque profil présente l'expérience clinique de la professionnelle pour que vous choisissiez celle qui comprend le mieux votre cas." },
-      "4": { "question": "Les nutritionnistes sont-elles vérifiées ?", "answer": "Oui. Toutes les professionnelles passent par un processus de vérification avant d'apparaître sur la plateforme. Seules celles approuvées par notre équipe reçoivent des patientes sur Nutribar." },
-      "5": { "question": "J'ai été opérée à l'étranger. Puis-je avoir un suivi dans ma langue ?", "answer": "Oui. C'est le cœur de Nutribar. Vous trouvez des nutritionnistes qui parlent votre langue et connaissent le protocole du pays où vous avez été opérée, pour reprendre vos soins sans barrières." },
-      "6": { "question": "Comment fonctionnent les plans de suivi ?", "answer": "Chaque nutritionniste propose des plans mensuel, trimestriel ou annuel, avec différentes fréquences de consultation, révisions et soutien. Vous choisissez ce qui a le plus de sens pour votre phase de récupération." },
-      "7": { "question": "Vais-je recevoir un plan alimentaire personnalisé ?", "answer": "Oui. Votre nutritionniste élabore un protocole alimentaire selon votre intervention, votre phase de récupération et votre évolution, en l'ajustant à chaque évaluation." },
-      "8": { "question": "Mes données de santé sont-elles sécurisées ?", "answer": "Oui. Vos informations sont traitées de manière confidentielle et utilisées uniquement pour votre suivi nutritionnel au sein de la plateforme." },
-      "9": { "question": "Puis-je changer de nutritionniste plus tard ?", "answer": "Oui. Si vous estimez qu'une autre professionnelle correspond mieux à votre cas, vous pouvez choisir une nouvelle nutritionniste au sein de la plateforme." }
+      "1": {
+        "question": "Le suivi est-il entièrement en ligne ?",
+        "answer": "Oui. Tout le suivi se fait en ligne et en toute sécurité, où que vous soyez, avec des consultations, des ajustements de protocole et un soutien entre les évaluations."
+      },
+      "2": {
+        "question": "Dans combien de temps commence le suivi ?",
+        "answer": "Dès que vous créez votre compte et choisissez votre nutritionniste, le processus commence. L'inscription ne prend que quelques minutes."
+      },
+      "3": {
+        "question": "Comment choisir la bonne nutritionniste pour moi ?",
+        "answer": "Vous pouvez filtrer par spécialité, langue et localisation. Chaque profil présente l'expérience clinique de la professionnelle pour que vous choisissiez celle qui comprend le mieux votre cas."
+      },
+      "4": {
+        "question": "Les nutritionnistes sont-elles vérifiées ?",
+        "answer": "Oui. Toutes les professionnelles passent par un processus de vérification avant d'apparaître sur la plateforme. Seules celles approuvées par notre équipe reçoivent des patientes sur Nutribar."
+      },
+      "5": {
+        "question": "J'ai été opérée à l'étranger. Puis-je avoir un suivi dans ma langue ?",
+        "answer": "Oui. C'est le cœur de Nutribar. Vous trouvez des nutritionnistes qui parlent votre langue et connaissent le protocole du pays où vous avez été opérée, pour reprendre vos soins sans barrières."
+      },
+      "6": {
+        "question": "Comment fonctionnent les plans de suivi ?",
+        "answer": "Chaque nutritionniste propose des plans mensuel, trimestriel ou annuel, avec différentes fréquences de consultation, révisions et soutien. Vous choisissez ce qui a le plus de sens pour votre phase de récupération."
+      },
+      "7": {
+        "question": "Vais-je recevoir un plan alimentaire personnalisé ?",
+        "answer": "Oui. Votre nutritionniste élabore un protocole alimentaire selon votre intervention, votre phase de récupération et votre évolution, en l'ajustant à chaque évaluation."
+      },
+      "8": {
+        "question": "Mes données de santé sont-elles sécurisées ?",
+        "answer": "Oui. Vos informations sont traitées de manière confidentielle et utilisées uniquement pour votre suivi nutritionnel au sein de la plateforme."
+      },
+      "9": {
+        "question": "Puis-je changer de nutritionniste plus tard ?",
+        "answer": "Oui. Si vous estimez qu'une autre professionnelle correspond mieux à votre cas, vous pouvez choisir une nouvelle nutritionniste au sein de la plateforme."
+      }
     }
   },
   "finalCta": {
@@ -154,6 +216,41 @@
     "saving": "Enregistrement...",
     "saved": "Profil enregistré avec succès !",
     "save": "Enregistrer le profil"
+  },
+  "nutritionistPlans": {
+    "title": "Mes forfaits",
+    "description": "Ajoutez les forfaits de suivi que vous proposez. Ils apparaissent sur votre profil pour les patientes.",
+    "empty": "Vous n'avez encore ajouté aucun forfait.",
+    "inactive": "Inactif",
+    "fields": {
+      "name": "Nom du forfait",
+      "price": "Prix",
+      "currency": "Devise",
+      "duration": "Durée",
+      "description": "Ce qui est inclus",
+      "isActive": "Afficher ce forfait sur mon profil"
+    },
+    "placeholders": {
+      "name": "Ex. : Suivi post-opératoire",
+      "price": "0,00",
+      "duration": "Ex. : 3 mois, 4 consultations",
+      "description": "Décrivez ce que la patiente reçoit dans ce forfait."
+    },
+    "create": {
+      "title": "Nouveau forfait",
+      "submit": "Ajouter le forfait",
+      "saving": "Enregistrement..."
+    },
+    "edit": {
+      "button": "Modifier",
+      "save": "Enregistrer les modifications",
+      "cancel": "Annuler"
+    },
+    "delete": {
+      "button": "Supprimer",
+      "confirm": "Supprimer ce forfait ?",
+      "yes": "Oui, supprimer"
+    }
   },
   "auth": {
     "back": "← Retour",
@@ -238,7 +335,8 @@
   "nutritionistDashboard": {
     "nav": {
       "profile": "Mon profil",
-      "leads": "Mes patientes"
+      "leads": "Mes patientes",
+      "plans": "Mes forfaits"
     },
     "leads": {
       "title": "Patientes intéressées",

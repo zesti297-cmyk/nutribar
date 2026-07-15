@@ -12,9 +12,18 @@
     "description": "Você já deu o passo mais importante. Agora é hora de cuidar do que vem depois, com quem entende cada etapa da sua transformação. A Nutribar conecta você a nutricionistas especializadas, com protocolos personalizados para o seu momento, ajustes baseados na sua evolução e suporte em quem você confia.",
     "cta": "Começar minha nova fase",
     "stats": {
-      "continuous": { "value": "Contínuo", "label": "acompanhamento clínico personalizado" },
-      "online": { "value": "100%", "label": "atendimento online, onde você estiver" },
-      "support": { "value": "Multilíngue", "label": "profissionais no seu idioma" }
+      "continuous": {
+        "value": "Contínuo",
+        "label": "acompanhamento clínico personalizado"
+      },
+      "online": {
+        "value": "100%",
+        "label": "atendimento online, onde você estiver"
+      },
+      "support": {
+        "value": "Multilíngue",
+        "label": "profissionais no seu idioma"
+      }
     },
     "patientsLabel": "Pacientes acompanhadas no pós-operatório",
     "patientsCount": "Centenas"
@@ -23,12 +32,26 @@
     "title": "Como funciona",
     "subtitle": "Da alta ao resultado duradouro, em quatro passos",
     "stepLabel": "Passo {number}",
-    "mockup": { "book": "Agendar consulta" },
+    "mockup": {
+      "book": "Agendar consulta"
+    },
     "steps": {
-      "1": { "title": "Crie sua conta", "description": "Cadastre-se em minutos e conte seu histórico cirúrgico. Todo o processo é online, seguro e no seu idioma." },
-      "2": { "title": "Escolha sua nutricionista", "description": "Selecione entre profissionais verificadas e especializadas em acompanhamento pós-cirúrgico, com experiência exatamente no seu tipo de procedimento." },
-      "3": { "title": "Siga seu protocolo", "description": "Receba um plano alimentar estruturado para a sua fase de recuperação, com ajustes clínicos a cada avaliação e orientação para prevenir carências." },
-      "4": { "title": "Mantenha seus resultados", "description": "Acompanhe metas, evolução e recomendações em um só lugar, com suporte contínuo para consolidar o resultado a longo prazo." }
+      "1": {
+        "title": "Crie sua conta",
+        "description": "Cadastre-se em minutos e conte seu histórico cirúrgico. Todo o processo é online, seguro e no seu idioma."
+      },
+      "2": {
+        "title": "Escolha sua nutricionista",
+        "description": "Selecione entre profissionais verificadas e especializadas em acompanhamento pós-cirúrgico, com experiência exatamente no seu tipo de procedimento."
+      },
+      "3": {
+        "title": "Siga seu protocolo",
+        "description": "Receba um plano alimentar estruturado para a sua fase de recuperação, com ajustes clínicos a cada avaliação e orientação para prevenir carências."
+      },
+      "4": {
+        "title": "Mantenha seus resultados",
+        "description": "Acompanhe metas, evolução e recomendações em um só lugar, com suporte contínuo para consolidar o resultado a longo prazo."
+      }
     }
   },
   "nutritionistsSection": {
@@ -50,10 +73,22 @@
     "title": "Por que o acompanhamento pós-operatório é decisivo",
     "subtitle": "As primeiras fases após a cirurgia definem a sua saúde pelos próximos anos. Um acompanhamento nutricional especializado protege o seu resultado.",
     "points": {
-      "1": { "title": "Prevenção de carências nutricionais", "description": "Após a cirurgia, a absorção de nutrientes muda. Um protocolo bem conduzido previne deficiências de ferro, vitamina B12, proteína e outros nutrientes essenciais." },
-      "2": { "title": "Reeducação alimentar estruturada", "description": "Reconstruir a relação com a comida é um processo. Sua nutricionista guia cada fase, do líquido ao sólido, com segurança e no seu ritmo." },
-      "3": { "title": "Manutenção do resultado a longo prazo", "description": "O acompanhamento contínuo é o que impede o reganho de peso e consolida os hábitos que sustentam o resultado da cirurgia." },
-      "4": { "title": "Suporte no seu idioma", "description": "Operou no exterior? Retome o cuidado com uma profissional que fala a sua língua e entende o protocolo do seu procedimento." }
+      "1": {
+        "title": "Prevenção de carências nutricionais",
+        "description": "Após a cirurgia, a absorção de nutrientes muda. Um protocolo bem conduzido previne deficiências de ferro, vitamina B12, proteína e outros nutrientes essenciais."
+      },
+      "2": {
+        "title": "Reeducação alimentar estruturada",
+        "description": "Reconstruir a relação com a comida é um processo. Sua nutricionista guia cada fase, do líquido ao sólido, com segurança e no seu ritmo."
+      },
+      "3": {
+        "title": "Manutenção do resultado a longo prazo",
+        "description": "O acompanhamento contínuo é o que impede o reganho de peso e consolida os hábitos que sustentam o resultado da cirurgia."
+      },
+      "4": {
+        "title": "Suporte no seu idioma",
+        "description": "Operou no exterior? Retome o cuidado com uma profissional que fala a sua língua e entende o protocolo do seu procedimento."
+      }
     }
   },
   "testimonials": {
@@ -87,15 +122,42 @@
     "title": "Perguntas frequentes",
     "subtitle": "Tudo o que você precisa saber antes de começar.",
     "items": {
-      "1": { "question": "O atendimento é totalmente online?", "answer": "Sim. Todo o acompanhamento acontece de forma online e segura, de onde você estiver, com consultas, ajustes de protocolo e suporte entre as avaliações." },
-      "2": { "question": "Em quanto tempo começo o acompanhamento?", "answer": "Assim que você cria a conta e escolhe a sua nutricionista, o processo começa. O cadastro leva poucos minutos." },
-      "3": { "question": "Como escolho a nutricionista certa para mim?", "answer": "Você pode filtrar por especialidade, idioma e localização. Cada perfil mostra a experiência clínica da profissional para que você escolha quem melhor entende o seu caso." },
-      "4": { "question": "As nutricionistas são verificadas?", "answer": "Sim. Todas as profissionais passam por um processo de verificação antes de aparecer na plataforma. Só quem é aprovado pela nossa equipe atende pacientes na Nutribar." },
-      "5": { "question": "Operei no exterior. Consigo acompanhamento no meu idioma?", "answer": "Sim. Este é o coração da Nutribar. Você encontra nutricionistas que falam o seu idioma e conhecem o protocolo do país onde você operou, para retomar o cuidado sem barreiras." },
-      "6": { "question": "Como funcionam os planos de acompanhamento?", "answer": "Cada nutricionista oferece planos mensal, trimestral ou anual, com diferentes frequências de consulta, revisões e suporte. Você escolhe o que faz mais sentido para a sua fase de recuperação." },
-      "7": { "question": "Vou receber um plano alimentar personalizado?", "answer": "Sim. Sua nutricionista monta um protocolo alimentar de acordo com o seu procedimento, a sua fase de recuperação e a sua evolução, ajustando a cada avaliação." },
-      "8": { "question": "Meus dados de saúde ficam seguros?", "answer": "Sim. As suas informações são tratadas com confidencialidade e usadas apenas para o seu acompanhamento nutricional dentro da plataforma." },
-      "9": { "question": "Posso trocar de nutricionista depois?", "answer": "Pode. Se sentir que outra profissional se encaixa melhor no seu caso, é possível escolher uma nova nutricionista dentro da plataforma." }
+      "1": {
+        "question": "O atendimento é totalmente online?",
+        "answer": "Sim. Todo o acompanhamento acontece de forma online e segura, de onde você estiver, com consultas, ajustes de protocolo e suporte entre as avaliações."
+      },
+      "2": {
+        "question": "Em quanto tempo começo o acompanhamento?",
+        "answer": "Assim que você cria a conta e escolhe a sua nutricionista, o processo começa. O cadastro leva poucos minutos."
+      },
+      "3": {
+        "question": "Como escolho a nutricionista certa para mim?",
+        "answer": "Você pode filtrar por especialidade, idioma e localização. Cada perfil mostra a experiência clínica da profissional para que você escolha quem melhor entende o seu caso."
+      },
+      "4": {
+        "question": "As nutricionistas são verificadas?",
+        "answer": "Sim. Todas as profissionais passam por um processo de verificação antes de aparecer na plataforma. Só quem é aprovado pela nossa equipe atende pacientes na Nutribar."
+      },
+      "5": {
+        "question": "Operei no exterior. Consigo acompanhamento no meu idioma?",
+        "answer": "Sim. Este é o coração da Nutribar. Você encontra nutricionistas que falam o seu idioma e conhecem o protocolo do país onde você operou, para retomar o cuidado sem barreiras."
+      },
+      "6": {
+        "question": "Como funcionam os planos de acompanhamento?",
+        "answer": "Cada nutricionista oferece planos mensal, trimestral ou anual, com diferentes frequências de consulta, revisões e suporte. Você escolhe o que faz mais sentido para a sua fase de recuperação."
+      },
+      "7": {
+        "question": "Vou receber um plano alimentar personalizado?",
+        "answer": "Sim. Sua nutricionista monta um protocolo alimentar de acordo com o seu procedimento, a sua fase de recuperação e a sua evolução, ajustando a cada avaliação."
+      },
+      "8": {
+        "question": "Meus dados de saúde ficam seguros?",
+        "answer": "Sim. As suas informações são tratadas com confidencialidade e usadas apenas para o seu acompanhamento nutricional dentro da plataforma."
+      },
+      "9": {
+        "question": "Posso trocar de nutricionista depois?",
+        "answer": "Pode. Se sentir que outra profissional se encaixa melhor no seu caso, é possível escolher uma nova nutricionista dentro da plataforma."
+      }
     }
   },
   "finalCta": {
@@ -154,6 +216,41 @@
     "saving": "Salvando...",
     "saved": "Perfil salvo com sucesso!",
     "save": "Salvar perfil"
+  },
+  "nutritionistPlans": {
+    "title": "Meus planos",
+    "description": "Cadastre os planos de acompanhamento que você oferece. Eles aparecem no seu perfil para as pacientes.",
+    "empty": "Você ainda não cadastrou nenhum plano.",
+    "inactive": "Inativo",
+    "fields": {
+      "name": "Nome do plano",
+      "price": "Preço",
+      "currency": "Moeda",
+      "duration": "Duração",
+      "description": "O que está incluso",
+      "isActive": "Mostrar este plano no meu perfil"
+    },
+    "placeholders": {
+      "name": "Ex.: Acompanhamento pós-cirúrgico",
+      "price": "0,00",
+      "duration": "Ex.: 3 meses, 4 consultas",
+      "description": "Descreva o que a paciente recebe neste plano."
+    },
+    "create": {
+      "title": "Novo plano",
+      "submit": "Adicionar plano",
+      "saving": "Salvando..."
+    },
+    "edit": {
+      "button": "Editar",
+      "save": "Salvar alterações",
+      "cancel": "Cancelar"
+    },
+    "delete": {
+      "button": "Excluir",
+      "confirm": "Excluir este plano?",
+      "yes": "Sim, excluir"
+    }
   },
   "auth": {
     "back": "← Voltar",
@@ -238,7 +335,8 @@
   "nutritionistDashboard": {
     "nav": {
       "profile": "Meu perfil",
-      "leads": "Minhas pacientes"
+      "leads": "Minhas pacientes",
+      "plans": "Meus planos"
     },
     "leads": {
       "title": "Pacientes interessadas",

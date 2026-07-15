@@ -12,9 +12,18 @@
     "description": "You've already taken the most important step. Now it's time to care for what comes next, with someone who understands every stage of your transformation. Nutribar connects you with specialized nutritionists, with protocols tailored to your moment, adjustments based on your progress, and support from someone you trust.",
     "cta": "Start my new chapter",
     "stats": {
-      "continuous": { "value": "Ongoing", "label": "personalized clinical follow-up" },
-      "online": { "value": "100%", "label": "online care, wherever you are" },
-      "support": { "value": "Multilingual", "label": "professionals in your language" }
+      "continuous": {
+        "value": "Ongoing",
+        "label": "personalized clinical follow-up"
+      },
+      "online": {
+        "value": "100%",
+        "label": "online care, wherever you are"
+      },
+      "support": {
+        "value": "Multilingual",
+        "label": "professionals in your language"
+      }
     },
     "patientsLabel": "Patients supported after surgery",
     "patientsCount": "Hundreds"
@@ -23,12 +32,26 @@
     "title": "How it works",
     "subtitle": "From discharge to a lasting result, in four steps",
     "stepLabel": "Step {number}",
-    "mockup": { "book": "Book appointment" },
+    "mockup": {
+      "book": "Book appointment"
+    },
     "steps": {
-      "1": { "title": "Create your account", "description": "Sign up in minutes and share your surgical history. The whole process is online, secure, and in your language." },
-      "2": { "title": "Choose your nutritionist", "description": "Select from verified professionals specialized in post-surgery follow-up, with experience in exactly your type of procedure." },
-      "3": { "title": "Follow your protocol", "description": "Receive a structured meal plan for your recovery phase, with clinical adjustments at each assessment and guidance to prevent deficiencies." },
-      "4": { "title": "Maintain your results", "description": "Track goals, progress, and recommendations in one place, with continuous support to consolidate your result over the long term." }
+      "1": {
+        "title": "Create your account",
+        "description": "Sign up in minutes and share your surgical history. The whole process is online, secure, and in your language."
+      },
+      "2": {
+        "title": "Choose your nutritionist",
+        "description": "Select from verified professionals specialized in post-surgery follow-up, with experience in exactly your type of procedure."
+      },
+      "3": {
+        "title": "Follow your protocol",
+        "description": "Receive a structured meal plan for your recovery phase, with clinical adjustments at each assessment and guidance to prevent deficiencies."
+      },
+      "4": {
+        "title": "Maintain your results",
+        "description": "Track goals, progress, and recommendations in one place, with continuous support to consolidate your result over the long term."
+      }
     }
   },
   "nutritionistsSection": {
@@ -50,10 +73,22 @@
     "title": "Why post-operative follow-up is decisive",
     "subtitle": "The first phases after surgery shape your health for years to come. Specialized nutritional follow-up protects your result.",
     "points": {
-      "1": { "title": "Preventing nutritional deficiencies", "description": "After surgery, nutrient absorption changes. A well-managed protocol prevents deficiencies of iron, vitamin B12, protein, and other essential nutrients." },
-      "2": { "title": "Structured dietary re-education", "description": "Rebuilding your relationship with food is a process. Your nutritionist guides each phase, from liquids to solids, safely and at your own pace." },
-      "3": { "title": "Maintaining results long term", "description": "Continuous follow-up is what prevents weight regain and consolidates the habits that sustain your surgical result." },
-      "4": { "title": "Support in your language", "description": "Had surgery abroad? Resume your care with a professional who speaks your language and understands your procedure's protocol." }
+      "1": {
+        "title": "Preventing nutritional deficiencies",
+        "description": "After surgery, nutrient absorption changes. A well-managed protocol prevents deficiencies of iron, vitamin B12, protein, and other essential nutrients."
+      },
+      "2": {
+        "title": "Structured dietary re-education",
+        "description": "Rebuilding your relationship with food is a process. Your nutritionist guides each phase, from liquids to solids, safely and at your own pace."
+      },
+      "3": {
+        "title": "Maintaining results long term",
+        "description": "Continuous follow-up is what prevents weight regain and consolidates the habits that sustain your surgical result."
+      },
+      "4": {
+        "title": "Support in your language",
+        "description": "Had surgery abroad? Resume your care with a professional who speaks your language and understands your procedure's protocol."
+      }
     }
   },
   "testimonials": {
@@ -87,15 +122,42 @@
     "title": "Frequently asked questions",
     "subtitle": "Everything you need to know before you start.",
     "items": {
-      "1": { "question": "Is the care fully online?", "answer": "Yes. All follow-up happens online and securely, wherever you are, with consultations, protocol adjustments, and support between assessments." },
-      "2": { "question": "How soon do I start the follow-up?", "answer": "As soon as you create your account and choose your nutritionist, the process begins. Signing up takes just a few minutes." },
-      "3": { "question": "How do I choose the right nutritionist for me?", "answer": "You can filter by specialty, language, and location. Each profile shows the professional's clinical experience so you can choose who best understands your case." },
-      "4": { "question": "Are the nutritionists verified?", "answer": "Yes. All professionals go through a verification process before appearing on the platform. Only those approved by our team see patients on Nutribar." },
-      "5": { "question": "I had surgery abroad. Can I get follow-up in my language?", "answer": "Yes. This is at the heart of Nutribar. You'll find nutritionists who speak your language and know the protocol of the country where you had surgery, so you can resume care without barriers." },
-      "6": { "question": "How do the follow-up plans work?", "answer": "Each nutritionist offers monthly, quarterly, or annual plans, with different consultation frequencies, reviews, and support. You choose what makes the most sense for your recovery phase." },
-      "7": { "question": "Will I get a personalized meal plan?", "answer": "Yes. Your nutritionist builds a nutritional protocol based on your procedure, your recovery phase, and your progress, adjusting it at each assessment." },
-      "8": { "question": "Is my health data secure?", "answer": "Yes. Your information is treated confidentially and used only for your nutritional follow-up within the platform." },
-      "9": { "question": "Can I switch nutritionists later?", "answer": "Yes. If you feel another professional fits your case better, you can choose a new nutritionist within the platform." }
+      "1": {
+        "question": "Is the care fully online?",
+        "answer": "Yes. All follow-up happens online and securely, wherever you are, with consultations, protocol adjustments, and support between assessments."
+      },
+      "2": {
+        "question": "How soon do I start the follow-up?",
+        "answer": "As soon as you create your account and choose your nutritionist, the process begins. Signing up takes just a few minutes."
+      },
+      "3": {
+        "question": "How do I choose the right nutritionist for me?",
+        "answer": "You can filter by specialty, language, and location. Each profile shows the professional's clinical experience so you can choose who best understands your case."
+      },
+      "4": {
+        "question": "Are the nutritionists verified?",
+        "answer": "Yes. All professionals go through a verification process before appearing on the platform. Only those approved by our team see patients on Nutribar."
+      },
+      "5": {
+        "question": "I had surgery abroad. Can I get follow-up in my language?",
+        "answer": "Yes. This is at the heart of Nutribar. You'll find nutritionists who speak your language and know the protocol of the country where you had surgery, so you can resume care without barriers."
+      },
+      "6": {
+        "question": "How do the follow-up plans work?",
+        "answer": "Each nutritionist offers monthly, quarterly, or annual plans, with different consultation frequencies, reviews, and support. You choose what makes the most sense for your recovery phase."
+      },
+      "7": {
+        "question": "Will I get a personalized meal plan?",
+        "answer": "Yes. Your nutritionist builds a nutritional protocol based on your procedure, your recovery phase, and your progress, adjusting it at each assessment."
+      },
+      "8": {
+        "question": "Is my health data secure?",
+        "answer": "Yes. Your information is treated confidentially and used only for your nutritional follow-up within the platform."
+      },
+      "9": {
+        "question": "Can I switch nutritionists later?",
+        "answer": "Yes. If you feel another professional fits your case better, you can choose a new nutritionist within the platform."
+      }
     }
   },
   "finalCta": {
@@ -154,6 +216,41 @@
     "saving": "Saving...",
     "saved": "Profile saved successfully!",
     "save": "Save profile"
+  },
+  "nutritionistPlans": {
+    "title": "My plans",
+    "description": "Add the coaching plans you offer. They show up on your profile for patients.",
+    "empty": "You haven't added any plans yet.",
+    "inactive": "Inactive",
+    "fields": {
+      "name": "Plan name",
+      "price": "Price",
+      "currency": "Currency",
+      "duration": "Duration",
+      "description": "What's included",
+      "isActive": "Show this plan on my profile"
+    },
+    "placeholders": {
+      "name": "e.g. Post-surgery follow-up",
+      "price": "0.00",
+      "duration": "e.g. 3 months, 4 sessions",
+      "description": "Describe what the patient gets in this plan."
+    },
+    "create": {
+      "title": "New plan",
+      "submit": "Add plan",
+      "saving": "Saving..."
+    },
+    "edit": {
+      "button": "Edit",
+      "save": "Save changes",
+      "cancel": "Cancel"
+    },
+    "delete": {
+      "button": "Delete",
+      "confirm": "Delete this plan?",
+      "yes": "Yes, delete"
+    }
   },
   "auth": {
     "back": "← Back",
@@ -238,7 +335,8 @@
   "nutritionistDashboard": {
     "nav": {
       "profile": "My profile",
-      "leads": "My patients"
+      "leads": "My patients",
+      "plans": "My plans"
     },
     "leads": {
       "title": "Interested patients",

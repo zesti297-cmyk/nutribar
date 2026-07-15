@@ -108,6 +108,32 @@ CREATE INDEX IF NOT EXISTS leads_email_lower_idx  ON leads(LOWER(email));
 CREATE INDEX IF NOT EXISTS leads_status_idx       ON leads(status);
 
 -- ----------------------------------------------------------------------------
+-- Tabela: nutritionist_plans (planos que a própria nutricionista cadastra)
+--
+-- price_cents é INTEGER para evitar erro de arredondamento de ponto flutuante
+-- em dinheiro. A comissão continua em users.nutritionist_commission, definida
+-- pelo admin, e incide sobre estes preços.
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS nutritionist_plans (
+  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  nutritionist_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  name            TEXT NOT NULL,
+  description     TEXT,
+  price_cents     INTEGER NOT NULL DEFAULT 0 CHECK (price_cents >= 0),
+  currency        TEXT NOT NULL DEFAULT 'BRL',
+  duration        TEXT,
+  is_active       BOOLEAN NOT NULL DEFAULT TRUE,
+  sort_order      INTEGER NOT NULL DEFAULT 0,
+  created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS nutritionist_plans_nutritionist_idx
+  ON nutritionist_plans(nutritionist_id);
+CREATE INDEX IF NOT EXISTS nutritionist_plans_active_idx
+  ON nutritionist_plans(nutritionist_id, is_active);
+
+-- ----------------------------------------------------------------------------
 -- updated_at automático
 -- ----------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION set_updated_at_column()
@@ -128,6 +154,11 @@ CREATE TRIGGER leads_set_updated_at
   BEFORE UPDATE ON leads
   FOR EACH ROW EXECUTE FUNCTION set_updated_at_column();
 
+DROP TRIGGER IF EXISTS nutritionist_plans_set_updated_at ON nutritionist_plans;
+CREATE TRIGGER nutritionist_plans_set_updated_at
+  BEFORE UPDATE ON nutritionist_plans
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at_column();
+
 -- ============================================================================
 -- Row Level Security
 --
@@ -140,6 +171,7 @@ CREATE TRIGGER leads_set_updated_at
 
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
+ALTER TABLE nutritionist_plans ENABLE ROW LEVEL SECURITY;
 
 -- Um usuário pode ler o próprio registro; admins leem todos.
 DROP POLICY IF EXISTS "users_select_self_or_admin" ON users;
@@ -178,6 +210,27 @@ CREATE POLICY "leads_select_owner_or_admin" ON leads
       WHERE a.auth_uid = auth.uid() AND a.role = 'admin'
     )
   );
+
+-- Planos ativos são públicos (aparecem no perfil da nutricionista); a dona e o
+-- admin enxergam também os inativos.
+DROP POLICY IF EXISTS "nutritionist_plans_select_active_or_owner" ON nutritionist_plans;
+CREATE POLICY "nutritionist_plans_select_active_or_owner" ON nutritionist_plans
+  FOR SELECT
+  USING (
+    is_active
+    OR nutritionist_id IN (SELECT id FROM users WHERE auth_uid = auth.uid())
+    OR EXISTS (
+      SELECT 1 FROM users a
+      WHERE a.auth_uid = auth.uid() AND a.role = 'admin'
+    )
+  );
+
+-- Só a própria nutricionista mexe nos planos dela.
+DROP POLICY IF EXISTS "nutritionist_plans_write_owner" ON nutritionist_plans;
+CREATE POLICY "nutritionist_plans_write_owner" ON nutritionist_plans
+  FOR ALL
+  USING (nutritionist_id IN (SELECT id FROM users WHERE auth_uid = auth.uid()))
+  WITH CHECK (nutritionist_id IN (SELECT id FROM users WHERE auth_uid = auth.uid()));
 
 -- ============================================================================
 -- Fim do schema
