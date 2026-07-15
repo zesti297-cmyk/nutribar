@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { NutritionistModal } from "@/components/nutritionist-modal";
 import type { PublicNutritionist } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
 
@@ -20,6 +21,7 @@ const COPIES = 5;
 export function LandingNutritionists({ nutritionists }: LandingNutritionistsProps) {
   const { t } = useI18n();
   const [step, setStep] = useState(0);
+  const [selected, setSelected] = useState<PublicNutritionist | null>(null);
   const [paused, setPaused] = useState(false);
   const [offset, setOffset] = useState(0);
   const [instant, setInstant] = useState(false);
@@ -68,11 +70,12 @@ export function LandingNutritionists({ nutritionists }: LandingNutritionistsProp
   }
 
   useEffect(() => {
-    if (paused || baseLength <= 1) return;
+    // Com o modal aberto o carrossel não pode girar por baixo dele.
+    if (paused || selected || baseLength <= 1) return;
     const interval = setInterval(() => advance(1), 3000);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paused, baseLength]);
+  }, [paused, selected, baseLength]);
 
   // Recalcula o deslocamento da trilha para manter o card ativo centralizado.
   useEffect(() => {
@@ -142,7 +145,12 @@ export function LandingNutritionists({ nutritionists }: LandingNutritionistsProp
                     cardRefs.current[i] = el;
                   }}
                   type="button"
-                  onClick={() => setStep((s) => s + (i - activeIndex))}
+                  onClick={() => {
+                    // Card lateral: traz para o centro. Card já central: abre o
+                    // perfil — assim um clique nunca faz as duas coisas.
+                    if (i === activeIndex) setSelected(n);
+                    else setStep((s) => s + (i - activeIndex));
+                  }}
                   aria-label={n.full_name}
                   style={{ transformOrigin: "center" }}
                   className={`relative h-64 w-36 shrink-0 self-center overflow-hidden rounded-2xl bg-slate-200 text-left transition-all duration-500 ease-out sm:w-44 ${
@@ -190,6 +198,14 @@ export function LandingNutritionists({ nutritionists }: LandingNutritionistsProp
           </div>
         )}
       </div>
+
+      {selected && (
+        <NutritionistModal
+          nutritionist={selected}
+          photo={selected.photo_url || PLACEHOLDER_PHOTO}
+          onClose={() => setSelected(null)}
+        />
+      )}
     </section>
   );
 }

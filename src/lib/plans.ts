@@ -63,6 +63,30 @@ export async function getActivePlansByNutritionist(
   return ((data ?? []) as PlanRow[]).map(toPlan);
 }
 
+// Planos ativos de várias nutricionistas de uma vez. A landing precisa disso
+// para não disparar uma query por card.
+export async function getActivePlansByNutritionists(
+  nutritionistIds: string[],
+): Promise<Record<string, NutritionistPlan[]>> {
+  if (nutritionistIds.length === 0) return {};
+
+  const { data, error } = await supabaseAdmin
+    .from("nutritionist_plans")
+    .select(PLAN_SELECT)
+    .in("nutritionist_id", nutritionistIds)
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true });
+
+  if (error) throw error;
+
+  const byNutritionist: Record<string, NutritionistPlan[]> = {};
+  for (const row of (data ?? []) as PlanRow[]) {
+    (byNutritionist[row.nutritionist_id] ??= []).push(toPlan(row));
+  }
+  return byNutritionist;
+}
+
 export async function createPlan(plan: {
   nutritionistId: string;
   name: string;

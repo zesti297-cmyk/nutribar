@@ -85,4 +85,6 @@ export interface PublicNutritionist {
   location: string | null;
   experience_years?: number | null;
   specialties?: string[] | null;
+  // Ausente nas demo da landing, que caem nos planos de exemplo do modal.
+  plans?: NutritionistPlan[];
 }
