@@ -1,10 +1,13 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { updateTranslatorCommission } from "@/app/actions/admin";
+import {
+  markReferralCommissionPaid,
+  updateTranslatorCommission,
+} from "@/app/actions/admin";
 import { CommissionTypeToggle } from "@/components/commission-type-toggle";
 import { useI18n } from "@/lib/i18n";
-import type { CommissionType } from "@/lib/types";
+import type { CommissionType, ReferralCommission } from "@/lib/types";
 
 interface AdminTranslator {
   id: string;
@@ -15,20 +18,33 @@ interface AdminTranslator {
   status: string;
 }
 
-interface Referral {
-  id: string;
-  email: string;
-  referrer_email: string;
-  status: string;
-  created_at: string;
-}
-
 const LOCALE_TO_DATE: Record<string, string> = {
   pt: "pt-BR",
   en: "en-US",
   es: "es",
   fr: "fr-FR",
 };
+
+function PayButton({ commissionId }: { commissionId: string }) {
+  const { t } = useI18n();
+  const [state, action, pending] = useActionState(
+    async () => markReferralCommissionPaid(commissionId),
+    null,
+  );
+
+  return (
+    <form action={action}>
+      <button
+        type="submit"
+        disabled={pending}
+        className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
+      >
+        {pending ? "..." : t("admin.markPaid")}
+      </button>
+      {state?.error && <p className="mt-1 text-xs text-red-600">{state.error}</p>}
+    </form>
+  );
+}
 
 function CommissionForm({
   userId,
@@ -87,13 +103,17 @@ function CommissionForm({
 
 export function AdminTranslators({
   translators,
-  referrals,
+  commissions,
 }: {
   translators: AdminTranslator[];
-  referrals: Referral[];
+  commissions: ReferralCommission[];
 }) {
   const { t, locale } = useI18n();
   const dateLocale = LOCALE_TO_DATE[locale] ?? locale;
+  const money = (cents: number, currency: string) =>
+    new Intl.NumberFormat(dateLocale, { style: "currency", currency }).format(
+      cents / 100,
+    );
 
   return (
     <div className="space-y-8">
@@ -128,7 +148,8 @@ export function AdminTranslators({
 
       <section className="rounded-2xl border border-stone-200 bg-white p-8">
         <h2 className="text-xl font-bold text-stone-900">{t("admin.referrals")}</h2>
-        {referrals.length === 0 ? (
+        <p className="mt-2 text-sm text-stone-500">{t("admin.referralsHint")}</p>
+        {commissions.length === 0 ? (
           <p className="mt-4 text-stone-500">{t("admin.noReferrals")}</p>
         ) : (
           <div className="mt-4 overflow-x-auto">
@@ -137,18 +158,28 @@ export function AdminTranslators({
                 <tr className="border-b border-stone-200 text-stone-500">
                   <th className="pb-3 pr-4 font-medium">{t("admin.table.translator")}</th>
                   <th className="pb-3 pr-4 font-medium">{t("admin.table.referrer")}</th>
+                  <th className="pb-3 pr-4 font-medium">{t("admin.table.amount")}</th>
                   <th className="pb-3 pr-4 font-medium">{t("admin.table.status")}</th>
-                  <th className="pb-3 font-medium">{t("admin.table.date")}</th>
+                  <th className="pb-3 pr-4 font-medium">{t("admin.table.date")}</th>
+                  <th className="pb-3 font-medium" />
                 </tr>
               </thead>
               <tbody>
-                {referrals.map((ref) => (
-                  <tr key={ref.id} className="border-b border-stone-100">
-                    <td className="py-3 pr-4">{ref.email}</td>
-                    <td className="py-3 pr-4">{ref.referrer_email}</td>
-                    <td className="py-3 pr-4">{t(`status.${ref.status}`)}</td>
+                {commissions.map((c) => (
+                  <tr key={c.id} className="border-b border-stone-100">
+                    <td className="py-3 pr-4">{c.referred_email ?? "—"}</td>
+                    <td className="py-3 pr-4">{c.translator_email ?? "—"}</td>
+                    <td className="py-3 pr-4 font-medium text-stone-900">
+                      {money(c.amount_cents, c.currency)}
+                    </td>
+                    <td className="py-3 pr-4">
+                      {t(`referralCommissionStatus.${c.status}`)}
+                    </td>
+                    <td className="py-3 pr-4">
+                      {new Date(c.created_at).toLocaleDateString(dateLocale)}
+                    </td>
                     <td className="py-3">
-                      {new Date(ref.created_at).toLocaleDateString(dateLocale)}
+                      {c.status === "payable" && <PayButton commissionId={c.id} />}
                     </td>
                   </tr>
                 ))}

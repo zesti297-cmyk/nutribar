@@ -15,7 +15,6 @@ export default async function NutritionistDashboardPage() {
           bio={profile.bio ?? ""}
           photoUrl={profile.photo_url ?? ""}
           location={profile.location ?? ""}
-          status={profile.status}
         />
       </div>
     </div>

@@ -1,9 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { markCommissionPaid } from "@/lib/commissions";
 import { getSession } from "@/lib/session";
 import {
-  approveUserById,
   findUserById,
   updateNutritionistPlan as dbUpdateNutritionistPlan,
   updateTranslatorCommission as dbUpdateTranslatorCommission,
@@ -23,12 +23,17 @@ async function requireAdmin(): Promise<{ error: string } | null> {
   return null;
 }
 
-export async function approveUser(userId: string): Promise<ActionResult> {
+export async function markReferralCommissionPaid(
+  commissionId: string,
+): Promise<ActionResult> {
   const error = await requireAdmin();
   if (error) return error;
 
-  await approveUserById(userId);
-  revalidatePath("/dashboard/admin/approvals");
+  const paid = await markCommissionPaid(commissionId);
+  if (!paid) return { error: "Comissão não encontrada ou já paga." };
+
+  revalidatePath("/dashboard/admin/translators");
+  revalidatePath("/dashboard/translator");
   return { success: true };
 }
 

@@ -31,6 +31,9 @@ BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'commission_type') THEN
     CREATE TYPE commission_type AS ENUM ('fixed', 'percent');
   END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'referral_commission_status') THEN
+    CREATE TYPE referral_commission_status AS ENUM ('payable', 'paid');
+  END IF;
 END$$;
 
 -- ----------------------------------------------------------------------------
@@ -108,6 +111,34 @@ CREATE INDEX IF NOT EXISTS leads_email_lower_idx  ON leads(LOWER(email));
 CREATE INDEX IF NOT EXISTS leads_status_idx       ON leads(status);
 
 -- ----------------------------------------------------------------------------
+-- Tabela: referral_commissions (o que cada convite rendeu ao tradutor)
+--
+-- amount_cents é congelado no cadastro do indicado, com o valor que o admin
+-- tinha definido para o padrinho naquele instante. Mudar users.commission_rate
+-- depois NÃO reescreve estas linhas — só afeta convites futuros. Por isso o
+-- valor mora aqui e não é recalculado a partir de users.
+--
+-- referred_user_id é UNIQUE: um indicado gera no máximo uma comissão, mesmo
+-- que o cadastro seja reprocessado.
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS referral_commissions (
+  id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  translator_id    UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  referred_user_id UUID NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+  amount_cents     INTEGER NOT NULL DEFAULT 0 CHECK (amount_cents >= 0),
+  currency         TEXT NOT NULL DEFAULT 'BRL',
+  status           referral_commission_status NOT NULL DEFAULT 'payable',
+  paid_at          TIMESTAMPTZ,
+  created_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at       TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS referral_commissions_translator_idx
+  ON referral_commissions(translator_id);
+CREATE INDEX IF NOT EXISTS referral_commissions_status_idx
+  ON referral_commissions(translator_id, status);
+
+-- ----------------------------------------------------------------------------
 -- Tabela: nutritionist_plans (planos que a própria nutricionista cadastra)
 --
 -- price_cents é INTEGER para evitar erro de arredondamento de ponto flutuante
@@ -159,6 +190,11 @@ CREATE TRIGGER nutritionist_plans_set_updated_at
   BEFORE UPDATE ON nutritionist_plans
   FOR EACH ROW EXECUTE FUNCTION set_updated_at_column();
 
+DROP TRIGGER IF EXISTS referral_commissions_set_updated_at ON referral_commissions;
+CREATE TRIGGER referral_commissions_set_updated_at
+  BEFORE UPDATE ON referral_commissions
+  FOR EACH ROW EXECUTE FUNCTION set_updated_at_column();
+
 -- ============================================================================
 -- Row Level Security
 --
@@ -172,6 +208,7 @@ CREATE TRIGGER nutritionist_plans_set_updated_at
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
 ALTER TABLE nutritionist_plans ENABLE ROW LEVEL SECURITY;
+ALTER TABLE referral_commissions ENABLE ROW LEVEL SECURITY;
 
 -- Um usuário pode ler o próprio registro; admins leem todos.
 DROP POLICY IF EXISTS "users_select_self_or_admin" ON users;
@@ -231,6 +268,35 @@ CREATE POLICY "nutritionist_plans_write_owner" ON nutritionist_plans
   FOR ALL
   USING (nutritionist_id IN (SELECT id FROM users WHERE auth_uid = auth.uid()))
   WITH CHECK (nutritionist_id IN (SELECT id FROM users WHERE auth_uid = auth.uid()));
+
+-- O tradutor lê as próprias comissões; o admin lê todas.
+DROP POLICY IF EXISTS "referral_commissions_select_owner_or_admin" ON referral_commissions;
+CREATE POLICY "referral_commissions_select_owner_or_admin" ON referral_commissions
+  FOR SELECT
+  USING (
+    translator_id IN (SELECT id FROM users WHERE auth_uid = auth.uid())
+    OR EXISTS (
+      SELECT 1 FROM users a
+      WHERE a.auth_uid = auth.uid() AND a.role = 'admin'
+    )
+  );
+
+-- Só o admin escreve: um tradutor jamais pode marcar a própria comissão como paga.
+DROP POLICY IF EXISTS "referral_commissions_write_admin" ON referral_commissions;
+CREATE POLICY "referral_commissions_write_admin" ON referral_commissions
+  FOR ALL
+  USING (
+    EXISTS (
+      SELECT 1 FROM users a
+      WHERE a.auth_uid = auth.uid() AND a.role = 'admin'
+    )
+  )
+  WITH CHECK (
+    EXISTS (
+      SELECT 1 FROM users a
+      WHERE a.auth_uid = auth.uid() AND a.role = 'admin'
+    )
+  );
 
 -- ============================================================================
 -- Fim do schema

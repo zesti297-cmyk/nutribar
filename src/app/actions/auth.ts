@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { freezeReferralCommission } from "@/lib/commissions";
 import { generateReferralCode } from "@/lib/referral";
 import { getDashboardPath, isValidRole } from "@/lib/auth";
 import { createSession, deleteSession } from "@/lib/session";
@@ -11,7 +12,7 @@ import {
   findReferrerIdByCode,
   findUserByEmail,
 } from "@/lib/users";
-import type { UserRole, UserStatus } from "@/lib/types";
+import type { UserRole } from "@/lib/types";
 
 function getAdminEmails(): string[] {
   return (process.env.ADMIN_EMAILS ?? "")
@@ -55,8 +56,6 @@ export async function signUp(
 
   const isAdmin = getAdminEmails().includes(email.toLowerCase());
   const finalRole: UserRole = isAdmin ? "admin" : role;
-  // Só tradutores passam pela fila de aprovação do admin; os demais entram direto.
-  const status: UserStatus = finalRole === "translator" ? "pending" : "approved";
 
   let referredBy: string | null = null;
   if (finalRole === "translator") {
@@ -73,10 +72,15 @@ export async function signUp(
     passwordHash: null,
     authUid,
     role: finalRole,
-    status,
+    status: "approved",
     referralCode: referralCodeValue,
     referredBy,
   });
+
+  // Congela quanto este convite vale enquanto a taxa do padrinho é a de agora.
+  if (referredBy) {
+    await freezeReferralCommission(referredBy, profile.id);
+  }
 
   await createSession(profile.id);
   cookieStore.delete("referral_code");
@@ -97,13 +101,6 @@ export async function signIn(email: string, password: string) {
   const user = await findUserByEmail(email);
   if (!user) {
     return { error: "Usuário não encontrado." };
-  }
-
-  if (user.status === "pending") {
-    return {
-      error:
-        "Sua conta ainda está aguardando aprovação. Você será avisado quando for liberada.",
-    };
   }
 
   await createSession(user.id);

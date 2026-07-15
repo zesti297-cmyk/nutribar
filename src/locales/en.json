@@ -202,7 +202,6 @@
     "close": "Close"
   },
   "nutritionistForm": {
-    "pending": "Your profile is under review by our team. Once approved, it will appear on the platform for patients.",
     "fullName": "Full name",
     "photoUrl": "Photo URL",
     "photoPlaceholder": "https://example.com/your-photo.jpg",
@@ -271,7 +270,6 @@
     "title": "Admin Panel",
     "nav": {
       "dashboard": "Overview",
-      "approvals": "Approvals",
       "nutritionists": "Nutritionists",
       "translators": "Translators",
       "leads": "Leads"
@@ -280,9 +278,7 @@
       "nutritionists": "Nutritionists",
       "translators": "Translators",
       "patients": "Patients",
-      "leads": "Leads",
-      "pendingApprovals": "Pending approvals",
-      "approvedPending": "{approved} approved · {pending} pending"
+      "leads": "Leads"
     },
     "profile": {
       "view": "View profile",
@@ -308,7 +304,6 @@
       "fixed": "Dollar ($)",
       "percent": "Percentage (%)"
     },
-    "pendingApprovals": "Pending approvals",
     "noPending": "No pending approvals.",
     "loginLinks": "Access links",
     "loginLinksDescription": "Copy and send these so nutritionists and translators can sign up or log in.",
@@ -320,7 +315,6 @@
     "noTranslators": "No translators found.",
     "referrals": "Referrals between translators",
     "noReferrals": "No referrals recorded.",
-    "approve": "Approve",
     "savePlan": "Save plan",
     "saveCommission": "Save commission",
     "copyLink": "Copy link",
@@ -329,8 +323,11 @@
       "translator": "Referred translator",
       "referrer": "Referred by",
       "status": "Status",
-      "date": "Date"
-    }
+      "date": "Date",
+      "amount": "Amount"
+    },
+    "markPaid": "Mark as paid",
+    "referralsHint": "Each referral's amount is frozen when the referred user signs up. Changing a translator's commission does not affect referrals already recorded."
   },
   "nutritionistDashboard": {
     "nav": {
@@ -370,11 +367,12 @@
     },
     "translator": {
       "title": "Your referral link",
-      "description": "Share this link to refer other translators and earn a commission for each approved referral.",
-      "bonus": "You earn $20 per approved translator.",
-      "pending": "Your account is under review. You'll be notified as soon as it's approved.",
+      "description": "Share this link to refer other translators and earn a commission for each referral.",
+      "bonusFixed": "You earn {value} per referred translator.",
+      "bonusPercent": "You earn {value}% commission per referred translator.",
       "referred": "Referred translators",
-      "approvedCommission": "Approved (with commission)"
+      "payable": "Payable",
+      "paid": "Paid"
     },
     "nutritionist": {
       "title": "Your professional profile",
@@ -447,5 +445,9 @@
     "in_progress": "in progress",
     "converted": "converted",
     "lost": "lost"
+  },
+  "referralCommissionStatus": {
+    "payable": "payable",
+    "paid": "paid"
   }
 }

@@ -41,6 +41,21 @@ export interface Lead {
   created_at: string;
 }
 
+export type ReferralCommissionStatus = "payable" | "paid";
+
+export interface ReferralCommission {
+  id: string;
+  translator_id: string;
+  referred_user_id: string;
+  referred_email: string | null;
+  translator_email: string | null;
+  amount_cents: number;
+  currency: string;
+  status: ReferralCommissionStatus;
+  paid_at: string | null;
+  created_at: string;
+}
+
 export interface NutritionistPlan {
   id: string;
   nutritionist_id: string;
@@ -55,8 +70,8 @@ export interface NutritionistPlan {
 }
 
 export interface AdminStats {
-  nutritionists: { total: number; approved: number; pending: number };
-  translators: { total: number; approved: number; pending: number };
+  nutritionists: { total: number };
+  translators: { total: number };
   patients: number;
   leads: number;
 }

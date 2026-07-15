@@ -29,25 +29,13 @@ export function AdminDashboard({ stats }: { stats: AdminStats }) {
       <StatCard
         label={t("admin.stats.nutritionists")}
         value={stats.nutritionists.total}
-        hint={t("admin.stats.approvedPending", {
-          approved: stats.nutritionists.approved,
-          pending: stats.nutritionists.pending,
-        })}
       />
       <StatCard
         label={t("admin.stats.translators")}
         value={stats.translators.total}
-        hint={t("admin.stats.approvedPending", {
-          approved: stats.translators.approved,
-          pending: stats.translators.pending,
-        })}
       />
       <StatCard label={t("admin.stats.patients")} value={stats.patients} />
       <StatCard label={t("admin.stats.leads")} value={stats.leads} />
-      <StatCard
-        label={t("admin.stats.pendingApprovals")}
-        value={stats.nutritionists.pending + stats.translators.pending}
-      />
     </div>
   );
 }

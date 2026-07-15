@@ -10,7 +10,6 @@ interface NutritionistFormProps {
   bio: string;
   photoUrl: string;
   location: string;
-  status: string;
 }
 
 export function NutritionistForm({
@@ -19,7 +18,6 @@ export function NutritionistForm({
   bio,
   photoUrl,
   location,
-  status,
 }: NutritionistFormProps) {
   const [state, formAction, pending] = useActionState(
     async (_prev: { error?: string; success?: boolean } | null, formData: FormData) => {
@@ -32,12 +30,6 @@ export function NutritionistForm({
 
   return (
     <form action={formAction} className="space-y-4">
-      {status === "pending" && (
-        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-          {t("nutritionistForm.pending")}
-        </div>
-      )}
-
       <div>
         <label htmlFor="full_name" className="block text-sm font-medium text-stone-700">
           {t("nutritionistForm.fullName")}

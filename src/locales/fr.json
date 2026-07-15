@@ -202,7 +202,6 @@
     "close": "Fermer"
   },
   "nutritionistForm": {
-    "pending": "Votre profil est en cours d'examen par notre équipe. Une fois approuvé, il apparaîtra sur la plateforme pour les patientes.",
     "fullName": "Nom complet",
     "photoUrl": "URL de la photo",
     "photoPlaceholder": "https://exemple.com/votre-photo.jpg",
@@ -271,7 +270,6 @@
     "title": "Panneau Admin",
     "nav": {
       "dashboard": "Aperçu",
-      "approvals": "Approbations",
       "nutritionists": "Nutritionnistes",
       "translators": "Traducteurs",
       "leads": "Leads"
@@ -280,9 +278,7 @@
       "nutritionists": "Nutritionnistes",
       "translators": "Traducteurs",
       "patients": "Patientes",
-      "leads": "Leads",
-      "pendingApprovals": "Approbations en attente",
-      "approvedPending": "{approved} approuvés · {pending} en attente"
+      "leads": "Leads"
     },
     "profile": {
       "view": "Voir le profil",
@@ -308,7 +304,6 @@
       "fixed": "Dollar ($)",
       "percent": "Pourcentage (%)"
     },
-    "pendingApprovals": "Approbations en attente",
     "noPending": "Aucune approbation en attente.",
     "loginLinks": "Liens d'accès",
     "loginLinksDescription": "Copiez et envoyez ces liens pour que les nutritionnistes et les traducteurs créent leur compte ou se connectent.",
@@ -320,7 +315,6 @@
     "noTranslators": "Aucun traducteur trouvé.",
     "referrals": "Recommandations entre traducteurs",
     "noReferrals": "Aucune recommandation enregistrée.",
-    "approve": "Approuver",
     "savePlan": "Enregistrer le plan",
     "saveCommission": "Enregistrer la commission",
     "copyLink": "Copier le lien",
@@ -329,8 +323,11 @@
       "translator": "Traducteur recommandé",
       "referrer": "Recommandé par",
       "status": "Statut",
-      "date": "Date"
-    }
+      "date": "Date",
+      "amount": "Montant"
+    },
+    "markPaid": "Marquer comme payé",
+    "referralsHint": "Le montant de chaque recommandation est figé à l'inscription du filleul. Modifier la commission d'un traducteur n'affecte pas les recommandations déjà enregistrées."
   },
   "nutritionistDashboard": {
     "nav": {
@@ -370,11 +367,12 @@
     },
     "translator": {
       "title": "Votre lien de recommandation",
-      "description": "Partagez ce lien pour recommander d'autres traducteurs et gagner une commission pour chaque recommandation approuvée.",
-      "bonus": "Vous gagnez 20 $ par traducteur approuvé.",
-      "pending": "Votre compte est en cours d'examen. Vous serez averti dès qu'il sera approuvé.",
+      "description": "Partagez ce lien pour recommander d'autres traducteurs et gagner une commission pour chaque recommandation.",
+      "bonusFixed": "Vous gagnez {value} par traducteur recommandé.",
+      "bonusPercent": "Vous gagnez {value} % de commission par traducteur recommandé.",
       "referred": "Traducteurs recommandés",
-      "approvedCommission": "Approuvés (avec commission)"
+      "payable": "À percevoir",
+      "paid": "Déjà payé"
     },
     "nutritionist": {
       "title": "Votre profil professionnel",
@@ -447,5 +445,9 @@
     "in_progress": "en cours",
     "converted": "converti",
     "lost": "perdu"
+  },
+  "referralCommissionStatus": {
+    "payable": "à percevoir",
+    "paid": "payé"
   }
 }

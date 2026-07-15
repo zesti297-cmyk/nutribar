@@ -6,7 +6,6 @@ import { useI18n } from "@/lib/i18n";
 
 const ITEMS = [
   { href: "/dashboard/admin", key: "nav.dashboard" },
-  { href: "/dashboard/admin/approvals", key: "nav.approvals" },
   { href: "/dashboard/admin/nutritionists", key: "nav.nutritionists" },
   { href: "/dashboard/admin/translators", key: "nav.translators" },
   { href: "/dashboard/admin/leads", key: "nav.leads" },

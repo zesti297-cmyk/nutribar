@@ -1,3 +1,4 @@
+import { getTranslatorEarnings } from "@/lib/commissions";
 import { createSupabaseAdminClient } from "@/lib/supabase";
 import type { CommissionType, Profile, UserRole, UserStatus } from "@/lib/types";
 
@@ -141,81 +142,32 @@ export async function updateUserProfile(
   if (error) throw error;
 }
 
-export async function approveUserById(userId: string) {
-  const { error } = await supabaseAdmin
-    .from("users")
-    .update({ status: "approved" })
-    .eq("id", userId);
-
-  if (error) throw error;
-}
-
+/**
+ * Convites do tradutor e quanto eles renderam. Os valores vêm congelados de
+ * referral_commissions — nunca são recalculados a partir da taxa atual, senão
+ * mudar a comissão reescreveria o passado.
+ */
 export async function getReferralStats(translatorId: string) {
-  const { count: total, error: totalError } = await supabaseAdmin
-    .from("users")
-    .select("id", { count: "exact", head: true })
-    .eq("referred_by", translatorId)
-    .eq("role", "translator");
+  const [{ count: total, error: totalError }, referrer, earnings] =
+    await Promise.all([
+      supabaseAdmin
+        .from("users")
+        .select("id", { count: "exact", head: true })
+        .eq("referred_by", translatorId)
+        .eq("role", "translator"),
+      findUserById(translatorId),
+      getTranslatorEarnings(translatorId),
+    ]);
 
   if (totalError) throw totalError;
 
-  const { count: approved, error: approvedError } = await supabaseAdmin
-    .from("users")
-    .select("id", { count: "exact", head: true })
-    .eq("referred_by", translatorId)
-    .eq("role", "translator")
-    .eq("status", "approved");
-
-  if (approvedError) throw approvedError;
-
   return {
     total: Number(total ?? 0),
-    approved: Number(approved ?? 0),
+    commissionRate: referrer?.commission_rate ?? 0,
+    commissionType: referrer?.commission_type ?? "fixed",
+    payableCents: earnings.payableCents,
+    paidCents: earnings.paidCents,
   };
-}
-
-export async function getPendingUsers(): Promise<Profile[]> {
-  const { data, error } = await supabaseAdmin
-    .from("users")
-    .select("*")
-    .in("role", ["translator", "nutritionist"])
-    .eq("status", "pending")
-    .order("created_at", { ascending: false });
-
-  if (error) throw error;
-  return (data ?? []).map(toProfile);
-}
-
-export async function getReferredTranslators(): Promise<Array<{
-  id: string;
-  email: string;
-  referred_by: string | null;
-  status: UserStatus;
-  created_at: string;
-}>> {
-  const { data, error } = await supabaseAdmin
-    .from("users")
-    .select("id, email, referred_by, status, created_at")
-    .eq("role", "translator")
-    .not("referred_by", "is", null)
-    .order("created_at", { ascending: false });
-
-  if (error) throw error;
-  return data ?? [];
-}
-
-export async function getUsersByIds(
-  ids: string[],
-): Promise<Array<{ id: string; email: string }>> {
-  if (ids.length === 0) return [];
-
-  const { data, error } = await supabaseAdmin
-    .from("users")
-    .select("id, email")
-    .in("id", ids);
-
-  if (error) throw error;
-  return data ?? [];
 }
 
 export async function getApprovedNutritionists() {
@@ -308,21 +260,9 @@ async function countUsers(
 }
 
 export async function getAdminStats() {
-  const [
-    nutriTotal,
-    nutriApproved,
-    nutriPending,
-    transTotal,
-    transApproved,
-    transPending,
-    patients,
-  ] = await Promise.all([
+  const [nutriTotal, transTotal, patients] = await Promise.all([
     countUsers({ role: "nutritionist" }),
-    countUsers({ role: "nutritionist", status: "approved" }),
-    countUsers({ role: "nutritionist", status: "pending" }),
     countUsers({ role: "translator" }),
-    countUsers({ role: "translator", status: "approved" }),
-    countUsers({ role: "translator", status: "pending" }),
     countUsers({ role: "patient" }),
   ]);
 
@@ -332,16 +272,8 @@ export async function getAdminStats() {
   if (leadsError) throw leadsError;
 
   return {
-    nutritionists: {
-      total: nutriTotal,
-      approved: nutriApproved,
-      pending: nutriPending,
-    },
-    translators: {
-      total: transTotal,
-      approved: transApproved,
-      pending: transPending,
-    },
+    nutritionists: { total: nutriTotal },
+    translators: { total: transTotal },
     patients,
     leads: Number(leadsCount ?? 0),
   };

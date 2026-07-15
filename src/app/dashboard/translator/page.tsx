@@ -11,11 +11,7 @@ export default async function TranslatorDashboardPage() {
 
   return (
     <DashboardShell role="translator" email={profile.email}>
-      <TranslatorDashboardContent
-        profile={profile}
-        stats={stats}
-        referralUrl={referralUrl}
-      />
+      <TranslatorDashboardContent stats={stats} referralUrl={referralUrl} />
     </DashboardShell>
   );
 }

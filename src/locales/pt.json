@@ -202,7 +202,6 @@
     "close": "Fechar"
   },
   "nutritionistForm": {
-    "pending": "Seu perfil está em análise pela nossa equipe. Assim que for aprovado, ele passa a aparecer na plataforma para as pacientes.",
     "fullName": "Nome completo",
     "photoUrl": "URL da foto",
     "photoPlaceholder": "https://exemplo.com/sua-foto.jpg",
@@ -271,7 +270,6 @@
     "title": "Painel Admin",
     "nav": {
       "dashboard": "Visão geral",
-      "approvals": "Aprovações",
       "nutritionists": "Nutricionistas",
       "translators": "Tradutores",
       "leads": "Leads"
@@ -280,9 +278,7 @@
       "nutritionists": "Nutricionistas",
       "translators": "Tradutores",
       "patients": "Pacientes",
-      "leads": "Leads",
-      "pendingApprovals": "Aprovações pendentes",
-      "approvedPending": "{approved} aprovados · {pending} pendentes"
+      "leads": "Leads"
     },
     "profile": {
       "view": "Ver perfil",
@@ -308,7 +304,6 @@
       "fixed": "Dólar ($)",
       "percent": "Porcentagem (%)"
     },
-    "pendingApprovals": "Aprovações pendentes",
     "noPending": "Nenhuma aprovação pendente.",
     "loginLinks": "Links de acesso",
     "loginLinksDescription": "Copie e envie para as nutricionistas e tradutores criarem a conta ou entrarem.",
@@ -320,7 +315,6 @@
     "noTranslators": "Nenhum tradutor encontrado.",
     "referrals": "Indicações entre tradutores",
     "noReferrals": "Nenhuma indicação registrada.",
-    "approve": "Aprovar",
     "savePlan": "Salvar plano",
     "saveCommission": "Salvar comissão",
     "copyLink": "Copiar link",
@@ -329,8 +323,11 @@
       "translator": "Tradutor indicado",
       "referrer": "Indicado por",
       "status": "Status",
-      "date": "Data"
-    }
+      "date": "Data",
+      "amount": "Valor"
+    },
+    "markPaid": "Marcar como pago",
+    "referralsHint": "O valor de cada convite é congelado no cadastro do indicado. Mudar a comissão de um tradutor não altera convites já registrados."
   },
   "nutritionistDashboard": {
     "nav": {
@@ -370,11 +367,12 @@
     },
     "translator": {
       "title": "Seu link de indicação",
-      "description": "Compartilhe este link para indicar outros tradutores e ganhar comissão por cada indicação aprovada.",
-      "bonus": "Você ganha $20 por tradutor aprovado.",
-      "pending": "Sua conta está em análise. Você será avisado assim que for aprovada.",
+      "description": "Compartilhe este link para indicar outros tradutores e ganhar comissão por cada indicação.",
+      "bonusFixed": "Você ganha {value} por tradutor indicado.",
+      "bonusPercent": "Você ganha {value}% de comissão por tradutor indicado.",
       "referred": "Tradutores indicados",
-      "approvedCommission": "Aprovados (com comissão)"
+      "payable": "A receber",
+      "paid": "Já pago"
     },
     "nutritionist": {
       "title": "Seu perfil profissional",
@@ -447,5 +445,9 @@
     "in_progress": "em andamento",
     "converted": "convertido",
     "lost": "perdido"
+  },
+  "referralCommissionStatus": {
+    "payable": "a receber",
+    "paid": "pago"
   }
 }
