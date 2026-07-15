@@ -199,13 +199,11 @@
     "packAnnualDescription": "Programa completo de 1 año: evaluaciones regulares, ajustes de protocolo, prevención de carencias y prioridad en la atención.",
     "from": "Desde {price}",
     "contact": "Hablar con la nutricionista",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "noPlans": "Esta nutricionista aún no ha registrado planes. Habla con ella para conocer los valores."
   },
   "nutritionistForm": {
     "fullName": "Nombre completo",
-    "photoUrl": "URL de la foto",
-    "photoPlaceholder": "https://ejemplo.com/tu-foto.jpg",
-    "photoHelp": "Esta foto aparece en tu tarjeta para las pacientes. Usa una imagen profesional.",
     "location": "Ubicación",
     "locationPlaceholder": "Ej: São Paulo, Brasil",
     "languages": "Idiomas de atención",
@@ -389,7 +387,8 @@
       "country": "País",
       "surgeryCity": "Dónde operaste",
       "hospital": "Hospital",
-      "review": "Revisión"
+      "review": "Revisión",
+      "nutritionist": "Nutricionista"
     },
     "selectOption": "Selecciona",
     "surgeryTypes": {
@@ -406,7 +405,8 @@
       "language": "Idioma",
       "country": "País",
       "surgeryCity": "Ciudad donde operaste",
-      "hospital": "Hospital"
+      "hospital": "Hospital",
+      "nutritionist": "Elige tu nutricionista"
     },
     "placeholders": {
       "fullName": "Nombre completo",
@@ -450,5 +450,27 @@
   "referralCommissionStatus": {
     "payable": "por cobrar",
     "paid": "pagado"
+  },
+  "photoUpload": {
+    "label": "Foto de perfil",
+    "choose": "Elegir foto",
+    "change": "Cambiar foto",
+    "empty": "Sin foto",
+    "help": "JPG, PNG o WebP. Esta foto aparece en tu tarjeta para las pacientes.",
+    "dragHint": "Arrastra para encuadrar y usa el control de abajo para acercar.",
+    "zoom": "Acercar",
+    "save": "Guardar foto",
+    "saving": "Enviando...",
+    "cancel": "Cancelar",
+    "saved": "¡Foto actualizada!",
+    "error": "No se pudo procesar la foto.",
+    "invalidType": "Elige un archivo de imagen (JPG, PNG o WebP).",
+    "tooLarge": "Imagen demasiado grande. Elige una foto de hasta 15MB."
+  },
+  "thankYou": {
+    "title": "¡Registro completado!",
+    "description": "Recibimos tu información. La nutricionista elegida se pondrá en contacto pronto para organizar tu seguimiento.",
+    "goToDashboard": "Ir a mi área",
+    "backHome": "Volver al inicio"
   }
 }

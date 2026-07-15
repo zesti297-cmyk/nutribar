@@ -199,13 +199,11 @@
     "packAnnualDescription": "Complete 1-year program: regular assessments, protocol adjustments, deficiency prevention, and priority care.",
     "from": "From {price}",
     "contact": "Contact the nutritionist",
-    "close": "Close"
+    "close": "Close",
+    "noPlans": "This nutritionist has not added any plans yet. Get in touch to learn about pricing."
   },
   "nutritionistForm": {
     "fullName": "Full name",
-    "photoUrl": "Photo URL",
-    "photoPlaceholder": "https://example.com/your-photo.jpg",
-    "photoHelp": "This photo appears on your card for patients. Use a professional image.",
     "location": "Location",
     "locationPlaceholder": "e.g. São Paulo, Brazil",
     "languages": "Languages you work in",
@@ -389,7 +387,8 @@
       "country": "Country",
       "surgeryCity": "Where you had surgery",
       "hospital": "Hospital",
-      "review": "Review"
+      "review": "Review",
+      "nutritionist": "Nutritionist"
     },
     "selectOption": "Select",
     "surgeryTypes": {
@@ -406,7 +405,8 @@
       "language": "Language",
       "country": "Country",
       "surgeryCity": "City where you had surgery",
-      "hospital": "Hospital"
+      "hospital": "Hospital",
+      "nutritionist": "Choose your nutritionist"
     },
     "placeholders": {
       "fullName": "Full name",
@@ -450,5 +450,27 @@
   "referralCommissionStatus": {
     "payable": "payable",
     "paid": "paid"
+  },
+  "photoUpload": {
+    "label": "Profile photo",
+    "choose": "Choose photo",
+    "change": "Change photo",
+    "empty": "No photo",
+    "help": "JPG, PNG or WebP. This photo appears on your card for patients.",
+    "dragHint": "Drag to frame it and use the slider below to zoom in.",
+    "zoom": "Zoom",
+    "save": "Save photo",
+    "saving": "Uploading...",
+    "cancel": "Cancel",
+    "saved": "Photo updated!",
+    "error": "Could not process the photo.",
+    "invalidType": "Choose an image file (JPG, PNG or WebP).",
+    "tooLarge": "Image too large. Choose a photo up to 15MB."
+  },
+  "thankYou": {
+    "title": "You are all set!",
+    "description": "We have received your information. Your nutritionist will get in touch shortly to arrange your follow-up.",
+    "goToDashboard": "Go to my dashboard",
+    "backHome": "Back to home"
   }
 }
