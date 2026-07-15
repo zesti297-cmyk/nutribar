@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyReferralLink } from "@/components/copy-referral-link";
+import { DEFAULT_CURRENCY } from "@/lib/currency";
 import { useI18n } from "../lib/i18n";
 import type { CommissionType } from "@/lib/types";
 
@@ -31,7 +32,7 @@ export function TranslatorDashboardContent({ stats, referralUrl }: TranslatorDas
   const money = (cents: number) =>
     new Intl.NumberFormat(LOCALE_TO_INTL[locale] ?? locale, {
       style: "currency",
-      currency: "BRL",
+      currency: DEFAULT_CURRENCY,
     }).format(cents / 100);
 
   return (

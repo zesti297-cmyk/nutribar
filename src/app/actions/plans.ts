@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { DEFAULT_CURRENCY } from "@/lib/currency";
 import { getSession } from "@/lib/session";
 import { createPlan, deletePlan, updatePlan } from "@/lib/plans";
 import { findUserById } from "@/lib/users";
@@ -8,7 +9,7 @@ import { findUserById } from "@/lib/users";
 const MAX_NAME = 120;
 const MAX_DESCRIPTION = 1000;
 const MAX_DURATION = 60;
-const MAX_PRICE_CENTS = 100_000_000; // R$ 1.000.000,00
+const MAX_PRICE_CENTS = 100_000_000; // 1.000.000,00 na moeda do plano
 
 type PlanResult = { error?: string; success?: boolean };
 
@@ -60,7 +61,7 @@ function readPlanFields(formData: FormData) {
     name,
     description: text(formData, "description", MAX_DESCRIPTION) || null,
     priceCents,
-    currency: text(formData, "currency", 3).toUpperCase() || "BRL",
+    currency: text(formData, "currency", 3).toUpperCase() || DEFAULT_CURRENCY,
     duration: text(formData, "duration", MAX_DURATION) || null,
   };
 }

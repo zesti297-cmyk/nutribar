@@ -6,6 +6,7 @@ import {
   deletePlanAction,
   updatePlanAction,
 } from "@/app/actions/plans";
+import { DEFAULT_CURRENCY } from "@/lib/currency";
 import { useI18n } from "@/lib/i18n";
 import type { NutritionistPlan } from "@/lib/types";
 
@@ -78,12 +79,12 @@ function PlanFields({ plan, idPrefix }: PlanFieldsProps) {
         <select
           id={`${idPrefix}-currency`}
           name="currency"
-          defaultValue={plan?.currency ?? "BRL"}
+          defaultValue={plan?.currency ?? DEFAULT_CURRENCY}
           className={INPUT_CLASS}
         >
-          <option value="BRL">BRL (R$)</option>
           <option value="USD">USD ($)</option>
           <option value="EUR">EUR (€)</option>
+          <option value="BRL">BRL (R$)</option>
         </select>
       </div>
 
