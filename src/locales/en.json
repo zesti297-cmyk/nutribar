@@ -424,7 +424,8 @@
     },
     "reviewTitle": "Review your information",
     "submitError": "We couldn't complete it. Check your details and try again.",
-    "submitSuccess": "Registration completed successfully!"
+    "submitSuccess": "Registration completed successfully!",
+    "notFilled": "Not provided"
   },
   "languageModal": {
     "cancel": "Cancel"

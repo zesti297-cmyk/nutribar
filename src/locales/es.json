@@ -424,7 +424,8 @@
     },
     "reviewTitle": "Revisa tu información",
     "submitError": "No se pudo completar. Revisa los datos e inténtalo de nuevo.",
-    "submitSuccess": "¡Registro completado con éxito!"
+    "submitSuccess": "¡Registro completado con éxito!",
+    "notFilled": "No informado"
   },
   "languageModal": {
     "cancel": "Cancelar"

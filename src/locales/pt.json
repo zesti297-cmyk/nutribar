@@ -424,7 +424,8 @@
     },
     "reviewTitle": "Revise suas informações",
     "submitError": "Não foi possível concluir. Verifique os dados e tente novamente.",
-    "submitSuccess": "Cadastro concluído com sucesso!"
+    "submitSuccess": "Cadastro concluído com sucesso!",
+    "notFilled": "Não informado"
   },
   "languageModal": {
     "cancel": "Cancelar"

@@ -47,6 +47,25 @@ export default function OnboardingPage() {
     t("onboarding.steps.review"),
   ];
 
+  const SURGERY_LABELS: Record<string, string> = {
+    bariatrica: t("onboarding.surgeryTypes.bariatric"),
+    endocrina: t("onboarding.surgeryTypes.endocrine"),
+    outro: t("onboarding.surgeryTypes.other"),
+  };
+
+  // A senha e o nutritionist_id ficam fora da revisão de propósito: a primeira
+  // não pode aparecer em tela, o segundo é interno.
+  const reviewItems = [
+    { label: t("onboarding.fields.fullName"), value: form.full_name },
+    { label: t("onboarding.fields.email"), value: form.email },
+    { label: t("onboarding.fields.phone"), value: form.phone },
+    { label: t("onboarding.fields.surgeryType"), value: SURGERY_LABELS[form.surgery_type] ?? "" },
+    { label: t("onboarding.fields.language"), value: t(`languages.${form.language}`) },
+    { label: t("onboarding.fields.country"), value: form.country },
+    { label: t("onboarding.fields.surgeryCity"), value: form.surgery_city },
+    { label: t("onboarding.fields.hospital"), value: form.hospital },
+  ];
+
   return (
     <div className="mx-auto max-w-2xl p-6">
       <h1 className="mb-4 text-2xl font-semibold text-[#0c2340]">{t("onboarding.title")}</h1>
@@ -111,8 +130,20 @@ export default function OnboardingPage() {
 
       {step === 6 && (
         <div className="space-y-3">
-          <h3 className="text-lg font-medium">Revise suas informações</h3>
-          <pre className="rounded-md bg-slate-50 p-3 text-sm">{JSON.stringify(form, null, 2)}</pre>
+          <h3 className="text-lg font-medium">{t("onboarding.reviewTitle")}</h3>
+          <dl className="divide-y divide-slate-200 overflow-hidden rounded-lg border border-slate-200 bg-white">
+            {reviewItems.map(({ label, value }) => (
+              <div
+                key={label}
+                className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:gap-4"
+              >
+                <dt className="text-sm text-slate-500 sm:w-40 sm:shrink-0">{label}</dt>
+                <dd className="break-words text-sm font-medium text-slate-900">
+                  {value || <span className="font-normal text-slate-400">{t("onboarding.notFilled")}</span>}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       )}
 

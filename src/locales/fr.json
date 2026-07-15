@@ -424,7 +424,8 @@
     },
     "reviewTitle": "Vérifiez vos informations",
     "submitError": "Nous n'avons pas pu terminer. Vérifiez vos informations et réessayez.",
-    "submitSuccess": "Inscription terminée avec succès !"
+    "submitSuccess": "Inscription terminée avec succès !",
+    "notFilled": "Non renseigné"
   },
   "languageModal": {
     "cancel": "Annuler"
