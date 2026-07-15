@@ -3,8 +3,8 @@ export async function register() {
     try {
       const { ensureDb } = await import("@/lib/db-init");
       await ensureDb();
-      const { seedDemoNutritionists } = await import("@/lib/seed-demo");
-      await seedDemoNutritionists();
+      // O seed de nutricionistas demo foi removido: as demos da landing vêm de
+      // demo-nutritionists.ts (só visual) e o banco guarda apenas contas reais.
     } catch (error) {
       // Supabase may be unreachable or unconfigured (e.g. local dev without
       // credentials). Don't crash the server — features that depend on it

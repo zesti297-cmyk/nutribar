@@ -1,6 +1,12 @@
 import { getTranslatorEarnings } from "@/lib/commissions";
 import { createSupabaseAdminClient } from "@/lib/supabase";
-import type { CommissionType, Profile, UserRole, UserStatus } from "@/lib/types";
+import type {
+  CommissionType,
+  Profile,
+  PublicNutritionist,
+  UserRole,
+  UserStatus,
+} from "@/lib/types";
 
 interface UserRow {
   id: string;
@@ -277,6 +283,33 @@ export async function getAdminStats() {
     patients,
     leads: Number(leadsCount ?? 0),
   };
+}
+
+export async function listPublicNutritionists(): Promise<PublicNutritionist[]> {
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, full_name, languages, bio, photo_url, location")
+    .eq("role", "nutritionist")
+    .eq("status", "approved")
+    .not("full_name", "is", null)
+    .not("photo_url", "is", null)
+    .order("created_at", { ascending: true });
+
+  if (error) throw error;
+
+  const rows = (data ?? []) as Pick<
+    UserRow,
+    "id" | "full_name" | "languages" | "bio" | "photo_url" | "location"
+  >[];
+
+  return rows.map((row) => ({
+    id: row.id,
+    full_name: row.full_name as string,
+    languages: row.languages,
+    bio: row.bio,
+    photo_url: row.photo_url,
+    location: row.location,
+  }));
 }
 
 export async function getPasswordHashByEmail(
