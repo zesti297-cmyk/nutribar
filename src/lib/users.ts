@@ -124,26 +124,25 @@ export async function createUser(newUser: {
   return toProfile(data);
 }
 
+// Atualização parcial: só as chaves presentes são gravadas. Passar o objeto
+// inteiro apagaria os campos omitidos — o upload de foto, por exemplo, manda
+// apenas photo_url.
 export async function updateUserProfile(
   userId: string,
-  data: {
+  data: Partial<{
     full_name: string;
     languages: string;
     bio: string;
     photo_url: string;
     location: string;
-  },
+  }>,
 ) {
-  const { error } = await supabaseAdmin
-    .from("users")
-    .update({
-      full_name: data.full_name,
-      languages: data.languages,
-      bio: data.bio,
-      photo_url: data.photo_url,
-      location: data.location,
-    })
-    .eq("id", userId);
+  const patch = Object.fromEntries(
+    Object.entries(data).filter(([, v]) => v !== undefined),
+  );
+  if (Object.keys(patch).length === 0) return;
+
+  const { error } = await supabaseAdmin.from("users").update(patch).eq("id", userId);
 
   if (error) throw error;
 }

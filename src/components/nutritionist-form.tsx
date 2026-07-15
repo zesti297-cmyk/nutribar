@@ -1,7 +1,8 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { updateNutritionistProfile } from "@/app/actions/profile";
+import { PhotoUpload } from "@/components/photo-upload";
 import { useI18n } from "../lib/i18n";
 
 interface NutritionistFormProps {
@@ -19,6 +20,7 @@ export function NutritionistForm({
   photoUrl,
   location,
 }: NutritionistFormProps) {
+  const [photo, setPhoto] = useState(photoUrl);
   const [state, formAction, pending] = useActionState(
     async (_prev: { error?: string; success?: boolean } | null, formData: FormData) => {
       return updateNutritionistProfile(formData);
@@ -43,20 +45,10 @@ export function NutritionistForm({
         />
       </div>
 
-      <div>
-        <label htmlFor="photo_url" className="block text-sm font-medium text-stone-700">
-          {t("nutritionistForm.photoUrl")}
-        </label>
-        <input
-          id="photo_url"
-          name="photo_url"
-          type="url"
-          defaultValue={photoUrl}
-          placeholder={t("nutritionistForm.photoPlaceholder")}
-          className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
-        />
-        <p className="mt-1 text-xs text-stone-500">{t("nutritionistForm.photoHelp")}</p>
-      </div>
+      {/* A foto é salva na hora pelo próprio upload, fora deste form. O hidden
+          mantém o valor atual para o submit não apagar a foto já salva. */}
+      <input type="hidden" name="photo_url" value={photo} />
+      <PhotoUpload currentUrl={photo} onUploaded={setPhoto} />
 
       <div>
         <label htmlFor="location" className="block text-sm font-medium text-stone-700">
