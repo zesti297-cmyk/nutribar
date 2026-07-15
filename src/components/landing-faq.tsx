@@ -21,13 +21,17 @@ export function LandingFaq() {
           <p className="mt-3 text-slate-600">{t("faq.subtitle")}</p>
         </div>
 
-        <div className="mt-12 space-y-4">
+        <div className="mt-12 space-y-3">
           {items.map((item) => {
             const isOpen = open === item.id;
             return (
               <div
                 key={item.id}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+                className={`overflow-hidden rounded-[1.5rem] border transition-colors ${
+                  isOpen
+                    ? "border-[#0c2340]/15 bg-white shadow-md"
+                    : "border-transparent bg-slate-50 hover:bg-slate-100"
+                }`}
               >
                 <button
                   type="button"
@@ -37,8 +41,8 @@ export function LandingFaq() {
                 >
                   <span className="font-semibold text-[#0c2340]">{item.question}</span>
                   <span
-                    className={`shrink-0 text-2xl leading-none text-[#0c2340] transition-transform ${
-                      isOpen ? "rotate-45" : ""
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white transition-transform ${
+                      isOpen ? "rotate-45 bg-[#0c2340]" : "bg-[#0c2340]/70"
                     }`}
                     aria-hidden="true"
                   >
@@ -46,7 +50,7 @@ export function LandingFaq() {
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-5 text-slate-600">{item.answer}</div>
+                  <div className="px-6 pb-6 text-slate-600">{item.answer}</div>
                 )}
               </div>
             );

@@ -1,10 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "../lib/i18n";
 
+const HERO_IMAGES = [
+  "/imgheader/pexels-olly-3847939.jpg",
+  "/imgheader/pexels-olly-866366.jpg",
+  "/imgheader/pexels-viridianaor-12320394.jpg",
+];
+
 export function LandingHero() {
   const { t } = useI18n();
+  const [activeImage, setActiveImage] = useState(0);
 
   const stats = [
     { value: t("hero.stats.continuous.value"), label: t("hero.stats.continuous.label") },
@@ -12,51 +21,73 @@ export function LandingHero() {
     { value: t("hero.stats.support.value"), label: t("hero.stats.support.label") },
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveImage((i) => (i + 1) % HERO_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="bg-gradient-to-b from-slate-50 to-white">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:py-24">
-        <div>
-          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#0c2340]">
-            {t("hero.preTitle")}
-          </p>
-          <h1 className="text-3xl font-extrabold leading-tight text-[#0c2340] sm:text-5xl lg:text-6xl">
-            {t("hero.title")}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
-            {t("hero.description")}
-          </p>
+    <section className="relative isolate overflow-hidden">
+      {/* Fundo: crossfade das imagens, cobrindo toda a área do hero (por trás do header) */}
+      {HERO_IMAGES.map((src, i) => (
+        <div
+          key={src}
+          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          style={{ opacity: i === activeImage ? 1 : 0 }}
+          aria-hidden="true"
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            priority={i === 0}
+            fetchPriority={i === 0 ? "high" : "low"}
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      ))}
+      {/* Overlay mobile: escurece tudo uniformemente para o texto ficar legível na tela toda */}
+      <div className="absolute inset-0 bg-[#0c2340]/75 sm:hidden" aria-hidden="true" />
+      {/* Overlay desktop: gradiente lateral, revela a foto à direita */}
+      <div
+        className="absolute inset-0 hidden bg-gradient-to-r from-[#0c2340]/80 via-[#0c2340]/50 to-[#0c2340]/10 sm:block"
+        aria-hidden="true"
+      />
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link
-              href="/login/patient"
-              className="inline-flex items-center justify-center rounded-md bg-[#0c2340] px-6 py-3 text-sm font-semibold text-white shadow-md transition-shadow hover:shadow-lg"
-            >
-              {t("hero.cta")}
-            </Link>
-          </div>
+      {/* Conteúdo sobreposto (padding-top extra para não ficar sob o header absoluto) */}
+      <div className="relative mx-auto flex max-w-6xl flex-col justify-center px-6 pb-12 pt-28 sm:pb-16 sm:pt-32">
+        <p className="mb-4 inline-flex w-fit rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+          {t("hero.preTitle")}
+        </p>
+        <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {t("hero.title")}
+        </h1>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+          {t("hero.description")}
+        </p>
 
-          <div className="mt-10 grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
-            {stats.map((stat, i) => (
-              <div key={i} className="rounded-xl bg-white/60 p-4 shadow-sm ring-1 ring-slate-100">
-                <p className="text-2xl font-bold text-[#0c2340]">{stat.value}</p>
-                <p className="mt-1 text-sm text-slate-500">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <Link
+            href="/login/patient"
+            className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-[#0c2340] shadow-md transition-shadow hover:shadow-lg"
+          >
+            {t("hero.cta")}
+          </Link>
         </div>
 
-        <div className="relative">
-          <div className="overflow-hidden rounded-2xl shadow-xl">
-            <img
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80"
-              alt={t("hero.preTitle")}
-              className="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
-            />
-          </div>
-          <div className="absolute -bottom-4 left-4 rounded-xl bg-white p-4 shadow-lg sm:-bottom-6 sm:-left-6 sm:left-auto">
-            <p className="text-sm font-medium text-slate-500">{t("hero.patientsLabel")}</p>
-            <p className="text-2xl font-bold text-[#0c2340]">{t("hero.patientsCount")}</p>
-          </div>
+        <div className="mt-8 grid w-full max-w-2xl grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
+          {stats.map((stat, i) => (
+            <div
+              key={i}
+              className="rounded-xl bg-white/10 px-4 py-3 text-left shadow-sm ring-1 ring-white/20 backdrop-blur-sm sm:p-4"
+            >
+              <p className="text-xl font-bold text-white sm:text-2xl">{stat.value}</p>
+              <p className="mt-0.5 text-sm text-white/80 sm:mt-1">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

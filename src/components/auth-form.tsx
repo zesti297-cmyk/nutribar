@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import Link from "next/link";
 import { signInAction, signUpAction } from "@/app/actions/auth";
+import { PasswordInput } from "@/components/password-input";
 import type { UserRole } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
 
@@ -68,10 +69,9 @@ export function AuthForm({ role, referralCode }: AuthFormProps) {
           <label htmlFor="password" className="block text-sm font-medium text-slate-700">
             {t("auth.password")}
           </label>
-          <input
+          <PasswordInput
             id="password"
             name="password"
-            type="password"
             required
             minLength={6}
             className="mt-1 w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-[#0c2340] focus:bg-white focus:ring-2 focus:ring-[#0c2340]/20"

@@ -7,49 +7,65 @@ import {
   findUserById,
   updateNutritionistPlan as dbUpdateNutritionistPlan,
   updateTranslatorCommission as dbUpdateTranslatorCommission,
+  updateNutritionistCommission as dbUpdateNutritionistCommission,
 } from "@/lib/users";
+import type { CommissionType } from "@/lib/types";
 
-export async function approveUser(userId: string) {
+type ActionResult = { error?: string; success?: boolean };
+
+async function requireAdmin(): Promise<{ error: string } | null> {
   const session = await getSession();
   if (!session) return { error: "Não autenticado." };
-
   const adminProfile = await findUserById(session.userId);
   if (adminProfile?.role !== "admin") {
     return { error: "Sem permissão." };
   }
+  return null;
+}
+
+export async function approveUser(userId: string): Promise<ActionResult> {
+  const error = await requireAdmin();
+  if (error) return error;
 
   await approveUserById(userId);
-  revalidatePath("/dashboard/admin");
+  revalidatePath("/dashboard/admin/approvals");
   return { success: true };
 }
 
-export async function updateNutritionistPlan(userId: string, plan: string) {
-  const session = await getSession();
-  if (!session) return { error: "Não autenticado." };
-
-  const adminProfile = await findUserById(session.userId);
-  if (adminProfile?.role !== "admin") {
-    return { error: "Sem permissão." };
-  }
+export async function updateNutritionistPlan(
+  userId: string,
+  plan: string,
+): Promise<ActionResult> {
+  const error = await requireAdmin();
+  if (error) return error;
 
   await dbUpdateNutritionistPlan(userId, plan);
-  revalidatePath("/dashboard/admin");
+  revalidatePath("/dashboard/admin/nutritionists");
   return { success: true };
 }
 
 export async function updateTranslatorCommission(
   userId: string,
   commissionRate: number,
-) {
-  const session = await getSession();
-  if (!session) return { error: "Não autenticado." };
+  commissionType: CommissionType,
+): Promise<ActionResult> {
+  const error = await requireAdmin();
+  if (error) return error;
 
-  const adminProfile = await findUserById(session.userId);
-  if (adminProfile?.role !== "admin") {
-    return { error: "Sem permissão." };
-  }
+  await dbUpdateTranslatorCommission(userId, commissionRate, commissionType);
+  revalidatePath("/dashboard/admin/translators");
+  return { success: true };
+}
 
-  await dbUpdateTranslatorCommission(userId, commissionRate);
-  revalidatePath("/dashboard/admin");
+export async function updateNutritionistCommission(
+  userId: string,
+  commission: number,
+  commissionType: CommissionType,
+): Promise<ActionResult> {
+  const error = await requireAdmin();
+  if (error) return error;
+
+  await dbUpdateNutritionistCommission(userId, commission, commissionType);
+  revalidatePath("/dashboard/admin/nutritionists");
   return { success: true };
 }

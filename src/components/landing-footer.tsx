@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "../lib/i18n";
 
@@ -52,9 +53,11 @@ export function LandingFooter() {
           {/* Brand + social */}
           <div>
             <Link href="/" aria-label={t("footer.brand")}>
-              <img
+              <Image
                 src="/nutribar-logo.svg"
                 alt={t("footer.brand")}
+                width={220}
+                height={60}
                 className="h-8 w-auto brightness-0 invert"
               />
             </Link>

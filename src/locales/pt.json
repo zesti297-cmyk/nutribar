@@ -7,10 +7,10 @@
   "language": "Idioma",
   "selectLanguage": "Selecionar idioma",
   "hero": {
-    "preTitle": "Acompanhamento nutricional pós-cirúrgico",
-    "title": "A cirurgia foi o começo. O acompanhamento define o resultado.",
-    "description": "O sucesso a longo prazo depende do que acontece depois da cirurgia. A Nutribar conecta você a nutricionistas especializadas em um acompanhamento clínico contínuo, com protocolos personalizados para cada fase da recuperação, ajustes baseados na sua evolução e suporte em quem você confia.",
-    "cta": "Começar meu acompanhamento",
+    "preTitle": "Acompanhamento nutricional para a sua nova fase",
+    "title": "Sua nova fase merece um acompanhamento à altura",
+    "description": "Você já deu o passo mais importante. Agora é hora de cuidar do que vem depois, com quem entende cada etapa da sua transformação. A Nutribar conecta você a nutricionistas especializadas, com protocolos personalizados para o seu momento, ajustes baseados na sua evolução e suporte em quem você confia.",
+    "cta": "Começar minha nova fase",
     "stats": {
       "continuous": { "value": "Contínuo", "label": "acompanhamento clínico personalizado" },
       "online": { "value": "100%", "label": "atendimento online, onde você estiver" },
@@ -22,6 +22,8 @@
   "how": {
     "title": "Como funciona",
     "subtitle": "Da alta ao resultado duradouro, em quatro passos",
+    "stepLabel": "Passo {number}",
+    "mockup": { "book": "Agendar consulta" },
     "steps": {
       "1": { "title": "Crie sua conta", "description": "Cadastre-se em minutos e conte seu histórico cirúrgico. Todo o processo é online, seguro e no seu idioma." },
       "2": { "title": "Escolha sua nutricionista", "description": "Selecione entre profissionais verificadas e especializadas em acompanhamento pós-cirúrgico, com experiência exatamente no seu tipo de procedimento." },
@@ -30,16 +32,16 @@
     }
   },
   "nutritionistsSection": {
-    "title": "Nutricionistas especializadas em acompanhamento pós-cirúrgico",
-    "description": "Cada profissional da Nutribar é verificada e tem experiência clínica no acompanhamento pós-operatório. Escolha por especialidade, idioma e localização, e retome seu cuidado com quem entende do seu caso.",
+    "title": "Nutricionistas prontas para caminhar com você",
+    "description": "Cada profissional da Nutribar é verificada e tem experiência real em acompanhar mulheres na sua nova fase. Escolha por especialidade, idioma e localização, e siga em frente com quem entende do seu caso.",
     "emptyTitle": "Novas nutricionistas entrando em breve",
-    "emptyDesc": "Estamos verificando novas profissionais para ampliar o atendimento e garantir acompanhamento especializado para cada fase do seu pós-operatório.",
-    "placeholderName1": "Especialista em acompanhamento pós-cirúrgico",
+    "emptyDesc": "Estamos verificando novas profissionais para ampliar o atendimento e garantir acompanhamento especializado em cada etapa da sua jornada.",
+    "placeholderName1": "Especialista na sua nova fase",
     "placeholderName2": "Nutricionista internacional",
-    "placeholderName3": "Acompanhamento pós-operatório",
-    "placeholderBio1": "Especializada em protocolos nutricionais pós-cirúrgicos, reeducação alimentar e prevenção de carências.",
-    "placeholderBio2": "Acompanhamento clínico para pacientes que operaram no exterior e precisam de suporte no idioma delas.",
-    "placeholderBio3": "Orientação estruturada para cada fase da recuperação, do pós-imediato à manutenção de resultados.",
+    "placeholderName3": "Acompanhamento contínuo",
+    "placeholderBio1": "Especializada em protocolos nutricionais para a sua nova fase, reeducação alimentar e prevenção de carências.",
+    "placeholderBio2": "Acompanhamento clínico para mulheres que vivem essa transição no exterior e precisam de suporte no idioma delas.",
+    "placeholderBio3": "Orientação estruturada para cada etapa da sua jornada, do início à manutenção de resultados.",
     "placeholderLocation1": "São Paulo, Brasil",
     "placeholderLocation2": "Lisboa, Portugal",
     "placeholderLocation3": "Recife, Brasil"
@@ -55,12 +57,30 @@
     }
   },
   "testimonials": {
-    "title": "Pacientes que retomaram o cuidado com a Nutribar",
-    "subtitle": "Histórias de quem encontrou continuidade e segurança no pós-operatório.",
+    "title": "Mulheres que encontraram continuidade com a Nutribar",
+    "subtitle": "Histórias reais de quem seguiu em frente com o apoio certo.",
     "items": {
-      "1": { "quote": "Operei na Turquia e voltei sem saber como me alimentar. Encontrei uma nutricionista que fala português e entende exatamente o meu tipo de cirurgia. Fez toda a diferença.", "author": "Camila R.", "role": "Acompanhamento há 8 meses" },
-      "2": { "quote": "O plano por fases me deu confiança. Cada avaliação era ajustada à minha evolução, e nunca me senti sozinha no processo.", "author": "Beatriz M.", "role": "Programa anual" },
-      "3": { "quote": "Já tinha recuperado alguns quilos antes de começar. Com o acompanhamento contínuo, consegui retomar o controle e manter o resultado.", "author": "Fernanda L.", "role": "Acompanhamento trimestral" }
+      "1": {
+        "tags": "Nova fase · Reeducação alimentar",
+        "result": "↘ 18kg em 6 meses · Sem carências",
+        "quote": "Voltei do exterior sem saber como me alimentar direito. Com a nutricionista, retomei o controle e já perdi 18kg em 6 meses, sem sentir falta de nenhum nutriente.",
+        "author": "Camila R.",
+        "role": "Acompanhada por Dra. Ana Silva"
+      },
+      "2": {
+        "tags": "Nova fase · Suplementação",
+        "result": "↘ 22kg em 1 ano · Vitaminas em dia",
+        "quote": "O plano por fases me deu confiança. Em 1 ano perdi 22kg e minhas taxas de vitamina B12 e ferro nunca estiveram tão equilibradas.",
+        "author": "Beatriz M.",
+        "role": "Acompanhada por Dra. Sofía Martínez"
+      },
+      "3": {
+        "tags": "Nova fase · Manutenção de peso",
+        "result": "↘ 9kg recuperados · Peso estabilizado",
+        "quote": "Eu já tinha recuperado alguns quilos antes de começar. Com o acompanhamento contínuo, perdi os 9kg de volta e finalmente estabilizei meu peso.",
+        "author": "Fernanda L.",
+        "role": "Acompanhada por Dra. Elena Ruiz"
+      }
     }
   },
   "faq": {
@@ -104,6 +124,7 @@
   },
   "nutritionistCard": {
     "placeholderBio": "Nutricionista especializada em acompanhamento clínico pós-cirúrgico.",
+    "experienceYears": "{years}+ anos de experiência",
     "specialist": "Especialista em pós-operatório",
     "multilingual": "Atende em vários idiomas",
     "viewProfile": "Ver perfil",
@@ -141,6 +162,8 @@
     "referral": "Indicado por tradutor: {code}",
     "email": "Email",
     "password": "Senha",
+    "showPassword": "Mostrar senha",
+    "hidePassword": "Ocultar senha",
     "wait": "Aguarde...",
     "login": "Entrar",
     "signup": "Criar conta",
@@ -149,9 +172,49 @@
   },
   "admin": {
     "title": "Painel Admin",
+    "nav": {
+      "dashboard": "Visão geral",
+      "approvals": "Aprovações",
+      "nutritionists": "Nutricionistas",
+      "translators": "Tradutores",
+      "leads": "Leads"
+    },
+    "stats": {
+      "nutritionists": "Nutricionistas",
+      "translators": "Tradutores",
+      "patients": "Pacientes",
+      "leads": "Leads",
+      "pendingApprovals": "Aprovações pendentes",
+      "approvedPending": "{approved} aprovados · {pending} pendentes"
+    },
+    "profile": {
+      "view": "Ver perfil",
+      "hide": "Ocultar perfil",
+      "email": "Email",
+      "location": "Localização",
+      "languages": "Idiomas"
+    },
+    "leads": {
+      "title": "Leads do onboarding",
+      "empty": "Nenhum lead registrado.",
+      "name": "Nome",
+      "email": "Email",
+      "nutritionist": "Nutricionista",
+      "status": "Status",
+      "date": "Data",
+      "details": "Ver detalhes",
+      "hide": "Ocultar"
+    },
+    "saveNutritionistCommission": "Salvar comissão da nutricionista",
+    "saveReferralCommission": "Salvar comissão de indicação",
+    "commissionType": {
+      "fixed": "Dólar ($)",
+      "percent": "Porcentagem (%)"
+    },
     "pendingApprovals": "Aprovações pendentes",
     "noPending": "Nenhuma aprovação pendente.",
-    "loginLinks": "Links de login para nutricionistas e tradutores",
+    "loginLinks": "Links de acesso",
+    "loginLinksDescription": "Copie e envie para as nutricionistas e tradutores criarem a conta ou entrarem.",
     "loginLinkNutritionist": "Login nutricionista",
     "loginLinkTranslator": "Login tradutor",
     "nutritionists": "Nutricionistas",
@@ -170,6 +233,24 @@
       "referrer": "Indicado por",
       "status": "Status",
       "date": "Data"
+    }
+  },
+  "nutritionistDashboard": {
+    "nav": {
+      "profile": "Meu perfil",
+      "leads": "Minhas pacientes"
+    },
+    "leads": {
+      "title": "Pacientes interessadas",
+      "description": "Pessoas que preencheram o cadastro e escolheram você para o acompanhamento.",
+      "empty": "Nenhuma paciente ainda. Assim que alguém escolher você, ela aparece aqui.",
+      "name": "Nome",
+      "email": "Email",
+      "phone": "Telefone",
+      "status": "Status",
+      "date": "Data",
+      "details": "Ver detalhes",
+      "hide": "Ocultar"
     }
   },
   "copyReferral": {
@@ -223,6 +304,7 @@
     "fields": {
       "fullName": "Nome completo",
       "email": "Email",
+      "phone": "Telefone",
       "password": "Senha",
       "surgeryType": "Tipo de cirurgia",
       "language": "Idioma",
@@ -233,6 +315,7 @@
     "placeholders": {
       "fullName": "Nome completo",
       "email": "Email",
+      "phone": "Telefone com DDD",
       "password": "Crie uma senha (mín. 6 caracteres)",
       "country": "Seu país",
       "surgeryCity": "Cidade onde operou",
@@ -259,5 +342,12 @@
   "status": {
     "pending": "pendente",
     "approved": "aprovado"
+  },
+  "leadStatus": {
+    "new": "novo",
+    "contacted": "contatado",
+    "in_progress": "em andamento",
+    "converted": "convertido",
+    "lost": "perdido"
   }
 }

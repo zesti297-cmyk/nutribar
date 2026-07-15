@@ -1,5 +1,5 @@
 import { createSupabaseAdminClient } from "@/lib/supabase";
-import type { Profile, UserRole, UserStatus } from "@/lib/types";
+import type { CommissionType, Profile, UserRole, UserStatus } from "@/lib/types";
 
 interface UserRow {
   id: string;
@@ -15,6 +15,9 @@ interface UserRow {
   location: string | null;
   nutritionist_plan: string | null;
   commission_rate: string | null;
+  commission_type: CommissionType | null;
+  nutritionist_commission: string | null;
+  nutritionist_commission_type: CommissionType | null;
   referral_code: string | null;
   referred_by: string | null;
   created_at: string;
@@ -35,6 +38,11 @@ function toProfile(row: UserRow): Profile {
     location: row.location,
     nutritionist_plan: row.nutritionist_plan,
     commission_rate: row.commission_rate ? Number(row.commission_rate) : null,
+    commission_type: row.commission_type,
+    nutritionist_commission: row.nutritionist_commission
+      ? Number(row.nutritionist_commission)
+      : null,
+    nutritionist_commission_type: row.nutritionist_commission_type,
     referral_code: row.referral_code,
     referred_by: row.referred_by,
     created_at: row.created_at,
@@ -226,7 +234,9 @@ export async function getApprovedNutritionists() {
 export async function getAdminNutritionists() {
   const { data, error } = await supabaseAdmin
     .from("users")
-    .select("id, email, full_name, nutritionist_plan, status")
+    .select(
+      "id, email, full_name, nutritionist_plan, nutritionist_commission, nutritionist_commission_type, status, bio, languages, location, photo_url",
+    )
     .eq("role", "nutritionist")
     .order("created_at", { ascending: false });
 
@@ -237,7 +247,7 @@ export async function getAdminNutritionists() {
 export async function getAdminTranslators() {
   const { data, error } = await supabaseAdmin
     .from("users")
-    .select("id, email, full_name, commission_rate, status")
+    .select("id, email, full_name, commission_rate, commission_type, status")
     .eq("role", "translator")
     .order("created_at", { ascending: false });
 
@@ -254,13 +264,87 @@ export async function updateNutritionistPlan(userId: string, plan: string) {
   if (error) throw error;
 }
 
-export async function updateTranslatorCommission(userId: string, commissionRate: number) {
+export async function updateTranslatorCommission(
+  userId: string,
+  commissionRate: number,
+  commissionType: CommissionType,
+) {
   const { error } = await supabaseAdmin
     .from("users")
-    .update({ commission_rate: commissionRate })
+    .update({ commission_rate: commissionRate, commission_type: commissionType })
     .eq("id", userId);
 
   if (error) throw error;
+}
+
+export async function updateNutritionistCommission(
+  userId: string,
+  commission: number,
+  commissionType: CommissionType,
+) {
+  const { error } = await supabaseAdmin
+    .from("users")
+    .update({
+      nutritionist_commission: commission,
+      nutritionist_commission_type: commissionType,
+    })
+    .eq("id", userId);
+
+  if (error) throw error;
+}
+
+async function countUsers(
+  filters: Record<string, string>,
+): Promise<number> {
+  let query = supabaseAdmin
+    .from("users")
+    .select("id", { count: "exact", head: true });
+  for (const [column, value] of Object.entries(filters)) {
+    query = query.eq(column, value);
+  }
+  const { count, error } = await query;
+  if (error) throw error;
+  return Number(count ?? 0);
+}
+
+export async function getAdminStats() {
+  const [
+    nutriTotal,
+    nutriApproved,
+    nutriPending,
+    transTotal,
+    transApproved,
+    transPending,
+    patients,
+  ] = await Promise.all([
+    countUsers({ role: "nutritionist" }),
+    countUsers({ role: "nutritionist", status: "approved" }),
+    countUsers({ role: "nutritionist", status: "pending" }),
+    countUsers({ role: "translator" }),
+    countUsers({ role: "translator", status: "approved" }),
+    countUsers({ role: "translator", status: "pending" }),
+    countUsers({ role: "patient" }),
+  ]);
+
+  const { count: leadsCount, error: leadsError } = await supabaseAdmin
+    .from("leads")
+    .select("id", { count: "exact", head: true });
+  if (leadsError) throw leadsError;
+
+  return {
+    nutritionists: {
+      total: nutriTotal,
+      approved: nutriApproved,
+      pending: nutriPending,
+    },
+    translators: {
+      total: transTotal,
+      approved: transApproved,
+      pending: transPending,
+    },
+    patients,
+    leads: Number(leadsCount ?? 0),
+  };
 }
 
 export async function getPasswordHashByEmail(

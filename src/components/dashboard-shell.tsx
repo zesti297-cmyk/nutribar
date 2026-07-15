@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { signOut } from "@/app/actions/auth";
 import type { UserRole } from "@/lib/types";
@@ -20,7 +21,13 @@ export function DashboardShell({ role, email, children }: DashboardShellProps) {
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
           <div>
             <Link href="/" aria-label={t("siteName")}>
-              <img src="/nutribar-logo.svg" alt={t("siteName")} className="h-7 w-auto" />
+              <Image
+                src="/nutribar-logo.svg"
+                alt={t("siteName")}
+                width={220}
+                height={60}
+                className="h-7 w-auto"
+              />
             </Link>
             <p className="text-sm text-stone-500">
               {t(`role.${role}`)} · {email}

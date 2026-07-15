@@ -52,7 +52,7 @@ export function LanguageSelector() {
         aria-expanded={open}
         aria-haspopup="listbox"
         aria-label={t("selectLanguage")}
-        className="inline-flex items-center gap-1 rounded px-2 py-1.5 text-slate-600 transition-colors hover:bg-slate-100 hover:text-[#0c2340]"
+        className="inline-flex items-center gap-1 rounded px-2 py-1.5 text-white/90 transition-colors hover:bg-white/10 hover:text-white"
       >
         <span className="text-lg leading-none" aria-hidden>{FLAGS[locale as Locale]}</span>
         <svg

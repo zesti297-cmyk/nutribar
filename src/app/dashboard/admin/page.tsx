@@ -1,60 +1,18 @@
-import { AdminDashboardTitle } from "@/components/admin-dashboard-title";
-import { DashboardShell } from "@/components/dashboard-shell";
-import { AdminPanel } from "@/components/admin-panel";
-import { requireProfile } from "@/lib/profile";
-import {
-  getPendingUsers,
-  getReferredTranslators,
-  getUsersByIds,
-  getAdminNutritionists,
-  getAdminTranslators,
-} from "@/lib/users";
-import type { Profile } from "@/lib/types";
+import { AdminDashboard } from "@/components/admin-dashboard";
+import { AdminLoginLinks } from "@/components/admin-login-links";
+import { getAdminStats } from "@/lib/users";
 
 export default async function AdminDashboardPage() {
-  const profile = await requireProfile("admin");
-
-  const pendingUsers = await getPendingUsers();
-  const referredTranslators = await getReferredTranslators();
-
-  const referrerIds = [
-    ...new Set(
-      referredTranslators
-        .map((t) => t.referred_by)
-        .filter(Boolean) as string[],
-    ),
-  ];
-
-  const referrers = await getUsersByIds(referrerIds);
-  const referrerMap = new Map(referrers.map((r) => [r.id, r.email]));
-
-  const adminNutritionists = await getAdminNutritionists();
-  const adminTranslators = await getAdminTranslators();
-
-  const referrals = referredTranslators.map((t) => ({
-    id: t.id,
-    email: t.email,
-    referrer_email: referrerMap.get(t.referred_by!) ?? "—",
-    status: t.status,
-    created_at: t.created_at,
-  }));
-
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-  const loginLinks = {
-    nutritionist: `${appUrl}/login/nutritionist`,
-    translator: `${appUrl}/login/translator`,
-  };
+  const stats = await getAdminStats();
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
   return (
-    <DashboardShell role="admin" email={profile.email}>
-      <AdminDashboardTitle />
-      <AdminPanel
-        pendingUsers={pendingUsers as Profile[]}
-        referrals={referrals}
-        nutritionists={adminNutritionists}
-        translators={adminTranslators}
-        loginLinks={loginLinks}
+    <div className="space-y-8">
+      <AdminDashboard stats={stats} />
+      <AdminLoginLinks
+        nutritionistUrl={`${baseUrl}/login/nutritionist`}
+        translatorUrl={`${baseUrl}/login/translator`}
       />
-    </DashboardShell>
+    </div>
   );
 }

@@ -11,7 +11,7 @@ import {
   findReferrerIdByCode,
   findUserByEmail,
 } from "@/lib/users";
-import type { UserRole } from "@/lib/types";
+import type { UserRole, UserStatus } from "@/lib/types";
 
 function getAdminEmails(): string[] {
   return (process.env.ADMIN_EMAILS ?? "")
@@ -55,8 +55,8 @@ export async function signUp(
 
   const isAdmin = getAdminEmails().includes(email.toLowerCase());
   const finalRole: UserRole = isAdmin ? "admin" : role;
-  const status =
-    finalRole === "patient" || finalRole === "admin" ? "approved" : "pending";
+  // Só tradutores passam pela fila de aprovação do admin; os demais entram direto.
+  const status: UserStatus = finalRole === "translator" ? "pending" : "approved";
 
   let referredBy: string | null = null;
   if (finalRole === "translator") {

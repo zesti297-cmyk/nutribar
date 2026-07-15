@@ -1,6 +1,6 @@
 import type { PublicNutritionist } from "@/lib/types";
 
-// Fotos de placeholder (protótipo acadêmico). Mix pedido: 3 profissionais + 2 casuais.
+// Fotos de placeholder (protótipo acadêmico).
 // Substituir por fotos reais das nutricionistas, com autorização, antes de produção.
 export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
   {
@@ -8,8 +8,9 @@ export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
     full_name: "Dra. Ana Silva",
     languages: "Português, Inglês",
     location: "São Paulo, Brasil",
+    experience_years: 8,
+    specialties: ["Pós-bariátrica", "Reeducação alimentar", "Emagrecimento"],
     bio: "Nutricionista especializada em acompanhamento pós-cirúrgico com 8 anos de experiência. Atendo pacientes brasileiras que operaram no exterior, com foco em reeducação alimentar e manutenção de resultados a longo prazo.",
-    // profissional
     photo_url:
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&h=750&crop=faces&q=80",
   },
@@ -18,8 +19,9 @@ export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
     full_name: "Dra. Maria Costa",
     languages: "Português, Inglês, Alemão",
     location: "Porto, Portugal",
+    experience_years: 12,
+    specialties: ["Nutrição clínica", "Pós-operatório", "Suplementação"],
     bio: "Especialista em nutrição clínica e recuperação pós-cirúrgica. Acompanho pacientes internacionais em múltiplos idiomas, com protocolos personalizados para cada fase do pós-operatório.",
-    // profissional
     photo_url:
       "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&w=600&h=750&crop=faces&q=80",
   },
@@ -28,8 +30,9 @@ export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
     full_name: "Dra. Sofía Martínez",
     languages: "Espanhol, Português, Inglês",
     location: "Madrid, Espanha",
+    experience_years: 6,
+    specialties: ["Dietas progressivas", "Suplementação", "Apoio emocional"],
     bio: "Nutricionista dedicada ao acompanhamento de pacientes após cirurgia no exterior. Experiência com dietas progressivas, suplementação e acompanhamento emocional da alimentação.",
-    // profissional
     photo_url:
       "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&h=750&crop=faces&q=80",
   },
@@ -38,8 +41,9 @@ export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
     full_name: "Dra. Elena Ruiz",
     languages: "Espanhol, Inglês, Português",
     location: "Barcelona, Espanha",
+    experience_years: 9,
+    specialties: ["Proteína e vitaminas", "Hábitos sustentáveis", "Pós-bariátrica"],
     bio: "Nutricionista com ampla experiência no atendimento a pacientes internacionais no retorno ao país de origem. Foco em proteína, suplementação de vitaminas e construção de hábitos sustentáveis.",
-    // casual
     photo_url:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&h=750&crop=faces&q=80",
   },

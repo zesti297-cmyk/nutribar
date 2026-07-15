@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import Link from "next/link";
 import type { PublicNutritionist } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
@@ -32,44 +33,40 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
     };
   }, [open]);
 
+  const specialties = nutritionist.specialties ?? [];
+
   return (
-    <article className="flex flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg">
-      <div className="relative h-[420px] w-full overflow-hidden rounded-t-3xl bg-slate-100">
-        <img
-          src={photo}
-          alt={nutritionist.full_name}
-          className="h-full w-full object-cover"
-        />
-        <span className="absolute left-4 top-4 rounded-md bg-[#0c2340] px-3 py-1 text-xs font-semibold text-white shadow">{primaryLanguage}</span>
-      </div>
+    <>
+      <div>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={nutritionist.full_name}
+          className="group relative block aspect-[3/4] w-full overflow-hidden rounded-[1.75rem] bg-slate-100 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+        >
+          <Image
+            src={photo}
+            alt={nutritionist.full_name}
+            fill
+            sizes="(min-width: 640px) 25vw, 50vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
 
-      <div className="flex flex-1 flex-col p-6">
-        {nutritionist.location && (
-          <p className="flex items-center gap-1.5 text-sm text-slate-500">
-            <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {nutritionist.location}
-          </p>
-        )}
-
-        <h3 className="mt-4 text-xl font-semibold text-[#0c2340]">{nutritionist.full_name}</h3>
-
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{nutritionist.bio || t("nutritionistCard.placeholderBio")}</p>
-
-        <div className="mt-6 flex items-center justify-between gap-4 border-t border-slate-100 pt-4">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center rounded-md bg-emerald-50 px-3 py-1 text-sm font-medium text-[#0c2340]">{t("nutritionistCard.specialist")}</span>
-            <p className="text-sm text-slate-500">{nutritionist.location ?? ""}</p>
+          {/* Gradiente base: especialidade principal */}
+          <div className="absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/70 via-black/25 to-transparent p-4 pt-10">
+            <span className="max-w-full truncate rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+              {specialties[0] ?? t("nutritionistCard.specialist")}
+            </span>
           </div>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="inline-flex items-center gap-2 rounded-md border border-[#0c2340] px-2 py-1 text-xs font-medium text-[#0c2340] whitespace-nowrap transition-colors hover:bg-[#0c2340] hover:text-white"
-          >
-            {t("nutritionistCard.viewProfile")}
-          </button>
+        </button>
+
+        <div className="mt-3 px-1 text-center">
+          <h3 className="text-base font-bold text-[#0c2340]">{nutritionist.full_name}</h3>
+          <p className="mt-0.5 text-sm text-slate-500">
+            {nutritionist.experience_years
+              ? t("nutritionistCard.experienceYears", { years: nutritionist.experience_years })
+              : primaryLanguage}
+          </p>
         </div>
       </div>
 
@@ -90,11 +87,13 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
               </button>
 
               <div className="grid gap-6 sm:grid-cols-3">
-                <div className="sm:col-span-1">
-                  <img
+                <div className="relative h-40 w-full overflow-hidden rounded-lg sm:col-span-1 sm:h-32">
+                  <Image
                     src={photo}
                     alt={nutritionist.full_name ?? "Nutricionista"}
-                    className="h-40 w-full rounded-lg object-cover sm:h-32"
+                    fill
+                    sizes="(min-width: 640px) 33vw, 100vw"
+                    className="object-cover"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -140,6 +139,6 @@ export function NutritionistCard({ nutritionist }: NutritionistCardProps) {
           </div>,
           document.body,
         )}
-    </article>
+    </>
   );
 }

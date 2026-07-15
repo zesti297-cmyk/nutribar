@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { PasswordInput } from "@/components/password-input";
 import { useI18n } from "@/lib/i18n";
 
 export default function OnboardingPage() {
@@ -10,6 +11,7 @@ export default function OnboardingPage() {
   const [form, setForm] = useState({
     full_name: "",
     email: "",
+    phone: "",
     password: "",
     surgery_type: "",
     language: "pt",
@@ -60,7 +62,8 @@ export default function OnboardingPage() {
         <div className="space-y-3">
           <input value={form.full_name} onChange={(e)=>setForm({...form, full_name: e.target.value})} placeholder={t("onboarding.placeholders.fullName")} className="w-full rounded-md border px-3 py-2"/>
           <input value={form.email} onChange={(e)=>setForm({...form, email: e.target.value})} placeholder={t("onboarding.placeholders.email")} className="w-full rounded-md border px-3 py-2"/>
-          <input type="password" value={form.password} onChange={(e)=>setForm({...form, password: e.target.value})} placeholder={t("onboarding.placeholders.password")} className="w-full rounded-md border px-3 py-2"/>
+          <input type="tel" value={form.phone} onChange={(e)=>setForm({...form, phone: e.target.value})} placeholder={t("onboarding.placeholders.phone")} className="w-full rounded-md border px-3 py-2"/>
+          <PasswordInput value={form.password} onChange={(e)=>setForm({...form, password: e.target.value})} placeholder={t("onboarding.placeholders.password")} className="w-full rounded-md border px-3 py-2"/>
         </div>
       )}
 

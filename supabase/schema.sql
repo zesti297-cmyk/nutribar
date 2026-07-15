@@ -5,8 +5,10 @@
 --
 -- Este schema é a ÚNICA fonte de verdade e está alinhado ao código em src/lib.
 --   - languages / nutritionist_plan são TEXT (o código os trata como string)
---   - commission_rate é NUMERIC
---   - status do usuário: 'pending' | 'approved'
+--   - commission_rate / nutritionist_commission são NUMERIC, com um
+--     commission_type ('fixed' = $, 'percent' = %) para cada um
+--   - status do usuário: 'pending' | 'approved'. Na prática o app define o
+--     status no cadastro: só translator nasce 'pending'; os demais 'approved'.
 -- ============================================================================
 
 -- Extensão para gerar UUIDs
@@ -26,6 +28,9 @@ BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'lead_status') THEN
     CREATE TYPE lead_status AS ENUM ('new', 'contacted', 'in_progress', 'converted', 'lost');
   END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'commission_type') THEN
+    CREATE TYPE commission_type AS ENUM ('fixed', 'percent');
+  END IF;
 END$$;
 
 -- ----------------------------------------------------------------------------
@@ -37,19 +42,33 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash     TEXT,
   auth_uid          UUID UNIQUE REFERENCES auth.users(id) ON DELETE SET NULL,
   role              user_role   NOT NULL DEFAULT 'patient',
-  status            user_status NOT NULL DEFAULT 'pending',
+  status            user_status NOT NULL DEFAULT 'approved', -- o app sobrescreve: translator entra como 'pending'
   full_name         TEXT,
   languages         TEXT,
   bio               TEXT,
   photo_url         TEXT,
   location          TEXT,
   nutritionist_plan TEXT,
-  commission_rate   NUMERIC DEFAULT 0,
+  commission_rate   NUMERIC DEFAULT 0, -- comissão de indicação do tradutor
+  commission_type   commission_type DEFAULT 'fixed', -- tipo do valor acima: 'fixed' ($) ou 'percent' (%)
+  nutritionist_commission NUMERIC DEFAULT 0, -- comissão que a nutricionista ganha
+  nutritionist_commission_type commission_type DEFAULT 'fixed', -- tipo do valor acima
   referral_code     TEXT UNIQUE,
   referred_by       UUID REFERENCES users(id) ON DELETE SET NULL,
   created_at        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at        TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Migração para bancos já existentes (idempotente): garante as colunas que
+-- versões antigas da tabela users não tinham.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS auth_uid UUID UNIQUE REFERENCES auth.users(id) ON DELETE SET NULL;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS nutritionist_plan TEXT;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS commission_rate NUMERIC DEFAULT 0;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS nutritionist_commission NUMERIC DEFAULT 0;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS commission_type commission_type DEFAULT 'fixed';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS nutritionist_commission_type commission_type DEFAULT 'fixed';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+ALTER TABLE users ALTER COLUMN status SET DEFAULT 'approved';
 
 CREATE INDEX IF NOT EXISTS users_role_idx          ON users(role);
 CREATE INDEX IF NOT EXISTS users_status_idx        ON users(status);
@@ -73,6 +92,15 @@ CREATE TABLE IF NOT EXISTS leads (
   created_at         TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at         TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Migração para bancos já existentes (idempotente): garante as colunas que
+-- versões antigas da tabela leads não tinham.
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS patient_user_id UUID REFERENCES users(id) ON DELETE SET NULL;
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS phone TEXT;
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS message TEXT;
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS onboarding_answers JSONB;
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS status lead_status NOT NULL DEFAULT 'new';
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
 
 CREATE INDEX IF NOT EXISTS leads_nutritionist_idx ON leads(nutritionist_id);
 CREATE INDEX IF NOT EXISTS leads_patient_idx      ON leads(patient_user_id);

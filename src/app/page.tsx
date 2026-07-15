@@ -11,7 +11,7 @@ import { DEMO_NUTRITIONISTS } from "@/lib/demo-nutritionists";
 
 export default function Home() {
   return (
-    <div className="min-h-full bg-white">
+    <div className="relative min-h-full bg-white">
       <LandingHeader />
       <main>
         <LandingHero />

@@ -7,10 +7,10 @@
   "language": "Language",
   "selectLanguage": "Select language",
   "hero": {
-    "preTitle": "Post-surgery nutritional care",
-    "title": "The surgery was the beginning. The follow-up defines the result.",
-    "description": "Long-term success depends on what happens after surgery. Nutribar connects you with nutritionists specialized in continuous clinical follow-up, with protocols tailored to each recovery phase, adjustments based on your progress, and support from someone you trust.",
-    "cta": "Start my follow-up",
+    "preTitle": "Nutritional care for your new chapter",
+    "title": "Your new chapter deserves care that matches it",
+    "description": "You've already taken the most important step. Now it's time to care for what comes next, with someone who understands every stage of your transformation. Nutribar connects you with specialized nutritionists, with protocols tailored to your moment, adjustments based on your progress, and support from someone you trust.",
+    "cta": "Start my new chapter",
     "stats": {
       "continuous": { "value": "Ongoing", "label": "personalized clinical follow-up" },
       "online": { "value": "100%", "label": "online care, wherever you are" },
@@ -22,6 +22,8 @@
   "how": {
     "title": "How it works",
     "subtitle": "From discharge to a lasting result, in four steps",
+    "stepLabel": "Step {number}",
+    "mockup": { "book": "Book appointment" },
     "steps": {
       "1": { "title": "Create your account", "description": "Sign up in minutes and share your surgical history. The whole process is online, secure, and in your language." },
       "2": { "title": "Choose your nutritionist", "description": "Select from verified professionals specialized in post-surgery follow-up, with experience in exactly your type of procedure." },
@@ -30,16 +32,16 @@
     }
   },
   "nutritionistsSection": {
-    "title": "Nutritionists specialized in post-surgery follow-up",
-    "description": "Every Nutribar professional is verified and has clinical experience in post-operative care. Choose by specialty, language, and location, and resume your care with someone who understands your case.",
+    "title": "Nutritionists ready to walk this journey with you",
+    "description": "Every Nutribar professional is verified and has real experience supporting women through this new chapter. Choose by specialty, language, and location, and move forward with someone who understands your case.",
     "emptyTitle": "New nutritionists joining soon",
-    "emptyDesc": "We are verifying new professionals to expand our care and ensure specialized follow-up for every phase of your recovery.",
-    "placeholderName1": "Post-surgery follow-up specialist",
+    "emptyDesc": "We are verifying new professionals to expand our care and ensure specialized follow-up at every step of your journey.",
+    "placeholderName1": "Specialist in your new chapter",
     "placeholderName2": "International nutritionist",
-    "placeholderName3": "Post-operative follow-up",
-    "placeholderBio1": "Specialized in post-surgery nutritional protocols, dietary re-education, and deficiency prevention.",
-    "placeholderBio2": "Clinical follow-up for patients who had surgery abroad and need support in their own language.",
-    "placeholderBio3": "Structured guidance for every recovery phase, from the immediate post-op to maintaining results.",
+    "placeholderName3": "Ongoing follow-up",
+    "placeholderBio1": "Specialized in nutritional protocols for your new chapter, dietary re-education, and deficiency prevention.",
+    "placeholderBio2": "Clinical follow-up for women going through this transition abroad who need support in their own language.",
+    "placeholderBio3": "Structured guidance for every step of your journey, from the start to maintaining results.",
     "placeholderLocation1": "São Paulo, Brazil",
     "placeholderLocation2": "Lisbon, Portugal",
     "placeholderLocation3": "Recife, Brazil"
@@ -55,12 +57,30 @@
     }
   },
   "testimonials": {
-    "title": "Patients who resumed their care with Nutribar",
-    "subtitle": "Stories from those who found continuity and safety after surgery.",
+    "title": "Women who found continuity with Nutribar",
+    "subtitle": "Real stories of moving forward with the right support.",
     "items": {
-      "1": { "quote": "I had surgery in Turkey and came back not knowing how to eat. I found a nutritionist who speaks my language and understands exactly my type of surgery. It made all the difference.", "author": "Camila R.", "role": "8 months of follow-up" },
-      "2": { "quote": "The phased plan gave me confidence. Each assessment was adjusted to my progress, and I never felt alone in the process.", "author": "Beatriz M.", "role": "Annual program" },
-      "3": { "quote": "I had already regained some weight before starting. With continuous follow-up, I managed to regain control and keep my result.", "author": "Fernanda L.", "role": "Quarterly follow-up" }
+      "1": {
+        "tags": "New chapter · Dietary re-education",
+        "result": "↘ 18kg in 6 months · No deficiencies",
+        "quote": "I came back from abroad not knowing how to eat properly. With my nutritionist, I regained control and already lost 18kg in 6 months, without missing a single nutrient.",
+        "author": "Camila R.",
+        "role": "Supported by Dr. Ana Silva"
+      },
+      "2": {
+        "tags": "New chapter · Supplementation",
+        "result": "↘ 22kg in 1 year · Vitamins on track",
+        "quote": "The phased plan gave me confidence. In 1 year I lost 22kg and my vitamin B12 and iron levels have never been so balanced.",
+        "author": "Beatriz M.",
+        "role": "Supported by Dr. Sofía Martínez"
+      },
+      "3": {
+        "tags": "New chapter · Weight maintenance",
+        "result": "↘ 9kg regained · Weight stabilized",
+        "quote": "I had already regained some weight before starting. With continuous follow-up, I lost those 9kg again and finally stabilized my weight.",
+        "author": "Fernanda L.",
+        "role": "Supported by Dr. Elena Ruiz"
+      }
     }
   },
   "faq": {
@@ -104,6 +124,7 @@
   },
   "nutritionistCard": {
     "placeholderBio": "Nutritionist specialized in post-surgery clinical follow-up.",
+    "experienceYears": "{years}+ years of experience",
     "specialist": "Post-op specialist",
     "multilingual": "Speaks several languages",
     "viewProfile": "View profile",
@@ -141,6 +162,8 @@
     "referral": "Referred by translator: {code}",
     "email": "Email",
     "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
     "wait": "Please wait...",
     "login": "Log in",
     "signup": "Create account",
@@ -149,9 +172,49 @@
   },
   "admin": {
     "title": "Admin Panel",
+    "nav": {
+      "dashboard": "Overview",
+      "approvals": "Approvals",
+      "nutritionists": "Nutritionists",
+      "translators": "Translators",
+      "leads": "Leads"
+    },
+    "stats": {
+      "nutritionists": "Nutritionists",
+      "translators": "Translators",
+      "patients": "Patients",
+      "leads": "Leads",
+      "pendingApprovals": "Pending approvals",
+      "approvedPending": "{approved} approved · {pending} pending"
+    },
+    "profile": {
+      "view": "View profile",
+      "hide": "Hide profile",
+      "email": "Email",
+      "location": "Location",
+      "languages": "Languages"
+    },
+    "leads": {
+      "title": "Onboarding leads",
+      "empty": "No leads recorded.",
+      "name": "Name",
+      "email": "Email",
+      "nutritionist": "Nutritionist",
+      "status": "Status",
+      "date": "Date",
+      "details": "View details",
+      "hide": "Hide"
+    },
+    "saveNutritionistCommission": "Save nutritionist commission",
+    "saveReferralCommission": "Save referral commission",
+    "commissionType": {
+      "fixed": "Dollar ($)",
+      "percent": "Percentage (%)"
+    },
     "pendingApprovals": "Pending approvals",
     "noPending": "No pending approvals.",
-    "loginLinks": "Login links for nutritionists and translators",
+    "loginLinks": "Access links",
+    "loginLinksDescription": "Copy and send these so nutritionists and translators can sign up or log in.",
     "loginLinkNutritionist": "Nutritionist login",
     "loginLinkTranslator": "Translator login",
     "nutritionists": "Nutritionists",
@@ -170,6 +233,24 @@
       "referrer": "Referred by",
       "status": "Status",
       "date": "Date"
+    }
+  },
+  "nutritionistDashboard": {
+    "nav": {
+      "profile": "My profile",
+      "leads": "My patients"
+    },
+    "leads": {
+      "title": "Interested patients",
+      "description": "People who completed the sign-up and chose you for their follow-up.",
+      "empty": "No patients yet. As soon as someone chooses you, they'll show up here.",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "status": "Status",
+      "date": "Date",
+      "details": "View details",
+      "hide": "Hide"
     }
   },
   "copyReferral": {
@@ -223,6 +304,7 @@
     "fields": {
       "fullName": "Full name",
       "email": "Email",
+      "phone": "Phone",
       "password": "Password",
       "surgeryType": "Surgery type",
       "language": "Language",
@@ -233,6 +315,7 @@
     "placeholders": {
       "fullName": "Full name",
       "email": "Email",
+      "phone": "Phone number",
       "password": "Create a password (min. 6 characters)",
       "country": "Your country",
       "surgeryCity": "City where you had surgery",
@@ -259,5 +342,12 @@
   "status": {
     "pending": "pending",
     "approved": "approved"
+  },
+  "leadStatus": {
+    "new": "new",
+    "contacted": "contacted",
+    "in_progress": "in progress",
+    "converted": "converted",
+    "lost": "lost"
   }
 }
