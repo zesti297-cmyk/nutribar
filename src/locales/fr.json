@@ -345,6 +345,15 @@
     "nutritionistPatients": {
       "one": "1 patiente",
       "other": "{count} patientes"
+    },
+    "bulk": {
+      "selectAll": "Tout sélectionner",
+      "selected": "{count} sélectionnés",
+      "selectedOne": "1 sélectionné",
+      "export": "Exporter le tableau",
+      "delete": "Supprimer la sélection",
+      "confirmDelete": "Supprimer définitivement {count} ?",
+      "partialError": "{count} n’ont pas pu être supprimés."
     }
   },
   "nutritionistDashboard": {

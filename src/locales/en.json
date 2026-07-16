@@ -345,6 +345,15 @@
     "nutritionistPatients": {
       "one": "1 patient",
       "other": "{count} patients"
+    },
+    "bulk": {
+      "selectAll": "Select all",
+      "selected": "{count} selected",
+      "selectedOne": "1 selected",
+      "export": "Export spreadsheet",
+      "delete": "Delete selected",
+      "confirmDelete": "Permanently delete {count}?",
+      "partialError": "{count} could not be deleted."
     }
   },
   "nutritionistDashboard": {

@@ -47,6 +47,63 @@ export async function deleteUser(userId: string): Promise<ActionResult> {
   return { success: true };
 }
 
+type BulkResult = { ok: number; failed: number; error?: string };
+
+/**
+ * Exclusão em lote. Retorna quantos foram — uma falha no meio não desfaz os
+ * anteriores, e o admin precisa saber disso em vez de ver só "erro".
+ */
+export async function deleteUsers(userIds: string[]): Promise<BulkResult> {
+  const error = await requireAdmin();
+  if (error) return { ok: 0, failed: userIds.length, error: error.error };
+
+  const session = await getSession();
+  let ok = 0;
+  let failed = 0;
+
+  for (const id of userIds) {
+    if (session?.userId === id) {
+      failed++; // nunca a própria conta do admin
+      continue;
+    }
+    try {
+      if (await deleteUserById(id)) ok++;
+      else failed++;
+    } catch {
+      failed++;
+    }
+  }
+
+  revalidatePath("/dashboard/admin");
+  revalidatePath("/dashboard/admin/patients");
+  revalidatePath("/dashboard/admin/nutritionists");
+  revalidatePath("/dashboard/admin/translators");
+  revalidatePath("/dashboard/admin/leads");
+  revalidatePath("/");
+  return { ok, failed };
+}
+
+export async function deleteLeads(leadIds: string[]): Promise<BulkResult> {
+  const error = await requireAdmin();
+  if (error) return { ok: 0, failed: leadIds.length, error: error.error };
+
+  let ok = 0;
+  let failed = 0;
+  for (const id of leadIds) {
+    try {
+      if (await deleteLeadById(id)) ok++;
+      else failed++;
+    } catch {
+      failed++;
+    }
+  }
+
+  revalidatePath("/dashboard/admin/leads");
+  revalidatePath("/dashboard/admin/nutritionists");
+  revalidatePath("/dashboard/nutritionist/leads");
+  return { ok, failed };
+}
+
 export async function deleteLead(leadId: string): Promise<ActionResult> {
   const error = await requireAdmin();
   if (error) return error;
