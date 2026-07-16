@@ -64,7 +64,7 @@ export function LandingHowItWorks() {
             <div className="absolute left-0 top-2 bottom-2 w-px bg-slate-200" aria-hidden="true" />
             {/* Trilho preenchido conforme o scroll avança */}
             <div
-              className="absolute left-0 top-2 w-px bg-sky-400 transition-all duration-500 ease-out"
+              className="absolute left-0 top-2 w-px bg-[#0c2340] transition-all duration-500 ease-out"
               style={{
                 height:
                   steps.length > 1
@@ -86,12 +86,12 @@ export function LandingHowItWorks() {
                 >
                   <span
                     className={`absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full border-2 bg-white transition-colors duration-300 ${
-                      isActive ? "border-sky-500" : "border-slate-300"
+                      isActive ? "border-[#0c2340]" : "border-slate-300"
                     }`}
                   >
                     <span
                       className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-                        isActive ? "bg-sky-500" : "bg-slate-300"
+                        isActive ? "bg-[#0c2340]" : "bg-slate-300"
                       }`}
                     />
                   </span>

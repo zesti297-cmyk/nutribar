@@ -52,18 +52,18 @@ export function LandingHero() {
           />
         </div>
       ))}
-      {/* Overlay mobile: escurece tudo uniformemente para o texto ficar legível na tela toda */}
-      <div className="absolute inset-0 bg-[#0c2340]/65 sm:hidden" aria-hidden="true" />
-      {/* Overlay desktop: gradiente lateral, revela a foto à direita */}
+      {/* Overlay mobile: leve, só o suficiente para o texto branco ficar legível */}
+      <div className="absolute inset-0 bg-[#0c2340]/35 sm:hidden" aria-hidden="true" />
+      {/* Overlay desktop: gradiente lateral suave, mantém a foto viva à direita */}
       <div
-        className="absolute inset-0 hidden bg-gradient-to-r from-[#0c2340]/75 via-[#0c2340]/40 to-transparent sm:block"
+        className="absolute inset-0 hidden bg-gradient-to-r from-[#0c2340]/60 via-[#0c2340]/15 to-transparent sm:block"
         aria-hidden="true"
       />
 
       {/* Conteúdo sobreposto (padding-top extra para não ficar sob o header absoluto) */}
       <div className="relative mx-auto flex max-w-6xl flex-col justify-center px-6 pb-12 pt-28 sm:pb-16 sm:pt-32">
-        <p className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-sky-300">
-          <span className="h-px w-8 bg-sky-400" aria-hidden="true" />
+        <p className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+          <span className="h-px w-8 bg-white/60" aria-hidden="true" />
           {t("hero.preTitle")}
         </p>
         <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
@@ -79,7 +79,7 @@ export function LandingHero() {
               key={i}
               className="rounded-xl bg-white/10 px-4 py-3 text-left shadow-sm ring-1 ring-white/20 backdrop-blur-sm sm:p-4"
             >
-              <p className="text-xl font-bold text-sky-300 sm:text-2xl">{stat.value}</p>
+              <p className="text-xl font-bold text-white sm:text-2xl">{stat.value}</p>
               <p className="mt-0.5 text-sm text-white/80 sm:mt-1">{stat.label}</p>
             </div>
           ))}
@@ -88,7 +88,7 @@ export function LandingHero() {
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link
             href="/login/patient"
-            className="inline-flex items-center justify-center rounded-md bg-sky-400 px-6 py-3 text-sm font-semibold text-[#0c2340] shadow-lg shadow-sky-500/25 transition-all hover:bg-sky-300 hover:shadow-sky-400/40"
+            className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-[#0c2340] shadow-md transition-shadow hover:shadow-lg"
           >
             {t("hero.cta")}
           </Link>

@@ -59,7 +59,7 @@ export function LandingWhy() {
                 }`}
                 style={{ transitionDelay: visible[i] ? `${i * 100}ms` : "0ms" }}
               >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sm font-bold text-sky-600 ring-1 ring-sky-200">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0c2340]/5 text-sm font-bold text-[#0c2340]">
                   {point.number}
                 </div>
                 <div>

@@ -36,7 +36,7 @@ export function LandingHeader() {
 
           <Link
             href="/login/patient"
-            className="rounded-lg bg-sky-400 px-4 py-2 text-sm font-semibold text-[#0c2340] shadow-sm shadow-sky-500/20 transition-colors hover:bg-sky-300"
+            className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-[#0c2340] transition-colors hover:bg-white/90"
           >
             {t("start")}
           </Link>

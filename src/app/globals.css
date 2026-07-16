@@ -5,15 +5,11 @@
   --foreground: #0c2340;
   --navy: #0c2340;
   --navy-light: #16325f;
-  --accent: #38bdf8;
-  --accent-strong: #0ea5e9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-accent-strong: var(--accent-strong);
   --font-sans: var(--font-manrope);
 }
 
