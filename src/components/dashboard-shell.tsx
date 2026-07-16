@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { signOut } from "@/app/actions/auth";
+import { LanguageSelector } from "@/components/language-modal";
 import type { UserRole } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
 
@@ -33,14 +34,17 @@ export function DashboardShell({ role, email, children }: DashboardShellProps) {
               {t(`role.${role}`)} · {email}
             </p>
           </div>
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="rounded-lg border border-stone-300 px-4 py-2 text-sm text-stone-700 hover:bg-stone-100"
-            >
-              {t("dashboard.signOut")}
-            </button>
-          </form>
+          <div className="flex items-center gap-2">
+            <LanguageSelector tone="dark" />
+            <form action={signOut}>
+              <button
+                type="submit"
+                className="rounded-lg border border-stone-300 px-4 py-2 text-sm text-stone-700 hover:bg-stone-100"
+              >
+                {t("dashboard.signOut")}
+              </button>
+            </form>
+          </div>
         </div>
       </header>
       <main className="mx-auto max-w-4xl px-6 py-8">{children}</main>

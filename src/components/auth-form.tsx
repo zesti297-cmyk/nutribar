@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import Link from "next/link";
 import { signInAction, signUpAction } from "@/app/actions/auth";
+import { LanguageSelector } from "@/components/language-modal";
 import { PasswordInput } from "@/components/password-input";
 import type { UserRole } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
@@ -27,9 +28,12 @@ export function AuthForm({ role, referralCode }: AuthFormProps) {
 
   return (
     <div className="w-full max-w-md rounded-[2rem] border border-slate-200 bg-white/95 p-8 shadow-2xl shadow-slate-200/50 backdrop-blur-xl">
-      <Link href="/" className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
-        {t("auth.back")}
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link href="/" className="text-sm font-medium text-slate-600 transition hover:text-slate-900">
+          {t("auth.back")}
+        </Link>
+        <LanguageSelector tone="dark" />
+      </div>
 
       <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-[#0c2340]">
         {t(`role.${role}`)}
