@@ -188,6 +188,17 @@ export async function getApprovedNutritionists() {
   return data ?? [];
 }
 
+export async function getAdminPatients() {
+  const { data, error } = await supabaseAdmin
+    .from("users")
+    .select("id, email, full_name, created_at")
+    .eq("role", "patient")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
+}
+
 export async function getAdminNutritionists() {
   const { data, error } = await supabaseAdmin
     .from("users")
@@ -282,6 +293,96 @@ export async function getAdminStats() {
     patients,
     leads: Number(leadsCount ?? 0),
   };
+}
+
+/**
+ * Remove a conta por completo: identidade no Supabase Auth, foto no Storage e
+ * a linha em users. Os planos vão junto por CASCADE; os leads dela sobrevivem
+ * com nutritionist_id nulo, para o histórico da paciente não sumir.
+ */
+export async function deleteUserById(userId: string): Promise<boolean> {
+  const { data: user } = await supabaseAdmin
+    .from("users")
+    .select("id, auth_uid, role")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (!user) return false;
+
+  // Primeiro os recursos externos: se a linha sumisse antes, um erro aqui
+  // deixaria a identidade e a foto órfãs, sem ninguém para referenciá-las.
+  if (user.auth_uid) {
+    await supabaseAdmin.auth.admin.deleteUser(user.auth_uid).catch(() => {
+      // Identidade já removida ou inexistente — seguir mesmo assim.
+    });
+  }
+
+  const { data: files } = await supabaseAdmin.storage.from("avatars").list(userId);
+  if (files?.length) {
+    await supabaseAdmin.storage
+      .from("avatars")
+      .remove(files.map((f) => `${userId}/${f.name}`));
+  }
+
+  const { error } = await supabaseAdmin.from("users").delete().eq("id", userId);
+  if (error) throw error;
+  return true;
+}
+
+export async function deleteLeadById(leadId: string): Promise<boolean> {
+  const { data, error } = await supabaseAdmin
+    .from("leads")
+    .delete()
+    .eq("id", leadId)
+    .select("id")
+    .maybeSingle();
+
+  if (error) throw error;
+  return Boolean(data);
+}
+
+/** Cadastros por semana, para o gráfico de evolução do painel. */
+export async function getWeeklyGrowth(weeks = 8) {
+  const since = new Date();
+  since.setDate(since.getDate() - weeks * 7);
+  const sinceIso = since.toISOString();
+
+  const [users, leads] = await Promise.all([
+    supabaseAdmin.from("users").select("role, created_at").gte("created_at", sinceIso),
+    supabaseAdmin.from("leads").select("created_at").gte("created_at", sinceIso),
+  ]);
+  if (users.error) throw users.error;
+  if (leads.error) throw leads.error;
+
+  // Segunda-feira da semana de uma data, como chave do agrupamento.
+  const weekStart = (iso: string) => {
+    const d = new Date(iso);
+    const day = (d.getUTCDay() + 6) % 7; // 0 = segunda
+    d.setUTCDate(d.getUTCDate() - day);
+    d.setUTCHours(0, 0, 0, 0);
+    return d.toISOString().slice(0, 10);
+  };
+
+  const buckets = new Map<string, { patients: number; nutritionists: number; leads: number }>();
+  // Semanas sem cadastro precisam existir como zero, senão o gráfico "pula".
+  for (let i = weeks - 1; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i * 7);
+    buckets.set(weekStart(d.toISOString()), { patients: 0, nutritionists: 0, leads: 0 });
+  }
+
+  for (const row of (users.data ?? []) as { role: UserRole; created_at: string }[]) {
+    const b = buckets.get(weekStart(row.created_at));
+    if (!b) continue;
+    if (row.role === "patient") b.patients++;
+    else if (row.role === "nutritionist") b.nutritionists++;
+  }
+  for (const row of (leads.data ?? []) as { created_at: string }[]) {
+    const b = buckets.get(weekStart(row.created_at));
+    if (b) b.leads++;
+  }
+
+  return [...buckets.entries()].map(([week, counts]) => ({ week, ...counts }));
 }
 
 export async function listPublicNutritionists(): Promise<PublicNutritionist[]> {

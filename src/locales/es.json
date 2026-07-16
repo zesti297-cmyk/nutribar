@@ -270,7 +270,8 @@
       "dashboard": "Resumen",
       "nutritionists": "Nutricionistas",
       "translators": "Traductores",
-      "leads": "Leads"
+      "leads": "Leads",
+      "patients": "Pacientes"
     },
     "stats": {
       "nutritionists": "Nutricionistas",
@@ -325,7 +326,22 @@
       "amount": "Importe"
     },
     "markPaid": "Marcar como pagado",
-    "referralsHint": "El importe de cada recomendación se congela al registrarse el recomendado. Cambiar la comisión de un traductor no afecta a las recomendaciones ya registradas."
+    "referralsHint": "El importe de cada recomendación se congela al registrarse el recomendado. Cambiar la comisión de un traductor no afecta a las recomendaciones ya registradas.",
+    "delete": {
+      "button": "Eliminar",
+      "confirm": "¿Eliminar definitivamente a {name}?",
+      "yes": "Sí, eliminar",
+      "cancel": "Cancelar",
+      "deleting": "Eliminando..."
+    },
+    "growth": {
+      "title": "Evolución",
+      "subtitle": "Nuevos registros por semana (últimas 8 semanas)",
+      "empty": "Aún no hay registros en el período."
+    },
+    "patients": {
+      "empty": "Ninguna paciente registrada."
+    }
   },
   "nutritionistDashboard": {
     "nav": {

@@ -8,6 +8,7 @@ const ITEMS = [
   { href: "/dashboard/admin", key: "nav.dashboard" },
   { href: "/dashboard/admin/nutritionists", key: "nav.nutritionists" },
   { href: "/dashboard/admin/translators", key: "nav.translators" },
+  { href: "/dashboard/admin/patients", key: "nav.patients" },
   { href: "/dashboard/admin/leads", key: "nav.leads" },
 ];
 

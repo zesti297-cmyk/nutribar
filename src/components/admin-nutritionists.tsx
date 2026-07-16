@@ -6,6 +6,7 @@ import {
   updateNutritionistCommission,
 } from "@/app/actions/admin";
 import { CommissionTypeToggle } from "@/components/commission-type-toggle";
+import { DeleteUserButton } from "@/components/delete-user-button";
 import { useI18n } from "@/lib/i18n";
 import type { CommissionType } from "@/lib/types";
 
@@ -109,21 +110,32 @@ function CommissionForm({
   );
 }
 
+// A foto vem do Storage, com URL dinâmica; <img> evita a otimização do
+// next/image, desnecessária num avatar pequeno de painel interno.
+function Avatar({ nutri, size = "sm" }: { nutri: AdminNutritionist; size?: "sm" | "lg" }) {
+  const box = size === "lg" ? "h-24 w-24 rounded-lg text-2xl" : "h-11 w-11 rounded-full text-sm";
+  if (nutri.photo_url) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={nutri.photo_url}
+        alt={nutri.full_name ?? nutri.email}
+        className={`${box} shrink-0 object-cover`}
+      />
+    );
+  }
+  return (
+    <div className={`${box} flex shrink-0 items-center justify-center bg-slate-200 font-bold text-stone-500`}>
+      {(nutri.full_name ?? nutri.email).charAt(0).toUpperCase()}
+    </div>
+  );
+}
+
 function ProfilePanel({ nutri }: { nutri: AdminNutritionist }) {
   const { t } = useI18n();
   return (
     <div className="mt-4 grid gap-4 rounded-xl border border-stone-200 bg-white p-4 sm:grid-cols-[auto_1fr]">
-      {nutri.photo_url ? (
-        <img
-          src={nutri.photo_url}
-          alt={nutri.full_name ?? nutri.email}
-          className="h-24 w-24 rounded-lg object-cover"
-        />
-      ) : (
-        <div className="flex h-24 w-24 items-center justify-center rounded-lg bg-slate-100 text-2xl font-bold text-stone-400">
-          {(nutri.full_name ?? nutri.email).charAt(0).toUpperCase()}
-        </div>
-      )}
+      <Avatar nutri={nutri} size="lg" />
       <div className="space-y-1 text-sm">
         <p><span className="text-stone-500">{t("admin.profile.email")}:</span> {nutri.email}</p>
         {nutri.location && <p><span className="text-stone-500">{t("admin.profile.location")}:</span> {nutri.location}</p>}
@@ -152,19 +164,28 @@ export function AdminNutritionists({
           {nutritionists.map((nutri) => (
             <div key={nutri.id} className="rounded-2xl border border-stone-100 bg-slate-50 p-4">
               <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="font-medium text-stone-900">{nutri.full_name ?? nutri.email}</p>
-                  <p className="text-sm text-stone-500">
-                    {t("admin.table.status")}: {t(`status.${nutri.status}`)}
-                  </p>
+                <div className="flex items-center gap-3">
+                  <Avatar nutri={nutri} />
+                  <div>
+                    <p className="font-medium text-stone-900">{nutri.full_name ?? nutri.email}</p>
+                    <p className="text-sm text-stone-500">
+                      {t("admin.table.status")}: {t(`status.${nutri.status}`)}
+                    </p>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setOpenId(openId === nutri.id ? null : nutri.id)}
-                  className="rounded-lg border border-[#0c2340] px-4 py-2 text-sm font-medium text-[#0c2340] transition-colors hover:bg-[#0c2340] hover:text-white"
-                >
-                  {openId === nutri.id ? t("admin.profile.hide") : t("admin.profile.view")}
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setOpenId(openId === nutri.id ? null : nutri.id)}
+                    className="rounded-lg border border-[#0c2340] px-4 py-2 text-sm font-medium text-[#0c2340] transition-colors hover:bg-[#0c2340] hover:text-white"
+                  >
+                    {openId === nutri.id ? t("admin.profile.hide") : t("admin.profile.view")}
+                  </button>
+                  <DeleteUserButton
+                    userId={nutri.id}
+                    label={nutri.full_name ?? nutri.email}
+                  />
+                </div>
               </div>
 
               {openId === nutri.id && <ProfilePanel nutri={nutri} />}

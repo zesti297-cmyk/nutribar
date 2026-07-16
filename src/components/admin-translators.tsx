@@ -6,6 +6,7 @@ import {
   updateTranslatorCommission,
 } from "@/app/actions/admin";
 import { CommissionTypeToggle } from "@/components/commission-type-toggle";
+import { DeleteUserButton } from "@/components/delete-user-button";
 import { useI18n } from "@/lib/i18n";
 import type { CommissionType, ReferralCommission } from "@/lib/types";
 
@@ -132,6 +133,7 @@ export function AdminTranslators({
                       {t("admin.table.status")}: {t(`status.${tr.status}`)}
                     </p>
                   </div>
+                  <DeleteUserButton userId={tr.id} label={tr.full_name ?? tr.email} />
                 </div>
                 <div className="mt-4">
                   <CommissionForm

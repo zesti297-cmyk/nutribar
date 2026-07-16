@@ -270,7 +270,8 @@
       "dashboard": "Overview",
       "nutritionists": "Nutritionists",
       "translators": "Translators",
-      "leads": "Leads"
+      "leads": "Leads",
+      "patients": "Patients"
     },
     "stats": {
       "nutritionists": "Nutritionists",
@@ -325,7 +326,22 @@
       "amount": "Amount"
     },
     "markPaid": "Mark as paid",
-    "referralsHint": "Each referral's amount is frozen when the referred user signs up. Changing a translator's commission does not affect referrals already recorded."
+    "referralsHint": "Each referral's amount is frozen when the referred user signs up. Changing a translator's commission does not affect referrals already recorded.",
+    "delete": {
+      "button": "Delete",
+      "confirm": "Permanently delete {name}?",
+      "yes": "Yes, delete",
+      "cancel": "Cancel",
+      "deleting": "Deleting..."
+    },
+    "growth": {
+      "title": "Growth",
+      "subtitle": "New signups per week (last 8 weeks)",
+      "empty": "No signups in this period yet."
+    },
+    "patients": {
+      "empty": "No patients registered yet."
+    }
   },
   "nutritionistDashboard": {
     "nav": {

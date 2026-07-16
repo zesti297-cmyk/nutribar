@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { DeleteUserButton } from "@/components/delete-user-button";
 import { useI18n } from "@/lib/i18n";
 import type { Lead } from "@/lib/types";
 
@@ -30,15 +31,18 @@ function LeadRow({ lead, dateLocale }: { lead: Lead; dateLocale: string }) {
           {new Date(lead.created_at).toLocaleDateString(dateLocale)}
         </td>
         <td className="py-3">
-          {answerEntries.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              className="text-sm font-medium text-[#0c2340] hover:underline"
-            >
-              {open ? t("admin.leads.hide") : t("admin.leads.details")}
-            </button>
-          )}
+          <div className="flex items-center justify-end gap-3">
+            {answerEntries.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                className="text-sm font-medium text-[#0c2340] hover:underline"
+              >
+                {open ? t("admin.leads.hide") : t("admin.leads.details")}
+              </button>
+            )}
+            <DeleteUserButton leadId={lead.id} label={lead.full_name ?? lead.email ?? "—"} />
+          </div>
         </td>
       </tr>
       {open && (

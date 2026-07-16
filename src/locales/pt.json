@@ -270,7 +270,8 @@
       "dashboard": "Visão geral",
       "nutritionists": "Nutricionistas",
       "translators": "Tradutores",
-      "leads": "Leads"
+      "leads": "Leads",
+      "patients": "Pacientes"
     },
     "stats": {
       "nutritionists": "Nutricionistas",
@@ -325,7 +326,22 @@
       "amount": "Valor"
     },
     "markPaid": "Marcar como pago",
-    "referralsHint": "O valor de cada convite é congelado no cadastro do indicado. Mudar a comissão de um tradutor não altera convites já registrados."
+    "referralsHint": "O valor de cada convite é congelado no cadastro do indicado. Mudar a comissão de um tradutor não altera convites já registrados.",
+    "delete": {
+      "button": "Excluir",
+      "confirm": "Excluir {name} definitivamente?",
+      "yes": "Sim, excluir",
+      "cancel": "Cancelar",
+      "deleting": "Excluindo..."
+    },
+    "growth": {
+      "title": "Evolução",
+      "subtitle": "Novos cadastros por semana (últimas 8 semanas)",
+      "empty": "Ainda não há cadastros no período."
+    },
+    "patients": {
+      "empty": "Nenhuma paciente cadastrada."
+    }
   },
   "nutritionistDashboard": {
     "nav": {
