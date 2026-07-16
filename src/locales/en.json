@@ -341,6 +341,10 @@
     },
     "patients": {
       "empty": "No patients registered yet."
+    },
+    "nutritionistPatients": {
+      "one": "1 patient",
+      "other": "{count} patients"
     }
   },
   "nutritionistDashboard": {

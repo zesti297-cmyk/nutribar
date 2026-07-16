@@ -188,6 +188,25 @@ export async function getApprovedNutritionists() {
   return data ?? [];
 }
 
+/**
+ * Quantas pacientes cada nutricionista tem (leads atribuídos a ela).
+ * Uma query para todas — não uma por card.
+ */
+export async function getLeadCountByNutritionist(): Promise<Record<string, number>> {
+  const { data, error } = await supabaseAdmin
+    .from("leads")
+    .select("nutritionist_id")
+    .not("nutritionist_id", "is", null);
+
+  if (error) throw error;
+
+  const counts: Record<string, number> = {};
+  for (const row of (data ?? []) as { nutritionist_id: string }[]) {
+    counts[row.nutritionist_id] = (counts[row.nutritionist_id] ?? 0) + 1;
+  }
+  return counts;
+}
+
 export async function getAdminPatients() {
   const { data, error } = await supabaseAdmin
     .from("users")

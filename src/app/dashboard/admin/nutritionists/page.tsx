@@ -1,7 +1,13 @@
 import { AdminNutritionists } from "@/components/admin-nutritionists";
-import { getAdminNutritionists } from "@/lib/users";
+import { getAdminNutritionists, getLeadCountByNutritionist } from "@/lib/users";
 
 export default async function AdminNutritionistsPage() {
-  const nutritionists = await getAdminNutritionists();
-  return <AdminNutritionists nutritionists={nutritionists} />;
+  const [nutritionists, patientCounts] = await Promise.all([
+    getAdminNutritionists(),
+    getLeadCountByNutritionist(),
+  ]);
+
+  return (
+    <AdminNutritionists nutritionists={nutritionists} patientCounts={patientCounts} />
+  );
 }

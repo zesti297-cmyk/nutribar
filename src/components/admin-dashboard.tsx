@@ -34,8 +34,9 @@ export function AdminDashboard({ stats }: { stats: AdminStats }) {
         label={t("admin.stats.translators")}
         value={stats.translators.total}
       />
+      {/* Leads não têm card aqui: a contagem por nutricionista, na aba delas,
+          diz mais do que um total solto — e três cards fecham a linha. */}
       <StatCard label={t("admin.stats.patients")} value={stats.patients} />
-      <StatCard label={t("admin.stats.leads")} value={stats.leads} />
     </div>
   );
 }

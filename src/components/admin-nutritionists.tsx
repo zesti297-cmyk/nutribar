@@ -131,6 +131,26 @@ function Avatar({ nutri, size = "sm" }: { nutri: AdminNutritionist; size?: "sm" 
   );
 }
 
+// Quantas pacientes ela atende. Zero fica cinza — é o estado normal de quem
+// acabou de entrar, não um alerta.
+function PatientCount({ count }: { count: number }) {
+  const { t } = useI18n();
+  const label =
+    count === 1
+      ? t("admin.nutritionistPatients.one")
+      : t("admin.nutritionistPatients.other", { count });
+
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+        count > 0 ? "bg-emerald-50 text-emerald-700" : "bg-stone-100 text-stone-500"
+      }`}
+    >
+      {label}
+    </span>
+  );
+}
+
 function ProfilePanel({ nutri }: { nutri: AdminNutritionist }) {
   const { t } = useI18n();
   return (
@@ -148,8 +168,10 @@ function ProfilePanel({ nutri }: { nutri: AdminNutritionist }) {
 
 export function AdminNutritionists({
   nutritionists,
+  patientCounts = {},
 }: {
   nutritionists: AdminNutritionist[];
+  patientCounts?: Record<string, number>;
 }) {
   const { t } = useI18n();
   const [openId, setOpenId] = useState<string | null>(null);
@@ -164,13 +186,20 @@ export function AdminNutritionists({
           {nutritionists.map((nutri) => (
             <div key={nutri.id} className="rounded-2xl border border-stone-100 bg-slate-50 p-4">
               <div className="flex flex-wrap items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 items-center gap-3">
                   <Avatar nutri={nutri} />
-                  <div>
-                    <p className="font-medium text-stone-900">{nutri.full_name ?? nutri.email}</p>
-                    <p className="text-sm text-stone-500">
-                      {t("admin.table.status")}: {t(`status.${nutri.status}`)}
+                  <div className="min-w-0">
+                    <p className="truncate font-medium text-stone-900">
+                      {nutri.full_name ?? nutri.email}
                     </p>
+                    {/* Sem separador: quando o selo quebra para a linha de
+                        baixo, um "·" sobra pendurado no fim do status. */}
+                    <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-stone-500">
+                      <span>
+                        {t("admin.table.status")}: {t(`status.${nutri.status}`)}
+                      </span>
+                      <PatientCount count={patientCounts[nutri.id] ?? 0} />
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
