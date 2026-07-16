@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useI18n } from "../lib/i18n";
 
 export function LandingHowItWorks() {
@@ -44,14 +45,26 @@ export function LandingHowItWorks() {
           <p className="mt-4 text-lg text-slate-500">{t("how.subtitle")}</p>
         </div>
 
-        <div className="mt-16 flex justify-center">
+        <div className="mt-16 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Imagem: no mobile aparece inteira (aspect natural), no desktop preenche a coluna */}
+          <div className="order-first overflow-hidden rounded-3xl">
+            <Image
+              src="/imgheader/pexels-olly-3847939.jpg"
+              alt={t("how.title")}
+              width={1200}
+              height={900}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="w-full object-contain lg:h-full lg:object-cover"
+            />
+          </div>
+
           {/* Timeline vertical com linha conectora */}
           <ol className="relative w-full max-w-xl space-y-10 pl-8">
             {/* Trilho base */}
             <div className="absolute left-0 top-2 bottom-2 w-px bg-slate-200" aria-hidden="true" />
             {/* Trilho preenchido conforme o scroll avança */}
             <div
-              className="absolute left-0 top-2 w-px bg-[#0c2340] transition-all duration-500 ease-out"
+              className="absolute left-0 top-2 w-px bg-sky-400 transition-all duration-500 ease-out"
               style={{
                 height:
                   steps.length > 1
@@ -73,12 +86,12 @@ export function LandingHowItWorks() {
                 >
                   <span
                     className={`absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full border-2 bg-white transition-colors duration-300 ${
-                      isActive ? "border-[#0c2340]" : "border-slate-300"
+                      isActive ? "border-sky-500" : "border-slate-300"
                     }`}
                   >
                     <span
                       className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-                        isActive ? "bg-[#0c2340]" : "bg-slate-300"
+                        isActive ? "bg-sky-500" : "bg-slate-300"
                       }`}
                     />
                   </span>

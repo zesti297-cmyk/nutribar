@@ -7,9 +7,9 @@
   "language": "Langue",
   "selectLanguage": "Choisir la langue",
   "hero": {
-    "preTitle": "Un suivi nutritionnel pour votre nouvelle étape",
+    "preTitle": "Suivi post-opératoire",
     "title": "Votre nouvelle étape mérite un suivi à la hauteur",
-    "description": "Vous avez déjà franchi le pas le plus important. Il est maintenant temps de prendre soin de ce qui suit, avec quelqu'un qui comprend chaque étape de votre transformation. Nutribar vous met en relation avec des nutritionnistes spécialisées, avec des protocoles adaptés à votre moment, des ajustements selon votre évolution et le soutien d'une personne de confiance.",
+    "description": "Vous avez déjà franchi le pas le plus important. Nutribar vous met en relation avec des nutritionnistes spécialisées, avec des protocoles adaptés et un soutien à chaque étape.",
     "cta": "Commencer ma nouvelle étape",
     "stats": {
       "continuous": {
@@ -164,7 +164,9 @@
     "title": "Votre résultat mérite de la continuité",
     "description": "Ne laissez pas votre post-opératoire au hasard. Commencez aujourd'hui votre suivi avec une nutritionniste spécialisée dans votre intervention.",
     "primary": "Commencer mon suivi",
-    "secondary": "Voir les nutritionnistes"
+    "secondary": "Voir les nutritionnistes",
+    "eyebrow": "Commencez maintenant",
+    "reassurance": "Inscription en minutes · 100% en ligne · Sans engagement"
   },
   "footer": {
     "brand": "Nutribar",

@@ -7,9 +7,9 @@
   "language": "Language",
   "selectLanguage": "Select language",
   "hero": {
-    "preTitle": "Nutritional care for your new chapter",
+    "preTitle": "Post-surgery care",
     "title": "Your new chapter deserves care that matches it",
-    "description": "You've already taken the most important step. Now it's time to care for what comes next, with someone who understands every stage of your transformation. Nutribar connects you with specialized nutritionists, with protocols tailored to your moment, adjustments based on your progress, and support from someone you trust.",
+    "description": "You've already taken the most important step. Nutribar connects you with specialized nutritionists, with tailored protocols and support at every stage.",
     "cta": "Start my new chapter",
     "stats": {
       "continuous": {
@@ -164,7 +164,9 @@
     "title": "Your result deserves continuity",
     "description": "Don't leave your recovery to chance. Start your follow-up today with a nutritionist specialized in your procedure.",
     "primary": "Start my follow-up",
-    "secondary": "See nutritionists"
+    "secondary": "See nutritionists",
+    "eyebrow": "Start now",
+    "reassurance": "Sign up in minutes · 100% online · No commitment"
   },
   "footer": {
     "brand": "Nutribar",

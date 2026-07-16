@@ -7,9 +7,9 @@
   "language": "Idioma",
   "selectLanguage": "Seleccionar idioma",
   "hero": {
-    "preTitle": "Seguimiento nutricional para tu nueva etapa",
+    "preTitle": "Seguimiento posoperatorio",
     "title": "Tu nueva etapa merece un acompañamiento a la altura",
-    "description": "Ya diste el paso más importante. Ahora es momento de cuidar lo que viene después, con quien entiende cada fase de tu transformación. Nutribar te conecta con nutricionistas especializadas, con protocolos personalizados para tu momento, ajustes según tu evolución y apoyo de quien confías.",
+    "description": "Ya diste el paso más importante. Nutribar te conecta con nutricionistas especializadas, con protocolos personalizados y apoyo en cada etapa.",
     "cta": "Empezar mi nueva etapa",
     "stats": {
       "continuous": {
@@ -164,7 +164,9 @@
     "title": "Tu resultado merece continuidad",
     "description": "No dejes tu posoperatorio al azar. Empieza hoy tu seguimiento con una nutricionista especializada en tu procedimiento.",
     "primary": "Empezar mi seguimiento",
-    "secondary": "Ver nutricionistas"
+    "secondary": "Ver nutricionistas",
+    "eyebrow": "Empieza ahora",
+    "reassurance": "Registro en minutos · 100% online · Sin compromiso"
   },
   "footer": {
     "brand": "Nutribar",
