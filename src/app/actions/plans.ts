@@ -75,7 +75,10 @@ export async function createPlanAction(formData: FormData): Promise<PlanResult> 
 
   await createPlan({ nutritionistId: auth.id, ...fields });
 
+  // A landing mostra estes planos no modal do perfil; sem isto ela continua
+  // servindo a versão em cache, sem o plano que ela acabou de mexer.
   revalidatePath("/dashboard/nutritionist/plans");
+  revalidatePath("/");
   return { success: true };
 }
 
@@ -96,6 +99,7 @@ export async function updatePlanAction(formData: FormData): Promise<PlanResult> 
   if (!updated) return { error: "Plano não encontrado." };
 
   revalidatePath("/dashboard/nutritionist/plans");
+  revalidatePath("/");
   return { success: true };
 }
 
@@ -110,5 +114,6 @@ export async function deletePlanAction(formData: FormData): Promise<PlanResult> 
   if (!deleted) return { error: "Plano não encontrado." };
 
   revalidatePath("/dashboard/nutritionist/plans");
+  revalidatePath("/");
   return { success: true };
 }
