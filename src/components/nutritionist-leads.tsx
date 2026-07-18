@@ -5,7 +5,7 @@ import { useI18n } from "@/lib/i18n";
 import type { Lead } from "@/lib/types";
 
 const LOCALE_TO_DATE: Record<string, string> = {
-  pt: "pt-BR",
+  pt: "pt-PT",
   en: "en-US",
   es: "es",
   fr: "fr-FR",

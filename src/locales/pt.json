@@ -8,9 +8,9 @@
   "selectLanguage": "Selecionar idioma",
   "hero": {
     "preTitle": "Acompanhamento pós-cirúrgico",
-    "title": "Sua nova fase merece um acompanhamento à altura",
-    "description": "Você deu o passo mais importante. A Nutribar conecta você a nutricionistas especializadas, com protocolos personalizados e suporte em cada etapa.",
-    "cta": "Começar minha nova fase",
+    "title": "A sua nova fase merece um acompanhamento à altura",
+    "description": "Deu o passo mais importante. A Nutribar liga-o a nutricionistas especializadas, com protocolos personalizados e apoio em cada etapa.",
+    "cta": "Começar a minha nova fase",
     "stats": {
       "continuous": {
         "value": "Contínuo",
@@ -18,10 +18,10 @@
       },
       "online": {
         "value": "100%",
-        "label": "atendimento online, onde você estiver"
+        "label": "atendimento online, onde quer que esteja"
       },
       "support": {
-        "value": "Multilíngue",
+        "value": "Multilingue",
         "label": "profissionais no seu idioma"
       }
     },
@@ -37,41 +37,41 @@
     },
     "steps": {
       "1": {
-        "title": "Crie sua conta",
-        "description": "Cadastre-se em minutos e conte seu histórico cirúrgico. Todo o processo é online, seguro e no seu idioma."
+        "title": "Crie a sua conta",
+        "description": "Registe-se em minutos e conte o seu historial cirúrgico. Todo o processo é online, seguro e no seu idioma."
       },
       "2": {
-        "title": "Escolha sua nutricionista",
+        "title": "Escolha a sua nutricionista",
         "description": "Selecione entre profissionais verificadas e especializadas em acompanhamento pós-cirúrgico, com experiência exatamente no seu tipo de procedimento."
       },
       "3": {
-        "title": "Siga seu protocolo",
+        "title": "Siga o seu protocolo",
         "description": "Receba um plano alimentar estruturado para a sua fase de recuperação, com ajustes clínicos a cada avaliação e orientação para prevenir carências."
       },
       "4": {
-        "title": "Mantenha seus resultados",
-        "description": "Acompanhe metas, evolução e recomendações em um só lugar, com suporte contínuo para consolidar o resultado a longo prazo."
+        "title": "Mantenha os seus resultados",
+        "description": "Acompanhe metas, evolução e recomendações num só lugar, com apoio contínuo para consolidar o resultado a longo prazo."
       }
     }
   },
   "nutritionistsSection": {
-    "title": "Nutricionistas prontas para caminhar com você",
-    "description": "Cada profissional da Nutribar é verificada e tem experiência real em acompanhar mulheres na sua nova fase. Escolha por especialidade, idioma e localização, e siga em frente com quem entende do seu caso.",
-    "emptyTitle": "Novas nutricionistas entrando em breve",
-    "emptyDesc": "Estamos verificando novas profissionais para ampliar o atendimento e garantir acompanhamento especializado em cada etapa da sua jornada.",
+    "title": "Nutricionistas prontas para caminhar consigo",
+    "description": "Cada profissional da Nutribar é verificada e tem experiência real em acompanhar mulheres na sua nova fase. Escolha por especialidade, idioma e localização, e siga em frente com quem percebe do seu caso.",
+    "emptyTitle": "Novas nutricionistas a entrar em breve",
+    "emptyDesc": "Estamos a verificar novas profissionais para alargar o atendimento e garantir acompanhamento especializado em cada etapa do seu percurso.",
     "placeholderName1": "Especialista na sua nova fase",
     "placeholderName2": "Nutricionista internacional",
     "placeholderName3": "Acompanhamento contínuo",
     "placeholderBio1": "Especializada em protocolos nutricionais para a sua nova fase, reeducação alimentar e prevenção de carências.",
-    "placeholderBio2": "Acompanhamento clínico para mulheres que vivem essa transição no exterior e precisam de suporte no idioma delas.",
-    "placeholderBio3": "Orientação estruturada para cada etapa da sua jornada, do início à manutenção de resultados.",
-    "placeholderLocation1": "São Paulo, Brasil",
-    "placeholderLocation2": "Lisboa, Portugal",
-    "placeholderLocation3": "Recife, Brasil"
+    "placeholderBio2": "Acompanhamento clínico para mulheres que vivem esta transição no estrangeiro e precisam de apoio no idioma delas.",
+    "placeholderBio3": "Orientação estruturada para cada etapa do seu percurso, do início à manutenção de resultados.",
+    "placeholderLocation1": "Lisboa, Portugal",
+    "placeholderLocation2": "Porto, Portugal",
+    "placeholderLocation3": "Braga, Portugal"
   },
   "why": {
-    "title": "Por que o acompanhamento pós-operatório é decisivo",
-    "subtitle": "As primeiras fases após a cirurgia definem a sua saúde pelos próximos anos. Um acompanhamento nutricional especializado protege o seu resultado.",
+    "title": "Porque o acompanhamento pós-operatório é decisivo",
+    "subtitle": "As primeiras fases após a cirurgia definem a sua saúde nos próximos anos. Um acompanhamento nutricional especializado protege o seu resultado.",
     "points": {
       "1": {
         "title": "Prevenção de carências nutricionais",
@@ -79,15 +79,15 @@
       },
       "2": {
         "title": "Reeducação alimentar estruturada",
-        "description": "Reconstruir a relação com a comida é um processo. Sua nutricionista guia cada fase, do líquido ao sólido, com segurança e no seu ritmo."
+        "description": "Reconstruir a relação com a comida é um processo. A sua nutricionista orienta cada fase, do líquido ao sólido, com segurança e ao seu ritmo."
       },
       "3": {
         "title": "Manutenção do resultado a longo prazo",
-        "description": "O acompanhamento contínuo é o que impede o reganho de peso e consolida os hábitos que sustentam o resultado da cirurgia."
+        "description": "O acompanhamento contínuo é o que impede a recuperação de peso e consolida os hábitos que sustentam o resultado da cirurgia."
       },
       "4": {
-        "title": "Suporte no seu idioma",
-        "description": "Operou no exterior? Retome o cuidado com uma profissional que fala a sua língua e entende o protocolo do seu procedimento."
+        "title": "Apoio no seu idioma",
+        "description": "Operou no estrangeiro? Retome o cuidado com uma profissional que fala a sua língua e conhece o protocolo do seu procedimento."
       }
     }
   },
@@ -97,80 +97,80 @@
     "items": {
       "1": {
         "tags": "Nova fase · Reeducação alimentar",
-        "result": "↘ 18kg em 6 meses · Sem carências",
-        "quote": "Voltei do exterior sem saber como me alimentar direito. Com a nutricionista, retomei o controle e já perdi 18kg em 6 meses, sem sentir falta de nenhum nutriente.",
+        "result": "↘ 18 kg em 6 meses · Sem carências",
+        "quote": "Voltei do estrangeiro sem saber como me alimentar bem. Com a nutricionista, retomei o controlo e já perdi 18 kg em 6 meses, sem sentir falta de nenhum nutriente.",
         "author": "Camila R.",
-        "role": "Acompanhada por Dra. Ana Silva"
+        "role": "Acompanhada pela Dra. Ana Silva"
       },
       "2": {
         "tags": "Nova fase · Suplementação",
-        "result": "↘ 22kg em 1 ano · Vitaminas em dia",
-        "quote": "O plano por fases me deu confiança. Em 1 ano perdi 22kg e minhas taxas de vitamina B12 e ferro nunca estiveram tão equilibradas.",
+        "result": "↘ 22 kg em 1 ano · Vitaminas em dia",
+        "quote": "O plano por fases deu-me confiança. Em 1 ano perdi 22 kg e os meus valores de vitamina B12 e ferro nunca estiveram tão equilibrados.",
         "author": "Beatriz M.",
-        "role": "Acompanhada por Dra. Sofía Martínez"
+        "role": "Acompanhada pela Dra. Sofía Martínez"
       },
       "3": {
         "tags": "Nova fase · Manutenção de peso",
-        "result": "↘ 9kg recuperados · Peso estabilizado",
-        "quote": "Eu já tinha recuperado alguns quilos antes de começar. Com o acompanhamento contínuo, perdi os 9kg de volta e finalmente estabilizei meu peso.",
+        "result": "↘ 9 kg recuperados · Peso estabilizado",
+        "quote": "Já tinha recuperado alguns quilos antes de começar. Com o acompanhamento contínuo, voltei a perder os 9 kg e finalmente estabilizei o meu peso.",
         "author": "Fernanda L.",
-        "role": "Acompanhada por Dra. Elena Ruiz"
+        "role": "Acompanhada pela Dra. Elena Ruiz"
       }
     }
   },
   "faq": {
     "title": "Perguntas frequentes",
-    "subtitle": "Tudo o que você precisa saber antes de começar.",
+    "subtitle": "Tudo o que precisa de saber antes de começar.",
     "items": {
       "1": {
         "question": "O atendimento é totalmente online?",
-        "answer": "Sim. Todo o acompanhamento acontece de forma online e segura, de onde você estiver, com consultas, ajustes de protocolo e suporte entre as avaliações."
+        "answer": "Sim. Todo o acompanhamento decorre de forma online e segura, onde quer que esteja, com consultas, ajustes de protocolo e apoio entre as avaliações."
       },
       "2": {
         "question": "Em quanto tempo começo o acompanhamento?",
-        "answer": "Assim que você cria a conta e escolhe a sua nutricionista, o processo começa. O cadastro leva poucos minutos."
+        "answer": "Assim que cria a conta e escolhe a sua nutricionista, o processo começa. O registo demora poucos minutos."
       },
       "3": {
         "question": "Como escolho a nutricionista certa para mim?",
-        "answer": "Você pode filtrar por especialidade, idioma e localização. Cada perfil mostra a experiência clínica da profissional para que você escolha quem melhor entende o seu caso."
+        "answer": "Pode filtrar por especialidade, idioma e localização. Cada perfil mostra a experiência clínica da profissional para que escolha quem melhor percebe do seu caso."
       },
       "4": {
         "question": "As nutricionistas são verificadas?",
-        "answer": "Sim. Todas as profissionais passam por um processo de verificação antes de aparecer na plataforma. Só quem é aprovado pela nossa equipe atende pacientes na Nutribar."
+        "answer": "Sim. Todas as profissionais passam por um processo de verificação antes de aparecerem na plataforma. Só quem é aprovado pela nossa equipa atende pacientes na Nutribar."
       },
       "5": {
-        "question": "Operei no exterior. Consigo acompanhamento no meu idioma?",
-        "answer": "Sim. Este é o coração da Nutribar. Você encontra nutricionistas que falam o seu idioma e conhecem o protocolo do país onde você operou, para retomar o cuidado sem barreiras."
+        "question": "Operei no estrangeiro. Consigo acompanhamento no meu idioma?",
+        "answer": "Sim. Este é o coração da Nutribar. Encontra nutricionistas que falam o seu idioma e conhecem o protocolo do país onde operou, para retomar o cuidado sem barreiras."
       },
       "6": {
         "question": "Como funcionam os planos de acompanhamento?",
-        "answer": "Cada nutricionista oferece planos mensal, trimestral ou anual, com diferentes frequências de consulta, revisões e suporte. Você escolhe o que faz mais sentido para a sua fase de recuperação."
+        "answer": "Cada nutricionista oferece planos mensal, trimestral ou anual, com diferentes frequências de consulta, revisões e apoio. Escolhe o que faz mais sentido para a sua fase de recuperação."
       },
       "7": {
         "question": "Vou receber um plano alimentar personalizado?",
-        "answer": "Sim. Sua nutricionista monta um protocolo alimentar de acordo com o seu procedimento, a sua fase de recuperação e a sua evolução, ajustando a cada avaliação."
+        "answer": "Sim. A sua nutricionista prepara um protocolo alimentar de acordo com o seu procedimento, a sua fase de recuperação e a sua evolução, ajustando a cada avaliação."
       },
       "8": {
-        "question": "Meus dados de saúde ficam seguros?",
+        "question": "Os meus dados de saúde ficam seguros?",
         "answer": "Sim. As suas informações são tratadas com confidencialidade e usadas apenas para o seu acompanhamento nutricional dentro da plataforma."
       },
       "9": {
-        "question": "Posso trocar de nutricionista depois?",
-        "answer": "Pode. Se sentir que outra profissional se encaixa melhor no seu caso, é possível escolher uma nova nutricionista dentro da plataforma."
+        "question": "Posso trocar de nutricionista mais tarde?",
+        "answer": "Pode. Se sentir que outra profissional se ajusta melhor ao seu caso, é possível escolher uma nova nutricionista dentro da plataforma."
       }
     }
   },
   "finalCta": {
-    "title": "Seu resultado merece continuidade",
-    "description": "Não deixe o pós-operatório ao acaso. Comece hoje seu acompanhamento com uma nutricionista especializada no seu procedimento.",
-    "primary": "Começar meu acompanhamento",
+    "title": "O seu resultado merece continuidade",
+    "description": "Não deixe o pós-operatório ao acaso. Comece hoje o seu acompanhamento com uma nutricionista especializada no seu procedimento.",
+    "primary": "Começar o meu acompanhamento",
     "secondary": "Ver nutricionistas",
     "eyebrow": "Comece agora",
-    "reassurance": "Cadastro em minutos · 100% online · Sem compromisso"
+    "reassurance": "Registo em minutos · 100% online · Sem compromisso"
   },
   "footer": {
     "brand": "Nutribar",
-    "description": "Acompanhamento nutricional pós-cirúrgico para pacientes internacionais. Garantimos a continuidade do seu cuidado clínico quando você volta para casa.",
+    "description": "Acompanhamento nutricional pós-cirúrgico para pacientes internacionais. Garantimos a continuidade do seu cuidado clínico quando regressa a casa.",
     "company": "Empresa",
     "resources": "Recursos",
     "legal": "Legal",
@@ -179,12 +179,12 @@
     "forTranslators": "Para tradutores",
     "imPatient": "Sou paciente",
     "imNutritionist": "Sou nutricionista",
-    "contact": "Contato",
+    "contact": "Contacto",
     "privacy": "Política de privacidade",
-    "terms": "Termos de uso",
+    "terms": "Termos de utilização",
     "disclaimer": "Aviso legal",
     "copyright": "© {year} Nutribar. Todos os direitos reservados.",
-    "note": "A Nutribar é uma plataforma de acompanhamento nutricional e não substitui a orientação do seu médico ou equipe cirúrgica."
+    "note": "A Nutribar é uma plataforma de acompanhamento nutricional e não substitui a orientação do seu médico ou equipa cirúrgica."
   },
   "nutritionistCard": {
     "placeholderBio": "Nutricionista especializada em acompanhamento clínico pós-cirúrgico.",
@@ -196,37 +196,37 @@
     "monthly": "Mensal",
     "quarterly": "Trimestral",
     "annual": "Anual",
-    "packMonthlyDescription": "Consulta inicial + 1 avaliação por mês, com ajustes de protocolo e suporte por mensagem entre as consultas.",
+    "packMonthlyDescription": "Consulta inicial + 1 avaliação por mês, com ajustes de protocolo e apoio por mensagem entre as consultas.",
     "packQuarterlyDescription": "Consulta inicial, 3 revisões clínicas, recomendações detalhadas e acompanhamento contínuo da sua evolução.",
     "packAnnualDescription": "Programa completo de 1 ano: avaliações regulares, ajustes de protocolo, prevenção de carências e prioridade no atendimento.",
     "from": "A partir de {price}",
     "contact": "Falar com a nutricionista",
     "close": "Fechar",
-    "noPlans": "Esta nutricionista ainda não cadastrou planos. Fale com ela para saber os valores."
+    "noPlans": "Esta nutricionista ainda não registou planos. Fale com ela para saber os valores."
   },
   "nutritionistForm": {
     "fullName": "Nome completo",
     "location": "Localização",
-    "locationPlaceholder": "Ex: São Paulo, Brasil",
+    "locationPlaceholder": "Ex.: Lisboa, Portugal",
     "languages": "Idiomas de atendimento",
-    "languagesPlaceholder": "Ex: Português, Inglês, Espanhol",
-    "bio": "Sua experiência clínica",
-    "bioPlaceholder": "Descreva sua especialização e experiência com pacientes no pós-operatório. Este texto ajuda a paciente a escolher você, então seja específica sobre procedimentos e resultados.",
-    "saving": "Salvando...",
-    "saved": "Perfil salvo com sucesso!",
-    "save": "Salvar perfil"
+    "languagesPlaceholder": "Ex.: Português, Inglês, Espanhol",
+    "bio": "A sua experiência clínica",
+    "bioPlaceholder": "Descreva a sua especialização e experiência com pacientes no pós-operatório. Este texto ajuda a paciente a escolhê-la, por isso seja específica sobre procedimentos e resultados.",
+    "saving": "A guardar...",
+    "saved": "Perfil guardado com sucesso!",
+    "save": "Guardar perfil"
   },
   "nutritionistPlans": {
-    "title": "Meus planos",
-    "description": "Cadastre os planos de acompanhamento que você oferece. Eles aparecem no seu perfil para as pacientes.",
-    "empty": "Você ainda não cadastrou nenhum plano.",
+    "title": "Os meus planos",
+    "description": "Registe os planos de acompanhamento que oferece. Aparecem no seu perfil para as pacientes.",
+    "empty": "Ainda não registou nenhum plano.",
     "inactive": "Inativo",
     "fields": {
       "name": "Nome do plano",
       "price": "Preço",
       "currency": "Moeda",
       "duration": "Duração",
-      "description": "O que está incluso",
+      "description": "O que está incluído",
       "isActive": "Mostrar este plano no meu perfil"
     },
     "placeholders": {
@@ -238,32 +238,32 @@
     "create": {
       "title": "Novo plano",
       "submit": "Adicionar plano",
-      "saving": "Salvando..."
+      "saving": "A guardar..."
     },
     "edit": {
       "button": "Editar",
-      "save": "Salvar alterações",
+      "save": "Guardar alterações",
       "cancel": "Cancelar"
     },
     "delete": {
-      "button": "Excluir",
-      "confirm": "Excluir este plano?",
-      "yes": "Sim, excluir"
+      "button": "Eliminar",
+      "confirm": "Eliminar este plano?",
+      "yes": "Sim, eliminar"
     }
   },
   "auth": {
     "back": "← Voltar",
-    "enterAccount": "Acesse sua conta",
-    "createAccount": "Crie sua conta e comece hoje",
+    "enterAccount": "Aceda à sua conta",
+    "createAccount": "Crie a sua conta e comece hoje",
     "referral": "Indicado por tradutor: {code}",
     "email": "Email",
-    "password": "Senha",
-    "showPassword": "Mostrar senha",
-    "hidePassword": "Ocultar senha",
+    "password": "Palavra-passe",
+    "showPassword": "Mostrar palavra-passe",
+    "hidePassword": "Ocultar palavra-passe",
     "wait": "Aguarde...",
     "login": "Entrar",
     "signup": "Criar conta",
-    "noAccount": "Ainda não tem conta? Cadastre-se",
+    "noAccount": "Ainda não tem conta? Registe-se",
     "haveAccount": "Já tem conta? Entre"
   },
   "admin": {
@@ -290,23 +290,23 @@
     },
     "leads": {
       "title": "Leads do onboarding",
-      "empty": "Nenhum lead registrado.",
+      "empty": "Nenhum lead registado.",
       "name": "Nome",
       "email": "Email",
       "nutritionist": "Nutricionista",
-      "status": "Status",
+      "status": "Estado",
       "date": "Data",
       "details": "Ver detalhes",
       "hide": "Ocultar"
     },
-    "saveNutritionistCommission": "Salvar comissão da nutricionista",
-    "saveReferralCommission": "Salvar comissão de indicação",
+    "saveNutritionistCommission": "Guardar comissão da nutricionista",
+    "saveReferralCommission": "Guardar comissão de indicação",
     "commissionType": {
       "fixed": "Dólar ($)",
-      "percent": "Porcentagem (%)"
+      "percent": "Percentagem (%)"
     },
     "noPending": "Nenhuma aprovação pendente.",
-    "loginLinks": "Links de acesso",
+    "loginLinks": "Ligações de acesso",
     "loginLinksDescription": "Copie e envie para as nutricionistas e tradutores criarem a conta ou entrarem.",
     "loginLinkNutritionist": "Login nutricionista",
     "loginLinkTranslator": "Login tradutor",
@@ -315,34 +315,36 @@
     "translators": "Tradutores",
     "noTranslators": "Nenhum tradutor encontrado.",
     "referrals": "Indicações entre tradutores",
-    "noReferrals": "Nenhuma indicação registrada.",
-    "savePlan": "Salvar plano",
-    "saveCommission": "Salvar comissão",
-    "copyLink": "Copiar link",
+    "noReferrals": "Nenhuma indicação registada.",
+    "approve": "Aprovar",
+    "approving": "A aprovar...",
+    "savePlan": "Guardar plano",
+    "saveCommission": "Guardar comissão",
+    "copyLink": "Copiar ligação",
     "copied": "Copiado",
     "table": {
       "translator": "Tradutor indicado",
       "referrer": "Indicado por",
-      "status": "Status",
+      "status": "Estado",
       "date": "Data",
       "amount": "Valor"
     },
     "markPaid": "Marcar como pago",
-    "referralsHint": "O valor de cada convite é congelado no cadastro do indicado. Mudar a comissão de um tradutor não altera convites já registrados.",
+    "referralsHint": "O valor de cada convite é fixado no registo do indicado. Alterar a comissão de um tradutor não altera convites já registados.",
     "delete": {
-      "button": "Excluir",
-      "confirm": "Excluir {name} definitivamente?",
-      "yes": "Sim, excluir",
+      "button": "Eliminar",
+      "confirm": "Eliminar {name} definitivamente?",
+      "yes": "Sim, eliminar",
       "cancel": "Cancelar",
-      "deleting": "Excluindo..."
+      "deleting": "A eliminar..."
     },
     "growth": {
       "title": "Evolução",
-      "subtitle": "Novos cadastros por semana (últimas 8 semanas)",
-      "empty": "Ainda não há cadastros no período."
+      "subtitle": "Novos registos por semana (últimas 8 semanas)",
+      "empty": "Ainda não há registos no período."
     },
     "patients": {
-      "empty": "Nenhuma paciente cadastrada."
+      "empty": "Nenhuma paciente registada."
     },
     "nutritionistPatients": {
       "one": "1 paciente",
@@ -352,26 +354,26 @@
       "selectAll": "Selecionar todos",
       "selected": "{count} selecionados",
       "selectedOne": "1 selecionado",
-      "export": "Exportar planilha",
-      "delete": "Excluir selecionados",
-      "confirmDelete": "Excluir {count} definitivamente?",
-      "partialError": "{count} não puderam ser excluídos."
+      "export": "Exportar folha de cálculo",
+      "delete": "Eliminar selecionados",
+      "confirmDelete": "Eliminar {count} definitivamente?",
+      "partialError": "{count} não puderam ser eliminados."
     }
   },
   "nutritionistDashboard": {
     "nav": {
-      "profile": "Meu perfil",
-      "leads": "Minhas pacientes",
-      "plans": "Meus planos"
+      "profile": "O meu perfil",
+      "leads": "As minhas pacientes",
+      "plans": "Os meus planos"
     },
     "leads": {
       "title": "Pacientes interessadas",
-      "description": "Pessoas que preencheram o cadastro e escolheram você para o acompanhamento.",
-      "empty": "Nenhuma paciente ainda. Assim que alguém escolher você, ela aparece aqui.",
+      "description": "Pessoas que preencheram o registo e a escolheram para o acompanhamento.",
+      "empty": "Nenhuma paciente ainda. Assim que alguém a escolher, aparece aqui.",
       "name": "Nome",
       "email": "Email",
       "phone": "Telefone",
-      "status": "Status",
+      "status": "Estado",
       "date": "Data",
       "details": "Ver detalhes",
       "hide": "Ocultar"
@@ -391,28 +393,30 @@
     "signOut": "Sair",
     "patient": {
       "welcome": "Bem-vinda{suffix}!",
-      "description": "Seu acompanhamento nutricional pós-cirúrgico está sendo preparado.",
-      "banner": "Em breve você terá acesso à sua nutricionista e ao protocolo alimentar personalizado para a sua fase de recuperação."
+      "description": "O seu acompanhamento nutricional pós-cirúrgico está a ser preparado.",
+      "banner": "Em breve terá acesso à sua nutricionista e ao protocolo alimentar personalizado para a sua fase de recuperação."
     },
     "translator": {
-      "title": "Seu link de indicação",
-      "description": "Compartilhe este link para indicar outros tradutores e ganhar comissão por cada indicação.",
-      "bonusFixed": "Você ganha {value} por tradutor indicado.",
-      "bonusPercent": "Você ganha {value}% de comissão por tradutor indicado.",
+      "title": "A sua ligação de indicação",
+      "description": "Partilhe esta ligação para indicar outros tradutores e ganhar comissão por cada indicação.",
+      "bonusFixed": "Ganha {value} por tradutor indicado.",
+      "bonusPercent": "Ganha {value}% de comissão por tradutor indicado.",
       "referred": "Tradutores indicados",
       "payable": "A receber",
       "paid": "Já pago"
     },
     "nutritionist": {
-      "title": "Seu perfil profissional",
-      "description": "Complete suas informações para que as pacientes possam encontrar você e escolher o seu acompanhamento."
+      "title": "O seu perfil profissional",
+      "description": "Complete as suas informações para que as pacientes a possam encontrar e escolher o seu acompanhamento.",
+      "pendingTitle": "Conta em análise.",
+      "pendingDescription": "Preencha o seu perfil e os seus planos com tranquilidade. Só aparece para as pacientes depois de a nossa equipa aprovar a sua conta."
     }
   },
   "onboarding": {
-    "title": "Vamos preparar seu acompanhamento",
+    "title": "Vamos preparar o seu acompanhamento",
     "stepLabel": "Passo {current} de {total}: {label}",
     "steps": {
-      "account": "Sua conta",
+      "account": "A sua conta",
       "surgeryType": "Tipo de cirurgia",
       "language": "Idioma",
       "country": "País",
@@ -431,32 +435,32 @@
       "fullName": "Nome completo",
       "email": "Email",
       "phone": "Telefone",
-      "password": "Senha",
+      "password": "Palavra-passe",
       "surgeryType": "Tipo de cirurgia",
       "language": "Idioma",
       "country": "País",
       "surgeryCity": "Cidade onde operou",
       "hospital": "Hospital",
-      "nutritionist": "Escolha sua nutricionista"
+      "nutritionist": "Escolha a sua nutricionista"
     },
     "placeholders": {
       "fullName": "Nome completo",
       "email": "Email",
-      "phone": "Telefone com DDD",
-      "password": "Crie uma senha (mín. 6 caracteres)",
-      "country": "Seu país",
+      "phone": "Telemóvel com indicativo",
+      "password": "Crie uma palavra-passe (mín. 6 caracteres)",
+      "country": "O seu país",
       "surgeryCity": "Cidade onde operou",
       "hospital": "Hospital onde operou"
     },
     "buttons": {
       "prev": "Voltar",
       "next": "Continuar",
-      "submit": "Concluir cadastro"
+      "submit": "Concluir registo"
     },
-    "reviewTitle": "Revise suas informações",
+    "reviewTitle": "Reveja as suas informações",
     "submitError": "Não foi possível concluir. Verifique os dados e tente novamente.",
-    "submitSuccess": "Cadastro concluído com sucesso!",
-    "notFilled": "Não informado"
+    "submitSuccess": "Registo concluído com sucesso!",
+    "notFilled": "Não indicado"
   },
   "languageModal": {
     "cancel": "Cancelar"
@@ -473,8 +477,8 @@
   },
   "leadStatus": {
     "new": "novo",
-    "contacted": "contatado",
-    "in_progress": "em andamento",
+    "contacted": "contactado",
+    "in_progress": "em curso",
     "converted": "convertido",
     "lost": "perdido"
   },
@@ -487,21 +491,21 @@
     "choose": "Escolher foto",
     "change": "Trocar foto",
     "empty": "Sem foto",
-    "help": "JPG, PNG ou WebP. Esta foto aparece no seu card para as pacientes.",
-    "dragHint": "Arraste para enquadrar e use o controle abaixo para aproximar.",
+    "help": "JPG, PNG ou WebP. Esta foto aparece no seu cartão para as pacientes.",
+    "dragHint": "Arraste para enquadrar e use o controlo abaixo para aproximar.",
     "zoom": "Aproximar",
-    "save": "Salvar foto",
-    "saving": "Enviando...",
+    "save": "Guardar foto",
+    "saving": "A enviar...",
     "cancel": "Cancelar",
     "saved": "Foto atualizada!",
     "error": "Não foi possível processar a foto.",
-    "invalidType": "Escolha um arquivo de imagem (JPG, PNG ou WebP).",
-    "tooLarge": "Imagem muito grande. Escolha uma foto de até 15MB."
+    "invalidType": "Escolha um ficheiro de imagem (JPG, PNG ou WebP).",
+    "tooLarge": "Imagem demasiado grande. Escolha uma foto de até 15 MB."
   },
   "thankYou": {
-    "title": "Cadastro concluído!",
-    "description": "Recebemos suas informações. A nutricionista escolhida vai entrar em contato em breve para combinar o seu acompanhamento.",
-    "goToDashboard": "Ir para minha área",
+    "title": "Registo concluído!",
+    "description": "Recebemos as suas informações. A nutricionista escolhida vai entrar em contacto em breve para combinar o seu acompanhamento.",
+    "goToDashboard": "Ir para a minha área",
     "backHome": "Voltar ao início",
     "signIn": "Entrar na minha conta"
   }

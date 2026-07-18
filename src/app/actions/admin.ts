@@ -10,6 +10,7 @@ import {
   updateNutritionistPlan as dbUpdateNutritionistPlan,
   updateTranslatorCommission as dbUpdateTranslatorCommission,
   updateNutritionistCommission as dbUpdateNutritionistCommission,
+  updateUserStatus as dbUpdateUserStatus,
 } from "@/lib/users";
 import type { CommissionType } from "@/lib/types";
 
@@ -33,7 +34,7 @@ export async function deleteUser(userId: string): Promise<ActionResult> {
   // entrar de novo — e poderia deixar o sistema sem nenhum admin.
   const session = await getSession();
   if (session?.userId === userId) {
-    return { error: "Você não pode excluir a própria conta." };
+    return { error: "Não pode eliminar a própria conta." };
   }
 
   const deleted = await deleteUserById(userId);
@@ -127,6 +128,29 @@ export async function markReferralCommissionPaid(
 
   revalidatePath("/dashboard/admin/translators");
   revalidatePath("/dashboard/translator");
+  return { success: true };
+}
+
+/**
+ * Aprova uma nutricionista pendente. Só a partir daqui ela aparece na landing
+ * (getApprovedNutritionists filtra por status "approved"). Rejeitar não é um
+ * estado próprio — para recusar, o admin elimina a conta pelo botão existente.
+ */
+export async function approveNutritionist(
+  userId: string,
+): Promise<ActionResult> {
+  const error = await requireAdmin();
+  if (error) return error;
+
+  const target = await findUserById(userId);
+  if (!target || target.role !== "nutritionist") {
+    return { error: "Nutricionista não encontrada." };
+  }
+
+  await dbUpdateUserStatus(userId, "approved");
+  revalidatePath("/dashboard/admin");
+  revalidatePath("/dashboard/admin/nutritionists");
+  revalidatePath("/");
   return { success: true };
 }
 

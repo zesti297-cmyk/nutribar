@@ -18,7 +18,7 @@ export function toCsv(headers: string[], rows: unknown[][]): string {
   return [headers, ...rows].map((row) => row.map(escapeCell).join(",")).join("\r\n");
 }
 
-// O BOM faz o Excel ler o arquivo como UTF-8 — sem ele, "País" vira "PaÃ­s".
+// O BOM faz o Excel ler o ficheiro como UTF-8 — sem ele, "País" fica "PaÃ­s".
 const BOM = "\uFEFF";
 
 export function downloadCsv(filename: string, headers: string[], rows: unknown[][]) {
@@ -35,7 +35,7 @@ export function downloadCsv(filename: string, headers: string[], rows: unknown[]
   URL.revokeObjectURL(url);
 }
 
-/** Sufixo de data para o nome do arquivo: pacientes-2026-07-16.csv */
+/** Sufixo de data para o nome do ficheiro: pacientes-2026-07-16.csv */
 export function dateStamp(): string {
   return new Date().toISOString().slice(0, 10);
 }

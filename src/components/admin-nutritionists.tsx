@@ -1,7 +1,8 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useState, useTransition } from "react";
 import {
+  approveNutritionist,
   updateNutritionistPlan,
   updateNutritionistCommission,
 } from "@/app/actions/admin";
@@ -110,6 +111,34 @@ function CommissionForm({
   );
 }
 
+// Só aparece enquanto a nutricionista está "pending". Aprovar é o que a torna
+// visível na landing; recusar = eliminar pelo botão ao lado.
+function ApproveButton({ userId }: { userId: string }) {
+  const { t } = useI18n();
+  const [pending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
+
+  return (
+    <div className="flex flex-col items-end gap-1">
+      <button
+        type="button"
+        disabled={pending}
+        onClick={() =>
+          startTransition(async () => {
+            setError(null);
+            const res = await approveNutritionist(userId);
+            if (res.error) setError(res.error);
+          })
+        }
+        className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-700 disabled:opacity-50"
+      >
+        {pending ? t("admin.approving") : t("admin.approve")}
+      </button>
+      {error && <p className="text-xs text-red-600">{error}</p>}
+    </div>
+  );
+}
+
 // A foto vem do Storage, com URL dinâmica; <img> evita a otimização do
 // next/image, desnecessária num avatar pequeno de painel interno.
 function Avatar({ nutri, size = "sm" }: { nutri: AdminNutritionist; size?: "sm" | "lg" }) {
@@ -184,7 +213,14 @@ export function AdminNutritionists({
       ) : (
         <div className="mt-4 space-y-4">
           {nutritionists.map((nutri) => (
-            <div key={nutri.id} className="rounded-2xl border border-stone-100 bg-slate-50 p-4">
+            <div
+              key={nutri.id}
+              className={`rounded-2xl border p-4 ${
+                nutri.status === "pending"
+                  ? "border-amber-300 bg-amber-50"
+                  : "border-stone-100 bg-slate-50"
+              }`}
+            >
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div className="flex min-w-0 items-center gap-3">
                   <Avatar nutri={nutri} />
@@ -203,6 +239,9 @@ export function AdminNutritionists({
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
+                  {nutri.status === "pending" && (
+                    <ApproveButton userId={nutri.id} />
+                  )}
                   <button
                     type="button"
                     onClick={() => setOpenId(openId === nutri.id ? null : nutri.id)}

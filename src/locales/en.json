@@ -65,9 +65,9 @@
     "placeholderBio1": "Specialized in nutritional protocols for your new chapter, dietary re-education, and deficiency prevention.",
     "placeholderBio2": "Clinical follow-up for women going through this transition abroad who need support in their own language.",
     "placeholderBio3": "Structured guidance for every step of your journey, from the start to maintaining results.",
-    "placeholderLocation1": "São Paulo, Brazil",
-    "placeholderLocation2": "Lisbon, Portugal",
-    "placeholderLocation3": "Recife, Brazil"
+    "placeholderLocation1": "Lisbon, Portugal",
+    "placeholderLocation2": "Porto, Portugal",
+    "placeholderLocation3": "Braga, Portugal"
   },
   "why": {
     "title": "Why post-operative follow-up is decisive",
@@ -207,7 +207,7 @@
   "nutritionistForm": {
     "fullName": "Full name",
     "location": "Location",
-    "locationPlaceholder": "e.g. São Paulo, Brazil",
+    "locationPlaceholder": "e.g. Lisbon, Portugal",
     "languages": "Languages you work in",
     "languagesPlaceholder": "e.g. Portuguese, English, Spanish",
     "bio": "Your clinical experience",
@@ -316,6 +316,8 @@
     "noTranslators": "No translators found.",
     "referrals": "Referrals between translators",
     "noReferrals": "No referrals recorded.",
+    "approve": "Approve",
+    "approving": "Approving...",
     "savePlan": "Save plan",
     "saveCommission": "Save commission",
     "copyLink": "Copy link",
@@ -405,7 +407,9 @@
     },
     "nutritionist": {
       "title": "Your professional profile",
-      "description": "Complete your information so patients can find you and choose your follow-up."
+      "description": "Complete your information so patients can find you and choose your follow-up.",
+      "pendingTitle": "Account under review.",
+      "pendingDescription": "Go ahead and complete your profile and plans. You'll only appear to patients once our team approves your account."
     }
   },
   "onboarding": {

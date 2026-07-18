@@ -11,7 +11,7 @@ import { useI18n } from "@/lib/i18n";
 import type { NutritionistPlan } from "@/lib/types";
 
 const LOCALE_TO_INTL: Record<string, string> = {
-  pt: "pt-BR",
+  pt: "pt-PT",
   en: "en-US",
   es: "es",
   fr: "fr-FR",

@@ -11,8 +11,8 @@ import { DEMO_NUTRITIONISTS } from "@/lib/demo-nutritionists";
 import { getActivePlansByNutritionists } from "@/lib/plans";
 import { listPublicNutritionists } from "@/lib/users";
 
-// Os cards demo abrem o carrossel; as nutricionistas cadastradas entram depois,
-// cada uma com os planos ativos que ela mesma cadastrou.
+// Os cards demo abrem o carrossel; as nutricionistas registadas entram depois,
+// cada uma com os planos ativos que ela própria registou.
 async function getNutritionists() {
   try {
     const registered = await listPublicNutritionists();
@@ -27,7 +27,7 @@ async function getNutritionists() {
   } catch (error) {
     // A landing é pública e não pode depender do Supabase estar de pé.
     console.warn(
-      "[landing] Não foi possível carregar as nutricionistas cadastradas:",
+      "[landing] Não foi possível carregar as nutricionistas registadas:",
       error instanceof Error ? error.message : error,
     );
     return DEMO_NUTRITIONISTS;

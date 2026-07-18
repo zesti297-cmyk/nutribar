@@ -37,9 +37,10 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
       body: JSON.stringify(form),
     });
     if (res.ok) {
-      // Quem acabou de criar conta já sai logado do /api/onboarding; quem só
-      // deixou o lead (conta existente, ou sem senha) continua deslogado e a
-      // /thank-you oferece o login em vez da área dela.
+      // Quem acabou de criar conta já sai com sessão iniciada do
+      // /api/onboarding; quem só deixou o lead (conta existente, ou sem
+      // palavra-passe) fica sem sessão e a /thank-you oferece o login em vez
+      // da área dela.
       const { signedIn } = await res.json().catch(() => ({ signedIn: false }));
       router.push(signedIn ? "/thank-you?signed_in=1" : "/thank-you");
       router.refresh();
@@ -71,7 +72,7 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
 
   const chosenNutritionist = nutritionists.find((n) => n.id === form.nutritionist_id);
 
-  // A senha fica fora da revisão de propósito: não pode aparecer em tela. O
+  // A palavra-passe fica fora da revisão de propósito: não pode aparecer no ecrã. O
   // nutritionist_id vira o nome dela — o id cru não diz nada à paciente.
   const reviewItems = [
     { label: t("onboarding.fields.fullName"), value: form.full_name },

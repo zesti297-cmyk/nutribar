@@ -3,7 +3,7 @@ import { listPublicNutritionists } from "@/lib/users";
 
 export default async function OnboardingPage() {
   let nutritionists = await listPublicNutritionists().catch((error) => {
-    // Sem a lista o passo de escolha some, mas o cadastro ainda funciona: o
+    // Sem a lista o passo de escolha some, mas o registo ainda funciona: o
     // lead nasce sem dona e o admin atribui depois.
     console.warn(
       "[onboarding] Não foi possível carregar as nutricionistas:",

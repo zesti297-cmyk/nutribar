@@ -37,14 +37,14 @@ const COMMISSION_SELECT =
   "translator:users!referral_commissions_translator_id_fkey(email)";
 
 /**
- * Congela o que este convite vale, no instante do cadastro do indicado.
+ * Congela o que este convite vale, no instante do registo do indicado.
  *
  * O valor sai de users.commission_rate do padrinho AGORA e é gravado aqui; se
  * o admin mudar a taxa depois, esta linha não muda. Só comissão do tipo 'fixed'
  * gera registro: 'percent' precisaria de uma base de cálculo que não existe num
  * convite.
  *
- * Nunca lança: uma falha aqui não pode impedir alguém de se cadastrar.
+ * Nunca lança: uma falha aqui não pode impedir alguém de se registar.
  */
 export async function freezeReferralCommission(
   translatorId: string,

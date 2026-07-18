@@ -10,7 +10,7 @@ import { useSelection } from "@/lib/use-selection";
 import type { Lead } from "@/lib/types";
 
 const LOCALE_TO_DATE: Record<string, string> = {
-  pt: "pt-BR",
+  pt: "pt-PT",
   en: "en-US",
   es: "es",
   fr: "fr-FR",
@@ -87,7 +87,7 @@ function LeadRow({
 }
 
 // Colunas fixas das respostas do onboarding — sem isso o CSV perderia
-// justamente o que a nutricionista precisa saber antes do contato.
+// justamente o que a nutricionista precisa saber antes do contacto.
 const ANSWER_KEYS = ["surgery_type", "language", "country", "surgery_city", "hospital"] as const;
 
 export function AdminLeads({ leads }: { leads: Lead[] }) {

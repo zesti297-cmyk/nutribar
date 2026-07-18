@@ -17,7 +17,7 @@ export function LanguageSelector({ tone = "light" }: LanguageSelectorProps = {})
   const containerRef = useRef<HTMLDivElement>(null);
 
   const FLAGS: Record<Locale, string> = {
-    pt: "🇧🇷",
+    pt: "🇵🇹",
     en: "🇬🇧",
     es: "🇪🇸",
     fr: "🇫🇷",

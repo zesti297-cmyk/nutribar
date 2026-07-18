@@ -65,9 +65,9 @@
     "placeholderBio1": "Spécialisée dans les protocoles nutritionnels pour votre nouvelle étape, la rééducation alimentaire et la prévention des carences.",
     "placeholderBio2": "Suivi clinique pour les femmes qui vivent cette transition à l'étranger et ont besoin d'un accompagnement dans leur langue.",
     "placeholderBio3": "Accompagnement structuré pour chaque étape de votre parcours, du début au maintien des résultats.",
-    "placeholderLocation1": "São Paulo, Brésil",
-    "placeholderLocation2": "Lisbonne, Portugal",
-    "placeholderLocation3": "Recife, Brésil"
+    "placeholderLocation1": "Lisbonne, Portugal",
+    "placeholderLocation2": "Porto, Portugal",
+    "placeholderLocation3": "Braga, Portugal"
   },
   "why": {
     "title": "Pourquoi le suivi post-opératoire est décisif",
@@ -207,7 +207,7 @@
   "nutritionistForm": {
     "fullName": "Nom complet",
     "location": "Localisation",
-    "locationPlaceholder": "Ex : São Paulo, Brésil",
+    "locationPlaceholder": "Ex : Lisbonne, Portugal",
     "languages": "Langues de consultation",
     "languagesPlaceholder": "Ex : Portugais, Anglais, Espagnol",
     "bio": "Votre expérience clinique",
@@ -316,6 +316,8 @@
     "noTranslators": "Aucun traducteur trouvé.",
     "referrals": "Recommandations entre traducteurs",
     "noReferrals": "Aucune recommandation enregistrée.",
+    "approve": "Approuver",
+    "approving": "Approbation...",
     "savePlan": "Enregistrer le plan",
     "saveCommission": "Enregistrer la commission",
     "copyLink": "Copier le lien",
@@ -405,7 +407,9 @@
     },
     "nutritionist": {
       "title": "Votre profil professionnel",
-      "description": "Complétez vos informations pour que les patientes puissent vous trouver et choisir votre suivi."
+      "description": "Complétez vos informations pour que les patientes puissent vous trouver et choisir votre suivi.",
+      "pendingTitle": "Compte en cours de validation.",
+      "pendingDescription": "Complétez votre profil et vos formules en toute tranquillité. Vous n'apparaîtrez auprès des patientes qu'une fois votre compte approuvé par notre équipe."
     }
   },
   "onboarding": {

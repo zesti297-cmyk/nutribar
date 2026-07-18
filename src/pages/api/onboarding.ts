@@ -106,9 +106,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (leadError) throw leadError;
 
-    // Loga a paciente que acabou de criar conta, para ela cair na própria área
-    // em vez de ser mandada de volta para a home. Quem já tinha conta não é
-    // logado aqui: sem a senha, isso daria acesso a partir só do email.
+    // Inicia sessão à paciente que acabou de criar conta, para ela cair na
+    // própria área em vez de ser mandada de volta para a home. Quem já tinha
+    // conta não recebe sessão aqui: sem a palavra-passe, isso daria acesso a
+    // partir só do email.
     if (patientUserId && isNewUser) {
       const token = await signSessionToken(patientUserId);
       res.setHeader(

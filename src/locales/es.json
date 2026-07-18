@@ -65,9 +65,9 @@
     "placeholderBio1": "Especializada en protocolos nutricionales para tu nueva etapa, reeducación alimentaria y prevención de carencias.",
     "placeholderBio2": "Seguimiento clínico para mujeres que viven esta transición en el extranjero y necesitan apoyo en su idioma.",
     "placeholderBio3": "Orientación estructurada para cada etapa de tu camino, desde el inicio hasta el mantenimiento de resultados.",
-    "placeholderLocation1": "São Paulo, Brasil",
-    "placeholderLocation2": "Lisboa, Portugal",
-    "placeholderLocation3": "Recife, Brasil"
+    "placeholderLocation1": "Lisboa, Portugal",
+    "placeholderLocation2": "Porto, Portugal",
+    "placeholderLocation3": "Braga, Portugal"
   },
   "why": {
     "title": "Por qué el seguimiento posoperatorio es decisivo",
@@ -207,7 +207,7 @@
   "nutritionistForm": {
     "fullName": "Nombre completo",
     "location": "Ubicación",
-    "locationPlaceholder": "Ej: São Paulo, Brasil",
+    "locationPlaceholder": "Ej: Lisboa, Portugal",
     "languages": "Idiomas de atención",
     "languagesPlaceholder": "Ej: Portugués, Inglés, Español",
     "bio": "Tu experiencia clínica",
@@ -316,6 +316,8 @@
     "noTranslators": "No se encontraron traductores.",
     "referrals": "Recomendaciones entre traductores",
     "noReferrals": "No hay recomendaciones registradas.",
+    "approve": "Aprobar",
+    "approving": "Aprobando...",
     "savePlan": "Guardar plan",
     "saveCommission": "Guardar comisión",
     "copyLink": "Copiar enlace",
@@ -405,7 +407,9 @@
     },
     "nutritionist": {
       "title": "Tu perfil profesional",
-      "description": "Completa tu información para que las pacientes puedan encontrarte y elegir tu seguimiento."
+      "description": "Completa tu información para que las pacientes puedan encontrarte y elegir tu seguimiento.",
+      "pendingTitle": "Cuenta en revisión.",
+      "pendingDescription": "Completa tu perfil y tus planes con tranquilidad. Solo aparecerás ante las pacientes cuando nuestro equipo apruebe tu cuenta."
     }
   },
   "onboarding": {

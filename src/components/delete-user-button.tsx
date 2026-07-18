@@ -27,12 +27,12 @@ export function DeleteUserButton({ userId, leadId, label }: DeleteButtonProps) {
         ? await deleteUser(userId)
         : leadId
           ? await deleteLead(leadId)
-          : { error: "Nada para excluir." };
+          : { error: "Nada para eliminar." };
       if (res.error) {
         setError(res.error);
         setConfirming(false);
       }
-      // Em caso de sucesso o revalidatePath remove a linha da tela.
+      // Em caso de sucesso o revalidatePath remove a linha do ecrã.
     });
   }
 

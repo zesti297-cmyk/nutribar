@@ -12,7 +12,7 @@ import {
   findReferrerIdByCode,
   findUserByEmail,
 } from "@/lib/users";
-import type { UserRole } from "@/lib/types";
+import type { UserRole, UserStatus } from "@/lib/types";
 
 function getAdminEmails(): string[] {
   return (process.env.ADMIN_EMAILS ?? "")
@@ -33,7 +33,7 @@ export async function signUp(
 
   const existing = await findUserByEmail(email);
   if (existing) {
-    return { error: "Este email já está cadastrado." };
+    return { error: "Este email já está registado." };
   }
 
   const adminSupabase = createSupabaseAdminClient();
@@ -45,7 +45,7 @@ export async function signUp(
     });
 
   if (signUpError || !signUpData?.user) {
-    return { error: signUpError?.message ?? "Não foi possível criar o usuário." };
+    return { error: signUpError?.message ?? "Não foi possível criar o utilizador." };
   }
 
   const authUid = signUpData.user.id;
@@ -67,12 +67,18 @@ export async function signUp(
   const referralCodeValue =
     finalRole === "translator" ? generateReferralCode() : null;
 
+  // Nutricionistas entram como "pending": preenchem perfil e planos, mas só
+  // aparecem na landing depois de o admin aprovar. Os restantes papéis não
+  // passam por triagem manual.
+  const status: UserStatus =
+    finalRole === "nutritionist" ? "pending" : "approved";
+
   const profile = await createUser({
     email,
     passwordHash: null,
     authUid,
     role: finalRole,
-    status: "approved",
+    status,
     referralCode: referralCodeValue,
     referredBy,
   });
@@ -95,12 +101,12 @@ export async function signIn(email: string, password: string) {
   });
 
   if (error || !data.session?.user) {
-    return { error: "Email ou senha incorretos." };
+    return { error: "Email ou palavra-passe incorretos." };
   }
 
   const user = await findUserByEmail(email);
   if (!user) {
-    return { error: "Usuário não encontrado." };
+    return { error: "Utilizador não encontrado." };
   }
 
   await createSession(user.id);

@@ -35,7 +35,7 @@ function text(formData: FormData, key: string, max: number): string {
 }
 
 /**
- * Aceita "150", "150,50" e "150.50" — o formulário é em pt-BR, onde a vírgula
+ * Aceita "150", "150,50" e "150.50" — o formulário é em pt-PT, onde a vírgula
  * é o separador decimal. Retorna null quando não é um preço válido.
  */
 function parsePriceCents(raw: string): number | null {

@@ -218,7 +218,22 @@ export async function getAdminPatients() {
   return data ?? [];
 }
 
-export async function getAdminNutritionists() {
+export type AdminNutritionistRow = Pick<
+  UserRow,
+  | "id"
+  | "email"
+  | "full_name"
+  | "nutritionist_plan"
+  | "nutritionist_commission"
+  | "nutritionist_commission_type"
+  | "status"
+  | "bio"
+  | "languages"
+  | "location"
+  | "photo_url"
+>;
+
+export async function getAdminNutritionists(): Promise<AdminNutritionistRow[]> {
   const { data, error } = await supabaseAdmin
     .from("users")
     .select(
@@ -228,7 +243,7 @@ export async function getAdminNutritionists() {
     .order("created_at", { ascending: false });
 
   if (error) throw error;
-  return data ?? [];
+  return (data ?? []) as AdminNutritionistRow[];
 }
 
 export async function getAdminTranslators() {
@@ -246,6 +261,16 @@ export async function updateNutritionistPlan(userId: string, plan: string) {
   const { error } = await supabaseAdmin
     .from("users")
     .update({ nutritionist_plan: plan || null })
+    .eq("id", userId);
+
+  if (error) throw error;
+}
+
+/** Triagem manual do admin: pending → approved (ou rejected). */
+export async function updateUserStatus(userId: string, status: UserStatus) {
+  const { error } = await supabaseAdmin
+    .from("users")
+    .update({ status })
     .eq("id", userId);
 
   if (error) throw error;
@@ -360,7 +385,7 @@ export async function deleteLeadById(leadId: string): Promise<boolean> {
   return Boolean(data);
 }
 
-/** Cadastros por semana, para o gráfico de evolução do painel. */
+/** Registos por semana, para o gráfico de evolução do painel. */
 export async function getWeeklyGrowth(weeks = 8) {
   const since = new Date();
   since.setDate(since.getDate() - weeks * 7);
@@ -383,7 +408,7 @@ export async function getWeeklyGrowth(weeks = 8) {
   };
 
   const buckets = new Map<string, { patients: number; nutritionists: number; leads: number }>();
-  // Semanas sem cadastro precisam existir como zero, senão o gráfico "pula".
+  // Semanas sem registo precisam existir como zero, senão o gráfico "pula".
   for (let i = weeks - 1; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i * 7);

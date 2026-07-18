@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n";
 import { useSelection } from "@/lib/use-selection";
 
 const LOCALE_TO_DATE: Record<string, string> = {
-  pt: "pt-BR",
+  pt: "pt-PT",
   en: "en-US",
   es: "es",
   fr: "fr-FR",

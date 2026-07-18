@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useI18n } from "../lib/i18n";
 
-// Fotos de placeholder (protótipo acadêmico). Substituir por fotos reais de
+// Fotos de placeholder (protótipo académico). Substituir por fotos reais de
 // pacientes, com autorização, antes de qualquer uso em produção.
 const AVATAR_PHOTOS = [
   "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&h=200&q=80",

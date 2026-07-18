@@ -10,7 +10,7 @@ import type { AdminStats, Lead, ReferralCommission } from "@/lib/types";
 
 // Rota de PREVIEW apenas: dados fictícios hardcoded, sem login nem banco.
 // Não usar como referência de dados reais. Os formulários (planos/comissões)
-// vão falhar ao salvar, pois chamam server actions que dependem do Supabase.
+// vão falhar ao guardar, pois chamam server actions que dependem do Supabase.
 
 const FAKE_STATS: AdminStats = {
   nutritionists: { total: 12 },
@@ -30,7 +30,7 @@ const FAKE_NUTRITIONISTS = [
     status: "approved",
     bio: "Especialista em acompanhamento nutricional pós-bariátrica.",
     languages: "Português, Inglês",
-    location: "São Paulo, Brasil",
+    location: "Lisboa, Portugal",
     photo_url: null,
   },
   {
@@ -101,7 +101,7 @@ const FAKE_LEADS: Lead[] = [
     nutritionist_name: "Dra. Ana Silva",
     full_name: "Beatriz Costa",
     email: "beatriz.costa@example.com",
-    phone: "+55 11 91234-5678",
+    phone: "+351 912 345 678",
     onboarding_answers: {
       surgery_type: "Bariátrica",
       country: "Turquia",
@@ -131,7 +131,7 @@ export default function AdminPreviewPage() {
     <DashboardShell role="admin" email="preview@nutribar.demo">
       <div className="mb-6 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
         <strong>Modo de visualização.</strong> Dados fictícios, sem login nem
-        banco de dados real. Botões de salvar (planos/comissão) não persistem
+        banco de dados real. Botões de guardar (planos/comissão) não persistem
         nada.
       </div>
       <AdminDashboardTitle />

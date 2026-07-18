@@ -10,7 +10,7 @@ export function useSelection(allIds: string[]) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
   // Ids que sumiram (linha excluída) não podem continuar marcados, senão uma
-  // ação em lote agiria sobre algo que não está mais na tela.
+  // ação em lote agiria sobre algo que já não está no ecrã.
   const valid = useMemo(() => {
     const present = new Set(allIds);
     return new Set([...selected].filter((id) => present.has(id)));
