@@ -251,6 +251,10 @@ export async function claimEmailNotification(
  * Marca a conversa como lida por `role`: zera o aviso pendente daquele lado, de
  * modo que o próximo bloco de mensagens volte a poder alertá-lo. Chamado quando
  * o utilizador abre a página do chat.
+ *
+ * Best-effort: é só o controlo de notificação por e-mail. Se falhar (ex.: a
+ * migração das colunas *_notify_pending ainda não correu no banco), apenas
+ * loga — nunca deve impedir o paciente/nutri de ABRIR o chat.
  */
 export async function markConversationRead(
   leadId: string,
@@ -260,7 +264,38 @@ export async function markConversationRead(
     .from("leads")
     .update({ [pendingColumn(role)]: false })
     .eq("id", leadId);
-  if (error) throw error;
+  if (error) {
+    console.warn(
+      "[chat] markConversationRead falhou (ignorado):",
+      error.message,
+    );
+  }
+}
+
+/**
+ * Há alguma conversa com mensagem por ler para este utilizador? Reutiliza o
+ * marcador *_notify_pending (fica true quando chega mensagem e volta a false
+ * quando a pessoa abre o chat), servindo de bolinha de "não lido" no menu.
+ * Best-effort: se falhar (ex.: coluna ainda por migrar), devolve false.
+ */
+export async function hasUnreadMessages(
+  userId: string,
+  role: ChatRole,
+): Promise<boolean> {
+  const column = pendingColumn(role);
+  const idColumn = role === "patient" ? "patient_user_id" : "nutritionist_id";
+
+  const { count, error } = await supabaseAdmin
+    .from("leads")
+    .select("id", { count: "exact", head: true })
+    .eq(idColumn, userId)
+    .eq(column, true);
+
+  if (error) {
+    console.warn("[chat] hasUnreadMessages falhou (ignorado):", error.message);
+    return false;
+  }
+  return Number(count ?? 0) > 0;
 }
 
 // Nome do canal de broadcast de uma conversa. Servidor e cliente usam o mesmo.

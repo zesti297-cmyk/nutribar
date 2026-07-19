@@ -25,15 +25,6 @@ function LeadRow({ lead, dateLocale }: { lead: Lead; dateLocale: string }) {
       <tr className="border-b border-stone-100">
         <td className="py-3 pr-4">{lead.full_name ?? "—"}</td>
         <td className="py-3 pr-4">{lead.email ?? "—"}</td>
-        <td className="py-3 pr-4">
-          {lead.phone ? (
-            <a href={`tel:${lead.phone}`} className="text-[#0c2340] hover:underline">
-              {lead.phone}
-            </a>
-          ) : (
-            "—"
-          )}
-        </td>
         <td className="py-3 pr-4">{t(`leadStatus.${lead.status}`)}</td>
         <td className="py-3 pr-4">
           {new Date(lead.created_at).toLocaleDateString(dateLocale)}
@@ -54,7 +45,7 @@ function LeadRow({ lead, dateLocale }: { lead: Lead; dateLocale: string }) {
       </tr>
       {open && (
         <tr className="border-b border-stone-100 bg-slate-50">
-          <td colSpan={6} className="px-4 py-3">
+          <td colSpan={5} className="px-4 py-3">
             <dl className="grid gap-2 sm:grid-cols-2">
               {answerEntries.map(([key, value]) => (
                 <div key={key} className="text-sm">
@@ -95,9 +86,6 @@ export function NutritionistLeads({ leads }: { leads: Lead[] }) {
                 </th>
                 <th className="pb-3 pr-4 font-medium">
                   {t("nutritionistDashboard.leads.email")}
-                </th>
-                <th className="pb-3 pr-4 font-medium">
-                  {t("nutritionistDashboard.leads.phone")}
                 </th>
                 <th className="pb-3 pr-4 font-medium">
                   {t("nutritionistDashboard.leads.status")}

@@ -173,7 +173,8 @@
       "Bash(sed -E 's/\\(RESEND_API_KEY=.{6}\\).*/\\\\1.../; s/\\(CHAT_EMAIL_FROM=\\).*/\\\\1[VAZIO se nada aqui]/')",
       "Bash(curl -s -o /dev/null -w \"onboarding -> %{http_code}\\\\n\" http://localhost:3000/onboarding)",
       "Bash(curl -s -w '\\\\nHTTP %{http_code}\\\\n' -X POST http://localhost:3000/api/onboarding -H 'Content-Type: application/json' -d '{\"full_name\":\"teste\",\"email\":\"sssss\",\"phone\":\"+351 ssss\",\"password\":\"123456\",\"surgery_type\":\"Outro\",\"language\":\"pt\",\"nutritionist_id\":\"d26b8848-18aa-432c-8254-bf64b2d35a4b\"}')",
-      "Bash(curl -s -w '\\\\nHTTP %{http_code}\\\\n' -X POST http://localhost:3000/api/onboarding -H 'Content-Type: application/json' -d '{\"full_name\":\"teste\",\"email\":\"gabriel-teste@test.local\",\"phone\":\"+351 912345678\",\"password\":\"123456\",\"surgery_type\":\"Cirurgia plástica\",\"language\":\"pt\",\"nutritionist_id\":\"d26b8848-18aa-432c-8254-bf64b2d35a4b\"}')"
+      "Bash(curl -s -w '\\\\nHTTP %{http_code}\\\\n' -X POST http://localhost:3000/api/onboarding -H 'Content-Type: application/json' -d '{\"full_name\":\"teste\",\"email\":\"gabriel-teste@test.local\",\"phone\":\"+351 912345678\",\"password\":\"123456\",\"surgery_type\":\"Cirurgia plástica\",\"language\":\"pt\",\"nutritionist_id\":\"d26b8848-18aa-432c-8254-bf64b2d35a4b\"}')",
+      "Bash(grep -qE \"_tmp-mcp|^\\\\.env$\")"
     ],
     "additionalDirectories": [
       "/tmp/claude-1000/-home-gbk-Documentos-nutribar/321060a8-e405-43f3-a730-41b4595900d1/scratchpad"
