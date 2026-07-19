@@ -67,11 +67,12 @@ export async function signUp(
   const referralCodeValue =
     finalRole === "translator" ? generateReferralCode() : null;
 
-  // Nutricionistas entram como "pending": preenchem perfil e planos, mas só
-  // aparecem na landing depois de o admin aprovar. Os restantes papéis não
-  // passam por triagem manual.
+  // Nutricionistas entram como "draft" (rascunho): preenchem perfil e criam
+  // planos e só então clicam em "Enviar para avaliação" (draft → pending). O
+  // admin aprova (pending → approved) e aí aparecem na landing. Os restantes
+  // papéis não passam por triagem manual.
   const status: UserStatus =
-    finalRole === "nutritionist" ? "pending" : "approved";
+    finalRole === "nutritionist" ? "draft" : "approved";
 
   const profile = await createUser({
     email,

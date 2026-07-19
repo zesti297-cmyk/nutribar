@@ -1,5 +1,5 @@
 export type UserRole = "patient" | "translator" | "nutritionist" | "admin";
-export type UserStatus = "pending" | "approved";
+export type UserStatus = "draft" | "pending" | "approved";
 export type CommissionType = "fixed" | "percent";
 
 export interface Profile {
@@ -9,6 +9,7 @@ export interface Profile {
   status: UserStatus;
   full_name: string | null;
   languages: string | null;
+  preferred_language: string | null;
   bio: string | null;
   photo_url: string | null;
   location: string | null;

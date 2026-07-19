@@ -87,6 +87,32 @@ export async function getActivePlansByNutritionists(
   return byNutritionist;
 }
 
+/**
+ * Todos os planos (ativos E inativos) de várias nutricionistas, agrupados por
+ * id. Para o painel admin, que precisa ver o quadro completo — inclusive os
+ * planos que a nutricionista desativou.
+ */
+export async function getPlansByNutritionists(
+  nutritionistIds: string[],
+): Promise<Record<string, NutritionistPlan[]>> {
+  if (nutritionistIds.length === 0) return {};
+
+  const { data, error } = await supabaseAdmin
+    .from("nutritionist_plans")
+    .select(PLAN_SELECT)
+    .in("nutritionist_id", nutritionistIds)
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true });
+
+  if (error) throw error;
+
+  const byNutritionist: Record<string, NutritionistPlan[]> = {};
+  for (const row of (data ?? []) as PlanRow[]) {
+    (byNutritionist[row.nutritionist_id] ??= []).push(toPlan(row));
+  }
+  return byNutritionist;
+}
+
 export async function createPlan(plan: {
   nutritionistId: string;
   name: string;

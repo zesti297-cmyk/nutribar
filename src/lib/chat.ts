@@ -164,6 +164,9 @@ export interface NotificationTarget {
   name: string | null;
   senderName: string | null;
   recipientRole: ChatRole;
+  // Idioma escolhido no onboarding (onboarding_answers.language), para o e-mail
+  // sair na língua do cadastro. Pode ser null se o lead não guardou.
+  language: string | null;
 }
 
 /**
@@ -186,13 +189,17 @@ export async function claimEmailNotification(
   const { data: lead, error } = await supabaseAdmin
     .from("leads")
     .select(
-      "patient_user_id, nutritionist_id, patient_notify_pending, nutritionist_notify_pending",
+      "patient_user_id, nutritionist_id, patient_notify_pending, nutritionist_notify_pending, onboarding_answers",
     )
     .eq("id", leadId)
     .maybeSingle();
 
   if (error) throw error;
   if (!lead) return null;
+
+  const answers = (lead.onboarding_answers ?? {}) as { language?: unknown };
+  const language =
+    typeof answers.language === "string" ? answers.language : null;
 
   const alreadyPending =
     recipientRole === "patient"
@@ -236,6 +243,7 @@ export async function claimEmailNotification(
     name: recipient.full_name ?? null,
     senderName: sender?.full_name ?? null,
     recipientRole,
+    language,
   };
 }
 

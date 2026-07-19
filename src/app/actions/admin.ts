@@ -1,7 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getBaseUrl } from "@/lib/base-url";
 import { markCommissionPaid } from "@/lib/commissions";
+import { sendNutritionistApprovedEmail } from "@/lib/email";
 import { getSession } from "@/lib/session";
 import { updateLeadChatUnlocked } from "@/lib/leads";
 import {
@@ -149,6 +151,25 @@ export async function approveNutritionist(
   }
 
   await dbUpdateUserStatus(userId, "approved");
+
+  // Avisa a nutricionista que foi aprovada — best-effort, não bloqueia a ação.
+  if (target.email) {
+    try {
+      const baseUrl = await getBaseUrl();
+      await sendNutritionistApprovedEmail({
+        to: target.email,
+        name: target.full_name,
+        dashboardUrl: `${baseUrl}/dashboard/nutritionist`,
+        language: target.preferred_language,
+      });
+    } catch (err) {
+      console.warn(
+        "[admin] Falha ao notificar aprovação:",
+        err instanceof Error ? err.message : err,
+      );
+    }
+  }
+
   revalidatePath("/dashboard/admin");
   revalidatePath("/dashboard/admin/nutritionists");
   revalidatePath("/");

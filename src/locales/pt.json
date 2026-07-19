@@ -210,6 +210,8 @@
     "locationPlaceholder": "Ex.: Lisboa, Portugal",
     "languages": "Idiomas de atendimento",
     "languagesPlaceholder": "Ex.: Português, Inglês, Espanhol",
+    "preferredLanguage": "Idioma dos meus e-mails",
+    "preferredLanguageHint": "Idioma em que recebe os e-mails da Nutribar (ex.: aprovação, avisos).",
     "bio": "A sua experiência clínica",
     "bioPlaceholder": "Descreva a sua especialização e experiência com pacientes no pós-operatório. Este texto ajuda a paciente a escolhê-la, por isso seja específica sobre procedimentos e resultados.",
     "saving": "A guardar...",
@@ -312,6 +314,11 @@
     "loginLinkTranslator": "Login tradutor",
     "nutritionists": "Nutricionistas",
     "noNutritionists": "Nenhuma nutricionista encontrada.",
+    "plansList": {
+      "title": "Planos da nutricionista",
+      "empty": "Ainda não criou planos.",
+      "inactive": "inativo"
+    },
     "translators": "Tradutores",
     "noTranslators": "Nenhum tradutor encontrado.",
     "referrals": "Indicações entre tradutores",
@@ -439,7 +446,17 @@
       "title": "O seu perfil profissional",
       "description": "Complete as suas informações para que as pacientes a possam encontrar e escolher o seu acompanhamento.",
       "pendingTitle": "Conta em análise.",
-      "pendingDescription": "Preencha o seu perfil e os seus planos com tranquilidade. Só aparece para as pacientes depois de a nossa equipa aprovar a sua conta."
+      "pendingDescription": "Preencha o seu perfil e os seus planos com tranquilidade. Só aparece para as pacientes depois de a nossa equipa aprovar a sua conta.",
+      "reviewTitle": "Envie o seu perfil para avaliação",
+      "reviewDescription": "Complete os pontos abaixo e envie o seu perfil. A nossa equipa avalia e, quando aprovar, passa a aparecer para as pacientes.",
+      "reqName": "Nome completo",
+      "reqPhoto": "Foto de perfil",
+      "reqBio": "Experiência clínica",
+      "reqPlan": "Pelo menos um plano",
+      "submitForReview": "Enviar para avaliação",
+      "submitting": "A enviar...",
+      "reviewHint": "Complete todos os pontos para poder enviar.",
+      "reviewIncomplete": "Ainda faltam informações. Complete os pontos acima."
     }
   },
   "onboarding": {
@@ -504,6 +521,7 @@
     "fr": "Francês"
   },
   "status": {
+    "draft": "rascunho",
     "pending": "pendente",
     "approved": "aprovado"
   },

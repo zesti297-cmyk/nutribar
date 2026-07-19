@@ -210,6 +210,8 @@
     "locationPlaceholder": "e.g. Lisbon, Portugal",
     "languages": "Languages you work in",
     "languagesPlaceholder": "e.g. Portuguese, English, Spanish",
+    "preferredLanguage": "Language of my emails",
+    "preferredLanguageHint": "The language you receive Nutribar emails in (e.g. approval, notices).",
     "bio": "Your clinical experience",
     "bioPlaceholder": "Describe your specialization and experience with post-operative patients. This text helps patients choose you, so be specific about procedures and results.",
     "saving": "Saving...",
@@ -312,6 +314,11 @@
     "loginLinkTranslator": "Translator login",
     "nutritionists": "Nutritionists",
     "noNutritionists": "No nutritionists found.",
+    "plansList": {
+      "title": "Nutritionist's plans",
+      "empty": "No plans created yet.",
+      "inactive": "inactive"
+    },
     "translators": "Translators",
     "noTranslators": "No translators found.",
     "referrals": "Referrals between translators",
@@ -439,7 +446,17 @@
       "title": "Your professional profile",
       "description": "Complete your information so patients can find you and choose your follow-up.",
       "pendingTitle": "Account under review.",
-      "pendingDescription": "Go ahead and complete your profile and plans. You'll only appear to patients once our team approves your account."
+      "pendingDescription": "Go ahead and complete your profile and plans. You'll only appear to patients once our team approves your account.",
+      "reviewTitle": "Submit your profile for review",
+      "reviewDescription": "Complete the items below and submit your profile. Our team reviews it and, once approved, you start appearing to patients.",
+      "reqName": "Full name",
+      "reqPhoto": "Profile photo",
+      "reqBio": "Clinical experience",
+      "reqPlan": "At least one plan",
+      "submitForReview": "Submit for review",
+      "submitting": "Submitting...",
+      "reviewHint": "Complete all items to be able to submit.",
+      "reviewIncomplete": "Some information is still missing. Complete the items above."
     }
   },
   "onboarding": {
@@ -505,6 +522,7 @@
   },
   "status": {
     "pending": "pending",
+    "draft": "draft",
     "approved": "approved"
   },
   "leadStatus": {

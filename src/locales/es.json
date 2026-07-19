@@ -210,6 +210,8 @@
     "locationPlaceholder": "Ej: Lisboa, Portugal",
     "languages": "Idiomas de atención",
     "languagesPlaceholder": "Ej: Portugués, Inglés, Español",
+    "preferredLanguage": "Idioma de mis correos",
+    "preferredLanguageHint": "El idioma en que recibes los correos de Nutribar (ej.: aprobación, avisos).",
     "bio": "Tu experiencia clínica",
     "bioPlaceholder": "Describe tu especialización y experiencia con pacientes en el posoperatorio. Este texto ayuda a la paciente a elegirte, así que sé específica sobre procedimientos y resultados.",
     "saving": "Guardando...",
@@ -312,6 +314,11 @@
     "loginLinkTranslator": "Acceso traductor",
     "nutritionists": "Nutricionistas",
     "noNutritionists": "No se encontraron nutricionistas.",
+    "plansList": {
+      "title": "Planes de la nutricionista",
+      "empty": "Aún no ha creado planes.",
+      "inactive": "inactivo"
+    },
     "translators": "Traductores",
     "noTranslators": "No se encontraron traductores.",
     "referrals": "Recomendaciones entre traductores",
@@ -439,7 +446,17 @@
       "title": "Tu perfil profesional",
       "description": "Completa tu información para que las pacientes puedan encontrarte y elegir tu seguimiento.",
       "pendingTitle": "Cuenta en revisión.",
-      "pendingDescription": "Completa tu perfil y tus planes con tranquilidad. Solo aparecerás ante las pacientes cuando nuestro equipo apruebe tu cuenta."
+      "pendingDescription": "Completa tu perfil y tus planes con tranquilidad. Solo aparecerás ante las pacientes cuando nuestro equipo apruebe tu cuenta.",
+      "reviewTitle": "Envía tu perfil para revisión",
+      "reviewDescription": "Completa los puntos de abajo y envía tu perfil. Nuestro equipo lo revisa y, una vez aprobado, empiezas a aparecer ante las pacientes.",
+      "reqName": "Nombre completo",
+      "reqPhoto": "Foto de perfil",
+      "reqBio": "Experiencia clínica",
+      "reqPlan": "Al menos un plan",
+      "submitForReview": "Enviar para revisión",
+      "submitting": "Enviando...",
+      "reviewHint": "Completa todos los puntos para poder enviar.",
+      "reviewIncomplete": "Aún falta información. Completa los puntos de arriba."
     }
   },
   "onboarding": {
@@ -505,6 +522,7 @@
   },
   "status": {
     "pending": "pendiente",
+    "draft": "borrador",
     "approved": "aprobado"
   },
   "leadStatus": {

@@ -17,6 +17,7 @@ interface UserRow {
   status: UserStatus;
   full_name: string | null;
   languages: string | null;
+  preferred_language: string | null;
   bio: string | null;
   photo_url: string | null;
   location: string | null;
@@ -40,6 +41,7 @@ function toProfile(row: UserRow): Profile {
     status: row.status,
     full_name: row.full_name,
     languages: row.languages,
+    preferred_language: row.preferred_language,
     bio: row.bio,
     photo_url: row.photo_url,
     location: row.location,
@@ -135,6 +137,7 @@ export async function updateUserProfile(
     bio: string;
     photo_url: string;
     location: string;
+    preferred_language: string;
   }>,
 ) {
   const patch = Object.fromEntries(
@@ -274,6 +277,54 @@ export async function updateUserStatus(userId: string, status: UserStatus) {
     .eq("id", userId);
 
   if (error) throw error;
+}
+
+// O que falta a uma nutricionista para poder enviar o perfil à avaliação.
+// Cada flag true = requisito ainda por cumprir.
+export interface NutritionistReadiness {
+  ready: boolean;
+  missingName: boolean;
+  missingPhoto: boolean;
+  missingBio: boolean;
+  missingPlan: boolean;
+}
+
+/**
+ * Verifica se a nutricionista completou o mínimo para ir à avaliação:
+ * nome + foto + bio preenchidos e pelo menos 1 plano criado. Uma query para o
+ * perfil e uma contagem de planos.
+ */
+export async function getNutritionistReadiness(
+  userId: string,
+): Promise<NutritionistReadiness> {
+  const [{ data: user, error: userErr }, { count, error: planErr }] =
+    await Promise.all([
+      supabaseAdmin
+        .from("users")
+        .select("full_name, photo_url, bio")
+        .eq("id", userId)
+        .maybeSingle(),
+      supabaseAdmin
+        .from("nutritionist_plans")
+        .select("id", { count: "exact", head: true })
+        .eq("nutritionist_id", userId),
+    ]);
+
+  if (userErr) throw userErr;
+  if (planErr) throw planErr;
+
+  const missingName = !user?.full_name?.trim();
+  const missingPhoto = !user?.photo_url;
+  const missingBio = !user?.bio?.trim();
+  const missingPlan = Number(count ?? 0) === 0;
+
+  return {
+    ready: !missingName && !missingPhoto && !missingBio && !missingPlan,
+    missingName,
+    missingPhoto,
+    missingBio,
+    missingPlan,
+  };
 }
 
 export async function updateTranslatorCommission(

@@ -1,14 +1,16 @@
 import { NutritionistDashboardHeader } from "@/components/nutritionist-dashboard-header";
 import { NutritionistForm } from "@/components/nutritionist-form";
-import { PendingApprovalBanner } from "@/components/pending-approval-banner";
+import { NutritionistReviewCard } from "@/components/nutritionist-review-card";
 import { requireProfile } from "@/lib/profile";
+import { getNutritionistReadiness } from "@/lib/users";
 
 export default async function NutritionistDashboardPage() {
   const profile = await requireProfile("nutritionist");
+  const readiness = await getNutritionistReadiness(profile.id);
 
   return (
     <div className="rounded-2xl border border-stone-200 bg-white p-8">
-      {profile.status === "pending" && <PendingApprovalBanner />}
+      <NutritionistReviewCard status={profile.status} readiness={readiness} />
       <NutritionistDashboardHeader />
       <div className="mt-6">
         <NutritionistForm
@@ -17,6 +19,7 @@ export default async function NutritionistDashboardPage() {
           bio={profile.bio ?? ""}
           photoUrl={profile.photo_url ?? ""}
           location={profile.location ?? ""}
+          preferredLanguage={profile.preferred_language ?? ""}
         />
       </div>
     </div>

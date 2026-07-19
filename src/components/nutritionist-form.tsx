@@ -11,6 +11,7 @@ interface NutritionistFormProps {
   bio: string;
   photoUrl: string;
   location: string;
+  preferredLanguage: string;
 }
 
 export function NutritionistForm({
@@ -19,6 +20,7 @@ export function NutritionistForm({
   bio,
   photoUrl,
   location,
+  preferredLanguage,
 }: NutritionistFormProps) {
   const [photo, setPhoto] = useState(photoUrl);
   const [state, formAction, pending] = useActionState(
@@ -75,6 +77,26 @@ export function NutritionistForm({
           required
           className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
         />
+      </div>
+
+      <div>
+        <label htmlFor="preferred_language" className="block text-sm font-medium text-stone-700">
+          {t("nutritionistForm.preferredLanguage")}
+        </label>
+        <select
+          id="preferred_language"
+          name="preferred_language"
+          defaultValue={preferredLanguage || "pt"}
+          className="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+        >
+          <option value="pt">{t("languages.pt")}</option>
+          <option value="en">{t("languages.en")}</option>
+          <option value="es">{t("languages.es")}</option>
+          <option value="fr">{t("languages.fr")}</option>
+        </select>
+        <p className="mt-1 text-xs text-stone-500">
+          {t("nutritionistForm.preferredLanguageHint")}
+        </p>
       </div>
 
       <div>

@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { sendWelcomeEmail } from "@/lib/email";
 import { serializeSessionCookie, signSessionToken } from "@/lib/session-token";
 import { createSupabaseAdminClient } from "@/lib/supabase";
 
@@ -105,6 +106,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .single();
 
     if (leadError) throw leadError;
+
+    // Boas-vindas só a quem ACABOU de criar conta (não a quem já existia) e tem
+    // e-mail. Best-effort: falha aqui não pode derrubar o cadastro.
+    if (isNewUser && email) {
+      await sendWelcomeEmail({
+        to: email,
+        name: fullName,
+        language: onboardingAnswers.language,
+      }).catch(() => {});
+    }
 
     // Inicia sessão à paciente que acabou de criar conta, para ela cair na
     // própria área em vez de ser mandada de volta para a home. Quem já tinha

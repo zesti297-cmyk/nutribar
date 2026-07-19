@@ -210,6 +210,8 @@
     "locationPlaceholder": "Ex : Lisbonne, Portugal",
     "languages": "Langues de consultation",
     "languagesPlaceholder": "Ex : Portugais, Anglais, Espagnol",
+    "preferredLanguage": "Langue de mes e-mails",
+    "preferredLanguageHint": "La langue dans laquelle vous recevez les e-mails Nutribar (ex : approbation, avis).",
     "bio": "Votre expérience clinique",
     "bioPlaceholder": "Décrivez votre spécialisation et votre expérience avec les patientes en post-opératoire. Ce texte aide la patiente à vous choisir, alors soyez précise sur les interventions et les résultats.",
     "saving": "Enregistrement...",
@@ -312,6 +314,11 @@
     "loginLinkTranslator": "Connexion traducteur",
     "nutritionists": "Nutritionnistes",
     "noNutritionists": "Aucune nutritionniste trouvée.",
+    "plansList": {
+      "title": "Formules de la nutritionniste",
+      "empty": "Aucune formule créée pour l'instant.",
+      "inactive": "inactive"
+    },
     "translators": "Traducteurs",
     "noTranslators": "Aucun traducteur trouvé.",
     "referrals": "Recommandations entre traducteurs",
@@ -439,7 +446,17 @@
       "title": "Votre profil professionnel",
       "description": "Complétez vos informations pour que les patientes puissent vous trouver et choisir votre suivi.",
       "pendingTitle": "Compte en cours de validation.",
-      "pendingDescription": "Complétez votre profil et vos formules en toute tranquillité. Vous n'apparaîtrez auprès des patientes qu'une fois votre compte approuvé par notre équipe."
+      "pendingDescription": "Complétez votre profil et vos formules en toute tranquillité. Vous n'apparaîtrez auprès des patientes qu'une fois votre compte approuvé par notre équipe.",
+      "reviewTitle": "Envoyez votre profil pour évaluation",
+      "reviewDescription": "Complétez les points ci-dessous et envoyez votre profil. Notre équipe l'évalue et, une fois approuvé, vous commencez à apparaître auprès des patientes.",
+      "reqName": "Nom complet",
+      "reqPhoto": "Photo de profil",
+      "reqBio": "Expérience clinique",
+      "reqPlan": "Au moins une formule",
+      "submitForReview": "Envoyer pour évaluation",
+      "submitting": "Envoi...",
+      "reviewHint": "Complétez tous les points pour pouvoir envoyer.",
+      "reviewIncomplete": "Il manque encore des informations. Complétez les points ci-dessus."
     }
   },
   "onboarding": {
@@ -505,6 +522,7 @@
   },
   "status": {
     "pending": "en attente",
+    "draft": "brouillon",
     "approved": "approuvé"
   },
   "leadStatus": {

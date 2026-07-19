@@ -9,7 +9,57 @@ import {
 import { CommissionTypeToggle } from "@/components/commission-type-toggle";
 import { DeleteUserButton } from "@/components/delete-user-button";
 import { useI18n } from "@/lib/i18n";
-import type { CommissionType } from "@/lib/types";
+import type { CommissionType, NutritionistPlan } from "@/lib/types";
+
+const LOCALE_TO_INTL: Record<string, string> = {
+  pt: "pt-PT",
+  en: "en-US",
+  es: "es",
+  fr: "fr-FR",
+};
+
+function formatPrice(cents: number, currency: string, locale: string): string {
+  return new Intl.NumberFormat(LOCALE_TO_INTL[locale] ?? locale, {
+    style: "currency",
+    currency,
+  }).format(cents / 100);
+}
+
+// Os planos reais (nutritionist_plans) que a nutricionista criou para vender.
+function PlansList({ plans }: { plans: NutritionistPlan[] }) {
+  const { t, locale } = useI18n();
+  if (plans.length === 0) {
+    return <p className="text-sm text-stone-400">{t("admin.plansList.empty")}</p>;
+  }
+  return (
+    <ul className="space-y-2">
+      {plans.map((p) => (
+        <li
+          key={p.id}
+          className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 rounded-lg border border-stone-200 bg-white px-3 py-2"
+        >
+          <div className="min-w-0">
+            <span className="font-medium text-stone-900">{p.name}</span>
+            {p.duration && (
+              <span className="ml-2 text-xs text-stone-500">{p.duration}</span>
+            )}
+            {!p.is_active && (
+              <span className="ml-2 rounded-full bg-stone-100 px-2 py-0.5 text-xs text-stone-500">
+                {t("admin.plansList.inactive")}
+              </span>
+            )}
+            {p.description && (
+              <p className="mt-0.5 text-xs text-stone-500">{p.description}</p>
+            )}
+          </div>
+          <span className="font-semibold text-emerald-700">
+            {formatPrice(p.price_cents, p.currency, locale)}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 interface AdminNutritionist {
   id: string;
@@ -180,16 +230,30 @@ function PatientCount({ count }: { count: number }) {
   );
 }
 
-function ProfilePanel({ nutri }: { nutri: AdminNutritionist }) {
+function ProfilePanel({
+  nutri,
+  plans,
+}: {
+  nutri: AdminNutritionist;
+  plans: NutritionistPlan[];
+}) {
   const { t } = useI18n();
   return (
-    <div className="mt-4 grid gap-4 rounded-xl border border-stone-200 bg-white p-4 sm:grid-cols-[auto_1fr]">
-      <Avatar nutri={nutri} size="lg" />
-      <div className="space-y-1 text-sm">
-        <p><span className="text-stone-500">{t("admin.profile.email")}:</span> {nutri.email}</p>
-        {nutri.location && <p><span className="text-stone-500">{t("admin.profile.location")}:</span> {nutri.location}</p>}
-        {nutri.languages && <p><span className="text-stone-500">{t("admin.profile.languages")}:</span> {nutri.languages}</p>}
-        {nutri.bio && <p className="text-stone-700">{nutri.bio}</p>}
+    <div className="mt-4 space-y-4">
+      <div className="grid gap-4 rounded-xl border border-stone-200 bg-white p-4 sm:grid-cols-[auto_1fr]">
+        <Avatar nutri={nutri} size="lg" />
+        <div className="space-y-1 text-sm">
+          <p><span className="text-stone-500">{t("admin.profile.email")}:</span> {nutri.email}</p>
+          {nutri.location && <p><span className="text-stone-500">{t("admin.profile.location")}:</span> {nutri.location}</p>}
+          {nutri.languages && <p><span className="text-stone-500">{t("admin.profile.languages")}:</span> {nutri.languages}</p>}
+          {nutri.bio && <p className="text-stone-700">{nutri.bio}</p>}
+        </div>
+      </div>
+      <div className="rounded-xl border border-stone-200 bg-white p-4">
+        <h4 className="mb-3 text-sm font-semibold text-stone-900">
+          {t("admin.plansList.title")}
+        </h4>
+        <PlansList plans={plans} />
       </div>
     </div>
   );
@@ -198,9 +262,11 @@ function ProfilePanel({ nutri }: { nutri: AdminNutritionist }) {
 export function AdminNutritionists({
   nutritionists,
   patientCounts = {},
+  plansByNutritionist = {},
 }: {
   nutritionists: AdminNutritionist[];
   patientCounts?: Record<string, number>;
+  plansByNutritionist?: Record<string, NutritionistPlan[]>;
 }) {
   const { t } = useI18n();
   const [openId, setOpenId] = useState<string | null>(null);
@@ -256,7 +322,12 @@ export function AdminNutritionists({
                 </div>
               </div>
 
-              {openId === nutri.id && <ProfilePanel nutri={nutri} />}
+              {openId === nutri.id && (
+                <ProfilePanel
+                  nutri={nutri}
+                  plans={plansByNutritionist[nutri.id] ?? []}
+                />
+              )}
 
               <div className="mt-4 grid gap-4 md:grid-cols-2">
                 <PlanForm userId={nutri.id} defaultPlan={nutri.nutritionist_plan} />

@@ -77,8 +77,8 @@ export async function POST(req: Request): Promise<Response> {
         to: target.email,
         recipientName: target.name,
         senderName: target.senderName,
-        preview: body,
         chatUrl: `${baseUrl}${chatPath}`,
+        language: target.language,
       });
     }
   } catch (err) {
