@@ -31,6 +31,7 @@ export interface PatientConversation {
 export interface NutritionistConversation {
   leadId: string;
   partner: ChatPartner; // o paciente
+  unread: boolean; // há mensagem por ler nesta conversa
 }
 
 /**
@@ -70,7 +71,7 @@ export async function getConversationsForNutritionist(
   const { data, error } = await supabaseAdmin
     .from("leads")
     .select(
-      "id, patient:users!leads_patient_user_id_fkey(id, full_name, photo_url)",
+      "id, nutritionist_notify_pending, patient:users!leads_patient_user_id_fkey(id, full_name, photo_url)",
     )
     .eq("nutritionist_id", nutritionistId)
     .not("patient_user_id", "is", null)
@@ -80,6 +81,7 @@ export async function getConversationsForNutritionist(
 
   const rows = (data ?? []) as unknown as {
     id: string;
+    nutritionist_notify_pending: boolean | null;
     patient: ChatPartner | null;
   }[];
 
@@ -88,6 +90,7 @@ export async function getConversationsForNutritionist(
     .map((row) => ({
       leadId: row.id,
       partner: row.patient as ChatPartner,
+      unread: Boolean(row.nutritionist_notify_pending),
     }));
 }
 

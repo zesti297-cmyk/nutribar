@@ -33,10 +33,14 @@ export function NutritionistChat({
   const [selected, setSelected] = useState<NutritionistConversation | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [pending, startTransition] = useTransition();
+  // Conversas já abertas nesta sessão: a bolinha some na hora ao abrir (o
+  // servidor também zera o pendente em loadMessages → markConversationRead).
+  const [readIds, setReadIds] = useState<Set<string>>(new Set());
 
   function open(conv: NutritionistConversation) {
     setSelected(conv);
     setMessages([]);
+    setReadIds((prev) => new Set(prev).add(conv.leadId));
     startTransition(async () => {
       const res = await loadMessages(conv.leadId);
       if ("messages" in res) setMessages(res.messages);
@@ -62,6 +66,7 @@ export function NutritionistChat({
         <ul className="space-y-1">
           {conversations.map((conv) => {
             const active = selected?.leadId === conv.leadId;
+            const unread = conv.unread && !readIds.has(conv.leadId);
             return (
               <li key={conv.leadId}>
                 <button
@@ -75,9 +80,16 @@ export function NutritionistChat({
                     name={conv.partner.full_name}
                     url={conv.partner.photo_url}
                   />
-                  <span className="min-w-0 truncate font-medium text-stone-800">
+                  <span
+                    className={`min-w-0 flex-1 truncate ${
+                      unread ? "font-semibold text-stone-900" : "font-medium text-stone-800"
+                    }`}
+                  >
                     {conv.partner.full_name ?? t("chat.partnerFallback")}
                   </span>
+                  {unread && (
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500" />
+                  )}
                 </button>
               </li>
             );
