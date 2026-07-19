@@ -384,6 +384,11 @@
     "nutritionistEmptyTitle": "No conversations yet",
     "nutritionistEmptyDesc": "Conversations appear here when a patient with a confirmed program chooses you."
   },
+  "phoneInput": {
+    "selectCountry": "Select country",
+    "search": "Search country...",
+    "noResults": "No country found."
+  },
   "nutritionistDashboard": {
     "nav": {
       "profile": "My profile",
@@ -475,7 +480,8 @@
       "password": "Create a password (min. 6 characters)",
       "country": "Your country",
       "surgeryCity": "City where you had surgery",
-      "hospital": "Hospital where you had surgery"
+      "hospital": "Hospital where you had surgery",
+      "surgeryOther": "Which surgery was it?"
     },
     "buttons": {
       "prev": "Back",
@@ -485,6 +491,7 @@
     "reviewTitle": "Review your information",
     "submitError": "We couldn't complete it. Check your details and try again.",
     "submitSuccess": "Registration completed successfully!",
+    "invalidEmail": "Enter a valid email.",
     "notFilled": "Not provided"
   },
   "languageModal": {

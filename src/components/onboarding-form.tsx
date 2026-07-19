@@ -2,6 +2,7 @@
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PasswordInput } from "@/components/password-input";
+import { PhoneInput } from "@/components/phone-input";
 import { useI18n } from "@/lib/i18n";
 import type { PublicNutritionist } from "@/lib/types";
 
@@ -14,6 +15,11 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
   const preselected = useSearchParams()?.get("nutritionist") ?? "";
   const mustChoose = !preselected && nutritionists.length > 0;
   const [step, setStep] = useState(0);
+  // "Outro" é uma escolha do <select> (guardada como marca local), mas o que vai
+  // para form.surgery_type é o TEXTO livre que a paciente escreve — assim a
+  // nutricionista lê a cirurgia real, não um genérico "Outro". Ver o step 1.
+  const [surgeryIsOther, setSurgeryIsOther] = useState(false);
+  const [surgeryOther, setSurgeryOther] = useState("");
   const [form, setForm] = useState({
     full_name: "",
     email: "",
@@ -28,6 +34,11 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
   });
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const prev = () => setStep((s) => Math.max(s - 1, 0));
+
+  // Mesmo formato que o servidor valida (onboarding.ts). O e-mail é opcional,
+  // mas se preenchido tem de ser válido — senão o registo falha só no fim.
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailInvalid = form.email.trim() !== "" && !EMAIL_RE.test(form.email.trim());
 
   const submit = async () => {
     // call server action
@@ -78,7 +89,7 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
     { label: t("onboarding.fields.fullName"), value: form.full_name },
     { label: t("onboarding.fields.email"), value: form.email },
     { label: t("onboarding.fields.phone"), value: form.phone },
-    { label: t("onboarding.fields.surgeryType"), value: SURGERY_LABELS[form.surgery_type] ?? "" },
+    { label: t("onboarding.fields.surgeryType"), value: SURGERY_LABELS[form.surgery_type] ?? form.surgery_type },
     { label: t("onboarding.fields.language"), value: t(`languages.${form.language}`) },
     { label: t("onboarding.fields.country"), value: form.country },
     { label: t("onboarding.fields.surgeryCity"), value: form.surgery_city },
@@ -102,8 +113,9 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
       {step === 0 && (
         <div className="space-y-3">
           <input value={form.full_name} onChange={(e)=>setForm({...form, full_name: e.target.value})} placeholder={t("onboarding.placeholders.fullName")} className="w-full rounded-md border px-3 py-2"/>
-          <input value={form.email} onChange={(e)=>setForm({...form, email: e.target.value})} placeholder={t("onboarding.placeholders.email")} className="w-full rounded-md border px-3 py-2"/>
-          <input type="tel" value={form.phone} onChange={(e)=>setForm({...form, phone: e.target.value})} placeholder={t("onboarding.placeholders.phone")} className="w-full rounded-md border px-3 py-2"/>
+          <input value={form.email} onChange={(e)=>setForm({...form, email: e.target.value})} placeholder={t("onboarding.placeholders.email")} className={`w-full rounded-md border px-3 py-2 ${emailInvalid ? "border-red-400" : ""}`}/>
+          {emailInvalid && <p className="text-xs text-red-600">{t("onboarding.invalidEmail")}</p>}
+          <PhoneInput value={form.phone} onChange={(phone)=>setForm({...form, phone})} className="w-full"/>
           <PasswordInput value={form.password} onChange={(e)=>setForm({...form, password: e.target.value})} placeholder={t("onboarding.placeholders.password")} className="w-full rounded-md border px-3 py-2"/>
         </div>
       )}
@@ -111,12 +123,40 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
       {step === 1 && (
         <div className="space-y-3">
           <label className="block text-sm font-medium">{t("onboarding.fields.surgeryType")}</label>
-          <select value={form.surgery_type} onChange={(e)=>setForm({...form, surgery_type: e.target.value})} className="w-full rounded-md border px-3 py-2">
+          <select
+            value={surgeryIsOther ? "outro" : form.surgery_type}
+            onChange={(e) => {
+              const v = e.target.value;
+              if (v === "outro") {
+                // Enquanto não escreve, guarda o texto já digitado (se voltou ao
+                // passo) ou vazio — o "outro" só vale quando há descrição.
+                setSurgeryIsOther(true);
+                setForm({ ...form, surgery_type: surgeryOther });
+              } else {
+                setSurgeryIsOther(false);
+                setSurgeryOther("");
+                setForm({ ...form, surgery_type: v });
+              }
+            }}
+            className="w-full rounded-md border px-3 py-2"
+          >
             <option value="">{t("onboarding.selectOption")}</option>
             <option value="bariatrica">{t("onboarding.surgeryTypes.bariatric")}</option>
             <option value="endocrina">{t("onboarding.surgeryTypes.endocrine")}</option>
             <option value="outro">{t("onboarding.surgeryTypes.other")}</option>
           </select>
+          {surgeryIsOther && (
+            <input
+              value={surgeryOther}
+              onChange={(e) => {
+                setSurgeryOther(e.target.value);
+                setForm({ ...form, surgery_type: e.target.value });
+              }}
+              placeholder={t("onboarding.placeholders.surgeryOther")}
+              className="w-full rounded-md border px-3 py-2"
+              autoFocus
+            />
+          )}
         </div>
       )}
 
@@ -214,7 +254,14 @@ function OnboardingSteps({ nutritionists }: { nutritionists: PublicNutritionist[
         {step < REVIEW_STEP && (
           <button
             onClick={next}
-            disabled={step === CHOOSE_STEP && !form.nutritionist_id}
+            disabled={
+              (step === CHOOSE_STEP && !form.nutritionist_id) ||
+              // E-mail preenchido tem de ser válido antes de avançar da conta.
+              (step === 0 && emailInvalid) ||
+              // "Outro" escolhido exige a descrição — senão a nutri receberia
+              // um tipo de cirurgia em branco.
+              (step === 1 && surgeryIsOther && !surgeryOther.trim())
+            }
             className="rounded-md bg-[#0c2340] px-4 py-1 text-sm text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t("onboarding.buttons.next")}

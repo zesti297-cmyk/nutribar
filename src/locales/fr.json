@@ -384,6 +384,11 @@
     "nutritionistEmptyTitle": "Aucune conversation pour l'instant",
     "nutritionistEmptyDesc": "Les conversations apparaissent ici lorsqu'une patiente avec un suivi confirmé vous choisit."
   },
+  "phoneInput": {
+    "selectCountry": "Sélectionner le pays",
+    "search": "Rechercher un pays...",
+    "noResults": "Aucun pays trouvé."
+  },
   "nutritionistDashboard": {
     "nav": {
       "profile": "Mon profil",
@@ -475,7 +480,8 @@
       "password": "Créez un mot de passe (min. 6 caractères)",
       "country": "Votre pays",
       "surgeryCity": "Ville où vous avez été opérée",
-      "hospital": "Hôpital où vous avez été opérée"
+      "hospital": "Hôpital où vous avez été opérée",
+      "surgeryOther": "Quelle chirurgie était-ce ?"
     },
     "buttons": {
       "prev": "Retour",
@@ -485,6 +491,7 @@
     "reviewTitle": "Vérifiez vos informations",
     "submitError": "Nous n'avons pas pu terminer. Vérifiez vos informations et réessayez.",
     "submitSuccess": "Inscription terminée avec succès !",
+    "invalidEmail": "Saisissez un email valide.",
     "notFilled": "Non renseigné"
   },
   "languageModal": {
