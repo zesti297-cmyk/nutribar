@@ -6,6 +6,7 @@ import { DeleteUserButton } from "@/components/delete-user-button";
 import { SelectionToolbar } from "@/components/selection-toolbar";
 import { dateStamp, downloadCsv } from "@/lib/csv";
 import { useI18n } from "@/lib/i18n";
+import { answerLabel, answerValue } from "@/lib/onboarding-answers";
 import { useSelection } from "@/lib/use-selection";
 import type { Lead } from "@/lib/types";
 
@@ -74,8 +75,8 @@ function LeadRow({
             <dl className="grid gap-2 sm:grid-cols-2">
               {answerEntries.map(([key, value]) => (
                 <div key={key} className="text-sm">
-                  <dt className="font-medium text-stone-600">{key}</dt>
-                  <dd className="text-stone-800">{String(value)}</dd>
+                  <dt className="font-medium text-stone-600">{answerLabel(t, key)}</dt>
+                  <dd className="text-stone-800">{answerValue(t, key, value)}</dd>
                 </div>
               ))}
             </dl>
@@ -107,7 +108,7 @@ export function AdminLeads({ leads }: { leads: Lead[] }) {
           l.nutritionist_name ?? "",
           t(`leadStatus.${l.status}`),
           new Date(l.created_at).toLocaleDateString(dateLocale),
-          ...ANSWER_KEYS.map((k) => a[k] ?? ""),
+          ...ANSWER_KEYS.map((k) => (a[k] != null ? answerValue(t, k, a[k]) : "")),
         ];
       });
 

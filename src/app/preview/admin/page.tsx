@@ -98,6 +98,8 @@ const FAKE_LEADS: Lead[] = [
   {
     id: "fake-lead-1",
     nutritionist_id: "fake-nutri-1",
+    patient_user_id: "fake-patient-1",
+    chat_unlocked: true,
     nutritionist_name: "Dra. Ana Silva",
     full_name: "Beatriz Costa",
     email: "beatriz.costa@example.com",
@@ -113,6 +115,8 @@ const FAKE_LEADS: Lead[] = [
   {
     id: "fake-lead-2",
     nutritionist_id: "fake-nutri-1",
+    patient_user_id: null,
+    chat_unlocked: false,
     nutritionist_name: "Dra. Ana Silva",
     full_name: "Renata Alves",
     email: "renata.alves@example.com",

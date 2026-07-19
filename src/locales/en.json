@@ -360,11 +360,36 @@
       "partialError": "{count} could not be deleted."
     }
   },
+  "patientDashboard": {
+    "nav": {
+      "home": "Home",
+      "chat": "Messages"
+    }
+  },
+  "chat": {
+    "nav": "Messages",
+    "send": "Send",
+    "sending": "Sending...",
+    "sendError": "Couldn't send. Try again.",
+    "placeholder": "Write your message...",
+    "empty": "No messages yet. Say hello!",
+    "loading": "Loading...",
+    "inPlatform": "Conversation inside the platform",
+    "partnerFallback": "Contact",
+    "emptyTitle": "You don't have a conversation yet",
+    "emptyDesc": "Choose a nutritionist to start your program and talk directly with her here.",
+    "chooseNutritionist": "Choose a nutritionist",
+    "phoneBlocked": "For your safety, keep contact inside the platform — phone numbers can't be sent.",
+    "selectConversation": "Select a conversation to start.",
+    "nutritionistEmptyTitle": "No conversations yet",
+    "nutritionistEmptyDesc": "Conversations appear here when a patient with a confirmed program chooses you."
+  },
   "nutritionistDashboard": {
     "nav": {
       "profile": "My profile",
       "leads": "My patients",
-      "plans": "My plans"
+      "plans": "My plans",
+      "chat": "Messages"
     },
     "leads": {
       "title": "Interested patients",

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { markCommissionPaid } from "@/lib/commissions";
 import { getSession } from "@/lib/session";
+import { updateLeadChatUnlocked } from "@/lib/leads";
 import {
   deleteLeadById,
   deleteUserById,
@@ -189,5 +190,23 @@ export async function updateNutritionistCommission(
 
   await dbUpdateNutritionistCommission(userId, commission, commissionType);
   revalidatePath("/dashboard/admin/nutritionists");
+  return { success: true };
+}
+
+/**
+ * Portão do chat (pré-fiação para o pagamento). Hoje o chat abre para qualquer
+ * par paciente↔nutricionista ligado por um lead, então esta flag NÃO bloqueia
+ * nada e não há UI a chamá-la. Fica pronta para quando o gateway de pagamento
+ * voltar a condicionar o chat — aí basta religar a checagem em lib/chat.ts.
+ */
+export async function setChatUnlocked(
+  leadId: string,
+  unlocked: boolean,
+): Promise<ActionResult> {
+  const error = await requireAdmin();
+  if (error) return error;
+
+  await updateLeadChatUnlocked(leadId, unlocked);
+  revalidatePath("/dashboard/admin/leads");
   return { success: true };
 }

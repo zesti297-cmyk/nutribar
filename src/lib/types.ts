@@ -32,12 +32,14 @@ export type LeadStatus =
 export interface Lead {
   id: string;
   nutritionist_id: string | null;
+  patient_user_id: string | null;
   nutritionist_name: string | null;
   full_name: string | null;
   email: string | null;
   phone: string | null;
   onboarding_answers: Record<string, unknown> | null;
   status: LeadStatus;
+  chat_unlocked: boolean;
   created_at: string;
 }
 

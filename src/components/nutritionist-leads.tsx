@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
+import { answerLabel, answerValue } from "@/lib/onboarding-answers";
 import type { Lead } from "@/lib/types";
 
 const LOCALE_TO_DATE: Record<string, string> = {
@@ -57,8 +58,8 @@ function LeadRow({ lead, dateLocale }: { lead: Lead; dateLocale: string }) {
             <dl className="grid gap-2 sm:grid-cols-2">
               {answerEntries.map(([key, value]) => (
                 <div key={key} className="text-sm">
-                  <dt className="font-medium text-stone-600">{key}</dt>
-                  <dd className="text-stone-800">{String(value)}</dd>
+                  <dt className="font-medium text-stone-600">{answerLabel(t, key)}</dt>
+                  <dd className="text-stone-800">{answerValue(t, key, value)}</dd>
                 </div>
               ))}
             </dl>

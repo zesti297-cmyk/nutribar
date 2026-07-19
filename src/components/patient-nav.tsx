@@ -5,13 +5,11 @@ import { usePathname } from "next/navigation";
 import { useI18n } from "@/lib/i18n";
 
 const ITEMS = [
-  { href: "/dashboard/nutritionist", key: "nav.profile" },
-  { href: "/dashboard/nutritionist/plans", key: "nav.plans" },
-  { href: "/dashboard/nutritionist/leads", key: "nav.leads" },
-  { href: "/dashboard/nutritionist/chat", key: "nav.chat" },
+  { href: "/dashboard/patient", key: "nav.home" },
+  { href: "/dashboard/patient/chat", key: "nav.chat" },
 ];
 
-export function NutritionistNav() {
+export function PatientNav() {
   const { t } = useI18n();
   const pathname = usePathname();
 
@@ -29,7 +27,7 @@ export function NutritionistNav() {
                 : "border-transparent text-stone-500 hover:text-stone-800"
             }`}
           >
-            {t(`nutritionistDashboard.${item.key}`)}
+            {t(`patientDashboard.${item.key}`)}
           </Link>
         );
       })}

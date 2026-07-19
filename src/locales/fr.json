@@ -360,11 +360,36 @@
       "partialError": "{count} n’ont pas pu être supprimés."
     }
   },
+  "patientDashboard": {
+    "nav": {
+      "home": "Accueil",
+      "chat": "Messages"
+    }
+  },
+  "chat": {
+    "nav": "Messages",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "sendError": "Envoi impossible. Réessayez.",
+    "placeholder": "Écrivez votre message...",
+    "empty": "Aucun message pour l'instant. Dites bonjour !",
+    "loading": "Chargement...",
+    "inPlatform": "Conversation au sein de la plateforme",
+    "partnerFallback": "Contact",
+    "emptyTitle": "Vous n'avez pas encore de conversation",
+    "emptyDesc": "Choisissez une nutritionniste pour commencer votre suivi et lui parler directement ici.",
+    "chooseNutritionist": "Choisir une nutritionniste",
+    "phoneBlocked": "Pour votre sécurité, gardez le contact au sein de la plateforme — les numéros de téléphone ne peuvent pas être envoyés.",
+    "selectConversation": "Sélectionnez une conversation pour commencer.",
+    "nutritionistEmptyTitle": "Aucune conversation pour l'instant",
+    "nutritionistEmptyDesc": "Les conversations apparaissent ici lorsqu'une patiente avec un suivi confirmé vous choisit."
+  },
   "nutritionistDashboard": {
     "nav": {
       "profile": "Mon profil",
       "leads": "Mes patientes",
-      "plans": "Mes forfaits"
+      "plans": "Mes forfaits",
+      "chat": "Messages"
     },
     "leads": {
       "title": "Patientes intéressées",

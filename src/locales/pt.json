@@ -360,11 +360,36 @@
       "partialError": "{count} não puderam ser eliminados."
     }
   },
+  "patientDashboard": {
+    "nav": {
+      "home": "Início",
+      "chat": "Mensagens"
+    }
+  },
+  "chat": {
+    "nav": "Mensagens",
+    "send": "Enviar",
+    "sending": "A enviar...",
+    "sendError": "Não foi possível enviar. Tente de novo.",
+    "placeholder": "Escreva a sua mensagem...",
+    "empty": "Ainda não há mensagens. Diga olá!",
+    "loading": "A carregar...",
+    "inPlatform": "Conversa dentro da plataforma",
+    "partnerFallback": "Contacto",
+    "emptyTitle": "Ainda não tem uma conversa",
+    "emptyDesc": "Escolha uma nutricionista para começar o acompanhamento e falar diretamente com ela aqui.",
+    "chooseNutritionist": "Escolher nutricionista",
+    "phoneBlocked": "Por segurança, mantenha o contacto dentro da plataforma — não é permitido enviar números de telefone.",
+    "selectConversation": "Selecione uma conversa para começar.",
+    "nutritionistEmptyTitle": "Ainda não há conversas",
+    "nutritionistEmptyDesc": "As conversas aparecem aqui quando uma paciente com acompanhamento confirmado a escolhe."
+  },
   "nutritionistDashboard": {
     "nav": {
       "profile": "O meu perfil",
       "leads": "As minhas pacientes",
-      "plans": "Os meus planos"
+      "plans": "Os meus planos",
+      "chat": "Mensagens"
     },
     "leads": {
       "title": "Pacientes interessadas",
