@@ -22,7 +22,16 @@ export function NutritionistForm({
   location,
   preferredLanguage,
 }: NutritionistFormProps) {
+  // A foto é gravada pelo upload, fora deste form, e o revalidatePath traz o
+  // novo photoUrl do servidor. Guardamos o valor da prop para detetar quando
+  // ele muda e adotá-lo — sem isto o estado ficava preso ao valor inicial e o
+  // hidden abaixo submetia uma foto desatualizada (ou vazia).
   const [photo, setPhoto] = useState(photoUrl);
+  const [lastServerPhoto, setLastServerPhoto] = useState(photoUrl);
+  if (photoUrl !== lastServerPhoto) {
+    setLastServerPhoto(photoUrl);
+    setPhoto(photoUrl);
+  }
   const [state, formAction, pending] = useActionState(
     async (_prev: { error?: string; success?: boolean } | null, formData: FormData) => {
       return updateNutritionistProfile(formData);

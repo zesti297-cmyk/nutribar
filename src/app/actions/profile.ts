@@ -16,7 +16,7 @@ export async function updateNutritionistProfile(formData: FormData) {
   const fullName = formData.get("full_name") as string;
   const languages = formData.get("languages") as string;
   const bio = formData.get("bio") as string;
-  const photoUrl = formData.get("photo_url") as string;
+  const photoUrl = formData.get("photo_url");
   const location = formData.get("location") as string;
   const preferredLanguage = formData.get("preferred_language") as string;
 
@@ -24,7 +24,12 @@ export async function updateNutritionistProfile(formData: FormData) {
     full_name: fullName,
     languages,
     bio,
-    photo_url: photoUrl,
+    // A foto é gravada pelo próprio upload, não por este formulário. Só a
+    // reescrevemos quando vem preenchida: um campo vazio significa "o form não
+    // sabe a foto atual", não "apaga a foto" — e apagava, com um "" por cima.
+    ...(typeof photoUrl === "string" && photoUrl.trim()
+      ? { photo_url: photoUrl.trim() }
+      : {}),
     location,
     // Só grava se veio um dos idiomas suportados.
     ...(["pt", "en", "es", "fr"].includes(preferredLanguage)
