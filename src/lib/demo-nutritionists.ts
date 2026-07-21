@@ -18,6 +18,19 @@ export type DemoPlan = {
    * não um preço inventado para simular desconto.
    */
   listCents?: number;
+  /**
+   * Alternativa em prestações: entrada + mensalidades. Só o plano de um ano a
+   * tem — nos curtos o valor não justifica, e no de dois anos o compromisso é
+   * longo demais para cobrança recorrente.
+   *
+   * O total das prestações fica acima do preço à cabeça: é o custo de diluir,
+   * e dá razão a quem pode pagar de uma vez para o fazer.
+   */
+  installments?: {
+    downCents: number;
+    monthlyCents: number;
+    months: number;
+  };
   highlight?: boolean;
 };
 
@@ -68,6 +81,17 @@ export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
     photo_url:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&h=750&crop=faces&q=80",
   },
+  {
+    id: "demo-rui-marques",
+    full_name: "Dr. Rui Marques",
+    languages: "Português, Inglês",
+    location: "Braga, Portugal",
+    experience_years: 11,
+    specialties: ["Composição corporal", "Massa muscular", "Pós-bariátrica"],
+    bio: "Nutricionista clínico com 11 anos dedicados ao pós-operatório. Trabalho a preservação de massa muscular durante a perda de peso, um ponto que costuma ficar esquecido e que decide o resultado a longo prazo.",
+    photo_url:
+      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&h=750&crop=faces&q=80",
+  },
 ];
 
 /**
@@ -82,23 +106,24 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 3,
       description:
         "Consulta inicial, plano alimentar adaptado à fase pós-operatória e apoio por mensagem entre consultas.",
-      cents: 22000,
-      listCents: 29000,
+      cents: 19900,
+      listCents: 29900,
     },
     {
       months: 12,
       description:
         "Acompanhamento do primeiro ano completo: avaliações regulares, ajustes de protocolo e prevenção de carências.",
-      cents: 69000,
-      listCents: 105000,
+      cents: 64900,
+      listCents: 99900,
+      installments: { downCents: 24900, monthlyCents: 3500, months: 12 },
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento, com foco na manutenção de resultados e autonomia alimentar a longo prazo.",
-      cents: 118000,
-      listCents: 195000,
+      cents: 89900,
+      listCents: 159900,
     },
   ],
 
@@ -108,23 +133,23 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 6,
       description:
         "Protocolo clínico personalizado, análises comentadas e ajuste de suplementação ao longo de seis meses.",
-      cents: 52000,
-      listCents: 72000,
+      cents: 44900,
+      listCents: 64900,
     },
     {
       months: 12,
       description:
         "Um ano de seguimento clínico continuado, com revisão de exames, ajuste de protocolo e prioridade no atendimento.",
-      cents: 89000,
-      listCents: 138000,
+      cents: 79900,
+      listCents: 119900,
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento clínico, do pós-operatório imediato à estabilização a longo prazo.",
-      cents: 152000,
-      listCents: 255000,
+      cents: 129900,
+      listCents: 199900,
     },
   ],
 
@@ -134,23 +159,25 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 3,
       description:
         "Dieta progressiva fase a fase, com acompanhamento próximo na readaptação alimentar.",
-      cents: 19000,
-      listCents: 25000,
+      cents: 17900,
+      listCents: 24900,
     },
     {
       months: 12,
       description:
         "Um ano completo, da alta hospitalar à consolidação de hábitos, com apoio emocional contínuo.",
-      cents: 59000,
-      listCents: 92000,
+      cents: 59900,
+      listCents: 94900,
+      installments: { downCents: 14900, monthlyCents: 3900, months: 12 },
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento, para consolidar resultados sem voltar ao ponto de partida.",
-      cents: 102000,
-      listCents: 172000,
+      cents: 84900,
+      listCents: 149900,
+      installments: { downCents: 19900, monthlyCents: 2900, months: 24 },
     },
   ],
 
@@ -160,23 +187,53 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 6,
       description:
         "Seis meses focados em proteína, vitaminas e na reconstrução da rotina alimentar após a alta.",
-      cents: 36000,
-      listCents: 49000,
+      cents: 39900,
+      listCents: 59900,
     },
     {
       months: 12,
       description:
         "Um ano dedicado a proteína, vitaminas e construção de hábitos que se mantêm depois da alta.",
-      cents: 64000,
-      listCents: 99000,
+      cents: 69900,
+      listCents: 109900,
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento, pensado para quem quer resultado estável sem voltar ao ponto de partida.",
-      cents: 110000,
-      listCents: 185000,
+      cents: 99900,
+      listCents: 169900,
+      installments: { downCents: 29900, monthlyCents: 3200, months: 24 },
+    },
+  ],
+
+  // 11 anos, composição corporal: preço médio, parcela quase tudo — o perfil
+  // que mais aposta em facilitar a entrada.
+  "demo-rui-marques": [
+    {
+      months: 3,
+      description:
+        "Avaliação de composição corporal, plano proteico e ajuste quinzenal nas primeiras semanas.",
+      cents: 22900,
+      listCents: 31900,
+    },
+    {
+      months: 12,
+      description:
+        "Um ano a preservar massa muscular enquanto o peso desce: bioimpedância trimestral, plano proteico e ajuste contínuo.",
+      cents: 74900,
+      listCents: 114900,
+      installments: { downCents: 19900, monthlyCents: 4900, months: 12 },
+      highlight: true,
+    },
+    {
+      months: 24,
+      description:
+        "Dois anos com foco em recomposição corporal e força, da fase de perda até à manutenção.",
+      cents: 109900,
+      listCents: 179900,
+      installments: { downCents: 29900, monthlyCents: 3600, months: 24 },
     },
   ],
 };

@@ -71,11 +71,6 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
     return t("nutritionistCard.planMonths", { count: months });
   };
 
-  // O preço total de um ano assusta; dividido por mês, compara-se com o que a
-  // paciente já gasta. Mostramos os dois — o total continua visível.
-  const perMonth = (cents: number, months: number) =>
-    money(Math.round(cents / months), DEFAULT_CURRENCY);
-
   // Desconto face ao preço de tabela (consultas avulsas pelo mesmo período).
   const discountPercent = (plan: { cents: number; listCents?: number }) => {
     if (!plan.listCents || plan.listCents <= plan.cents) return null;
@@ -183,25 +178,38 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
                       </p>
                       {/* Preço por mês em destaque, total em baixo: o número
                           grande é o que a paciente consegue comparar. */}
+                      {/* Preço fechado do período. Quando há prestações, o
+                          valor à cabeça continua a ser o número grande — é o
+                          mais barato, e queremos que seja o que se lê primeiro. */}
                       <div className="mt-4 border-t border-slate-200 pt-3">
                         {p.listCents && (
                           <p className="text-sm text-slate-400 line-through">
                             {money(p.listCents, DEFAULT_CURRENCY)}
                           </p>
                         )}
-                        <p>
-                          <span className="text-xl font-bold text-[#0c2340]">
-                            {perMonth(p.cents, p.months)}
-                          </span>
-                          <span className="text-sm text-slate-500">
-                            {t("nutritionistCard.planPerMonth")}
-                          </span>
+                        <p className="text-2xl font-bold text-[#0c2340]">
+                          {money(p.cents, DEFAULT_CURRENCY)}
                         </p>
-                        <p className="mt-0.5 text-xs text-slate-500">
-                          {t("nutritionistCard.planTotal", {
-                            total: money(p.cents, DEFAULT_CURRENCY),
-                          })}
-                        </p>
+                        {p.installments && (
+                          <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
+                            {t("nutritionistCard.planInstallments", {
+                              down: money(p.installments.downCents, DEFAULT_CURRENCY),
+                              months: p.installments.months,
+                              monthly: money(p.installments.monthlyCents, DEFAULT_CURRENCY),
+                            })}
+                            <br />
+                            <span className="font-medium text-emerald-700">
+                              {t("nutritionistCard.planUpfrontSaves", {
+                                amount: money(
+                                  p.installments.downCents +
+                                    p.installments.monthlyCents * p.installments.months -
+                                    p.cents,
+                                  DEFAULT_CURRENCY,
+                                ),
+                              })}
+                            </span>
+                          </p>
+                        )}
                       </div>
                     </div>
                   ))

@@ -202,9 +202,9 @@
     "planTwoYears": "2 years",
     "planPopular": "Most chosen",
     "planDuration": "{label} of follow-up",
-    "planPerMonth": " /month",
-    "planTotal": "Total: {total}",
-    "planSaves": "Save {percent}%"
+    "planSaves": "Save {percent}%",
+    "planInstallments": "or {down} + {months}× {monthly}",
+    "planUpfrontSaves": "Save {amount} paying upfront"
   },
   "nutritionistForm": {
     "fullName": "Full name",
