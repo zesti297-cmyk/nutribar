@@ -481,7 +481,8 @@
       "submitForReview": "Enviar para revisión",
       "submitting": "Enviando...",
       "reviewHint": "Completa todos los puntos para poder enviar.",
-      "reviewIncomplete": "Aún falta información. Completa los puntos de arriba."
+      "reviewIncomplete": "Aún falta información. Completa los puntos de arriba.",
+      "reqLicense": "Número de colegiado"
     }
   },
   "onboarding": {
@@ -583,5 +584,25 @@
     "goToDashboard": "Ir a mi área",
     "backHome": "Volver al inicio",
     "signIn": "Entrar en mi cuenta"
+  },
+  "credentials": {
+    "title": "Documentos profesionales",
+    "description": "El número de colegiado es obligatorio y confirma que ejerce. Los diplomas son opcionales.",
+    "verified": "Colegiación verificada por nuestro equipo.",
+    "pending": "Colegiación por verificar. Nuestro equipo la comprueba al evaluar el perfil.",
+    "numberLabel": "Número de colegiado",
+    "numberPlaceholder": "Ej.: 1234N",
+    "numberHint": "Cambiar el número reinicia la verificación.",
+    "save": "Guardar",
+    "docLabel": "Foto o PDF de la colegiación",
+    "docEmpty": "Ningún documento subido",
+    "docHint": "JPG, PNG, WebP o PDF hasta 5MB. Solo nuestro equipo ve este archivo.",
+    "choose": "Elegir archivo",
+    "replace": "Sustituir",
+    "diplomasLabel": "Diplomas y certificados (opcional)",
+    "diplomasHint": "Hasta 5 archivos. Refuerzan su perfil en la evaluación.",
+    "addDiploma": "Añadir diploma",
+    "remove": "Eliminar",
+    "saved": "Guardado."
   }
 }

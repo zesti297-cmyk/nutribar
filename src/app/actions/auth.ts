@@ -45,6 +45,10 @@ export async function signUp(
     });
 
   if (signUpError || !signUpData?.user) {
+    // O Supabase responde em inglês; a app é toda em português.
+    if (signUpError?.message?.includes("already been registered")) {
+      return { error: "Este email já está registado." };
+    }
     return { error: signUpError?.message ?? "Não foi possível criar o utilizador." };
   }
 
@@ -74,19 +78,29 @@ export async function signUp(
   const status: UserStatus =
     finalRole === "nutritionist" ? "draft" : "approved";
 
-  const profile = await createUser({
-    email,
-    passwordHash: null,
-    authUid,
-    role: finalRole,
-    status,
-    referralCode: referralCodeValue,
-    referredBy,
-  });
+  // Sem o perfil o utilizador fica preso: o auth existe (logo não se pode
+  // registar outra vez) mas não há linha em `users` para a app usar. Se esta
+  // parte falhar, desfazemos o auth para o email voltar a ficar livre.
+  let profile;
+  try {
+    profile = await createUser({
+      email,
+      passwordHash: null,
+      authUid,
+      role: finalRole,
+      status,
+      referralCode: referralCodeValue,
+      referredBy,
+    });
 
-  // Congela quanto este convite vale enquanto a taxa do padrinho é a de agora.
-  if (referredBy) {
-    await freezeReferralCommission(referredBy, profile.id);
+    // Congela quanto este convite vale enquanto a taxa do padrinho é a de agora.
+    if (referredBy) {
+      await freezeReferralCommission(referredBy, profile.id);
+    }
+  } catch (err) {
+    await adminSupabase.auth.admin.deleteUser(authUid);
+    console.error("signUp: perfil falhou, auth revertido", err);
+    return { error: "Não foi possível criar a conta. Tente novamente." };
   }
 
   await createSession(profile.id);

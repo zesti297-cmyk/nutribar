@@ -60,6 +60,10 @@ export function NutritionistReviewCard({
         <Check done={!readiness.missingName} label={t("dashboard.nutritionist.reqName")} />
         <Check done={!readiness.missingPhoto} label={t("dashboard.nutritionist.reqPhoto")} />
         <Check done={!readiness.missingBio} label={t("dashboard.nutritionist.reqBio")} />
+        <Check
+          done={!readiness.missingLicense}
+          label={t("dashboard.nutritionist.reqLicense")}
+        />
         <Check done={!readiness.missingPlan} label={t("dashboard.nutritionist.reqPlan")} />
       </ul>
 

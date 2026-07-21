@@ -21,6 +21,12 @@ export interface Profile {
   referral_code: string | null;
   referred_by: string | null;
   created_at: string;
+  /** Cédula profissional, como declarada. Conferida pelo admin. */
+  license_number: string | null;
+  /** Caminhos no bucket privado `credentials` — nunca URLs públicas. */
+  license_doc_path: string | null;
+  diploma_paths: string[] | null;
+  license_verified_at: string | null;
 }
 
 export type LeadStatus =

@@ -481,7 +481,8 @@
       "submitForReview": "Envoyer pour évaluation",
       "submitting": "Envoi...",
       "reviewHint": "Complétez tous les points pour pouvoir envoyer.",
-      "reviewIncomplete": "Il manque encore des informations. Complétez les points ci-dessus."
+      "reviewIncomplete": "Il manque encore des informations. Complétez les points ci-dessus.",
+      "reqLicense": "Numéro d ordre"
     }
   },
   "onboarding": {
@@ -583,5 +584,25 @@
     "goToDashboard": "Aller à mon espace",
     "backHome": "Retour à laccueil",
     "signIn": "Me connecter à mon compte"
+  },
+  "credentials": {
+    "title": "Documents professionnels",
+    "description": "Le numéro d ordre est obligatoire et confirme que vous exercez. Les diplômes sont facultatifs.",
+    "verified": "Numéro vérifié par notre équipe.",
+    "pending": "Numéro à vérifier. Notre équipe le contrôle lors de l évaluation du profil.",
+    "numberLabel": "Numéro d ordre professionnel",
+    "numberPlaceholder": "Ex. : 1234N",
+    "numberHint": "Modifier le numéro relance la vérification.",
+    "save": "Enregistrer",
+    "docLabel": "Photo ou PDF du document",
+    "docEmpty": "Aucun document envoyé",
+    "docHint": "JPG, PNG, WebP ou PDF jusqu à 5 Mo. Seule notre équipe voit ce fichier.",
+    "choose": "Choisir un fichier",
+    "replace": "Remplacer",
+    "diplomasLabel": "Diplômes et certificats (facultatif)",
+    "diplomasHint": "Jusqu à 5 fichiers. Ils renforcent votre profil lors de l évaluation.",
+    "addDiploma": "Ajouter un diplôme",
+    "remove": "Supprimer",
+    "saved": "Enregistré."
   }
 }

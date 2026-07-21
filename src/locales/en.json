@@ -481,7 +481,8 @@
       "submitForReview": "Submit for review",
       "submitting": "Submitting...",
       "reviewHint": "Complete all items to be able to submit.",
-      "reviewIncomplete": "Some information is still missing. Complete the items above."
+      "reviewIncomplete": "Some information is still missing. Complete the items above.",
+      "reqLicense": "Licence number"
     }
   },
   "onboarding": {
@@ -583,5 +584,25 @@
     "goToDashboard": "Go to my dashboard",
     "backHome": "Back to home",
     "signIn": "Sign in to my account"
+  },
+  "credentials": {
+    "title": "Professional documents",
+    "description": "The licence is required and confirms you practise. Diplomas are optional.",
+    "verified": "Licence verified by our team.",
+    "pending": "Licence not yet verified. Our team checks it when reviewing your profile.",
+    "numberLabel": "Professional licence number",
+    "numberPlaceholder": "e.g. 1234N",
+    "numberHint": "Changing the number restarts verification.",
+    "save": "Save",
+    "docLabel": "Photo or PDF of the licence",
+    "docEmpty": "No document uploaded",
+    "docHint": "JPG, PNG, WebP or PDF up to 5MB. Only our team sees this file.",
+    "choose": "Choose file",
+    "replace": "Replace",
+    "diplomasLabel": "Diplomas and certificates (optional)",
+    "diplomasHint": "Up to 5 files. They strengthen your profile at review.",
+    "addDiploma": "Add diploma",
+    "remove": "Remove",
+    "saved": "Saved."
   }
 }

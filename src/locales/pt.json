@@ -481,7 +481,8 @@
       "submitForReview": "Enviar para avaliação",
       "submitting": "A enviar...",
       "reviewHint": "Complete todos os pontos para poder enviar.",
-      "reviewIncomplete": "Ainda faltam informações. Complete os pontos acima."
+      "reviewIncomplete": "Ainda faltam informações. Complete os pontos acima.",
+      "reqLicense": "Número da cédula"
     }
   },
   "onboarding": {
@@ -583,5 +584,25 @@
     "goToDashboard": "Ir para a minha área",
     "backHome": "Voltar ao início",
     "signIn": "Entrar na minha conta"
+  },
+  "credentials": {
+    "title": "Documentos profissionais",
+    "description": "A cédula é obrigatória e confirma que exerce. Os diplomas são opcionais.",
+    "verified": "Cédula verificada pela nossa equipa.",
+    "pending": "Cédula por verificar. A nossa equipa confere ao avaliar o perfil.",
+    "numberLabel": "Número da cédula profissional",
+    "numberPlaceholder": "Ex.: 1234N",
+    "numberHint": "Alterar o número faz a verificação recomeçar.",
+    "save": "Guardar",
+    "docLabel": "Foto ou PDF da cédula",
+    "docEmpty": "Nenhum documento enviado",
+    "docHint": "JPG, PNG, WebP ou PDF até 5MB. Só a nossa equipa vê este ficheiro.",
+    "choose": "Escolher ficheiro",
+    "replace": "Substituir",
+    "diplomasLabel": "Diplomas e certificados (opcional)",
+    "diplomasHint": "Até 5 ficheiros. Reforçam o seu perfil na avaliação.",
+    "addDiploma": "Adicionar diploma",
+    "remove": "Remover",
+    "saved": "Guardado."
   }
 }

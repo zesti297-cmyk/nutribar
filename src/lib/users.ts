@@ -29,6 +29,12 @@ interface UserRow {
   referral_code: string | null;
   referred_by: string | null;
   created_at: string;
+  /** Cédula profissional, como declarada. Conferida pelo admin. */
+  license_number: string | null;
+  /** Caminhos no bucket privado `credentials` — nunca URLs públicas. */
+  license_doc_path: string | null;
+  diploma_paths: string[] | null;
+  license_verified_at: string | null;
 }
 
 const supabaseAdmin = createSupabaseAdminClient();
@@ -55,6 +61,10 @@ function toProfile(row: UserRow): Profile {
     referral_code: row.referral_code,
     referred_by: row.referred_by,
     created_at: row.created_at,
+    license_number: row.license_number ?? null,
+    license_doc_path: row.license_doc_path ?? null,
+    diploma_paths: row.diploma_paths ?? null,
+    license_verified_at: row.license_verified_at ?? null,
   };
 }
 
@@ -138,8 +148,15 @@ export async function updateUserProfile(
     photo_url: string;
     location: string;
     preferred_language: string;
+    license_number: string;
+    license_doc_path: string;
+    diploma_paths: string[];
+    /** null reabre a verificação quando a cédula muda. */
+    license_verified_at: string | null;
   }>,
 ) {
+  // Só `undefined` é ignorado: `null` é um valor a gravar (limpar a
+  // verificação da cédula, por exemplo).
   const patch = Object.fromEntries(
     Object.entries(data).filter(([, v]) => v !== undefined),
   );
@@ -234,6 +251,10 @@ export type AdminNutritionistRow = Pick<
   | "languages"
   | "location"
   | "photo_url"
+  | "license_number"
+  | "license_doc_path"
+  | "diploma_paths"
+  | "license_verified_at"
 >;
 
 export async function getAdminNutritionists(): Promise<AdminNutritionistRow[]> {
@@ -287,6 +308,7 @@ export interface NutritionistReadiness {
   missingPhoto: boolean;
   missingBio: boolean;
   missingPlan: boolean;
+  missingLicense: boolean;
 }
 
 /**
@@ -301,7 +323,7 @@ export async function getNutritionistReadiness(
     await Promise.all([
       supabaseAdmin
         .from("users")
-        .select("full_name, photo_url, bio")
+        .select("full_name, photo_url, bio, license_number")
         .eq("id", userId)
         .maybeSingle(),
       supabaseAdmin
@@ -317,13 +339,18 @@ export async function getNutritionistReadiness(
   const missingPhoto = !user?.photo_url;
   const missingBio = !user?.bio?.trim();
   const missingPlan = Number(count ?? 0) === 0;
+  // A cédula é o que nos permite confirmar que ela exerce mesmo; sem número
+  // não há o que verificar, por isso trava o envio como os restantes pontos.
+  const missingLicense = !user?.license_number?.trim();
 
   return {
-    ready: !missingName && !missingPhoto && !missingBio && !missingPlan,
+    ready:
+      !missingName && !missingPhoto && !missingBio && !missingPlan && !missingLicense,
     missingName,
     missingPhoto,
     missingBio,
     missingPlan,
+    missingLicense,
   };
 }
 
