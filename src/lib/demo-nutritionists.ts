@@ -93,7 +93,7 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
     },
   ],
 
-  // 12 anos, nutrição clínica: perfil mais clínico, entra logo em 6 meses.
+  // 12 anos, nutrição clínica: a mais experiente, preços acima da média.
   "demo-maria-costa": [
     {
       months: 6,
@@ -102,11 +102,17 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       cents: 42000,
     },
     {
-      months: 18,
+      months: 12,
       description:
-        "Ano e meio de seguimento clínico continuado, com revisão de exames e prioridade no atendimento.",
-      cents: 98000,
+        "Um ano de seguimento clínico continuado, com revisão de exames, ajuste de protocolo e prioridade no atendimento.",
+      cents: 72000,
       highlight: true,
+    },
+    {
+      months: 24,
+      description:
+        "Dois anos de acompanhamento clínico, do pós-operatório imediato à estabilização a longo prazo.",
+      cents: 122000,
     },
   ],
 
@@ -119,22 +125,28 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       cents: 15000,
     },
     {
-      months: 6,
-      description:
-        "Seis meses de acompanhamento com apoio na relação com a comida e ajustes de suplementação.",
-      cents: 27000,
-      highlight: true,
-    },
-    {
       months: 12,
       description:
         "Um ano completo, da alta hospitalar à consolidação de hábitos, com apoio emocional contínuo.",
       cents: 49000,
+      highlight: true,
+    },
+    {
+      months: 24,
+      description:
+        "Dois anos de acompanhamento, para consolidar resultados sem voltar ao ponto de partida.",
+      cents: 84000,
     },
   ],
 
   // 9 anos, hábitos sustentáveis: aposta em períodos longos.
   "demo-elena-ruiz": [
+    {
+      months: 6,
+      description:
+        "Seis meses focados em proteína, vitaminas e na reconstrução da rotina alimentar após a alta.",
+      cents: 29000,
+    },
     {
       months: 12,
       description:

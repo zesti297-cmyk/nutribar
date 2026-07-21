@@ -71,6 +71,21 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
     return t("nutritionistCard.planMonths", { count: months });
   };
 
+  // O preço total de um ano assusta; dividido por mês, compara-se com o que a
+  // paciente já gasta. Mostramos os dois — o total continua visível.
+  const perMonth = (cents: number, months: number) =>
+    money(Math.round(cents / months), DEFAULT_CURRENCY);
+
+  // Quanto o plano mais curto custaria pelo mesmo período. Só faz sentido a
+  // partir do segundo plano, e só quando há mesmo poupança.
+  const savingsPercent = (plan: { months: number; cents: number }) => {
+    const shortest = demoPlans[0];
+    if (!shortest || plan.months <= shortest.months) return null;
+    const baseline = (shortest.cents / shortest.months) * plan.months;
+    const pct = Math.round((1 - plan.cents / baseline) * 100);
+    return pct >= 5 ? pct : null;
+  };
+
   return createPortal(
     // No telemóvel a folha encosta ao fundo e ocupa quase todo o ecrã; a partir
     // de sm volta a ser um diálogo centrado. dvh em vez de vh porque a barra de
@@ -157,17 +172,36 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
                           {t("nutritionistCard.planPopular")}
                         </span>
                       )}
-                      <p className="text-lg font-semibold text-[#0c2340]">
-                        {durationLabel(p.months)}
-                      </p>
+                      <div className="flex items-baseline justify-between gap-2">
+                        <p className="text-lg font-semibold text-[#0c2340]">
+                          {durationLabel(p.months)}
+                        </p>
+                        {savingsPercent(p) !== null && (
+                          <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-700">
+                            {t("nutritionistCard.planSaves", { percent: savingsPercent(p)! })}
+                          </span>
+                        )}
+                      </div>
                       <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
                         {p.description}
                       </p>
-                      <p className="mt-4 border-t border-slate-200 pt-3">
-                        <span className="text-xl font-bold text-[#0c2340]">
-                          {money(p.cents, DEFAULT_CURRENCY)}
-                        </span>
-                      </p>
+                      {/* Preço por mês em destaque, total em baixo: o número
+                          grande é o que a paciente consegue comparar. */}
+                      <div className="mt-4 border-t border-slate-200 pt-3">
+                        <p>
+                          <span className="text-xl font-bold text-[#0c2340]">
+                            {perMonth(p.cents, p.months)}
+                          </span>
+                          <span className="text-sm text-slate-500">
+                            {t("nutritionistCard.planPerMonth")}
+                          </span>
+                        </p>
+                        <p className="mt-0.5 text-xs text-slate-500">
+                          {t("nutritionistCard.planTotal", {
+                            total: money(p.cents, DEFAULT_CURRENCY),
+                          })}
+                        </p>
+                      </div>
                     </div>
                   ))
                 : plans.map((p) => (

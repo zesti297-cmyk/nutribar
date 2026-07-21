@@ -201,7 +201,10 @@
     "planYearHalf": "1 año y medio",
     "planTwoYears": "2 años",
     "planPopular": "Más elegido",
-    "planDuration": "Seguimiento de {label}"
+    "planDuration": "Seguimiento de {label}",
+    "planPerMonth": " /mes",
+    "planTotal": "Total: {total}",
+    "planSaves": "Ahorra {percent}%"
   },
   "nutritionistForm": {
     "fullName": "Nombre completo",
