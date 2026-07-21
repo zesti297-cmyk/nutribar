@@ -1,5 +1,20 @@
 import type { PublicNutritionist } from "@/lib/types";
 
+/**
+ * Plano de exemplo mostrado no perfil das nutricionistas de demonstração.
+ *
+ * `months` é a duração real do acompanhamento — o que a paciente contrata é um
+ * período (3 meses, 1 ano, 2 anos), não uma frequência de pagamento.
+ * `highlight` marca o plano que a nutricionista destaca; a landing dá-lhe
+ * ênfase visual.
+ */
+export type DemoPlan = {
+  months: number;
+  description: string;
+  cents: number;
+  highlight?: boolean;
+};
+
 // Fotos de placeholder (protótipo académico).
 // Substituir por fotos reais das nutricionistas, com autorização, antes de produção.
 export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
@@ -48,3 +63,90 @@ export const DEMO_NUTRITIONISTS: PublicNutritionist[] = [
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&h=750&crop=faces&q=80",
   },
 ];
+
+/**
+ * Cada nutricionista desenha a sua própria oferta: durações e preços diferem,
+ * como diferem na vida real. Servem de exemplo na apresentação — mostrar as
+ * quatro com o mesmo pacote dava a ideia errada de um catálogo fixo.
+ */
+export const DEMO_PLANS: Record<string, DemoPlan[]> = {
+  // 8 anos, reeducação alimentar: começa curto e aposta no ano completo.
+  "demo-ana-silva": [
+    {
+      months: 3,
+      description:
+        "Consulta inicial, plano alimentar adaptado à fase pós-operatória e apoio por mensagem entre consultas.",
+      cents: 18000,
+    },
+    {
+      months: 12,
+      description:
+        "Acompanhamento do primeiro ano completo: avaliações regulares, ajustes de protocolo e prevenção de carências.",
+      cents: 58000,
+      highlight: true,
+    },
+    {
+      months: 24,
+      description:
+        "Dois anos de acompanhamento, com foco na manutenção de resultados e autonomia alimentar a longo prazo.",
+      cents: 96000,
+    },
+  ],
+
+  // 12 anos, nutrição clínica: perfil mais clínico, entra logo em 6 meses.
+  "demo-maria-costa": [
+    {
+      months: 6,
+      description:
+        "Protocolo clínico personalizado, análises comentadas e ajuste de suplementação ao longo de seis meses.",
+      cents: 42000,
+    },
+    {
+      months: 18,
+      description:
+        "Ano e meio de seguimento clínico continuado, com revisão de exames e prioridade no atendimento.",
+      cents: 98000,
+      highlight: true,
+    },
+  ],
+
+  // 6 anos, dietas progressivas e apoio emocional: entrada acessível.
+  "demo-sofia-martinez": [
+    {
+      months: 3,
+      description:
+        "Dieta progressiva fase a fase, com acompanhamento próximo na readaptação alimentar.",
+      cents: 15000,
+    },
+    {
+      months: 6,
+      description:
+        "Seis meses de acompanhamento com apoio na relação com a comida e ajustes de suplementação.",
+      cents: 27000,
+      highlight: true,
+    },
+    {
+      months: 12,
+      description:
+        "Um ano completo, da alta hospitalar à consolidação de hábitos, com apoio emocional contínuo.",
+      cents: 49000,
+    },
+  ],
+
+  // 9 anos, hábitos sustentáveis: aposta em períodos longos.
+  "demo-elena-ruiz": [
+    {
+      months: 12,
+      description:
+        "Um ano dedicado a proteína, vitaminas e construção de hábitos que se mantêm depois da alta.",
+      cents: 52000,
+      highlight: true,
+    },
+    {
+      months: 24,
+      description:
+        "Dois anos de acompanhamento, pensado para quem quer resultado estável sem voltar ao ponto de partida.",
+      cents: 89000,
+    },
+  ],
+};

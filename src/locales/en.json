@@ -193,16 +193,15 @@
     "multilingual": "Speaks several languages",
     "viewProfile": "View profile",
     "packsTitle": "Follow-up plans",
-    "monthly": "Monthly",
-    "quarterly": "Quarterly",
-    "annual": "Annual",
-    "packMonthlyDescription": "Initial consultation + 1 assessment per month, with protocol adjustments and message support between consultations.",
-    "packQuarterlyDescription": "Initial consultation, 3 clinical reviews, detailed recommendations, and continuous follow-up of your progress.",
-    "packAnnualDescription": "Complete 1-year program: regular assessments, protocol adjustments, deficiency prevention, and priority care.",
-    "from": "From {price}",
     "contact": "Contact the nutritionist",
     "close": "Close",
-    "noPlans": "This nutritionist has not added any plans yet. Get in touch to learn about pricing."
+    "noPlans": "This nutritionist has not added any plans yet. Get in touch to learn about pricing.",
+    "planMonths": "{count} months",
+    "planYear": "1 year",
+    "planYearHalf": "18 months",
+    "planTwoYears": "2 years",
+    "planPopular": "Most chosen",
+    "planDuration": "{label} of follow-up"
   },
   "nutritionistForm": {
     "fullName": "Full name",

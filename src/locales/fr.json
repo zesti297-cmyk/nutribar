@@ -193,16 +193,15 @@
     "multilingual": "Parle plusieurs langues",
     "viewProfile": "Voir le profil",
     "packsTitle": "Plans de suivi",
-    "monthly": "Mensuel",
-    "quarterly": "Trimestriel",
-    "annual": "Annuel",
-    "packMonthlyDescription": "Consultation initiale + 1 évaluation par mois, avec ajustements de protocole et soutien par message entre les consultations.",
-    "packQuarterlyDescription": "Consultation initiale, 3 révisions cliniques, recommandations détaillées et suivi continu de votre évolution.",
-    "packAnnualDescription": "Programme complet d'un an : évaluations régulières, ajustements de protocole, prévention des carences et priorité de prise en charge.",
-    "from": "À partir de {price}",
     "contact": "Contacter la nutritionniste",
     "close": "Fermer",
-    "noPlans": "Cette nutritionniste na pas encore ajouté de forfaits. Contactez-la pour connaître les tarifs."
+    "noPlans": "Cette nutritionniste na pas encore ajouté de forfaits. Contactez-la pour connaître les tarifs.",
+    "planMonths": "{count} mois",
+    "planYear": "1 an",
+    "planYearHalf": "1 an et demi",
+    "planTwoYears": "2 ans",
+    "planPopular": "Le plus choisi",
+    "planDuration": "Suivi de {label}"
   },
   "nutritionistForm": {
     "fullName": "Nom complet",

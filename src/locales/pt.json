@@ -193,16 +193,15 @@
     "multilingual": "Atende em vários idiomas",
     "viewProfile": "Ver perfil",
     "packsTitle": "Planos de acompanhamento",
-    "monthly": "Mensal",
-    "quarterly": "Trimestral",
-    "annual": "Anual",
-    "packMonthlyDescription": "Consulta inicial + 1 avaliação por mês, com ajustes de protocolo e apoio por mensagem entre as consultas.",
-    "packQuarterlyDescription": "Consulta inicial, 3 revisões clínicas, recomendações detalhadas e acompanhamento contínuo da sua evolução.",
-    "packAnnualDescription": "Programa completo de 1 ano: avaliações regulares, ajustes de protocolo, prevenção de carências e prioridade no atendimento.",
-    "from": "A partir de {price}",
     "contact": "Falar com a nutricionista",
     "close": "Fechar",
-    "noPlans": "Esta nutricionista ainda não registou planos. Fale com ela para saber os valores."
+    "noPlans": "Esta nutricionista ainda não registou planos. Fale com ela para saber os valores.",
+    "planMonths": "{count} meses",
+    "planYear": "1 ano",
+    "planYearHalf": "1 ano e meio",
+    "planTwoYears": "2 anos",
+    "planPopular": "Mais escolhido",
+    "planDuration": "Acompanhamento de {label}"
   },
   "nutritionistForm": {
     "fullName": "Nome completo",

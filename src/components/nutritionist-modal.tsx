@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { DEFAULT_CURRENCY } from "@/lib/currency";
+import { DEMO_PLANS } from "@/lib/demo-nutritionists";
 import type { PublicNutritionist } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
 
@@ -55,15 +56,20 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
       currency: currency || DEFAULT_CURRENCY,
     }).format(cents / 100);
 
-  // As demo da landing não têm planos no banco; caem nos exemplos.
+  // As demo da landing não têm planos no banco; caem nos exemplos, que são
+  // próprios de cada uma — durações e preços diferem entre nutricionistas.
   const plans = nutritionist.plans ?? [];
   const isDemo = !nutritionist.plans;
+  const demoPlans = DEMO_PLANS[nutritionist.id] ?? [];
 
-  const demoPlans = [
-    { name: t("nutritionistCard.monthly"), description: t("nutritionistCard.packMonthlyDescription"), cents: 4000 },
-    { name: t("nutritionistCard.quarterly"), description: t("nutritionistCard.packQuarterlyDescription"), cents: 11000 },
-    { name: t("nutritionistCard.annual"), description: t("nutritionistCard.packAnnualDescription"), cents: 38000 },
-  ];
+  // 12 e 24 meses lêem-se melhor como "1 ano" e "2 anos" do que como um número
+  // de meses; 18 idem. O resto fica em meses.
+  const durationLabel = (months: number) => {
+    if (months === 12) return t("nutritionistCard.planYear");
+    if (months === 18) return t("nutritionistCard.planYearHalf");
+    if (months === 24) return t("nutritionistCard.planTwoYears");
+    return t("nutritionistCard.planMonths", { count: months });
+  };
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -112,23 +118,58 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
         {(plans.length > 0 || isDemo) && (
           <div className="mt-6">
             <h4 className="text-lg font-semibold text-[#0c2340]">{t("nutritionistCard.packsTitle")}</h4>
-            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            <div
+              className={`mt-4 grid gap-4 ${
+                (isDemo ? demoPlans.length : plans.length) === 2
+                  ? "sm:grid-cols-2"
+                  : "sm:grid-cols-3"
+              }`}
+            >
               {isDemo
                 ? demoPlans.map((p) => (
-                    <div key={p.name} className="rounded-lg border bg-slate-50 p-4">
-                      <p className="font-medium text-[#0c2340]">{p.name}</p>
-                      <p className="mt-2 text-sm text-slate-600">{p.description}</p>
-                      <p className="mt-3 font-bold text-[#0c2340]">
-                        {t("nutritionistCard.from", { price: money(p.cents, DEFAULT_CURRENCY) })}
+                    <div
+                      key={p.months}
+                      className={`relative flex flex-col rounded-xl border p-5 transition-shadow hover:shadow-md ${
+                        p.highlight
+                          ? "border-[#0c2340] bg-white shadow-sm ring-1 ring-[#0c2340]"
+                          : "border-slate-200 bg-slate-50"
+                      }`}
+                    >
+                      {p.highlight && (
+                        <span className="absolute -top-2.5 left-5 rounded-full bg-[#0c2340] px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
+                          {t("nutritionistCard.planPopular")}
+                        </span>
+                      )}
+                      <p className="text-lg font-semibold text-[#0c2340]">
+                        {durationLabel(p.months)}
+                      </p>
+                      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                        {p.description}
+                      </p>
+                      <p className="mt-4 border-t border-slate-200 pt-3">
+                        <span className="text-xl font-bold text-[#0c2340]">
+                          {money(p.cents, DEFAULT_CURRENCY)}
+                        </span>
                       </p>
                     </div>
                   ))
                 : plans.map((p) => (
-                    <div key={p.id} className="rounded-lg border bg-slate-50 p-4">
-                      <p className="font-medium text-[#0c2340]">{p.name}</p>
+                    <div
+                      key={p.id}
+                      className="flex flex-col rounded-xl border border-slate-200 bg-slate-50 p-5 transition-shadow hover:shadow-md"
+                    >
+                      <p className="text-lg font-semibold text-[#0c2340]">{p.name}</p>
                       {p.duration && <p className="mt-0.5 text-xs text-slate-500">{p.duration}</p>}
-                      {p.description && <p className="mt-2 text-sm text-slate-600">{p.description}</p>}
-                      <p className="mt-3 font-bold text-[#0c2340]">{money(p.price_cents, p.currency)}</p>
+                      {p.description && (
+                        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                          {p.description}
+                        </p>
+                      )}
+                      <p className="mt-4 border-t border-slate-200 pt-3">
+                        <span className="text-xl font-bold text-[#0c2340]">
+                          {money(p.price_cents, p.currency)}
+                        </span>
+                      </p>
                     </div>
                   ))}
             </div>
