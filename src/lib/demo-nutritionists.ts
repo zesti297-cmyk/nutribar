@@ -12,6 +12,12 @@ export type DemoPlan = {
   months: number;
   description: string;
   cents: number;
+  /**
+   * Preço de tabela do acompanhamento avulso, riscado ao lado do valor real.
+   * É o que a paciente pagaria somando consultas soltas pelo mesmo período —
+   * não um preço inventado para simular desconto.
+   */
+  listCents?: number;
   highlight?: boolean;
 };
 
@@ -76,20 +82,23 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 3,
       description:
         "Consulta inicial, plano alimentar adaptado à fase pós-operatória e apoio por mensagem entre consultas.",
-      cents: 18000,
+      cents: 22000,
+      listCents: 29000,
     },
     {
       months: 12,
       description:
         "Acompanhamento do primeiro ano completo: avaliações regulares, ajustes de protocolo e prevenção de carências.",
-      cents: 58000,
+      cents: 69000,
+      listCents: 105000,
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento, com foco na manutenção de resultados e autonomia alimentar a longo prazo.",
-      cents: 96000,
+      cents: 118000,
+      listCents: 195000,
     },
   ],
 
@@ -99,20 +108,23 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 6,
       description:
         "Protocolo clínico personalizado, análises comentadas e ajuste de suplementação ao longo de seis meses.",
-      cents: 42000,
+      cents: 52000,
+      listCents: 72000,
     },
     {
       months: 12,
       description:
         "Um ano de seguimento clínico continuado, com revisão de exames, ajuste de protocolo e prioridade no atendimento.",
-      cents: 72000,
+      cents: 89000,
+      listCents: 138000,
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento clínico, do pós-operatório imediato à estabilização a longo prazo.",
-      cents: 122000,
+      cents: 152000,
+      listCents: 255000,
     },
   ],
 
@@ -122,20 +134,23 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 3,
       description:
         "Dieta progressiva fase a fase, com acompanhamento próximo na readaptação alimentar.",
-      cents: 15000,
+      cents: 19000,
+      listCents: 25000,
     },
     {
       months: 12,
       description:
         "Um ano completo, da alta hospitalar à consolidação de hábitos, com apoio emocional contínuo.",
-      cents: 49000,
+      cents: 59000,
+      listCents: 92000,
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento, para consolidar resultados sem voltar ao ponto de partida.",
-      cents: 84000,
+      cents: 102000,
+      listCents: 172000,
     },
   ],
 
@@ -145,20 +160,23 @@ export const DEMO_PLANS: Record<string, DemoPlan[]> = {
       months: 6,
       description:
         "Seis meses focados em proteína, vitaminas e na reconstrução da rotina alimentar após a alta.",
-      cents: 29000,
+      cents: 36000,
+      listCents: 49000,
     },
     {
       months: 12,
       description:
         "Um ano dedicado a proteína, vitaminas e construção de hábitos que se mantêm depois da alta.",
-      cents: 52000,
+      cents: 64000,
+      listCents: 99000,
       highlight: true,
     },
     {
       months: 24,
       description:
         "Dois anos de acompanhamento, pensado para quem quer resultado estável sem voltar ao ponto de partida.",
-      cents: 89000,
+      cents: 110000,
+      listCents: 185000,
     },
   ],
 };

@@ -76,14 +76,10 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
   const perMonth = (cents: number, months: number) =>
     money(Math.round(cents / months), DEFAULT_CURRENCY);
 
-  // Quanto o plano mais curto custaria pelo mesmo período. Só faz sentido a
-  // partir do segundo plano, e só quando há mesmo poupança.
-  const savingsPercent = (plan: { months: number; cents: number }) => {
-    const shortest = demoPlans[0];
-    if (!shortest || plan.months <= shortest.months) return null;
-    const baseline = (shortest.cents / shortest.months) * plan.months;
-    const pct = Math.round((1 - plan.cents / baseline) * 100);
-    return pct >= 5 ? pct : null;
+  // Desconto face ao preço de tabela (consultas avulsas pelo mesmo período).
+  const discountPercent = (plan: { cents: number; listCents?: number }) => {
+    if (!plan.listCents || plan.listCents <= plan.cents) return null;
+    return Math.round((1 - plan.cents / plan.listCents) * 100);
   };
 
   return createPortal(
@@ -176,9 +172,9 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
                         <p className="text-lg font-semibold text-[#0c2340]">
                           {durationLabel(p.months)}
                         </p>
-                        {savingsPercent(p) !== null && (
+                        {discountPercent(p) !== null && (
                           <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-700">
-                            {t("nutritionistCard.planSaves", { percent: savingsPercent(p)! })}
+                            {t("nutritionistCard.planSaves", { percent: discountPercent(p)! })}
                           </span>
                         )}
                       </div>
@@ -188,6 +184,11 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
                       {/* Preço por mês em destaque, total em baixo: o número
                           grande é o que a paciente consegue comparar. */}
                       <div className="mt-4 border-t border-slate-200 pt-3">
+                        {p.listCents && (
+                          <p className="text-sm text-slate-400 line-through">
+                            {money(p.listCents, DEFAULT_CURRENCY)}
+                          </p>
+                        )}
                         <p>
                           <span className="text-xl font-bold text-[#0c2340]">
                             {perMonth(p.cents, p.months)}
