@@ -231,13 +231,24 @@
       "currency": "Moeda",
       "duration": "Duração",
       "description": "O que está incluído",
-      "isActive": "Mostrar este plano no meu perfil"
+      "isActive": "Mostrar este plano no meu perfil",
+      "listPrice": "Preço antes (opcional)",
+      "durationMonths": "Duração",
+      "durationChoose": "Escolher…",
+      "icon": "Ícone",
+      "iconNone": "Sem ícone",
+      "highlight": "Destacar como \"Mais escolhido\"",
+      "installments": "Aceito pagamento faseado",
+      "installmentDown": "Entrada",
+      "installmentMonths": "Prestações",
+      "installmentMonthly": "Valor mensal"
     },
     "placeholders": {
       "name": "Ex.: Acompanhamento pós-cirúrgico",
       "price": "0,00",
       "duration": "Ex.: 3 meses, 4 consultas",
-      "description": "Descreva o que a paciente recebe neste plano."
+      "description": "Descreva o que a paciente recebe neste plano.",
+      "listPrice": "1099,00"
     },
     "create": {
       "title": "Novo plano",
@@ -253,6 +264,18 @@
       "button": "Eliminar",
       "confirm": "Eliminar este plano?",
       "yes": "Sim, eliminar"
+    },
+    "hints": {
+      "listPrice": "Aparece riscado, com o desconto calculado.",
+      "installments": "O total das prestações deve ficar acima do preço à cabeça — é o que dá vantagem a quem paga de uma vez."
+    },
+    "icons": {
+      "clipboard": "Plano",
+      "salad": "Nutrição",
+      "chat": "Apoio",
+      "chart": "Avaliação",
+      "star": "Completo",
+      "heart": "Bem-estar"
     }
   },
   "auth": {

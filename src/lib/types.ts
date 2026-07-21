@@ -70,6 +70,17 @@ export interface NutritionistPlan {
   is_active: boolean;
   sort_order: number;
   created_at: string;
+  /** Preço de tabela riscado ao lado do valor real. */
+  list_price_cents: number | null;
+  /** Duração escolhida numa lista, para o cartão traduzir "1 ano". */
+  duration_months: number | null;
+  /** Prestações: só valem com os três preenchidos. */
+  installment_down_cents: number | null;
+  installment_monthly_cents: number | null;
+  installment_months: number | null;
+  is_highlighted: boolean;
+  /** Chave de PLAN_ICONS; nunca uma imagem carregada. */
+  icon: string | null;
 }
 
 export interface AdminStats {

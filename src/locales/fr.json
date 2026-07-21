@@ -231,13 +231,24 @@
       "currency": "Devise",
       "duration": "Durée",
       "description": "Ce qui est inclus",
-      "isActive": "Afficher ce forfait sur mon profil"
+      "isActive": "Afficher ce forfait sur mon profil",
+      "listPrice": "Prix avant (facultatif)",
+      "durationMonths": "Durée",
+      "durationChoose": "Choisir…",
+      "icon": "Icône",
+      "iconNone": "Aucune icône",
+      "highlight": "Mettre en avant comme « Le plus choisi »",
+      "installments": "Paiement échelonné",
+      "installmentDown": "Acompte",
+      "installmentMonths": "Échéances",
+      "installmentMonthly": "Montant mensuel"
     },
     "placeholders": {
       "name": "Ex. : Suivi post-opératoire",
       "price": "0,00",
       "duration": "Ex. : 3 mois, 4 consultations",
-      "description": "Décrivez ce que la patiente reçoit dans ce forfait."
+      "description": "Décrivez ce que la patiente reçoit dans ce forfait.",
+      "listPrice": "1099,00"
     },
     "create": {
       "title": "Nouveau forfait",
@@ -253,6 +264,18 @@
       "button": "Supprimer",
       "confirm": "Supprimer ce forfait ?",
       "yes": "Oui, supprimer"
+    },
+    "hints": {
+      "listPrice": "Affiché barré, avec la remise calculée.",
+      "installments": "Le total échelonné doit rester au-dessus du prix comptant — c est ce qui récompense le paiement en une fois."
+    },
+    "icons": {
+      "clipboard": "Plan",
+      "salad": "Nutrition",
+      "chat": "Soutien",
+      "chart": "Évaluation",
+      "star": "Complet",
+      "heart": "Bien-être"
     }
   },
   "auth": {

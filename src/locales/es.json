@@ -231,13 +231,24 @@
       "currency": "Moneda",
       "duration": "Duración",
       "description": "Qué incluye",
-      "isActive": "Mostrar este plan en mi perfil"
+      "isActive": "Mostrar este plan en mi perfil",
+      "listPrice": "Precio antes (opcional)",
+      "durationMonths": "Duración",
+      "durationChoose": "Elegir…",
+      "icon": "Icono",
+      "iconNone": "Sin icono",
+      "highlight": "Destacar como \"Más elegido\"",
+      "installments": "Acepto pago a plazos",
+      "installmentDown": "Entrada",
+      "installmentMonths": "Plazos",
+      "installmentMonthly": "Importe mensual"
     },
     "placeholders": {
       "name": "Ej.: Seguimiento posoperatorio",
       "price": "0,00",
       "duration": "Ej.: 3 meses, 4 consultas",
-      "description": "Describe lo que recibe la paciente en este plan."
+      "description": "Describe lo que recibe la paciente en este plan.",
+      "listPrice": "1099,00"
     },
     "create": {
       "title": "Nuevo plan",
@@ -253,6 +264,18 @@
       "button": "Eliminar",
       "confirm": "¿Eliminar este plan?",
       "yes": "Sí, eliminar"
+    },
+    "hints": {
+      "listPrice": "Aparece tachado, con el descuento calculado.",
+      "installments": "El total a plazos debe quedar por encima del precio al contado — es lo que premia pagar de una vez."
+    },
+    "icons": {
+      "clipboard": "Plan",
+      "salad": "Nutrición",
+      "chat": "Apoyo",
+      "chart": "Evaluación",
+      "star": "Completo",
+      "heart": "Bienestar"
     }
   },
   "auth": {

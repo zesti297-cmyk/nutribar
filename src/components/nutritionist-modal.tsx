@@ -6,6 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { DEFAULT_CURRENCY } from "@/lib/currency";
 import { DEMO_PLANS } from "@/lib/demo-nutritionists";
+import {
+  PLAN_ICONS,
+  durationKey,
+  installmentTotal,
+  isPlanIcon,
+} from "@/lib/plan-options";
 import type { PublicNutritionist } from "@/lib/types";
 import { useI18n } from "../lib/i18n";
 
@@ -62,13 +68,9 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
   const isDemo = !nutritionist.plans;
   const demoPlans = DEMO_PLANS[nutritionist.id] ?? [];
 
-  // 12 e 24 meses lêem-se melhor como "1 ano" e "2 anos" do que como um número
-  // de meses; 18 idem. O resto fica em meses.
   const durationLabel = (months: number) => {
-    if (months === 12) return t("nutritionistCard.planYear");
-    if (months === 18) return t("nutritionistCard.planYearHalf");
-    if (months === 24) return t("nutritionistCard.planTwoYears");
-    return t("nutritionistCard.planMonths", { count: months });
+    const { key, params } = durationKey(months);
+    return t(key, params);
   };
 
   // Desconto face ao preço de tabela (consultas avulsas pelo mesmo período).
@@ -213,25 +215,99 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
                       </div>
                     </div>
                   ))
-                : plans.map((p) => (
-                    <div
-                      key={p.id}
-                      className="flex flex-col rounded-xl border border-slate-200 bg-slate-50 p-5 transition-shadow hover:shadow-md"
-                    >
-                      <p className="text-lg font-semibold text-[#0c2340]">{p.name}</p>
-                      {p.duration && <p className="mt-0.5 text-xs text-slate-500">{p.duration}</p>}
-                      {p.description && (
-                        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-                          {p.description}
-                        </p>
-                      )}
-                      <p className="mt-4 border-t border-slate-200 pt-3">
-                        <span className="text-xl font-bold text-[#0c2340]">
-                          {money(p.price_cents, p.currency)}
-                        </span>
-                      </p>
-                    </div>
-                  ))}
+                : plans.map((p) => {
+                    const discount =
+                      p.list_price_cents && p.list_price_cents > p.price_cents
+                        ? Math.round((1 - p.price_cents / p.list_price_cents) * 100)
+                        : null;
+                    const inst =
+                      p.installment_down_cents !== null &&
+                      p.installment_monthly_cents !== null &&
+                      p.installment_months !== null
+                        ? {
+                            down: p.installment_down_cents,
+                            monthly: p.installment_monthly_cents,
+                            months: p.installment_months,
+                          }
+                        : null;
+                    const durationText = p.duration_months
+                      ? (() => {
+                          const { key, params } = durationKey(p.duration_months);
+                          return t(key, params);
+                        })()
+                      : null;
+
+                    return (
+                      <div
+                        key={p.id}
+                        className={`relative flex flex-col rounded-xl border p-5 transition-shadow hover:shadow-md ${
+                          p.is_highlighted
+                            ? "border-[#0c2340] bg-white shadow-sm ring-1 ring-[#0c2340]"
+                            : "border-slate-200 bg-slate-50"
+                        }`}
+                      >
+                        {p.is_highlighted && (
+                          <span className="absolute -top-2.5 left-5 rounded-full bg-[#0c2340] px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
+                            {t("nutritionistCard.planPopular")}
+                          </span>
+                        )}
+                        <div className="flex items-baseline justify-between gap-2">
+                          <p className="text-lg font-semibold text-[#0c2340]">
+                            {p.icon && isPlanIcon(p.icon) ? `${PLAN_ICONS[p.icon]} ` : ""}
+                            {durationText ?? p.name}
+                          </p>
+                          {discount !== null && (
+                            <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-700">
+                              {t("nutritionistCard.planSaves", { percent: discount })}
+                            </span>
+                          )}
+                        </div>
+                        {durationText && p.name !== durationText && (
+                          <p className="mt-0.5 text-xs text-slate-500">{p.name}</p>
+                        )}
+                        {p.duration && <p className="mt-0.5 text-xs text-slate-500">{p.duration}</p>}
+                        {p.description && (
+                          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                            {p.description}
+                          </p>
+                        )}
+                        <div className="mt-4 border-t border-slate-200 pt-3">
+                          {p.list_price_cents && p.list_price_cents > p.price_cents && (
+                            <p className="text-sm text-slate-400 line-through">
+                              {money(p.list_price_cents, p.currency)}
+                            </p>
+                          )}
+                          <p className="text-2xl font-bold text-[#0c2340]">
+                            {money(p.price_cents, p.currency)}
+                          </p>
+                          {inst && (
+                            <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
+                              {t("nutritionistCard.planInstallments", {
+                                down: money(inst.down, p.currency),
+                                months: inst.months,
+                                monthly: money(inst.monthly, p.currency),
+                              })}
+                              {installmentTotal(inst.down, inst.monthly, inst.months) >
+                                p.price_cents && (
+                                <>
+                                  <br />
+                                  <span className="font-medium text-emerald-700">
+                                    {t("nutritionistCard.planUpfrontSaves", {
+                                      amount: money(
+                                        installmentTotal(inst.down, inst.monthly, inst.months) -
+                                          p.price_cents,
+                                        p.currency,
+                                      ),
+                                    })}
+                                  </span>
+                                </>
+                              )}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
             </div>
           </div>
         )}

@@ -8,6 +8,12 @@ import {
 } from "@/app/actions/plans";
 import { DEFAULT_CURRENCY } from "@/lib/currency";
 import { useI18n } from "@/lib/i18n";
+import {
+  INSTALLMENT_TERMS,
+  PLAN_DURATIONS,
+  PLAN_ICONS,
+  durationKey,
+} from "@/lib/plan-options";
 import type { NutritionistPlan } from "@/lib/types";
 
 const LOCALE_TO_INTL: Record<string, string> = {
@@ -36,6 +42,85 @@ function centsToInput(cents: number): string {
 interface PlanFieldsProps {
   plan?: NutritionistPlan;
   idPrefix: string;
+}
+
+/**
+ * Prestações são opcionais e escondidas até serem pedidas — a maioria dos
+ * planos vende-se à cabeça, e três campos sempre visíveis só pesavam o
+ * formulário.
+ */
+function InstallmentFields({ plan, idPrefix }: PlanFieldsProps) {
+  const { t } = useI18n();
+  const [enabled, setEnabled] = useState(Boolean(plan?.installment_months));
+
+  return (
+    <div className="rounded-lg border border-stone-200 p-3 sm:col-span-2">
+      <label className="flex items-center gap-2 text-sm text-stone-700">
+        <input
+          type="checkbox"
+          checked={enabled}
+          onChange={(e) => setEnabled(e.target.checked)}
+          className="h-4 w-4 rounded border-stone-300"
+        />
+        {t("nutritionistPlans.fields.installments")}
+      </label>
+
+      {enabled && (
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          <div>
+            <label htmlFor={`${idPrefix}-inst-down`} className={LABEL_CLASS}>
+              {t("nutritionistPlans.fields.installmentDown")}
+            </label>
+            <input
+              id={`${idPrefix}-inst-down`}
+              name="installment_down"
+              inputMode="decimal"
+              defaultValue={
+                plan?.installment_down_cents ? centsToInput(plan.installment_down_cents) : ""
+              }
+              className={INPUT_CLASS}
+            />
+          </div>
+          <div>
+            <label htmlFor={`${idPrefix}-inst-months`} className={LABEL_CLASS}>
+              {t("nutritionistPlans.fields.installmentMonths")}
+            </label>
+            <select
+              id={`${idPrefix}-inst-months`}
+              name="installment_months"
+              defaultValue={plan?.installment_months ?? 12}
+              className={INPUT_CLASS}
+            >
+              {INSTALLMENT_TERMS.map((n) => (
+                <option key={n} value={n}>
+                  {n}×
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor={`${idPrefix}-inst-monthly`} className={LABEL_CLASS}>
+              {t("nutritionistPlans.fields.installmentMonthly")}
+            </label>
+            <input
+              id={`${idPrefix}-inst-monthly`}
+              name="installment_monthly"
+              inputMode="decimal"
+              defaultValue={
+                plan?.installment_monthly_cents
+                  ? centsToInput(plan.installment_monthly_cents)
+                  : ""
+              }
+              className={INPUT_CLASS}
+            />
+          </div>
+          <p className="text-xs text-stone-500 sm:col-span-3">
+            {t("nutritionistPlans.hints.installments")}
+          </p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function PlanFields({ plan, idPrefix }: PlanFieldsProps) {
@@ -88,6 +173,64 @@ function PlanFields({ plan, idPrefix }: PlanFieldsProps) {
         />
       </div>
 
+      <div>
+        <label htmlFor={`${idPrefix}-list-price`} className={LABEL_CLASS}>
+          {t("nutritionistPlans.fields.listPrice")}
+        </label>
+        <input
+          id={`${idPrefix}-list-price`}
+          name="list_price"
+          inputMode="decimal"
+          defaultValue={plan?.list_price_cents ? centsToInput(plan.list_price_cents) : ""}
+          placeholder={t("nutritionistPlans.placeholders.listPrice")}
+          className={INPUT_CLASS}
+        />
+        <p className="mt-1 text-xs text-stone-500">
+          {t("nutritionistPlans.hints.listPrice")}
+        </p>
+      </div>
+
+      <div>
+        <label htmlFor={`${idPrefix}-duration-months`} className={LABEL_CLASS}>
+          {t("nutritionistPlans.fields.durationMonths")}
+        </label>
+        <select
+          id={`${idPrefix}-duration-months`}
+          name="duration_months"
+          defaultValue={plan?.duration_months ?? ""}
+          className={INPUT_CLASS}
+        >
+          <option value="">{t("nutritionistPlans.fields.durationChoose")}</option>
+          {PLAN_DURATIONS.map((m) => {
+            const { key, params } = durationKey(m);
+            return (
+              <option key={m} value={m}>
+                {t(key, params)}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor={`${idPrefix}-icon`} className={LABEL_CLASS}>
+          {t("nutritionistPlans.fields.icon")}
+        </label>
+        <select
+          id={`${idPrefix}-icon`}
+          name="icon"
+          defaultValue={plan?.icon ?? ""}
+          className={INPUT_CLASS}
+        >
+          <option value="">{t("nutritionistPlans.fields.iconNone")}</option>
+          {Object.entries(PLAN_ICONS).map(([key, emoji]) => (
+            <option key={key} value={key}>
+              {emoji} {t(`nutritionistPlans.icons.${key}`)}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="sm:col-span-2">
         <label htmlFor={`${idPrefix}-duration`} className={LABEL_CLASS}>
           {t("nutritionistPlans.fields.duration")}
@@ -116,6 +259,18 @@ function PlanFields({ plan, idPrefix }: PlanFieldsProps) {
           className={INPUT_CLASS}
         />
       </div>
+
+      <label className="flex items-center gap-2 text-sm text-stone-700 sm:col-span-2">
+        <input
+          type="checkbox"
+          name="is_highlighted"
+          defaultChecked={plan?.is_highlighted ?? false}
+          className="h-4 w-4 rounded border-stone-300"
+        />
+        {t("nutritionistPlans.fields.highlight")}
+      </label>
+
+      <InstallmentFields plan={plan} idPrefix={idPrefix} />
     </div>
   );
 }

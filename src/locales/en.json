@@ -231,13 +231,24 @@
       "currency": "Currency",
       "duration": "Duration",
       "description": "What's included",
-      "isActive": "Show this plan on my profile"
+      "isActive": "Show this plan on my profile",
+      "listPrice": "Price before (optional)",
+      "durationMonths": "Duration",
+      "durationChoose": "Choose…",
+      "icon": "Icon",
+      "iconNone": "No icon",
+      "highlight": "Highlight as \"Most chosen\"",
+      "installments": "Offer instalments",
+      "installmentDown": "Down payment",
+      "installmentMonths": "Instalments",
+      "installmentMonthly": "Monthly amount"
     },
     "placeholders": {
       "name": "e.g. Post-surgery follow-up",
       "price": "0.00",
       "duration": "e.g. 3 months, 4 sessions",
-      "description": "Describe what the patient gets in this plan."
+      "description": "Describe what the patient gets in this plan.",
+      "listPrice": "1099,00"
     },
     "create": {
       "title": "New plan",
@@ -253,6 +264,18 @@
       "button": "Delete",
       "confirm": "Delete this plan?",
       "yes": "Yes, delete"
+    },
+    "hints": {
+      "listPrice": "Shown struck through, with the discount worked out.",
+      "installments": "The instalment total should stay above the upfront price — that is what rewards paying at once."
+    },
+    "icons": {
+      "clipboard": "Plan",
+      "salad": "Nutrition",
+      "chat": "Support",
+      "chart": "Assessment",
+      "star": "Complete",
+      "heart": "Wellbeing"
     }
   },
   "auth": {
