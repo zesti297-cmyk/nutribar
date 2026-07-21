@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
 import en from "../locales/en.json";
 import pt from "../locales/pt.json";
 import es from "../locales/es.json";
@@ -25,6 +31,52 @@ const defaultLocale: Locale = "pt";
 
 const I18nContext = createContext<I18nContext | undefined>(undefined);
 
+function isLocale(value: string | null): value is Locale {
+  return value !== null && value in translations;
+}
+
+// Trocar de idioma nesta página não dispara "storage" (que só chega a outros
+// separadores), por isso o setLocale emite este evento para se notificar.
+const LOCALE_EVENT = "nutribar:locale";
+
+/**
+ * O idioma escolhido vive no localStorage, fora do React. Lemos com
+ * useSyncExternalStore em vez de copiar para dentro de um estado: assim o
+ * primeiro render do cliente já sai no idioma certo, sem o render em cascata
+ * (e o piscar do idioma errado) que um setState dentro de um effect provocava.
+ */
+const localeStore = {
+  subscribe(onChange: () => void) {
+    // "storage" só dispara noutros separadores; o setLocale desta página
+    // notifica pelo evento próprio abaixo.
+    window.addEventListener("storage", onChange);
+    window.addEventListener(LOCALE_EVENT, onChange);
+    return () => {
+      window.removeEventListener("storage", onChange);
+      window.removeEventListener(LOCALE_EVENT, onChange);
+    };
+  },
+
+  getSnapshot(): Locale {
+    try {
+      const saved = localStorage.getItem("locale");
+      if (isLocale(saved)) return saved;
+
+      const nav = (navigator.languages?.[0] || navigator.language || "").slice(0, 2);
+      if (isLocale(nav)) return nav;
+    } catch {
+      // localStorage bloqueado (modo privado, cookies desligados)
+    }
+    return defaultLocale;
+  },
+
+  // No servidor não há localStorage nem navigator, e o HTML sai com
+  // lang="pt-PT" fixo — devolver o mesmo aqui mantém a hidratação coerente.
+  getServerSnapshot(): Locale {
+    return defaultLocale;
+  },
+};
+
 function resolveTranslation(locale: Locale, key: string): unknown {
   const parts = key.split(".");
   let cur: unknown = translations[locale] || {};
@@ -39,32 +91,21 @@ function resolveTranslation(locale: Locale, key: string): unknown {
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
+  const locale = useSyncExternalStore(
+    localeStore.subscribe,
+    localeStore.getSnapshot,
+    localeStore.getServerSnapshot,
+  );
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("locale") as Locale | null;
-      if (saved && translations[saved]) {
-        setLocaleState(saved);
-        return;
-      }
-      const nav = (navigator.languages?.[0] || navigator.language || "").slice(0, 2);
-      if (nav === "pt" || nav === "en" || nav === "es" || nav === "fr") {
-        setLocaleState(nav);
-      }
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  const setLocale = (l: Locale) => {
-    setLocaleState(l);
+  const setLocale = useCallback((l: Locale) => {
     try {
       localStorage.setItem("locale", l);
     } catch {
-      // ignore
+      // localStorage bloqueado: a escolha não persiste entre visitas
     }
-  };
+    // Faz o store reler e re-renderizar; sem isto a UI ficava no idioma antigo.
+    window.dispatchEvent(new Event(LOCALE_EVENT));
+  }, []);
 
   const t = useMemo(
     () =>
@@ -84,7 +125,9 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     [locale],
   );
 
-  return <I18nContext.Provider value={{ locale, setLocale, t }}>{children}</I18nContext.Provider>;
+  const value = useMemo(() => ({ locale, setLocale, t }), [locale, setLocale, t]);
+
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
 
 export function useI18n() {
