@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { SESSION_COOKIE, verifySessionToken } from "@/lib/session-token";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   if (!process.env.SESSION_SECRET) {
     return NextResponse.next();
   }
