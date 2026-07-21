@@ -76,16 +76,16 @@ function PlanFields({ plan, idPrefix }: PlanFieldsProps) {
         <label htmlFor={`${idPrefix}-currency`} className={LABEL_CLASS}>
           {t("nutritionistPlans.fields.currency")}
         </label>
-        <select
+        {/* Só faturamos em euros; o campo fica visível para não haver dúvida
+            sobre a moeda do preço, e segue no formulário como hidden. */}
+        <input type="hidden" name="currency" value={DEFAULT_CURRENCY} />
+        <input
           id={`${idPrefix}-currency`}
-          name="currency"
-          defaultValue={plan?.currency ?? DEFAULT_CURRENCY}
-          className={INPUT_CLASS}
-        >
-          <option value="USD">USD ($)</option>
-          <option value="EUR">EUR (€)</option>
-          <option value="BRL">BRL (R$)</option>
-        </select>
+          value="EUR (€)"
+          readOnly
+          disabled
+          className={`${INPUT_CLASS} cursor-not-allowed opacity-70`}
+        />
       </div>
 
       <div className="sm:col-span-2">

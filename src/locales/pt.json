@@ -304,7 +304,7 @@
     "saveNutritionistCommission": "Guardar comissão da nutricionista",
     "saveReferralCommission": "Guardar comissão de indicação",
     "commissionType": {
-      "fixed": "Dólar ($)",
+      "fixed": "Euro (€)",
       "percent": "Percentagem (%)"
     },
     "noPending": "Nenhuma aprovação pendente.",

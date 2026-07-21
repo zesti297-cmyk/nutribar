@@ -304,7 +304,7 @@
     "saveNutritionistCommission": "Save nutritionist commission",
     "saveReferralCommission": "Save referral commission",
     "commissionType": {
-      "fixed": "Dollar ($)",
+      "fixed": "Euro (€)",
       "percent": "Percentage (%)"
     },
     "noPending": "No pending approvals.",

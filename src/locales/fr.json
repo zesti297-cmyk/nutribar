@@ -304,7 +304,7 @@
     "saveNutritionistCommission": "Enregistrer la commission de la nutritionniste",
     "saveReferralCommission": "Enregistrer la commission de recommandation",
     "commissionType": {
-      "fixed": "Dollar ($)",
+      "fixed": "Euro (€)",
       "percent": "Pourcentage (%)"
     },
     "noPending": "Aucune approbation en attente.",
