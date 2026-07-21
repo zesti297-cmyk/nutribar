@@ -176,7 +176,7 @@
     "legal": "Legal",
     "howItWorks": "Como funciona",
     "nutritionists": "Nutricionistas",
-    "forTranslators": "Para tradutores",
+    "forTranslators": "Para promotores",
     "imPatient": "Sou paciente",
     "imNutritionist": "Sou nutricionista",
     "contact": "Contacto",
@@ -257,7 +257,7 @@
     "back": "← Voltar",
     "enterAccount": "Aceda à sua conta",
     "createAccount": "Crie a sua conta e comece hoje",
-    "referral": "Indicado por tradutor: {code}",
+    "referral": "Indicado por promotor: {code}",
     "email": "Email",
     "password": "Palavra-passe",
     "showPassword": "Mostrar palavra-passe",
@@ -273,13 +273,13 @@
     "nav": {
       "dashboard": "Visão geral",
       "nutritionists": "Nutricionistas",
-      "translators": "Tradutores",
+      "translators": "Promotores",
       "leads": "Leads",
       "patients": "Pacientes"
     },
     "stats": {
       "nutritionists": "Nutricionistas",
-      "translators": "Tradutores",
+      "translators": "Promotores",
       "patients": "Pacientes",
       "leads": "Leads"
     },
@@ -309,9 +309,9 @@
     },
     "noPending": "Nenhuma aprovação pendente.",
     "loginLinks": "Ligações de acesso",
-    "loginLinksDescription": "Copie e envie para as nutricionistas e tradutores criarem a conta ou entrarem.",
+    "loginLinksDescription": "Copie e envie para as nutricionistas e promotores criarem a conta ou entrarem.",
     "loginLinkNutritionist": "Login nutricionista",
-    "loginLinkTranslator": "Login tradutor",
+    "loginLinkTranslator": "Login promotor",
     "nutritionists": "Nutricionistas",
     "noNutritionists": "Nenhuma nutricionista encontrada.",
     "plansList": {
@@ -319,9 +319,9 @@
       "empty": "Ainda não criou planos.",
       "inactive": "inativo"
     },
-    "translators": "Tradutores",
-    "noTranslators": "Nenhum tradutor encontrado.",
-    "referrals": "Indicações entre tradutores",
+    "translators": "Promotores",
+    "noTranslators": "Nenhum promotor encontrado.",
+    "referrals": "Indicações entre promotores",
     "noReferrals": "Nenhuma indicação registada.",
     "approve": "Aprovar",
     "approving": "A aprovar...",
@@ -330,14 +330,14 @@
     "copyLink": "Copiar ligação",
     "copied": "Copiado",
     "table": {
-      "translator": "Tradutor indicado",
+      "translator": "Promotor indicado",
       "referrer": "Indicado por",
       "status": "Estado",
       "date": "Data",
       "amount": "Valor"
     },
     "markPaid": "Marcar como pago",
-    "referralsHint": "O valor de cada convite é fixado no registo do indicado. Alterar a comissão de um tradutor não altera convites já registados.",
+    "referralsHint": "O valor de cada convite é fixado no registo do indicado. Alterar a comissão de um promotor não altera convites já registados.",
     "delete": {
       "button": "Eliminar",
       "confirm": "Eliminar {name} definitivamente?",
@@ -422,7 +422,7 @@
   },
   "role": {
     "patient": "Paciente",
-    "translator": "Tradutor",
+    "translator": "Promotor",
     "nutritionist": "Nutricionista",
     "admin": "Admin"
   },
@@ -435,10 +435,10 @@
     },
     "translator": {
       "title": "A sua ligação de indicação",
-      "description": "Partilhe esta ligação para indicar outros tradutores e ganhar comissão por cada indicação.",
-      "bonusFixed": "Ganha {value} por tradutor indicado.",
-      "bonusPercent": "Ganha {value}% de comissão por tradutor indicado.",
-      "referred": "Tradutores indicados",
+      "description": "Partilhe esta ligação para indicar outros promotores e ganhar comissão por cada indicação.",
+      "bonusFixed": "Ganha {value} por promotor indicado.",
+      "bonusPercent": "Ganha {value}% de comissão por promotor indicado.",
+      "referred": "Promotores indicados",
       "payable": "A receber",
       "paid": "Já pago"
     },

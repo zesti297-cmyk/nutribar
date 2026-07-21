@@ -176,7 +176,7 @@
     "legal": "Légal",
     "howItWorks": "Comment ça marche",
     "nutritionists": "Nutritionnistes",
-    "forTranslators": "Pour les traducteurs",
+    "forTranslators": "Pour les promoteurs",
     "imPatient": "Je suis patiente",
     "imNutritionist": "Je suis nutritionniste",
     "contact": "Contact",
@@ -257,7 +257,7 @@
     "back": "← Retour",
     "enterAccount": "Accédez à votre compte",
     "createAccount": "Créez votre compte et commencez aujourd'hui",
-    "referral": "Recommandé par le traducteur : {code}",
+    "referral": "Recommandé par le promoteur : {code}",
     "email": "Email",
     "password": "Mot de passe",
     "showPassword": "Afficher le mot de passe",
@@ -273,13 +273,13 @@
     "nav": {
       "dashboard": "Aperçu",
       "nutritionists": "Nutritionnistes",
-      "translators": "Traducteurs",
+      "translators": "Promoteurs",
       "leads": "Leads",
       "patients": "Patientes"
     },
     "stats": {
       "nutritionists": "Nutritionnistes",
-      "translators": "Traducteurs",
+      "translators": "Promoteurs",
       "patients": "Patientes",
       "leads": "Leads"
     },
@@ -309,9 +309,9 @@
     },
     "noPending": "Aucune approbation en attente.",
     "loginLinks": "Liens d'accès",
-    "loginLinksDescription": "Copiez et envoyez ces liens pour que les nutritionnistes et les traducteurs créent leur compte ou se connectent.",
+    "loginLinksDescription": "Copiez et envoyez ces liens pour que les nutritionnistes et les promoteurs créent leur compte ou se connectent.",
     "loginLinkNutritionist": "Connexion nutritionniste",
-    "loginLinkTranslator": "Connexion traducteur",
+    "loginLinkTranslator": "Connexion promoteur",
     "nutritionists": "Nutritionnistes",
     "noNutritionists": "Aucune nutritionniste trouvée.",
     "plansList": {
@@ -319,9 +319,9 @@
       "empty": "Aucune formule créée pour l'instant.",
       "inactive": "inactive"
     },
-    "translators": "Traducteurs",
-    "noTranslators": "Aucun traducteur trouvé.",
-    "referrals": "Recommandations entre traducteurs",
+    "translators": "Promoteurs",
+    "noTranslators": "Aucun promoteur trouvé.",
+    "referrals": "Recommandations entre promoteurs",
     "noReferrals": "Aucune recommandation enregistrée.",
     "approve": "Approuver",
     "approving": "Approbation...",
@@ -330,14 +330,14 @@
     "copyLink": "Copier le lien",
     "copied": "Copié",
     "table": {
-      "translator": "Traducteur recommandé",
+      "translator": "Promoteur recommandé",
       "referrer": "Recommandé par",
       "status": "Statut",
       "date": "Date",
       "amount": "Montant"
     },
     "markPaid": "Marquer comme payé",
-    "referralsHint": "Le montant de chaque recommandation est figé à l'inscription du filleul. Modifier la commission d'un traducteur n'affecte pas les recommandations déjà enregistrées.",
+    "referralsHint": "Le montant de chaque recommandation est figé à l'inscription du filleul. Modifier la commission d'un promoteur n'affecte pas les recommandations déjà enregistrées.",
     "delete": {
       "button": "Supprimer",
       "confirm": "Supprimer définitivement {name} ?",
@@ -422,7 +422,7 @@
   },
   "role": {
     "patient": "Patiente",
-    "translator": "Traducteur",
+    "translator": "Promoteur",
     "nutritionist": "Nutritionniste",
     "admin": "Admin"
   },
@@ -435,10 +435,10 @@
     },
     "translator": {
       "title": "Votre lien de recommandation",
-      "description": "Partagez ce lien pour recommander d'autres traducteurs et gagner une commission pour chaque recommandation.",
-      "bonusFixed": "Vous gagnez {value} par traducteur recommandé.",
-      "bonusPercent": "Vous gagnez {value} % de commission par traducteur recommandé.",
-      "referred": "Traducteurs recommandés",
+      "description": "Partagez ce lien pour recommander d'autres promoteurs et gagner une commission pour chaque recommandation.",
+      "bonusFixed": "Vous gagnez {value} par promoteur recommandé.",
+      "bonusPercent": "Vous gagnez {value} % de commission par promoteur recommandé.",
+      "referred": "Promoteurs recommandés",
       "payable": "À percevoir",
       "paid": "Déjà payé"
     },

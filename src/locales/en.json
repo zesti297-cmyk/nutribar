@@ -176,7 +176,7 @@
     "legal": "Legal",
     "howItWorks": "How it works",
     "nutritionists": "Nutritionists",
-    "forTranslators": "For translators",
+    "forTranslators": "For promoters",
     "imPatient": "I'm a patient",
     "imNutritionist": "I'm a nutritionist",
     "contact": "Contact",
@@ -257,7 +257,7 @@
     "back": "← Back",
     "enterAccount": "Access your account",
     "createAccount": "Create your account and start today",
-    "referral": "Referred by translator: {code}",
+    "referral": "Referred by promoter: {code}",
     "email": "Email",
     "password": "Password",
     "showPassword": "Show password",
@@ -273,13 +273,13 @@
     "nav": {
       "dashboard": "Overview",
       "nutritionists": "Nutritionists",
-      "translators": "Translators",
+      "translators": "Promoters",
       "leads": "Leads",
       "patients": "Patients"
     },
     "stats": {
       "nutritionists": "Nutritionists",
-      "translators": "Translators",
+      "translators": "Promoters",
       "patients": "Patients",
       "leads": "Leads"
     },
@@ -309,9 +309,9 @@
     },
     "noPending": "No pending approvals.",
     "loginLinks": "Access links",
-    "loginLinksDescription": "Copy and send these so nutritionists and translators can sign up or log in.",
+    "loginLinksDescription": "Copy and send these so nutritionists and promoters can sign up or log in.",
     "loginLinkNutritionist": "Nutritionist login",
-    "loginLinkTranslator": "Translator login",
+    "loginLinkTranslator": "Promoter login",
     "nutritionists": "Nutritionists",
     "noNutritionists": "No nutritionists found.",
     "plansList": {
@@ -319,9 +319,9 @@
       "empty": "No plans created yet.",
       "inactive": "inactive"
     },
-    "translators": "Translators",
-    "noTranslators": "No translators found.",
-    "referrals": "Referrals between translators",
+    "translators": "Promoters",
+    "noTranslators": "No promoters found.",
+    "referrals": "Referrals between promoters",
     "noReferrals": "No referrals recorded.",
     "approve": "Approve",
     "approving": "Approving...",
@@ -330,14 +330,14 @@
     "copyLink": "Copy link",
     "copied": "Copied",
     "table": {
-      "translator": "Referred translator",
+      "translator": "Referred promoter",
       "referrer": "Referred by",
       "status": "Status",
       "date": "Date",
       "amount": "Amount"
     },
     "markPaid": "Mark as paid",
-    "referralsHint": "Each referral's amount is frozen when the referred user signs up. Changing a translator's commission does not affect referrals already recorded.",
+    "referralsHint": "Each referral's amount is frozen when the referred user signs up. Changing a promoter's commission does not affect referrals already recorded.",
     "delete": {
       "button": "Delete",
       "confirm": "Permanently delete {name}?",
@@ -422,7 +422,7 @@
   },
   "role": {
     "patient": "Patient",
-    "translator": "Translator",
+    "translator": "Promoter",
     "nutritionist": "Nutritionist",
     "admin": "Admin"
   },
@@ -435,10 +435,10 @@
     },
     "translator": {
       "title": "Your referral link",
-      "description": "Share this link to refer other translators and earn a commission for each referral.",
-      "bonusFixed": "You earn {value} per referred translator.",
-      "bonusPercent": "You earn {value}% commission per referred translator.",
-      "referred": "Referred translators",
+      "description": "Share this link to refer other promoters and earn a commission for each referral.",
+      "bonusFixed": "You earn {value} per referred promoter.",
+      "bonusPercent": "You earn {value}% commission per referred promoter.",
+      "referred": "Referred promoters",
       "payable": "Payable",
       "paid": "Paid"
     },

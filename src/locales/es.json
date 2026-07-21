@@ -176,7 +176,7 @@
     "legal": "Legal",
     "howItWorks": "Cómo funciona",
     "nutritionists": "Nutricionistas",
-    "forTranslators": "Para traductores",
+    "forTranslators": "Para promotores",
     "imPatient": "Soy paciente",
     "imNutritionist": "Soy nutricionista",
     "contact": "Contacto",
@@ -257,7 +257,7 @@
     "back": "← Volver",
     "enterAccount": "Accede a tu cuenta",
     "createAccount": "Crea tu cuenta y empieza hoy",
-    "referral": "Recomendado por traductor: {code}",
+    "referral": "Recomendado por promotor: {code}",
     "email": "Email",
     "password": "Contraseña",
     "showPassword": "Mostrar contraseña",
@@ -273,13 +273,13 @@
     "nav": {
       "dashboard": "Resumen",
       "nutritionists": "Nutricionistas",
-      "translators": "Traductores",
+      "translators": "Promotores",
       "leads": "Leads",
       "patients": "Pacientes"
     },
     "stats": {
       "nutritionists": "Nutricionistas",
-      "translators": "Traductores",
+      "translators": "Promotores",
       "patients": "Pacientes",
       "leads": "Leads"
     },
@@ -309,9 +309,9 @@
     },
     "noPending": "No hay aprobaciones pendientes.",
     "loginLinks": "Enlaces de acceso",
-    "loginLinksDescription": "Copia y envía estos enlaces para que las nutricionistas y los traductores creen su cuenta o entren.",
+    "loginLinksDescription": "Copia y envía estos enlaces para que las nutricionistas y los promotores creen su cuenta o entren.",
     "loginLinkNutritionist": "Acceso nutricionista",
-    "loginLinkTranslator": "Acceso traductor",
+    "loginLinkTranslator": "Acceso promotor",
     "nutritionists": "Nutricionistas",
     "noNutritionists": "No se encontraron nutricionistas.",
     "plansList": {
@@ -319,9 +319,9 @@
       "empty": "Aún no ha creado planes.",
       "inactive": "inactivo"
     },
-    "translators": "Traductores",
-    "noTranslators": "No se encontraron traductores.",
-    "referrals": "Recomendaciones entre traductores",
+    "translators": "Promotores",
+    "noTranslators": "No se encontraron promotores.",
+    "referrals": "Recomendaciones entre promotores",
     "noReferrals": "No hay recomendaciones registradas.",
     "approve": "Aprobar",
     "approving": "Aprobando...",
@@ -330,14 +330,14 @@
     "copyLink": "Copiar enlace",
     "copied": "Copiado",
     "table": {
-      "translator": "Traductor recomendado",
+      "translator": "Promotor recomendado",
       "referrer": "Recomendado por",
       "status": "Estado",
       "date": "Fecha",
       "amount": "Importe"
     },
     "markPaid": "Marcar como pagado",
-    "referralsHint": "El importe de cada recomendación se congela al registrarse el recomendado. Cambiar la comisión de un traductor no afecta a las recomendaciones ya registradas.",
+    "referralsHint": "El importe de cada recomendación se congela al registrarse el recomendado. Cambiar la comisión de un promotor no afecta a las recomendaciones ya registradas.",
     "delete": {
       "button": "Eliminar",
       "confirm": "¿Eliminar definitivamente a {name}?",
@@ -422,7 +422,7 @@
   },
   "role": {
     "patient": "Paciente",
-    "translator": "Traductor",
+    "translator": "Promotor",
     "nutritionist": "Nutricionista",
     "admin": "Admin"
   },
@@ -435,10 +435,10 @@
     },
     "translator": {
       "title": "Tu enlace de recomendación",
-      "description": "Comparte este enlace para recomendar a otros traductores y ganar comisión por cada recomendación.",
-      "bonusFixed": "Ganas {value} por cada traductor recomendado.",
-      "bonusPercent": "Ganas un {value}% de comisión por cada traductor recomendado.",
-      "referred": "Traductores recomendados",
+      "description": "Comparte este enlace para recomendar a otros promotores y ganar comisión por cada recomendación.",
+      "bonusFixed": "Ganas {value} por cada promotor recomendado.",
+      "bonusPercent": "Ganas un {value}% de comisión por cada promotor recomendado.",
+      "referred": "Promotores recomendados",
       "payable": "Por cobrar",
       "paid": "Ya pagado"
     },
