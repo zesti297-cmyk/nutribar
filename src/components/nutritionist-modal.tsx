@@ -72,44 +72,59 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
   };
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    // No telemóvel a folha encosta ao fundo e ocupa quase todo o ecrã; a partir
+    // de sm volta a ser um diálogo centrado. dvh em vez de vh porque a barra de
+    // endereço do browser móvel encolhe a viewport e cortava o conteúdo.
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       <div
         role="dialog"
         aria-modal="true"
         aria-label={nutritionist.full_name}
-        className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl"
+        className="relative max-h-[92dvh] w-full overflow-y-auto rounded-t-2xl bg-white p-5 shadow-2xl sm:max-h-[85vh] sm:max-w-3xl sm:rounded-2xl sm:p-6"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label={t("nutritionistCard.close")}
-          className="absolute right-4 top-4 rounded-full p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+          className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 sm:right-4 sm:top-4"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        <div className="grid gap-6 sm:grid-cols-3">
-          <div className="relative h-48 w-full overflow-hidden rounded-xl sm:col-span-1 sm:h-44">
-            <Image
-              src={photo}
-              alt={nutritionist.full_name}
-              fill
-              sizes="(min-width: 640px) 33vw, 100vw"
-              className="object-cover"
-            />
+        {/* No telemóvel a foto fica pequena ao lado do nome — uma imagem de
+            altura total empurrava a bio e os planos para fora do ecrã. */}
+        <div className="grid gap-4 sm:grid-cols-3 sm:gap-6">
+          <div className="flex items-center gap-4 sm:block sm:col-span-1">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl sm:h-44 sm:w-full">
+              <Image
+                src={photo}
+                alt={nutritionist.full_name}
+                fill
+                sizes="(min-width: 640px) 33vw, 80px"
+                className="object-cover"
+              />
+            </div>
+            <div className="min-w-0 pr-10 sm:hidden">
+              <h3 className="text-xl font-semibold text-[#0c2340]">{nutritionist.full_name}</h3>
+              {nutritionist.location && (
+                <p className="mt-0.5 text-sm text-slate-500">{nutritionist.location}</p>
+              )}
+            </div>
           </div>
           <div className="sm:col-span-2">
-            <h3 className="pr-8 text-2xl font-semibold text-[#0c2340]">{nutritionist.full_name}</h3>
+            <h3 className="hidden pr-8 text-2xl font-semibold text-[#0c2340] sm:block">
+              {nutritionist.full_name}
+            </h3>
             {nutritionist.location && (
-              <p className="mt-1 text-sm text-slate-500">{nutritionist.location}</p>
+              <p className="mt-1 hidden text-sm text-slate-500 sm:block">{nutritionist.location}</p>
             )}
             {nutritionist.languages && (
-              <p className="mt-1 text-sm text-slate-500">{nutritionist.languages}</p>
+              <p className="text-sm text-slate-500 sm:mt-1">{nutritionist.languages}</p>
             )}
-            <p className="mt-3 text-sm text-slate-600">
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
               {nutritionist.bio || t("nutritionistCard.placeholderBio")}
             </p>
           </div>
@@ -118,8 +133,10 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
         {(plans.length > 0 || isDemo) && (
           <div className="mt-6">
             <h4 className="text-lg font-semibold text-[#0c2340]">{t("nutritionistCard.packsTitle")}</h4>
+            {/* gap-5 no telemóvel: os cartões empilham e o selo do destaque
+                sobressai para cima, precisando de folga entre eles. */}
             <div
-              className={`mt-4 grid gap-4 ${
+              className={`mt-5 grid gap-5 sm:gap-4 ${
                 (isDemo ? demoPlans.length : plans.length) === 2
                   ? "sm:grid-cols-2"
                   : "sm:grid-cols-3"
@@ -182,17 +199,19 @@ export function NutritionistModal({ nutritionist, photo, onClose }: Nutritionist
           </p>
         )}
 
-        <div className="mt-6 flex flex-col-reverse justify-end gap-3 sm:flex-row">
+        {/* Botões colados ao fundo da folha no telemóvel, com o CTA por cima do
+            "Fechar" (flex-col-reverse) por ficar mais perto do polegar. */}
+        <div className="sticky bottom-0 -mx-5 mt-6 flex flex-col-reverse gap-3 border-t border-slate-100 bg-white px-5 pb-1 pt-4 sm:static sm:mx-0 sm:flex-row sm:justify-end sm:border-0 sm:px-0 sm:pb-0 sm:pt-0">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-slate-300 px-5 py-2.5 text-sm text-slate-700 transition-colors hover:bg-slate-50"
+            className="rounded-md border border-slate-300 px-5 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 sm:py-2.5"
           >
             {t("nutritionistCard.close")}
           </button>
           <Link
             href={`/onboarding?nutritionist=${nutritionist.id}`}
-            className="rounded-md bg-[#0c2340] px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-[#1a3054]"
+            className="rounded-md bg-[#0c2340] px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#1a3054] sm:py-2.5"
           >
             {t("nutritionistCard.contact")}
           </Link>
